@@ -1,0 +1,1611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2016 Jim Daly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<Actions>
+  <Action Name="AddChannelAccessProfilePrivileges"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds entity privileges to a channel access profile.</Description>
+    <Parameters>
+      <Parameter Name="ChannelAccessProfileId">The unique identifier of the channel access profile.</Parameter>
+      <Parameter Name="Privileges">The privileges for the target entity.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddChannelAccessProfilePrivileges action. </ReturnType>
+  </Action>
+  <Action Name="AddItemCampaign"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds an item to a campaign.</Description>
+    <Parameters>
+      <Parameter Name="Campaign">The campaign to add the item to.</Parameter>
+      <Parameter Name="entity">The uri to the campaign, list, product or salesliterature item to add.</Parameter>
+    </Parameters>
+    <ReturnType> Contains the response from AddItemCampaignRequest action.</ReturnType>
+  </Action>
+  <Action Name="AddItemCampaignActivity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds an item to a campaign activity. </Description>
+    <Parameters>
+      <Parameter Name="CampaignActivity">The campaign activity to add the item to. </Parameter>
+      <Parameter Name="Item">The item to be added to the campaign activity. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddItemCampaignActivity action. </ReturnType>
+  </Action>
+  <Action Name="AddListMembersList"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds members to a list. </Description>
+    <Parameters>
+      <Parameter Name="List">The list to add the members to. </Parameter>
+      <Parameter Name="Members">The members to be added to the list. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddListMembersList action. </ReturnType>
+  </Action>
+  <Action Name="AddMemberList"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds a member to a list (marketing list).  </Description>
+    <Parameters>
+      <Parameter Name="entity">The entity to be added to the list. </Parameter>
+      <Parameter Name="EntityId">ID of the entity to be added to the list. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddMemberList action. </ReturnType>
+  </Action>
+  <Action Name="AddMembersTeam"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds members to a team. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be added to a team. </Parameter>
+      <Parameter Name="Members">The users to be added to a team.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddMembersTeam action. </ReturnType>
+  </Action>
+  <Action Name="AddPrincipalToQueue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds the specified principal to the list of queue members. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be added to the queue. </Parameter>
+      <Parameter Name="Principal">The principal to be added to the list of queue members.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddPrincipalToQueue action.</ReturnType>
+  </Action>
+  <Action Name="AddPrivilegesRole"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds a set of existing privileges to an existing role. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be added. </Parameter>
+      <Parameter Name="Privileges">The privileges for an existing role. </Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddPrivilegesRole action.</ReturnType>
+  </Action>
+  <Action Name="AddProductToKit"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds a product to a kit. (Deprecated) </Description>
+    <Parameters>
+      <Parameter Name="KitId">ID of the kit the product is added to. </Parameter>
+      <Parameter Name="ProductId">ID of the product to add to a kit. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddProductToKit action.</ReturnType>
+  </Action>
+  <Action Name="AddRecurrence"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds recurrence information to an existing appointment. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be added. </Parameter>
+      <Parameter Name="Target">The recurring appointment master record to which the appointment is converted. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddRecurrence action. </ReturnType>
+  </Action>
+  <Action Name="AddSolutionComponent"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds a solution component to an unmanaged solution.  </Description>
+    <Parameters>
+      <Parameter Name="AddRequiredComponents">Indicates whether other solution components that are required by the solution component should also be added to the unmanaged solution. </Parameter>
+      <Parameter Name="ComponentId">ID of the solution component.</Parameter>
+      <Parameter Name="ComponentType">The solution component to add to the unmanaged solution.</Parameter>
+      <Parameter Name="DoNotIncludeSubcomponents">Indicates whether the subcomponents should be included.</Parameter>
+      <Parameter Name="IncludedComponentSettingsValues">Any settings to be included with the component.</Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddSolutionComponent action.</ReturnType>
+  </Action>
+  <Action Name="AddSubstituteProduct"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds a link between two entity instances in a many-to-many relationship. (Deprecated) </Description>
+    <Parameters>
+      <Parameter Name="Product">Product to be added. (Deprecated) </Parameter>
+      <Parameter Name="ProductId">ID of the product. (Deprecated) </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddSubstituteProduct action. </ReturnType>
+  </Action>
+  <Action Name="AddToQueue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Moves an entity record from a source queue to a destination queue.</Description>
+    <Parameters>
+      <Parameter Name="entity">The record to move from source queue to destination queue.</Parameter>
+      <Parameter Name="QueueItemProperties">Properties required to create a queue item in the destination queue.</Parameter>
+      <Parameter Name="SourceQueue">The source queue. </Parameter>
+      <Parameter Name="Target">The destination queue. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddToQueue action.</ReturnType>
+  </Action>
+  <Action Name="AddUserToRecordTeam"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Adds a user to the auto created access team for the specified record. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be added. </Parameter>
+      <Parameter Name="Record">Record for which the access team is auto created. </Parameter>
+      <Parameter Name="TeamTemplate">Team template that is used to create the access team.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AddUserToRecordTeam action. </ReturnType>
+  </Action>
+  <Action Name="ApplyProfileRule"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Parameters>
+      <Parameter Name="Target"></Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ApplyProfileRule action. </ReturnType>
+  </Action>
+  <Action Name="ApplyRecordCreationAndUpdateRule"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Applies record creation and update rules to activities in CRM created as a result of the integration with external applications.  </Description>
+    <Parameters />
+    <ReturnType>Contains the response from ApplyRecordCreationAndUpdateRule action. </ReturnType>
+  </Action>
+  <Action Name="ApplyRoutingRule"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Applies the active routing rule to an incident.  </Description>
+    <Parameters>
+      <Parameter Name="Target">The incident to apply the routing rule to. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ApplyRoutingRule action. </ReturnType>
+  </Action>
+  <Action Name="AutoMapEntity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Generates a new set of attribute mappings based on the metadata. </Description>
+    <Parameters>
+      <Parameter Name="EntityMapId">The entity map to overwrite when the automated mapping is performed.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from AutoMapEntity action.</ReturnType>
+  </Action>
+  <Action Name="Book"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Schedules or “books” an appointment, recurring appointment, or service appointment (service activity). </Description>
+    <Parameters>
+      <!--Bug 249823:MaintainLegacyAppServerBehavior appearing in Book and Reschedule Actions-->
+      <Parameter Name="MaintainLegacyAppServerBehavior">For internal use only.</Parameter>
+      <Parameter Name="ReturnNotifications">For internal use only.</Parameter>
+      <Parameter Name="Target"> The record that is the target of the book operation. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the Book action. </ReturnType>
+  </Action>
+  <Action Name="CalculateActualValueOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Calculates the value of an opportunity that is in the "Won" state. </Description>
+    <Parameters>
+      <Parameter Name="entity">Sets the Opportunity to use in the calculation</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CalculateActualValueOpportunity action. </ReturnType>
+  </Action>
+  <Action Name="CalculatePrice"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Calculates price in an opportunity, quote, order, and invoice.</Description>
+    <Parameters>
+      <Parameter Name="ParentId">For internal use only.</Parameter>
+      <Parameter Name="Target">For internal use only. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CalculatePrice action.</ReturnType>
+  </Action>
+  <Action Name="CanBeReferenced"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Checks whether the specified entity can be the primary entity (one) in a one-to-many relationship. </Description>
+    <Parameters>
+      <Parameter Name="EntityName">Logical entity name.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CanBeReferenced action. </ReturnType>
+  </Action>
+  <Action Name="CanBeReferencing"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Checkes whether an entity can be the referencing entity in a one-to-many relationship. </Description>
+    <Parameters>
+      <Parameter Name="EntityName">Logical entity name.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CanBeReferencing action. </ReturnType>
+  </Action>
+  <Action Name="CancelContract"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Cancels a contract.  </Description>
+    <Parameters>
+      <Parameter Name="CancelDate">The date the contract was cancelled. </Parameter>
+      <Parameter Name="ContractId">ID of the contract. </Parameter>
+      <Parameter Name="Status">Status of the contract.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CancelContract action. </ReturnType>
+  </Action>
+  <Action Name="CancelSalesOrder"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Cancels a sales order. </Description>
+    <Parameters>
+      <Parameter Name="OrderClose">The close activity that is associated with the sales order (order) that is to be cancelled.  </Parameter>
+      <Parameter Name="Status">Status of the sales order. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CancelSalesOrder action. </ReturnType>
+  </Action>
+  <Action Name="CanManyToMany"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Checks whether an entity can participate in a many-to-many relationship.  </Description>
+    <Parameters>
+      <Parameter Name="EntityName">Name of the entity. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CanManyToMany action. </ReturnType>
+  </Action>
+  <Action Name="CloneAsPatch"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a solution patch from a managed or unmanaged solution.</Description>
+    <Parameters>
+      <Parameter Name="DisplayName">The name of the patch.</Parameter>
+      <Parameter Name="ParentSolutionUniqueName">The unique name of the parent solution.</Parameter>
+      <Parameter Name="VersionNumber">The version number of the patch. The version must be greater than the parent solution but have the same major.minor number. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CloneAsPatch action. </ReturnType>
+  </Action>
+  <Action Name="CloneAsSolution"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a new copy of an unmanged solution that contains the original solution plus all of its patches.</Description>
+    <Parameters>
+      <Parameter Name="DisplayName">The name of the cloned solution.</Parameter>
+      <Parameter Name="ParentSolutionUniqueName">The name of the parent solution. This name must be the same as the parent name in the original solution that was cloned.</Parameter>
+      <Parameter Name="VersionNumber">The version number of the cloned solution. The cloned solution major.minor version number must be a higher than the original solution that was cloned.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CloneAsSolution action. </ReturnType>
+  </Action>
+  <Action Name="CloneContract"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Copies an existing contract and its line items. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be copied. </Parameter>
+      <Parameter Name="IncludeCanceledLines">Indicates whether the canceled line items of the originating contract are to be included in the copy.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CloneContract action. </ReturnType>
+  </Action>
+  <Action Name="CloneProduct"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Copies an existing product family, product, or bundle under the same parent record. </Description>
+    <Parameters>
+      <Parameter Name="entity">The source product family, product, or bundle record that you want to clone. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CloneProduct action. </ReturnType>
+  </Action>
+  <Action Name="CloseIncident"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Closes an incident (case).</Description>
+    <Parameters>
+      <Parameter Name="IncidentResolution">Incident resolution (case resolution) that is associated with the incident (case) to be closed.</Parameter>
+      <Parameter Name="Status">Status of the incident. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CloseIncident action.</ReturnType>
+  </Action>
+  <Action Name="CloseQuote"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Closes a quote.  </Description>
+    <Parameters>
+      <Parameter Name="QuoteClose">A quote to be closed.</Parameter>
+      <Parameter Name="Status">Status of the quote. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CloseQuote action. </ReturnType>
+  </Action>
+  <Action Name="CompoundUpdateDuplicateDetectionRule"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Updates a duplicate rule (duplicate detection rule) and its related duplicate rule conditions. </Description>
+    <Parameters>
+      <Parameter Name="ChildEntities">Collection of the duplicate rule conditions that is to be updated. </Parameter>
+      <Parameter Name="Entity">TODO: CompoundUpdateDuplicateDetectionRule Action Entity Parameter Description </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CompoundUpdateDuplicateDetectionRule action. </ReturnType>
+  </Action>
+  <Action Name="ConvertKitToProduct"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Converts a kit to a product. (Deprecated) </Description>
+    <Parameters>
+      <Parameter Name="KitId">ID of the kit.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ConvertKitToProduct action. </ReturnType>
+  </Action>
+  <Action Name="ConvertOwnerTeamToAccessTeam"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Converts a team of type owner to a team of type access.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to convert.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ConvertOwnerTeamToAccessTeam action. </ReturnType>
+  </Action>
+  <Action Name="ConvertProductToKit"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Converts a product to a kit. </Description>
+    <Parameters>
+      <Parameter Name="ProductId">ID of the product.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ConvertProductToKit action. </ReturnType>
+  </Action>
+  <Action Name="ConvertQuoteToSalesOrder"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Converts a quote to a sales order.  </Description>
+    <Parameters>
+      <Parameter Name="ColumnSet">Collection of attributes to retrieve in the resulting sales order  </Parameter>
+      <Parameter Name="QuoteCloseDate">The date when the quote is close. </Parameter>
+      <Parameter Name="QuoteCloseDescription">The description for closing the quote. </Parameter>
+      <Parameter Name="QuoteCloseStatus">The status of the closed quote. </Parameter>
+      <Parameter Name="QuoteCloseSubject">The subject associated with the closed quote.</Parameter>
+      <Parameter Name="QuoteId">The ID of the quote to convert</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ConvertQuoteToSalesOrder action. </ReturnType>
+  </Action>
+  <Action Name="ConvertSalesOrderToInvoice"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Converts a sales order to an invoice.  </Description>
+    <Parameters>
+      <Parameter Name="ColumnSet">Collection of attributes to retrieve from the resulting invoice.</Parameter>
+      <Parameter Name="SalesOrderId">The ID of the sales order (order) to convert. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ConvertSalesOrderToInvoice action. </ReturnType>
+  </Action>
+  <Action Name="CopyCampaign"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Copies a campaign. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to copy. </Parameter>
+      <Parameter Name="SaveAsTemplate">Indicates whether to save the campaign as a template. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CopyCampaign action.</ReturnType>
+  </Action>
+  <Action Name="CopyCampaignResponse"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a copy of a campaign response</Description>
+    <Parameters>
+      <Parameter Name="entity">The campaign response to copy.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CopyCampaignResponse action.</ReturnType>
+  </Action>
+  <Action Name="CopyDynamicListToStatic"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a static list from the specified dynamic list and add the members that satisfy the dynamic list query criteria to the static list. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record needed to create the list.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CopyDynamicListToStatic action.</ReturnType>
+  </Action>
+  <Action Name="CopyMembersList"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Copies the members from the source list to the target list without creating duplicates.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to copy. </Parameter>
+      <Parameter Name="TargetList">The ID of the target list.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CopyMembersList action. </ReturnType>
+  </Action>
+  <Action Name="CopySystemForm"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a new entity form that is based on an existing entity form.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The entity to create. </Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+      <Parameter Name="Target">The SystemForm that the original system form should be copied to. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CopySystemForm action.</ReturnType>
+  </Action>
+  <Action Name="CreateActivitiesList"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a quick campaign to distribute an activity to members of a list (marketing list). </Description>
+    <Parameters>
+      <Parameter Name="Activity">The activity to be distributed.</Parameter>
+      <Parameter Name="FriendlyName">A display name for the campaign.</Parameter>
+      <Parameter Name="ListId">ID of the list. </Parameter>
+      <Parameter Name="Owner">Owner for the activity. </Parameter>
+      <Parameter Name="OwnershipOptions">Propogation ownership options. </Parameter>
+      <Parameter Name="PostWorkflowEvent">Indicates whether an asynchronous job is used to distribute an activity, such as an email, fax, or letter, to the members of a list. </Parameter>
+      <Parameter Name="Propagate">Indicates whether the activity is both created and executed. </Parameter>
+      <Parameter Name="QueueId">ID of the queue to which the created activities are added. </Parameter>
+      <Parameter Name="sendEmail">Indicates whether to send an email about the new activity. </Parameter>
+      <Parameter Name="TemplateId">ID of the email template. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CreateActivitiesList action.</ReturnType>
+  </Action>
+  <Action Name="CreateException"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates an exception for the recurring appointment instance. </Description>
+    <Parameters>
+      <Parameter Name="entityset">TODO: CreateException Action entityset Parameter Description </Parameter>
+      <Parameter Name="IsDeleted">Specifies whether the appointment instance is deleted.  </Parameter>
+      <Parameter Name="OriginalStartDate">Original start date of the recurring appointment. </Parameter>
+      <Parameter Name="Target">The target appointment for the exception. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CreateException action. </ReturnType>
+  </Action>
+  <Action Name="CreateInstance"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates future unexpanded instances for the recurring appointment master.  </Description>
+    <Parameters>
+      <Parameter Name="Count">The number of instances to be created. </Parameter>
+      <Parameter Name="Target">The target appointment instance to create. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CreateInstance action.</ReturnType>
+  </Action>
+  <Action Name="CreateKnowledgeArticleTranslation"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates translation of a knowledge article instance.</Description>
+    <Parameters>
+      <Parameter Name="IsMajor">Specifies whether to create a major or minor version of the knowledge article instance.</Parameter>
+      <Parameter Name="Language">The language to which the knowledge article instance is translated to.</Parameter>
+      <Parameter Name="Source">The knowledge article instance to be translated.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CreateKnowledgeArticleTranslation action.</ReturnType>
+  </Action>
+  <Action Name="CreateKnowledgeArticleVersion"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a major or minor version of a knowledge article instance.</Description>
+    <Parameters>
+      <Parameter Name="IsMajor">Specifies whether to create a major or minor version of the knowledge article instance.</Parameter>
+      <Parameter Name="Source">The knowledge article instance for which you want to create a version.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CreateKnowledgeArticleTranslation action.</ReturnType>
+  </Action>
+  <Action Name="CreateWorkflowFromTemplate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a workflow (process) from a workflow template. </Description>
+    <Parameters>
+      <Parameter Name="entity">The workflow template. Required. </Parameter>
+      <Parameter Name="WorkflowName">The name of the new workflow. Required. </Parameter>
+    </Parameters>
+    <ReturnType>The new workflow</ReturnType>
+  </Action>
+  <Action Name="DeleteAndPromote"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Replaces managed solution (A) plus all of its patches with managed solution (B) that is the clone of (A) and all of its patches.</Description>
+    <Parameters>
+      <Parameter Name="UniqueName">The unique name of the solution being replaced.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the DeleteAndPromote Action.</ReturnType>
+  </Action>
+  <Action Name="DeleteAuditData"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deletes all audit data records up until a specified end date. </Description>
+    <Parameters>
+      <Parameter Name="EndDate">The end date and time. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the DeleteAuditData Action. </ReturnType>
+  </Action>
+  <Action Name="DeleteOpenInstances"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deletes instances of a recurring appointment master that have an “Open” state.  </Description>
+    <Parameters>
+      <Parameter Name="SeriesEndDate">The end date for the recurring appointment series.  </Parameter>
+      <Parameter Name="StateOfPastInstances">The value to be used to set the status of appointment instances that have already passed. </Parameter>
+      <Parameter Name="Target">The target record for the operation.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the DeleteOpenInstances Action.</ReturnType>
+  </Action>
+  <Action Name="DeleteOptionValue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deletes an option value in a global or local option set.  </Description>
+    <Parameters>
+      <Parameter Name="AttributeLogicalName">The logical name of the attribute from which to delete the option value.  </Parameter>
+      <Parameter Name="EntityLogicalName">The logical name of the entity. </Parameter>
+      <Parameter Name="OptionSetName">The name of the option set that contains the value.  </Parameter>
+      <Parameter Name="SolutionUniqueName">The solution name associated with this option value.  </Parameter>
+      <Parameter Name="Value"> The value of the option to delete.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from DeleteOptionValue Action.</ReturnType>
+  </Action>
+  <Action Name="DeliverIncomingEmail"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates an email activity record from an incoming email message. </Description>
+    <Parameters>
+      <Parameter Name="Attachments">Collection of activity mime attachment (email attachment) instances to attach to the email message. </Parameter>
+      <Parameter Name="Bcc">Addresses of the blind carbon copy (Bcc) recipients for the email message.  </Parameter>
+      <Parameter Name="Body">The message body for the email. </Parameter>
+      <Parameter Name="Cc"> The addresses of the carbon copy (Cc) recipients for the email message. </Parameter>
+      <Parameter Name="entityset">The email activity record to create. </Parameter>
+      <Parameter Name="ExtraProperties">For internal use only. </Parameter>
+      <Parameter Name="From">The from address for the email message. </Parameter>
+      <Parameter Name="Importance">The level of importance for the email message.  </Parameter>
+      <Parameter Name="MessageId">The ID of the email message stored in the email header.  </Parameter>
+      <Parameter Name="ReceivedOn">The time the message was received on. </Parameter>
+      <Parameter Name="Subject">The subject line for the email message.  </Parameter>
+      <Parameter Name="SubmittedBy">The email address of the account that is creating the email activity instance. </Parameter>
+      <Parameter Name="To">The addresses of the recipients of the email message. </Parameter>
+      <Parameter Name="ValidateBeforeCreate">Indicates whether to validate before the create operation occurs. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the DeliverIncomingEmail Action. </ReturnType>
+  </Action>
+  <Action Name="DeliverPromoteEmail"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates an email activity record from the specified email message  </Description>
+    <Parameters>
+      <Parameter Name="Attachments">Collection of activity mime attachment (email attachment) records to attach to the email message.  </Parameter>
+      <Parameter Name="Bcc">Addresses of the blind carbon copy (Bcc) recipients for the email message.  </Parameter>
+      <Parameter Name="Body">The message body for the email.</Parameter>
+      <Parameter Name="Cc">The addresses of the carbon copy (Cc) recipients for the email message. </Parameter>
+      <Parameter Name="entity">The email activity record to create. </Parameter>
+      <Parameter Name="ExtraProperties">For internal use only. </Parameter>
+      <Parameter Name="From">The from address for the email message. </Parameter>
+      <Parameter Name="Importance">The level of importance for the email message.  </Parameter>
+      <Parameter Name="MessageId">The ID of the email message stored in the email header.  </Parameter>
+      <Parameter Name="ReceivedOn">The time the message was received on. </Parameter>
+      <Parameter Name="Subject">The subject line for the email message.  </Parameter>
+      <Parameter Name="SubmittedBy">The email address of the account that is creating the email activity instance. </Parameter>
+      <Parameter Name="To">The addresses of the recipients of the email message. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the DeliverPromoteEmail Action. </ReturnType>
+  </Action>
+  <Action Name="DeprovisionLanguage"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprovisions a language. </Description>
+    <Parameters>
+      <Parameter Name="Language">The language to deprovision. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the DeprovisionLanguage Action.</ReturnType>
+  </Action>
+  <Action Name="DistributeCampaignActivity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a bulk operation that distributes a campaign activity. </Description>
+    <Parameters>
+      <Parameter Name="Activity">The activity to be distributed. </Parameter>
+      <Parameter Name="entity">The record to be created. </Parameter>
+      <Parameter Name="Owner">The owner for the newly created activity. </Parameter>
+      <Parameter Name="OwnershipOptions">The ownership options for the activity. </Parameter>
+      <Parameter Name="PostWorkflowEvent">Indicates whether an asynchronous job is used to distribute activities, such as an email, fax, or letter, to the members of a list.</Parameter>
+      <Parameter Name="Propagate">Indicates whether the activity is both created and executed.  </Parameter>
+      <Parameter Name="Queue">The queue to which the created activity is added.</Parameter>
+      <Parameter Name="SendEmail">Indicates whether to send an email about the new activity. </Parameter>
+      <Parameter Name="Template">The email template. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the DistributeCampaignActivity Action.</ReturnType>
+  </Action>
+  <Action Name="ExportMappingsImportMap"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Exports a data map as an XML formatted data. </Description>
+    <Parameters>
+      <Parameter Name="entity">The import map (data map) to export. Required. </Parameter>
+      <Parameter Name="ExportIds">Whether to export the entity record IDs contained in the data map. Required. </Parameter>
+    </Parameters>
+    <ReturnType>The XML representation of the exported data map.  </ReturnType>
+  </Action>
+  <Action Name="ImportRecordsImport"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Submits an asynchronous job that uploads the transformed data into Microsoft Dynamics CRM.</Description>
+    <Parameters>
+      <Parameter Name="entity">The data import (import) that is associated with the asynchronous import records job. Required. </Parameter>
+    </Parameters>
+    <ReturnType>The asynchronous import records job.</ReturnType>
+  </Action>
+  <Action Name="ExecuteFetch"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprecated.</Description>
+    <Parameters>
+      <Parameter Name="FetchXml">The FetchXML to use</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ExecuteFetch Action.</ReturnType>
+  </Action>
+  <Action Name="ExportSolution"
+          Status="Blocked"
+          Writer="crmSDK">
+    <Description>Exports a solution. </Description>
+    <Parameters>
+      <Parameter Name="ExportAutoNumberingSettings">Indicates whether auto numbering settings should be included in the solution being exported.</Parameter>
+      <Parameter Name="ExportCalendarSettings">Indicates whether calendar settings should be included in the solution being exported </Parameter>
+      <Parameter Name="ExportCustomizationSettings"> Indicates whether customization settings should be included in the solution being exported.  </Parameter>
+      <Parameter Name="ExportEmailTrackingSettings">Indicates whether email tracking settings should be included in the solution being exported.  </Parameter>
+      <Parameter Name="ExportExternalApplications">TODO: ExportSolution Action ExportExternalApplications Parameter Description </Parameter>
+      <Parameter Name="ExportGeneralSettings">Indicates whether general settings should be included in the solution being exported.</Parameter>
+      <Parameter Name="ExportIsvConfig">Indicates whether ISV.Config settings should be included in the solution being exported. </Parameter>
+      <Parameter Name="ExportMarketingSettings">Indicates whether marketing settings should be included in the solution being exported. </Parameter>
+      <Parameter Name="ExportOutlookSynchronizationSettings">Indicates whether outlook synchronization settings should be included in the solution being exported. </Parameter>
+      <Parameter Name="ExportRelationshipRoles">Indicates whether relationship role settings should be included in the solution being exported. </Parameter>
+      <Parameter Name="ExportSales">Indicates whether sales settings should be included in the solution being exported.</Parameter>
+      <Parameter Name="Managed">Indicates whether the solution should be exported as a managed solution. </Parameter>
+      <Parameter Name="SolutionName">The unique name of the solution. </Parameter>
+      <Parameter Name="TargetVersion">The version that the exported solution will support.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ExportSolution Action.</ReturnType>
+  </Action>
+  <Action Name="ExportTranslation"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Exports all translations for a specific solution to a compressed file. </Description>
+    <Parameters>
+      <Parameter Name="entityset">The record to export.  </Parameter>
+      <Parameter Name="SolutionName">Unique name of the solution.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ExportTranslation Action.</ReturnType>
+  </Action>
+  <Action Name="FulfillSalesOrder"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Fulfills a sales order.</Description>
+    <Parameters>
+      <Parameter Name="entityset">The recordset. </Parameter>
+      <Parameter Name="OrderClose">The order close activity associated with the sales order (order) to be fulfilled </Parameter>
+      <Parameter Name="Status">Status of the sales order (order).  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the FulfillSalesOrder Action.</ReturnType>
+  </Action>
+  <Action Name="GenerateInvoiceFromOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Generates an invoice from an opportunity. </Description>
+    <Parameters>
+      <Parameter Name="ColumnSet">Collection of attributes to retrieve from the resulting invoice.</Parameter>
+      <Parameter Name="OpportunityId">ID of the opportunity to be used as the basis for the new invoice. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the GenerateInvoiceFromOpportunity Action.</ReturnType>
+  </Action>
+  <Action Name="GenerateQuoteFromOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Generates a quote from an opportunity. </Description>
+    <Parameters>
+      <Parameter Name="ColumnSet">Collection of attributes to retrieve in the resulting quote.</Parameter>
+      <Parameter Name="OpportunityId">ID of the opportunity to be used as the basis for the new quote. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from GenerateQuoteFromOpportunity Action. </ReturnType>
+  </Action>
+  <Action Name="GenerateSalesOrderFromOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Generates a sales order (order) from an opportunity.  </Description>
+    <Parameters>
+      <Parameter Name="ColumnSet">Collection of attributes to retrieve from the resulting sales order.</Parameter>
+      <Parameter Name="OpportunityId">ID of the opportunity to be used as the basis for the new sales order. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from GenerateSalesOrderFromOpportunity Action. </ReturnType>
+  </Action>
+  <Action Name="GenerateSocialProfile"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Returns an existing social profile record if one exists, otherwise generates a new one and returns it.  </Description>
+    <Parameters>
+      <Parameter Name="Entity">The social profile instance to return. </Parameter>
+      <!--Description for entityset parameter not required because the action is bound to the socialprofile collection  
+      From the CSDL: <Parameter Name="entityset" Type="Collection(mscrm.socialprofile)" Nullable="false" />-->
+      <Parameter Name="entityset"></Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from GenerateSocialProfile action.</ReturnType>
+  </Action>
+  <Action Name="GetInvoiceProductsFromOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Retrieves the products from an opportunity and copy them to the invoice.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to retrieve. </Parameter>
+      <Parameter Name="Opportunity">TODO: GetInvoiceProductsFromOpportunity Action Opportunity Parameter Description </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from GetInvoiceProductsFromOpportunity Action.</ReturnType>
+  </Action>
+  <Action Name="GetQuoteProductsFromOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Retrieves the products from an opportunity and copy them to the quote. </Description>
+    <Parameters>
+      <Parameter Name="entity">The product to retrieve.</Parameter>
+      <Parameter Name="Opportunity">The opportunity to retrieve the prodcuts from. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from GetQuoteProductsFromOpportunity Action.</ReturnType>
+  </Action>
+  <Action Name="GetSalesOrderProductsFromOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Retrieves the products from an opportunity and copy them to the sales order. </Description>
+    <Parameters>
+      <Parameter Name="entity">The products to be retrived.</Parameter>
+      <Parameter Name="Opportunity">The opportunity from which the products are to be retrieved.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from GetSalesOrderProductsFromOpportunity Action.</ReturnType>
+  </Action>
+  <Action Name="GetTrackingTokenEmail"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Returns a tracking token that can then be passed as a parameter to the SendEmailRequest message. </Description>
+    <Parameters>
+      <Parameter Name="Subject">The context of the email.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the GetTrackingTokenEmail Action. </ReturnType>
+  </Action>
+  <Action Name="ImportFieldTranslation"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Imports translations from a compressed file.</Description>
+    <Parameters>
+      <Parameter Name="TranslationFile">The compressed translations file.</Parameter>
+    </Parameters>
+    <ReturnType>The import job that will be created to perform this import.</ReturnType>
+  </Action>
+  <Action Name="ImportMappingsImportMap"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Imports the XML representation of a data map and create an import map (data map) based on this data.  </Description>
+    <Parameters>
+      <Parameter Name="MappingsXml">XML representation of the data map. </Parameter>
+      <Parameter Name="ReplaceIds">Indicates whether to import the entity record IDs contained in the XML representation of the data map. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ImportMappingsImportMap Action. </ReturnType>
+  </Action>
+  <Action Name="ImportSolution"
+          Status="Blocked"
+          Writer="crmSDK">
+    <Description>Imports a solution.  </Description>
+    <Parameters>
+      <Parameter Name="ConvertToManaged">Converts any matching unmanaged customizations into your managed solution.  </Parameter>
+      <Parameter Name="CustomizationFile">The compressed solutions file to import. </Parameter>
+      <Parameter Name="HoldingSolution">TODO: ImportSolution Action HoldingSolution Parameter Description </Parameter>
+      <Parameter Name="ImportJobId">The ID of the import job that will be created to perform the import.  </Parameter>
+      <Parameter Name="OverwriteUnmanagedCustomizations">Indicates whether any unmanaged customizations that have been applied over existing managed solution components should be overwritten </Parameter>
+      <Parameter Name="PublishWorkflows">Indicates whether any processes (workflows) included in the solution should be activated after they are imported.</Parameter>
+      <Parameter Name="SkipProductUpdateDependencies">Indicates whether enforcement of dependencies related to product updates should be skipped.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ImportSolution Action. </ReturnType>
+  </Action>
+  <Action Name="ImportTranslation"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Imports translations from a compressed file.  </Description>
+    <Parameters>
+      <Parameter Name="ImportJobId">ID of the import job that will be created to perform the import.</Parameter>
+      <Parameter Name="TranslationFile">The compressed translations file.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the ImportTranslation Action. </ReturnType>
+  </Action>
+  <Action Name="InsertOptionValue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Inserts a new option value for a global or local option set.  </Description>
+    <Parameters>
+      <Parameter Name="AttributeLogicalName">The logical name of the status attribute.  </Parameter>
+      <Parameter Name="Description">Description for the option. </Parameter>
+      <Parameter Name="EntityLogicalName">Logical name of the entity. </Parameter>
+      <Parameter Name="Label">Label for the new status. </Parameter>
+      <Parameter Name="OptionSetName">Reserved for future use.</Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+      <Parameter Name="Value">Value for the new status.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from InsertOptionValue Action.</ReturnType>
+  </Action>
+  <Action Name="InsertStatusValue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Inserts a new option into a StatusAttributeMetadata attribute. </Description>
+    <Parameters>
+      <Parameter Name="AttributeLogicalName">The logical name of the status attribute.  </Parameter>
+      <Parameter Name="Description">Description for the option. </Parameter>
+      <Parameter Name="EntityLogicalName">Logical name of the entity. </Parameter>
+      <Parameter Name="Label">Label for the new status. </Parameter>
+      <Parameter Name="OptionSetName">Reserved for future use.</Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+      <Parameter Name="StateCode">State code for the new status.</Parameter>
+      <Parameter Name="Value">Value for the new status.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the InsertStatusValue Action.</ReturnType>
+  </Action>
+  <Action Name="InstallSampleData"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Installs the sample data.  </Description>
+    <Parameters />
+    <ReturnType>Contains the response from InstallSampleData Action.</ReturnType>
+  </Action>
+  <Action Name="InstantiateFilters"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Instantiates a set of filters for Dynamics CRM for Outlook for the specified user.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The user that will own the user query records created</Parameter>
+      <Parameter Name="TemplateCollection">Collection of templates. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from InstantiateFilters Action. </ReturnType>
+  </Action>
+  <Action Name="InstantiateTemplate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates an email message from a template (email template).  </Description>
+    <Parameters>
+      <Parameter Name="ObjectId">ID of the object. </Parameter>
+      <Parameter Name="ObjectType">Type of object.</Parameter>
+      <Parameter Name="TemplateId">ID of the template. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from InstantiateTemplate Action. </ReturnType>
+  </Action>
+  <Action Name="LockInvoicePricing"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Locks the total price of products and services that are specified in the invoice. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record needed to lock the price of products. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from LockInvoicePricing Action. </ReturnType>
+  </Action>
+  <Action Name="LockSalesOrderPricing"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Locks the total price of products and services that are specified in the sales order (order).  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record needed to lock the total price of products. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the LockSalesOrderPricing Action. </ReturnType>
+  </Action>
+  <Action Name="LoseOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets the state of an opportunity to Lost. </Description>
+    <Parameters>
+      <Parameter Name="OpportunityClose">The opportunity close activity. </Parameter>
+      <Parameter Name="Status">Status of the lost opportunity.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from LoseOpportunity Action. </ReturnType>
+  </Action>
+  <Action Name="MakeAvailableToOrganizationReport"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprecated. </Description>
+    <Parameters>
+      <Parameter Name="ReportId">The report ID. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the MakeAvailableToOrganizationReport Action. </ReturnType>
+  </Action>
+  <Action Name="MakeAvailableToOrganizationTemplate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprecated </Description>
+    <Parameters>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+      <Parameter Name="TemplateId">ID of the template.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from MakeAvailableToOrganizationTemplate Action. </ReturnType>
+  </Action>
+  <Action Name="MakeUnavailableToOrganizationReport"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprecated. </Description>
+    <Parameters>
+      <Parameter Name="ReportId">The report ID. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from MakeUnavailableToOrganizationReport Action.</ReturnType>
+  </Action>
+  <Action Name="MakeUnavailableToOrganizationTemplate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprecated</Description>
+    <Parameters>
+      <Parameter Name="TemplateId">The template ID.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from MakeUnavailableToOrganizationTemplate Action. </ReturnType>
+  </Action>
+  <Action Name="Merge"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Merges the information from two entity records of the same type. </Description>
+    <Parameters>
+      <Parameter Name="PerformParentingChecks">Indicates whether to check if the parent information is different for the two entity records. </Parameter>
+      <Parameter Name="Subordinate">The entity record from which to merge data.  </Parameter>
+      <Parameter Name="Target">The target of the merge operation. </Parameter>
+      <Parameter Name="UpdateContent">Additional entity attributes to be set during the merge operation.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from Merge Action.</ReturnType>
+  </Action>
+  <Action Name="OrderOption"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets the order for an option set.  </Description>
+    <Parameters>
+      <Parameter Name="AttributeLogicalName"> Logical name of the PicklistAttributeMetadata attribute. </Parameter>
+      <Parameter Name="EntityLogicalName">Logical name of the entity. </Parameter>
+      <Parameter Name="OptionSetName">The name of the global option set you want to edit options for. </Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution.</Parameter>
+      <Parameter Name="Values">The array of option values in the wanted order.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from OrderOption Action. </ReturnType>
+  </Action>
+  <Action Name="ParseImport"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Submits an asynchronous job that parses all import files that are associated with the specified import (data import). </Description>
+    <Parameters>
+      <Parameter Name="entity">The import (data import) that is associated with the asynchronous job that parses all import files for this import.</Parameter>
+    </Parameters>
+    <ReturnType>The asynchronous job that parses the import files for this import.</ReturnType>
+  </Action>
+  <Action Name="PickFromQueue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Assigns a queue item to a user and optionally remove the queue item from the queue. </Description>
+    <Parameters>
+      <Parameter Name="entity">The queue item.</Parameter>
+      <Parameter Name="RemoveQueueItem">The queue item to remove. </Parameter>
+      <Parameter Name="SystemUser">The user to assign the queue item to. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from PickFromQueue Action.</ReturnType>
+  </Action>
+  <Action Name="ProcessInboundEmail"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Processes the email responses from a marketing campaign. </Description>
+    <Parameters>
+      <Parameter Name="entity">The data needed to process the email responses.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ProcessInboundEmail Action. </ReturnType>
+  </Action>
+  <Action Name="ProvisionLanguage"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Provisions a new language.  </Description>
+    <Parameters>
+      <Parameter Name="Language">The language to provision. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ProvisionLanguage Action. </ReturnType>
+  </Action>
+  <Action Name="PublishAllXml"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Publishes all changes to solution components. </Description>
+    <Parameters />
+    <ReturnType>Contains the response from PublishAllXml Action. </ReturnType>
+  </Action>
+  <Action Name="PublishDuplicateRule"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Submits an asynchronous job to publish a duplicate rule. </Description>
+    <Parameters>
+      <Parameter Name="entity">The duplicate rule to be published.</Parameter>
+    </Parameters>
+    <ReturnType>The asynchronous job for publishing a duplicate detection rule. </ReturnType>
+  </Action>
+  <Action Name="PublishProductHierarchy"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Publishes a product family record and all its child records.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to publish. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from PublishProductHierarchy Action. </ReturnType>
+  </Action>
+  <Action Name="PublishTheme"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Publishes a theme and set it as the current theme.  </Description>
+    <Parameters>
+      <Parameter Name="entity">TODO: PublishTheme Action entity Parameter Description </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the PublishTheme Action. </ReturnType>
+  </Action>
+  <Action Name="PublishXml"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Publishes specified solution components. </Description>
+    <Parameters>
+      <Parameter Name="ParameterXml">The XML that defines which solution components to publish in this request. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from PublishXml Action. </ReturnType>
+  </Action>
+  <Action Name="QualifyMemberList"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Qualifies the specified list and either override the list members or remove them according to the specified option. </Description>
+    <Parameters>
+      <Parameter Name="entity">The data needed to qualify the specified list. </Parameter>
+      <Parameter Name="ListMember">List members to override or remove.</Parameter>
+      <Parameter Name="OverrideorRemove">Indicates whether to override or remove the members from the list. </Parameter>
+    </Parameters>
+    <ReturnType>TODO: QualifyMemberList Action ReturnType Description </ReturnType>
+  </Action>
+  <Action Name="ReassignObjectsOwner"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Reassigns all records that are owned by the security principal (user or team) to another security principal (user or team).  </Description>
+    <Parameters>
+      <Parameter Name="FromPrincipal">The security principal (user or team) for which to reassign all records. </Parameter>
+      <Parameter Name="ToPrincipal">The security principal (user or team) that will be the new owner for the records. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ReassignObjectsOwner Action.</ReturnType>
+  </Action>
+  <Action Name="ReassignObjectsSystemUser"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Reassigns all records that are owned by a specified user to another security principal (user or team). </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to reassign.</Parameter>
+      <Parameter Name="ReassignPrincipal">The security principal (user or team) that is the new owner for the record.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ReassignObjectsSystemUser Action.</ReturnType>
+  </Action>
+  <Action Name="Recalculate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Recalculate system-computed values for rollup fields in the goal hierarchy. </Description>
+    <Parameters>
+      <Parameter Name="entity">Data needed to recalculate system computed values.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from Recalculate Action. </ReturnType>
+  </Action>
+  <Action Name="ReleaseToQueue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Assigns a queue item back to the queue owner so others can pick it.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to assign back to the queue. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ReleaseToQueue Action.</ReturnType>
+  </Action>
+  <Action Name="RemoveFromQueue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes a queue item from a queue.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be removed. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemoveFromQueue Action. </ReturnType>
+  </Action>
+  <Action Name="RemoveItemCampaign"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes an item from a campaign.  </Description>
+    <Parameters>
+      <Parameter Name="CampaignItem">The item to be removed from the campaign. </Parameter>
+      <Parameter Name="entity">Data needed to remove the item. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemoveItemCampaign Action. </ReturnType>
+  </Action>
+  <Action Name="RemoveItemCampaignActivity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes an item from a campaign activity. </Description>
+    <Parameters>
+      <Parameter Name="CampaignActivityItem">The item to be removed from the campaign activity. </Parameter>
+      <Parameter Name="entity">Data needed to remove the item.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemoveItemCampaignActivity Action. </ReturnType>
+  </Action>
+  <Action Name="RemoveMemberList"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes a member from a list (marketing list).  </Description>
+    <Parameters>
+      <Parameter Name="entity">Data needed to remove a member. </Parameter>
+      <Parameter Name="ListMember">Member to be removed from the list. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemoveMemberList Action. </ReturnType>
+  </Action>
+  <Action Name="RemoveMembersTeam"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes members from a team.</Description>
+    <Parameters>
+      <Parameter Name="entity">The team to remove members from.</Parameter>
+      <Parameter Name="Members">The members to remove.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemoveMembersTeam Action.</ReturnType>
+  </Action>
+  <Action Name="RemoveParent"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes the parent for a system user (user) record. </Description>
+    <Parameters>
+      <Parameter Name="Target">The target systemuser (user) record for the operation. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemoveParent Action.</ReturnType>
+  </Action>
+  <Action Name="RemovePrivilegeRole"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes a privilege from an existing role. </Description>
+    <Parameters>
+      <Parameter Name="entity">Data needed to remove a privilege.</Parameter>
+      <Parameter Name="Privilege">The privilege that is to be removed from the existing role. </Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemovePrivilegeRole Action.</ReturnType>
+  </Action>
+  <Action Name="RemoveProductFromKit"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes a product from a kit. (Deprecated)</Description>
+    <Parameters>
+      <Parameter Name="entity">Data needed to remove a product.</Parameter>
+      <Parameter Name="Product">The product to be removed. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RemoveProductFromKit Action. </ReturnType>
+  </Action>
+  <Action Name="RemoveRelated"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes the relationship between the specified records for specific relationships.</Description>
+    <Parameters>
+      <Parameter Name="Target">Target records from which to remove the specific related records.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the RemoveRelated Action. </ReturnType>
+  </Action>
+  <Action Name="RemoveSolutionComponent"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes a component from an unmanaged solution. </Description>
+    <Parameters>
+      <Parameter Name="ComponentType">The type of solution component. </Parameter>
+      <Parameter Name="SolutionComponent">Solution component to add. </Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the RemoveSolutionComponent Action. </ReturnType>
+  </Action>
+  <Action Name="RemoveSubstituteProduct"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprecated.</Description>
+    <Parameters>
+      <Parameter Name="ProductId">Deprecated </Parameter>
+      <Parameter Name="SubstituteId">Deprecated </Parameter>
+    </Parameters>
+    <ReturnType></ReturnType>
+  </Action>
+  <Action Name="RemoveUserFromRecordTeam"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Removes a user from the auto created access team for the specified record. </Description>
+    <Parameters>
+      <Parameter Name="entity">Data needed to remove a user. </Parameter>
+      <Parameter Name="Record">The record for which the access team is auto created. </Parameter>
+      <Parameter Name="TeamTemplate">The team template which is used to create the access team.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the RemoveUserFromRecordTeam Action. </ReturnType>
+  </Action>
+  <Action Name="RenewContract"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Renews a contract and create the contract details for a new contract.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to be created. </Parameter>
+      <Parameter Name="IncludeCanceledLines">Indicates whether the canceled line items of the original contract should be included in the renewed contract. </Parameter>
+      <Parameter Name="Status">The status of the contract.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the RenewContract Action. </ReturnType>
+  </Action>
+  <Action Name="RenewEntitlement"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Renews an entitlement. </Description>
+    <Parameters>
+      <Parameter Name="entity">An instance of the entitlement. </Parameter>
+      <Parameter Name="Status">The StatusCode value for the renewed Entitlement </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RenewEntitlement Action. </ReturnType>
+  </Action>
+  <Action Name="ReplacePrivilegesRole"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Replaces the privilege set of an existing role.  </Description>
+    <Parameters>
+      <Parameter Name="entity">An instance of the existing role. </Parameter>
+      <Parameter Name="Privileges">An array that contains the IDs and depths of the privileges that replace the existing privileges.</Parameter>
+      <Parameter Name="SolutionUniqueName">Unique name of the solution. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ReplacePrivilegesRole Action.</ReturnType>
+  </Action>
+  <Action Name="Reschedule"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Reschedules an appointment, recurring appointment, or service appointment (service activity). </Description>
+    <Parameters>
+      <!--Bug 249823:MaintainLegacyAppServerBehavior appearing in Book and Reschedule Actions-->
+      <Parameter Name="MaintainLegacyAppServerBehavior">For internal use only.</Parameter>
+      <Parameter Name="ReturnNotifications">For internal use only. </Parameter>
+      <Parameter Name="Target">The target of the reschedule operation.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from Reschedule Action. </ReturnType>
+  </Action>
+  <Action Name="ResetUserFilters"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Resets the offline data filters for the calling user to the default filters for the organization.  </Description>
+    <Parameters>
+      <Parameter Name="QueryType">The type of filters to set.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ResetUserFilters Action.</ReturnType>
+  </Action>
+  <Action Name="RevertProduct"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Reverts changes done to properties of a product family, product, or bundle record, and set it back to its last published (active) state. </Description>
+    <Parameters>
+      <Parameter Name="Target">The target product family, product, or bundle record for which you want to revert the changes done to its properties since it was last published. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the RevertProduct Action.</ReturnType>
+  </Action>
+  <Action Name="ReviseQuote"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets the state of a quote to Draft. </Description>
+    <Parameters>
+      <Parameter Name="ColumnSet">Collection of attributes to retrieve in the revised quote. </Parameter>
+      <Parameter Name="QuoteId">The ID of the original quote.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from ReviseQuote Action. </ReturnType>
+  </Action>
+  <Action Name="RevokeAccess"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Replaces the access rights on the target record for the specified security principal (user or team).  </Description>
+    <Parameters>
+      <Parameter Name="Revokee">A security principal (team or user) whose access you want to revoke. </Parameter>
+      <Parameter Name="Target">The target record for which you want to revoke access. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the RevokeAccess Action. </ReturnType>
+  </Action>
+  <Action Name="RouteTo"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Routes a queue item to a queue, a user, or a team.  </Description>
+    <Parameters>
+      <Parameter Name="QueueItem">The queue item to be routed. </Parameter>
+      <Parameter Name="Target">The user, team or queue to which the queue item is routed to. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RouteTo Action. </ReturnType>
+  </Action>
+  <Action Name="SendEmail"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sends an e-mail message. </Description>
+    <Parameters>
+      <Parameter Name="entity">The email record.</Parameter>
+      <Parameter Name="IssueSend">Indicates whether the email is to be sent or marked as sent. </Parameter>
+      <Parameter Name="TrackingToken">The token to track the email. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the SendEmail Action.</ReturnType>
+  </Action>
+  <Action Name="SendEmailFromTemplate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sends an e-mail message to a recipient using an e-mail template.  </Description>
+    <Parameters>
+      <Parameter Name="Regarding">The entity record with which the e-mail message is associated.</Parameter>
+      <Parameter Name="Target">The recipient the email is sent to. </Parameter>
+      <Parameter Name="TemplateId">ID of the email template to use. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the SendEmailFromTemplate Action. </ReturnType>
+  </Action>
+  <Action Name="SendFax"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sends a fax.  </Description>
+    <Parameters>
+      <Parameter Name="FaxId">The fax ID. </Parameter>
+      <Parameter Name="IssueSend">Indicates whether to send the e-mail, or to just record it as sent. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SendFax Action. </ReturnType>
+  </Action>
+  <Action Name="SendTemplate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sends a bulk email message that is created from a template.  </Description>
+    <Parameters>
+      <Parameter Name="DeliveryPriorityCode">The delivery priority code for the email. </Parameter>
+      <Parameter Name="Recipients">The list of recipients for the email. </Parameter>
+      <Parameter Name="Regarding">The record the email is regarding. </Parameter>
+      <Parameter Name="Sender">The sender of the email. </Parameter>
+      <Parameter Name="TemplateId">The ID of the template.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SendTemplate Action. </ReturnType>
+  </Action>
+  <Action Name="SetBusinessEquipment"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Assigns equipment (facility/equipment) to a specific business unit.  </Description>
+    <Parameters>
+      <Parameter Name="BusinessUnitId">The buisness unit ID.</Parameter>
+      <Parameter Name="EquipmentId">The equipment ID. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SetBusinessEquipment Action. </ReturnType>
+  </Action>
+  <Action Name="SetBusinessSystemUser"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Moves a system user (user) to a different business unit. </Description>
+    <Parameters>
+      <Parameter Name="BusinessUnit">The business unit to which the user needs to be moved. </Parameter>
+      <Parameter Name="entity">The user instance. </Parameter>
+      <Parameter Name="ReassignPrincipal">The target security principal (user) to which the instances of entities previously owned by the user are to be assigned.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the SetBusinessSystemUser Action. </ReturnType>
+  </Action>
+  <Action Name="SetDataEncryptionKey"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets or restore the data encryption key.  </Description>
+    <Parameters>
+      <Parameter Name="ChangeEncryptionKey">The operation to perform with the data encryption key </Parameter>
+      <Parameter Name="EncryptionKey">The value of the data encryption key. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the reponse from the SetDataEncryptionKey Action. </ReturnType>
+  </Action>
+  <Action Name="SetLocLabels"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets localized labels for a limited set of entity attributes.  </Description>
+    <Parameters>
+      <Parameter Name="AttributeName">The attribute name. </Parameter>
+      <Parameter Name="EntityMoniker">The entity. </Parameter>
+      <Parameter Name="Labels">The labels to set.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SetLocLabels Action.</ReturnType>
+  </Action>
+  <Action Name="SetParentSystemUser"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets a new parent system user (user) for the specified user.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified user instance. </Parameter>
+      <Parameter Name="KeepChildUsers">Indicates whether the child users are to be retained. </Parameter>
+      <Parameter Name="Parent">The new parent user. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the SetParentSystemUser Action. </ReturnType>
+  </Action>
+  <Action Name="SetProcess"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets the process that associates with a given target entity. The user can set to another business process or specify null to clear out the current process.</Description>
+    <Parameters>
+      <Parameter Name="NewProcess">The new process to be set to the target entity, or null.</Parameter>
+      <Parameter Name="Target">The target entity.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SetProcess Action. </ReturnType>
+  </Action>
+  <Action Name="SetRelated"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Creates a relationship between a set of records that participate in specific relationships.  </Description>
+    <Parameters>
+      <Parameter Name="Target">The target records of the set related action. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SetRelated Action. </ReturnType>
+  </Action>
+  <Action Name="SetReportRelated"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Links an instance of a report entity to related entities.  </Description>
+    <Parameters>
+      <Parameter Name="Categories">An array of report category codes. </Parameter>
+      <Parameter Name="Entities">An array of entity type codes for the related entities </Parameter>
+      <Parameter Name="ReportId">The ID of the report. </Parameter>
+      <Parameter Name="Visibility">An array of report visibility codes. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SetReportRelated Action. </ReturnType>
+  </Action>
+  <Action Name="TransformImport"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Submits an asynchronous job that transforms the parsed data.  </Description>
+    <Parameters>
+      <Parameter Name="ImportId">The ID of the import (data import) that is associated with the asynchronous job that transforms the imported data. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the TransformImport Action. </ReturnType>
+  </Action>
+  <Action Name="TriggerServiceEndpointCheck"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Validates the configuration of a Microsoft Azure Service Bus solution’s service endpoint. </Description>
+    <Parameters>
+      <Parameter Name="entity">The ServiceEndpoint record that contains the configuration.</Parameter>
+    </Parameters>
+    <ReturnType>NA</ReturnType>
+  </Action>
+  <Action Name="UninstallSampleData"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Uninstalls the sample data.</Description>
+    <Parameters />
+    <ReturnType>UninstallSampleData Action does not have a ReturnType</ReturnType>
+  </Action>
+  <Action Name="UnlockInvoicePricing"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Unlocks pricing for an invoice.  </Description>
+    <Parameters>
+      <Parameter Name="InvoiceId">ID of the invoice. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the UnlockInvoicePricing Action. </ReturnType>
+  </Action>
+  <Action Name="UnlockSalesOrderPricing"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Unlocks pricing for a sales order (order).  </Description>
+    <Parameters>
+      <Parameter Name="SalesOrderId">The ID of the sales order. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from UnlockSalesOrderPricing Action ReturnType. </ReturnType>
+  </Action>
+  <Action Name="UnpublishDuplicateRule"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Submits an asynchronous job to unpublish a duplicate rule.  </Description>
+    <Parameters>
+      <Parameter Name="DuplicateRuleId">the ID of the duplicate rule to be unpublished. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from UnpublishDuplicateRule Action. </ReturnType>
+  </Action>
+  <Action Name="UpdateOptionValue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Updates an option value in a global or local option set. </Description>
+    <Parameters>
+      <Parameter Name="AttributeLogicalName">The name of the attribute when updating a local option set in a picklist attribute. </Parameter>
+      <Parameter Name="Description">Description for the option.  </Parameter>
+      <Parameter Name="EntityLogicalName"> The logical name of the entity when updating the local option set in a picklist attribute.</Parameter>
+      <Parameter Name="Label"> The label for the option.  </Parameter>
+      <Parameter Name="MergeLabels">Indicates whether to keep text defined for languages not included in the Label.  </Parameter>
+      <Parameter Name="OptionSetName">The name of the global option set.  </Parameter>
+      <Parameter Name="SolutionUniqueName">The name of the unmanaged solution that this global option set should be associated with. </Parameter>
+      <Parameter Name="Value">The value for the option. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the UpdateOptionValue Action. </ReturnType>
+  </Action>
+  <Action Name="UpdateProductProperties"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Updates values of the property instances (dynamic property instances) for a product added to an opportunity, quote, order, or invoice. </Description>
+    <Parameters>
+      <Parameter Name="PropertyInstanceList">The property instances (dynamic property instances) for a product to be updated. </Parameter>
+    </Parameters>
+    <ReturnType>The UpdateProductProperties Action does not have a return type. </ReturnType>
+  </Action>
+  <Action Name="UpdateSolutionComponent"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Updates a component in an unmanaged solution.</Description>
+    <Parameters>
+      <Parameter Name="ComponentId">The unique identifier of the component to update.</Parameter>
+      <Parameter Name="ComponentType">The type of component being updated. </Parameter>
+      <Parameter Name="IncludedComponentSettingsValues">Any settings to be included in the component update.</Parameter>
+      <Parameter Name="SolutionUniqueName">The unique name of the solution where the component should exist.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from UpdateSolutionComponent Action. </ReturnType>
+  </Action>
+  <Action Name="UpdateStateValue"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Updates an option set value in for a StateAttributeMetadata attribute.  </Description>
+    <Parameters>
+      <Parameter Name="AttributeLogicalName">The logical name of the attribute.  </Parameter>
+      <Parameter Name="DefaultStatusCode">The default value for the statuscode (status reason) attribute when this statecode value is set.  </Parameter>
+      <Parameter Name="Description">The description label for the statecode option that is specified in the Value property.  </Parameter>
+      <Parameter Name="EntityLogicalName">The name of the entity that has this statecode attribute.  </Parameter>
+      <Parameter Name="Label">The display label for this statecode option that is specified by the Value property.  </Parameter>
+      <Parameter Name="MergeLabels">Indicates whether to merge the current label with any existing labels that are already specified for this attribute.</Parameter>
+      <Parameter Name="OptionSetName">For internal use only. </Parameter>
+      <Parameter Name="Value">The statecode attribute options to update.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from UpdateStateValue Action. </ReturnType>
+  </Action>
+  <Action Name="UpdateUserSettingsSystemUser"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Deprecated. </Description>
+    <Parameters>
+      <Parameter Name="Settings">Deprecated. </Parameter>
+      <Parameter Name="UserId">Deprecated. </Parameter>
+    </Parameters>
+    <ReturnType>Deprecated.</ReturnType>
+  </Action>
+  <Action Name="Validate"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Verifies that an appointment or service appointment (service activity) has valid available resources for the activity, duration, and site, as appropriate.  </Description>
+    <Parameters>
+      <Parameter Name="Activities">The activities to validate. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the Validate Action. </ReturnType>
+  </Action>
+  <Action Name="ValidateSavedQuery"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Validates a saved query.</Description>
+    <Parameters>
+      <Parameter Name="entityset">This action is bound to the SavedQuery collection</Parameter>
+      <Parameter Name="FetchXml"> The FetchXML query string to be validated</Parameter>
+      <Parameter Name="QueryType">The type of the query. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ValidateSavedQuery Action.</ReturnType>
+  </Action>
+  <Action Name="WinOpportunity"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets the state of an opportunity to Won.  </Description>
+    <Parameters>
+      <Parameter Name="OpportunityClose">The opportunity close activity associated with this state change. </Parameter>
+      <Parameter Name="Status">Status of the opportunity. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the WinOpportunity Action. </ReturnType>
+  </Action>
+  <Action Name="WinQuote"
+          Status="Written"
+          Writer="crmSDK">
+    <Description>Sets the state of a quote to Won.  </Description>
+    <Parameters>
+      <Parameter Name="QuoteClose">The quote close activity associated with this state change. </Parameter>
+      <Parameter Name="Status">Status of the quote. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the WinQuote Action. </ReturnType>
+  </Action>
+</Actions>

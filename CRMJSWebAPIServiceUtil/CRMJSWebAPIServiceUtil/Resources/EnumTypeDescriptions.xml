@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2016 Jim Daly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<EnumTypes>
+  <EnumType Name="AccessRights"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the possible access rights for a user. </Description>
+    <Members>
+      <Member Name="AppendAccess">The right to append the specified record to another object. </Member>
+      <Member Name="AppendToAccess">The right to append another record to the specified object. </Member>
+      <Member Name="AssignAccess">The right to assign the specified record to another user or team. </Member>
+      <Member Name="CreateAccess">The right to create a record. </Member>
+      <Member Name="DeleteAccess">The right to delete the specified record. </Member>
+      <Member Name="None">No access. </Member>
+      <Member Name="ReadAccess">The right to read the specified type of record. </Member>
+      <Member Name="ShareAccess">The right to share the specified record. </Member>
+      <Member Name="WriteAccess">The right to update the specified record. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="AssociatedMenuBehavior"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the behavior of the associated menu for a one-to-many relationship. </Description>
+    <Members>
+      <Member Name="DoNotDisplay">Do not show the associated menu.  </Member>
+      <Member Name="UseCollectionName">Use the collection name for the associated menu.  </Member>
+      <Member Name="UseLabel">Use the label for the associated menu.  </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="AssociatedMenuGroup"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the group in which to display the associated menu for an entity relationship </Description>
+    <Members>
+      <Member Name="Details">Show the associated menu in the details group. </Member>
+      <Member Name="Marketing">Show the associated menu in the marketing group.  </Member>
+      <Member Name="Sales">Show the associated menu in the sales group. </Member>
+      <Member Name="Service">Show the associated menu in the service group. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="AttributeRequiredLevel"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the requirement level for an attribute. </Description>
+    <Members>
+      <Member Name="ApplicationRequired">The attribute is required to have a value. </Member>
+      <Member Name="None">No requirements are specified.</Member>
+      <Member Name="Recommended">It is recommended that the attribute has a value.</Member>
+      <Member Name="SystemRequired">The attribute is required to have a value. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="AttributeTypeCode"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the type of an attribute. </Description>
+    <Members>
+      <Member Name="BigInt">A big integer attribute. </Member>
+      <Member Name="Boolean">A Boolean attribute.  </Member>
+      <Member Name="CalendarRules">An attribute that contains calendar rules. </Member>
+      <Member Name="Customer">An attribute that represents a customer.</Member>
+      <Member Name="DateTime">A date/time attribute. </Member>
+      <Member Name="Decimal">A decimal attribute.  </Member>
+      <Member Name="Double">A double attribute.  </Member>
+      <Member Name="EntityName">An entity name attribute.  </Member>
+      <Member Name="Integer">An integer attribute. </Member>
+      <Member Name="Lookup">A lookup attribute.  </Member>
+      <Member Name="ManagedProperty">A managed property attribute. </Member>
+      <Member Name="Memo">A memo attribute.</Member>
+      <Member Name="Money">A money attribute. </Member>
+      <Member Name="Owner">An owner attribute.</Member>
+      <Member Name="PartyList">A partylist attribute.</Member>
+      <Member Name="Picklist">A picklist attribute.</Member>
+      <Member Name="State">A state attribute.</Member>
+      <Member Name="Status">A status attribute.</Member>
+      <Member Name="String">A string attribute.</Member>
+      <Member Name="Uniqueidentifier">An attribute that is an ID.</Member>
+      <Member Name="Virtual">An attribute that is created by the system at run time. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="BusinessNotificationParameterType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Members>
+      <Member Name="Attribute">For internal use only. </Member>
+      <Member Name="None">For internal use only. </Member>
+      <Member Name="String">For internal use only. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="BusinessNotificationSeverity"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Members>
+      <Member Name="Error">For internal use only.</Member>
+      <Member Name="Information">For internal use only.</Member>
+      <Member Name="None">For internal use only. </Member>
+      <Member Name="UserDefined">For internal use only. </Member>
+      <Member Name="Warning">For internal use only. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="CascadeType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the type of behavior for a specific action applied to the referenced entity in a one-to-many entity relationship. </Description>
+    <Members>
+      <Member Name="Active">Perform the action on all active referencing entity records associated with the referenced entity record. </Member>
+      <Member Name="Cascade">Perform the action on all referencing entity records associated with the referenced entity record. </Member>
+      <Member Name="NoCascade">Do nothing. </Member>
+      <Member Name="RemoveLink">Remove the value of the referencing attribute for all referencing entity records associated with the referenced entity record. </Member>
+      <Member Name="Restrict">Prevent the Referenced entity record from being deleted when referencing entities exist. </Member>
+      <Member Name="UserOwned">Perform the action on all referencing entity records owned by the same user as the referenced entity record. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="ChannelAccessProfilePrivilegeDepth"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>The privilege depth determines at which levels within the organization hierarchy an external party can act on that type of entity.</Description>
+    <Members>
+      <Member Name="EntityReference">The external party can only access records associated with the external party.</Member>
+      <Member Name="Global">The external party can access all entity records in th organization.</Member>
+      <Member Name="None">The external party cannot access entity records in the organization.</Member>
+      <Member Name="ParentEntityReference">The external party can only access records associated with the external party, or records associated with the parent of the external party. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="DateTimeFormat"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the formatting of a DateTimeAttributeMetadata attribute. </Description>
+    <Members>
+      <Member Name="DateAndTime">Display the date and time.</Member>
+      <Member Name="DateOnly">Display the date only. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="EndpointAccessType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Indicates the type of network access an endpoint has. </Description>
+    <Members>
+      <Member Name="Default">Default access. The actual access is determined by the endpoint URL. </Member>
+      <Member Name="Internet">Internet access.  </Member>
+      <Member Name="Intranet">Intranet access. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="EndpointType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Identifies the type of service available at an endpoint. </Description>
+    <Members>
+      <Member Name="OrganizationDataService">The organization data service. </Member>
+      <Member Name="OrganizationService">The organization service.  </Member>
+      <Member Name="WebApplication">The Web application service.  </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="EntityKeyIndexStatus"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Represents the enumerator for the entity key status when the index creation job is in progress. </Description>
+    <Members>
+      <Member Name="Active">Specifies that the key index creation is active. </Member>
+      <Member Name="Failed">Specifies that the key index creation failed.</Member>
+      <Member Name="InProgress">Specifies that the key index creation is in progress. </Member>
+      <Member Name="Pending">Specifies that the key index creation is pending.</Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="ImeMode"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the input method editor mode </Description>
+    <Members>
+      <Member Name="Active">Specifies that the IME mode is active.  </Member>
+      <Member Name="Auto">Specifies that the IME mode is chosen automatically. </Member>
+      <Member Name="Disabled">Specifies that the IME mode is disabled. </Member>
+      <Member Name="Inactive">Specifies that the IME mode is inactive. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="IntegerFormat"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the formatting of an integer attribute. </Description>
+    <Members>
+      <Member Name="Duration">Specifies to display the integer as a drop down list of durations. </Member>
+      <Member Name="Language">Specifies the display the integer as a drop down list of installed languages. </Member>
+      <Member Name="Locale">Specifies a locale. </Member>
+      <Member Name="None">Specifies to display an edit field for an integer. </Member>
+      <Member Name="TimeZone">Specifies to display the integer as a drop down list of time zones. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="ManagedPropertyEvaluationPriority"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Members>
+      <Member Name="Essential">For internal use only. </Member>
+      <Member Name="High">For internal use only. </Member>
+      <Member Name="Low">For internal use only. </Member>
+      <Member Name="None">For internal use only. </Member>
+      <Member Name="Normal">For internal use only. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="ManagedPropertyOperation"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Members>
+      <Member Name="All">For internal use only. </Member>
+      <Member Name="Create">For internal use only. </Member>
+      <Member Name="CreateUpdate">For internal use only. </Member>
+      <Member Name="Delete">For internal use only. </Member>
+      <Member Name="None">For internal use only. </Member>
+      <Member Name="Update">For internal use only. </Member>
+      <Member Name="UpdateDelete">For internal use only. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="ManagedPropertyType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Members>
+      <Member Name="Attribute">For internal use only. </Member>
+      <Member Name="Custom">For internal use only. </Member>
+      <Member Name="CustomEvaluator">For internal use only. </Member>
+      <Member Name="Operation">For internal use only. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="OptionSetType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Indicates the type of option set. </Description>
+    <Members>
+      <Member Name="Boolean">The option set provides two options for a BooleanAttributeMetadata attribute. </Member>
+      <Member Name="Picklist">The option set provides a list of options. </Member>
+      <Member Name="State">The option set represents state options for a StateAttributeMetadata attribute. </Member>
+      <Member Name="Status">The option set represents status options for a StatusAttributeMetadata attribute.  </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="OrganizationState"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the state of the organization. </Description>
+    <Members>
+      <Member Name="Disabled">Specifies that the organization is disabled.</Member>
+      <Member Name="Enabled">Specifies that the organization is enabled. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="OwnershipTypes"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Specifies the type of ownership for an entity. </Description>
+    <Members>
+      <Member Name="BusinessOwned">The entity is owned by a business unit. For internal use only.  </Member>
+      <Member Name="BusinessParented">The entity is parented by a business unit. For internal use only.  </Member>
+      <Member Name="None">The entity does not have an owner. For internal use only. </Member>
+      <Member Name="OrganizationOwned">The entity is owned by an organization.  </Member>
+      <Member Name="TeamOwned">The entity is owned by a team. For internal use only.</Member>
+      <Member Name="UserOwned">The entity is owned by a system user. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="PrivilegeDepth"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the possible values for the depth of a privilege within a role. </Description>
+    <Members>
+      <Member Name="Basic">Indicates basic privileges. </Member>
+      <Member Name="Deep">Indicates deep privileges. </Member>
+      <Member Name="Global">Indicates global privileges.</Member>
+      <Member Name="Local">Indicates local privileges.</Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="PrivilegeType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the type of operation for the privilege </Description>
+    <Members>
+      <Member Name="Append">The append privilege. </Member>
+      <Member Name="AppendTo">The append to privilege.</Member>
+      <Member Name="Assign">The assign privilege.</Member>
+      <Member Name="Create">The create privilege. </Member>
+      <Member Name="Delete">The delete privilege.  </Member>
+      <Member Name="None">Specifies no privilege. </Member>
+      <Member Name="Read">The read privilege.</Member>
+      <Member Name="Share">The share privilege. </Member>
+      <Member Name="Write">The write privilege. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="PropagationOwnershipOptions"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the possible values for propagation ownership options. </Description>
+    <Members>
+      <Member Name="Caller">All created activities are assigned to the caller of the API.  </Member>
+      <Member Name="ListMemberOwner">Created activities are assigned to respective owners of target members. </Member>
+      <Member Name="None">There is no change in ownership for the created activities. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="RelationshipType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Specifies the type of entity relationship. </Description>
+    <Members>
+      <Member Name="ManyToManyRelationship">The entity relationship is a Many-to-Many relationship. </Member>
+      <Member Name="OneToManyRelationship">The entity relationship is a One-to-Many relationship. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="RibbonLocationFilters"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the values for ribbon filters for an entity. </Description>
+    <Members>
+      <Member Name="All">Retrieve all Ribbons. Equivalent to Default.  </Member>
+      <Member Name="Form">Retrieve just the form ribbon. </Member>
+      <Member Name="HomepageGrid">Retrieve just the ribbon displayed for entity grids. </Member>
+      <Member Name="SubGrid">Retrieve just the ribbon displayed when the entity is displayed in a subgrid or associated view.  </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="SearchDirection"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the possible values for the search direction in an appointment request. </Description>
+    <Members>
+      <Member Name="Backward">Search backward in the calendar. </Member>
+      <Member Name="Forward">Search forward in the calendar. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="SecurityTypes"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the security type for the relationship. </Description>
+    <Members>
+      <Member Name="Append">The Append and AppendTo privileges are checked for create or update operations. </Member>
+      <Member Name="Inheritance">The referencing entity record inherits security from the referenced security record.</Member>
+      <Member Name="None">No security privileges are checked during create or update operations. </Member>
+      <Member Name="ParentChild">Security for the referencing entity record is derived from the referenced entity record. </Member>
+      <Member Name="Pointer">Security for the referencing entity record is derived from a pointer record.  </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="StringFormat"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Describes the formatting of a string attribute for the StringAttributeMetadata.Format property. (Deprecated)</Description>
+    <Members>
+      <Member Name="Email">Specifies to display the string as an e-mail.  </Member>
+      <Member Name="Phone">For internal use only. </Member>
+      <Member Name="PhoneticGuide">Specifies to display the string as a phonetic guide. </Member>
+      <Member Name="Text">Specifies to display the string as text. V</Member>
+      <Member Name="TextArea">Specifies to display the string as a text area.  </Member>
+      <Member Name="TickerSymbol">Specifies to display the string as a ticker symbol. </Member>
+      <Member Name="Url">Specifies to display the string as a URL.  </Member>
+      <Member Name="VersionNumber">Specifies to display the string as a version number. </Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="SubCode"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the possible values for a subcode, used in scheduling appointments. </Description>
+    <Members>
+      <Member Name="Appointment">A block of time that is already scheduled for an appointment.</Member>
+      <Member Name="Break">A block of time that cannot be committed due to a scheduled break.</Member>
+      <Member Name="Committed">A block of time that is committed to perform an action.</Member>
+      <Member Name="Holiday">A block of time that cannot be scheduled due to a scheduled holiday.</Member>
+      <Member Name="ResourceCapacity">Specifies the capacity of a resource for the specified time interval. </Member>
+      <Member Name="ResourceServiceRestriction">A restriction for a resource for the specified service.</Member>
+      <Member Name="ResourceStartTime">Specifies to filter a resource start time.</Member>
+      <Member Name="Schedulable">A schedulable block of time.</Member>
+      <Member Name="ServiceCost">An override to the service cost for the specified time block.</Member>
+      <Member Name="ServiceRestriction">Specifies that a service is restricted during the specified block of time.</Member>
+      <Member Name="Uncommitted">A block of time that is tentatively scheduled but not committed.</Member>
+      <Member Name="Unspecified">Specifies free time with no specified restrictions.</Member>
+      <Member Name="Vacation">A block of time that cannot be scheduled due to a scheduled vacation.</Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="TargetFieldType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Indicates the attribute type for the target of the InitializeFromRequest message. </Description>
+    <Members>
+      <Member Name="All">Initialize all possible attribute values.</Member>
+      <Member Name="ValidForCreate">Initialize the attribute values that are valid for create.</Member>
+      <Member Name="ValidForRead">Initialize the attribute values that are valid for read.</Member>
+      <Member Name="ValidForUpdate">Initialize the attribute values that are valid for update.</Member>
+    </Members>
+  </EnumType>
+  <EnumType Name="TimeCode"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the possible values for a time code, used when querying a schedule. </Description>
+    <Members>
+      <Member Name="Available">The time is available within the working hours of the resource.</Member>
+      <Member Name="Busy">The time is committed to an activity.</Member>
+      <Member Name="Filter">Use additional filters for the time block such as service cost or service start time.</Member>
+      <Member Name="Unavailable">The time is unavailable. </Member>
+    </Members>
+  </EnumType>
+</EnumTypes>

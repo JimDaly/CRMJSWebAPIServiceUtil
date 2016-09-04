@@ -1,0 +1,1513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2016 Jim Daly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<Functions>
+  <Function Name="Above"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity is above the referenced entity in the hierarchy.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity is above the referenced entity in the hierarchy.</ReturnType>
+  </Function>
+  <Function Name="AboveOrEqual"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity is above or equal to the referenced entity in the hierarchy. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity is above or below the referenced entity in the hierarchy. </ReturnType>
+  </Function>
+  <Function Name="Between"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity is between the referenced entities in the hierarchy. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValues">The values to compare.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity is between the referenced entities in the hierarchy.</ReturnType>
+  </Function>
+  <Function Name="CalculateRollupField"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Calculates the value of a rollup attribute. </Description>
+    <Parameters>
+      <Parameter Name="Target">A reference to the entity containing the rollup attribute to calculate.</Parameter>
+      <Parameter Name="FieldName">The logical name of the attribute to calculate.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CalculateRollupField function. </ReturnType>
+  </Function>
+  <Function Name="CalculateTotalTimeIncident"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Calculates the total time, in minutes, that you used while you worked on an incident (case).  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified incident record. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CaluculateTotalTimeIncident function. </ReturnType>
+  </Function>
+  <Function Name="CheckIncomingEmail"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Checks whether the incoming email message is relevant to the Microsoft Dynamics CRM system. </Description>
+    <Parameters>
+      <Parameter Name="Bcc">The addresses of the blind carbon copy (Bcc) recipients for the email message. </Parameter>
+      <Parameter Name="Cc">The addresses of the carbon copy (Cc) recipients for the email message. </Parameter>
+      <Parameter Name="ExtraProperties">For internal use only.</Parameter>
+      <Parameter Name="From">The from address for the email message.</Parameter>
+      <Parameter Name="MessageId">The ID of the email message stored in the email header.  </Parameter>
+      <Parameter Name="Subject">The subject line for the email message.  </Parameter>
+      <Parameter Name="To">The addresses of the recipients of the email message. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the CheckIncomingEmail function.</ReturnType>
+  </Function>
+  <Function Name="CheckPromoteEmail"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Contains the data that is needed to check whether the incoming email message should be promoted to the Microsoft Dynamics CRM system. </Description>
+    <Parameters>
+      <Parameter Name="DirectionCode">The direction of a mail checked for promotion for uniqueness.</Parameter>
+      <Parameter Name="MessageId">The message ID that is contained in the email header.  </Parameter>
+      <Parameter Name="Subject">The subject of the message.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from CheckPromoteEmail function.</ReturnType>
+  </Function>
+  <Function Name="Contains"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the string contains the specified string.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The string to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value of the string. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the string contains the specified string. </ReturnType>
+  </Function>
+  <Function Name="DownloadReportDefinition"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Downloads a report definition.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The report definition record. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from DownloadReportDefinition function </ReturnType>
+  </Function>
+  <Function Name="EqualBusinessId"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is equal to the specified business ID. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is equal to the specified business ID. </ReturnType>
+  </Function>
+  <Function Name="EqualUserId"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is equal to the ID of the user. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.  </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is equal to the ID of the user. </ReturnType>
+  </Function>
+  <Function Name="EqualUserLanguage"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is equal to the language for the user.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is equal to the language for the user.</ReturnType>
+  </Function>
+  <Function Name="EqualUserOrUserHierarchy"
+            Status="Written"
+            Writer="crmSDK">
+    <Description> Query function that evaluates whether the entity equals current user or their reporting hierarchy.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity equals current user or their reporting hierarchy.</ReturnType>
+  </Function>
+  <Function Name="EqualUserOrUserHierarchyAndTeams"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity equals current user or their reporting hierarchy and teams. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity equals current user or their reporting hierarchy and teams.  </ReturnType>
+  </Function>
+  <Function Name="EqualUserOrUserTeams"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity equals current user or user teams. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity equals current user or user teams. </ReturnType>
+  </Function>
+  <Function Name="EqualUserTeams"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity equals current user teams. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity equals current user teams.</ReturnType>
+  </Function>
+  <Function Name="ExpandCalendar"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Converts the calendar rules to an array of available time blocks for the specified period. </Description>
+    <Parameters>
+      <Parameter Name="End">the end of the time period to expand. </Parameter>
+      <Parameter Name="entity">The record to convert. </Parameter>
+      <Parameter Name="Start">the start of the period to expand.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ExpandCalendar function.</ReturnType>
+  </Function>
+  <Function Name="ExportFieldTranslation"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Exports localizable fields values to a compressed file. </Description>
+    <Parameters />
+    <ReturnType>Contains the response from the ExportFieldTranslation function.</ReturnType>
+  </Function>
+  <Function Name="FindParentResourceGroup"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Finds a parent resource group (scheduling group) for the specified resource groups (scheduling groups).  </Description>
+    <Parameters>
+      <Parameter Name="Children">The specified resource groups. </Parameter>
+      <Parameter Name="entity">The specified resource group record.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the FindParentResourceGroupResponse function. </ReturnType>
+  </Function>
+  <Function Name="GetAllTimeZonesWithDisplayName"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves all the time zone definitions for the specified locale and to return only the display name attribute.  </Description>
+    <Parameters>
+      <Parameter Name="entityset">The data needed to retrieve all the time zone definitions. </Parameter>
+      <Parameter Name="LocaleId">The locale ID </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the GetAllTimeZonesWithDisplayName function. </ReturnType>
+  </Function>
+  <Function Name="GetDefaultPriceLevel"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the default price level (price list) for the current user based on the user’s territory relationship with the price level. </Description>
+    <Parameters>
+      <Parameter Name="EntityName">For internal use only. </Parameter>
+      <Parameter Name="entityset">The price level (price list) for the current user. If a user territory is part of multiple price levels (price lists), includes multiple price levels (price lists). </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the GetDefaultPriceLevel function. </ReturnType>
+  </Function>
+  <Function Name="GetDistinctValuesImportFile"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves distinct values from the parse table for a column in the source file that contains list values.  </Description>
+    <Parameters>
+      <Parameter Name="columnNumber">A column number in the CSV, XML Spreadsheet 2003 (.xml), or text source file for which the distinct values are returned. Required. </Parameter>
+      <Parameter Name="entity">The import file that is associated with the source file. Required. </Parameter>
+      <Parameter Name="pageNumber">The page number in the source file. Required. </Parameter>
+      <Parameter Name="recordsPerPage">The number of data records per page in the source file. Required.  </Parameter>
+    </Parameters>
+    <ReturnType>The response from this function.</ReturnType>
+  </Function>
+  <Function Name="GetHeaderColumnsImportFile"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the source-file column headings; or retrieve the system-generated column headings if the source file does not contain column headings. </Description>
+    <Parameters>
+      <Parameter Name="entity">The import file that is associated with the parse table. Required. </Parameter>
+    </Parameters>
+    <ReturnType>The response from this function.</ReturnType>
+  </Function>
+  <Function Name="GetQuantityDecimal"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Gets the quantity decimal value of a product for the specified entity in the target. </Description>
+    <Parameters>
+      <Parameter Name="entity">The data needed to retrieve the product.</Parameter>
+      <Parameter Name="Product"> The product to retrieve.  </Parameter>
+      <Parameter Name="UoM">The unit of measure ( </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the GetQuantityDecimal function. </ReturnType>
+  </Function>
+  <Function Name="GetReportHistoryLimit"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the history limit for a report.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to retrieve. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the GetReportHistoryLimit function.</ReturnType>
+  </Function>
+  <Function Name="GetTimeZoneCodeByLocalizedName"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the time zone code for the specified localized time zone name. </Description>
+    <Parameters>
+      <Parameter Name="LocaleId">The locale ID. </Parameter>
+      <Parameter Name="LocalizedStandardName">The localized name to search for. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the GetTimeZoneCodeByLocalizedName function. </ReturnType>
+  </Function>
+  <Function Name="GetValidManyToMany"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a list of all the entities that can participate in a Many-to-Many entity relationship.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the GetValidManyToMany function.</ReturnType>
+  </Function>
+  <Function Name="GetValidReferencedEntities"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a list of entity logical names that are valid as the primary entity (one) from the specified entity in a one-to-many relationship. </Description>
+    <Parameters>
+      <Parameter Name="ReferencingEntityName">The logical name of the entity to get valid referenced entities. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the GetValidReferencedEntities function. </ReturnType>
+  </Function>
+  <Function Name="GetValidReferencingEntities"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the set of entities that are valid as the related entity (many) to the specified entity in a one-to-many relationship.  </Description>
+    <Parameters>
+      <Parameter Name="ReferencedEntityName">The name of the primary entity in the relationship </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the GetValidReferencingEntities function.</ReturnType>
+  </Function>
+  <Function Name="In"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value exists in a list of values. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValues">The list of values to compare.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value exists in a list of values. </ReturnType>
+  </Function>
+  <Function Name="IncrementKnowledgeArticleViewCount"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Increments the per day view count of a knowledge article instance.</Description>
+    <Parameters>
+      <Parameter Name="Count">The view count of a knowledge article instance.</Parameter>
+      <Parameter Name="Location">The location where the knowledge article record was used. In the current CRM release, you can only specify 1 (default value) for this parameter, which signifies the location as internal.</Parameter>
+      <Parameter Name="Source">The knowledge article instance for incrementing the view count.</Parameter>
+      <Parameter Name="ViewDate">The date for which the view count has to be incremented.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the IncrementKnowledgeArticleViewCount function.</ReturnType>
+  </Function>
+  <Function Name="InFiscalPeriod"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the specified fiscal period. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value of the fiscal period.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the specified fiscal period.  </ReturnType>
+  </Function>
+  <Function Name="InFiscalPeriodAndYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the specified fiscal period and year. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue1">The value of the fiscal period. </Parameter>
+      <Parameter Name="PropertyValue2">The value of the fiscal year. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the specified fiscal period and year.</ReturnType>
+  </Function>
+  <Function Name="InFiscalYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the specified fiscal year.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value of the fiscal year. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the specified fiscal year.  </ReturnType>
+  </Function>
+  <Function Name="InitializeFrom"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Initializes a Written record from an existing record.  </Description>
+    <Parameters>
+      <Parameter Name="EntityMoniker">The record that is the source for initializing. </Parameter>
+      <Parameter Name="TargetEntityName">The logical name of the target entity. </Parameter>
+      <Parameter Name="TargetFieldType">Attributes that are to be initialized in the initialized instance. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the InitializeFrom function. </ReturnType>
+  </Function>
+  <Function Name="InOrAfterFiscalPeriodAndYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within or after the specified fiscal period and year.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue1">The value of the fiscal period. </Parameter>
+      <Parameter Name="PropertyValue2">The value of the fiscal year. </Parameter>
+    </Parameters>
+    <ReturnType>whether the value is within or after the specified fiscal period and year. </ReturnType>
+  </Function>
+  <Function Name="InOrBeforeFiscalPeriodAndYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within or before the specified fiscal period and year. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue1">The value of the fiscal period.  </Parameter>
+      <Parameter Name="PropertyValue2">The value of the fiscal year. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within or before the specified fiscal period and yearW </ReturnType>
+  </Function>
+  <Function Name="IsBackOfficeInstalled"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Checks whether Microsoft Dynamics GP 9.0 is installed. (Deprecated)</Description>
+    <Parameters />
+    <ReturnType>Whether Microsoft Dynamics GP 9.0 is installed. </ReturnType>
+  </Function>
+  <Function Name="IsComponentCustomizable"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Determines whether a solution component is customizable. </Description>
+    <Parameters>
+      <Parameter Name="ComponentId">The ID of the solution component. </Parameter>
+      <Parameter Name="ComponentType">The value that represents the solution component.  </Parameter>
+    </Parameters>
+    <ReturnType>Whether a solution component is customizable.</ReturnType>
+  </Function>
+  <Function Name="IsDataEncryptionActive"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Determines whether data encryption is currently running (active or inactive).  </Description>
+    <Parameters />
+    <ReturnType>Whether data encryption is currently running. </ReturnType>
+  </Function>
+  <Function Name="IsValidStateTransition"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Determines whether the state transition is valid. </Description>
+    <Parameters>
+      <Parameter Name="Entity">The record to validate. </Parameter>
+      <Parameter Name="NewState">The proposed state for the record.</Parameter>
+      <Parameter Name="NewStatus">The proposed status for the record. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the state transition is valid. </ReturnType>
+  </Function>
+  <Function Name="Last7Days"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last seven days including today. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last seven days including today. </ReturnType>
+  </Function>
+  <Function Name="LastFiscalPeriod"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last fiscal period. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last fiscal period. </ReturnType>
+  </Function>
+  <Function Name="LastFiscalYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last fiscal year. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last fiscal year. </ReturnType>
+  </Function>
+  <Function Name="LastMonth"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last fiscal year. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last fiscal year. </ReturnType>
+  </Function>
+  <Function Name="LastWeek"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last week. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last week. </ReturnType>
+  </Function>
+  <Function Name="LastXDays"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last X days.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last X days. </ReturnType>
+  </Function>
+  <Function Name="LastXFiscalPeriods"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last X fiscal periods.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last X fiscal periods. </ReturnType>
+  </Function>
+  <Function Name="LastXFiscalYears"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last X fiscal years. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last X fiscal years. </ReturnType>
+  </Function>
+  <Function Name="LastXHours"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last X hours </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last X hours. </ReturnType>
+  </Function>
+  <Function Name="LastXMonths"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last X months. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last X months. </ReturnType>
+  </Function>
+  <Function Name="LastXWeeks"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last X weeks. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last X weeks. </ReturnType>
+  </Function>
+  <Function Name="LastXYears"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last X years. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last X years.</ReturnType>
+  </Function>
+  <Function Name="LastYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the last year.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the last year.</ReturnType>
+  </Function>
+  <Function Name="Next7Days"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is within the next 7 days.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is within the next 7 days. </ReturnType>
+  </Function>
+  <Function Name="NextFiscalPeriod"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next fiscal period.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next fiscal period. </ReturnType>
+  </Function>
+  <Function Name="NextFiscalYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next fiscal year. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next fiscal year. </ReturnType>
+  </Function>
+  <Function Name="NextMonth"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next month. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next month. </ReturnType>
+  </Function>
+  <Function Name="NextWeek"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next week. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next week. </ReturnType>
+  </Function>
+  <Function Name="NextXDays"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X days. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next X days. </ReturnType>
+  </Function>
+  <Function Name="NextXFiscalPeriods"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X fiscal periods. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next X fiscal periods. </ReturnType>
+  </Function>
+  <Function Name="NextXFiscalYears"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X fiscal years.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next X fiscal years.  </ReturnType>
+  </Function>
+  <Function Name="NextXHours"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X hours.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next X hours.  </ReturnType>
+  </Function>
+  <Function Name="NextXMonths"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X months.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next X months. </ReturnType>
+  </Function>
+  <Function Name="NextXWeeks"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X weeks.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next X weeks.  </ReturnType>
+  </Function>
+  <Function Name="NextXYears"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X years.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next X years.  </ReturnType>
+  </Function>
+  <Function Name="NextYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is in the next X year.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is in the next year.  </ReturnType>
+  </Function>
+  <Function Name="NotBetween"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is not between two values.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValues">The values to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is not between two values. </ReturnType>
+  </Function>
+  <Function Name="NotEqualBusinessId"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluate whether value is not equal to the specified business ID. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether value is not equal to the specified business ID. </ReturnType>
+  </Function>
+  <Function Name="NotEqualUserId"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluate whether value is not equal to the specified user ID. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether value is not equal to the specified user ID. </ReturnType>
+  </Function>
+  <Function Name="NotIn"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is not matched to a value in a subquery or a list.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValues">The values to compare.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is not matched to a value in a subquery or a list.  </ReturnType>
+  </Function>
+  <Function Name="NotUnder"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the specified is not below the referenced record in the hierarchy.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the specified is not below the referenced record in the hierarchy. </ReturnType>
+  </Function>
+  <Function Name="OlderThanXDays"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is older than the specified amount of days. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is older than the specified amount of days. </ReturnType>
+  </Function>
+  <Function Name="OlderThanXHours"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is older than the specified amount of hours. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is older than the specified amount of hours. </ReturnType>
+  </Function>
+  <Function Name="OlderThanXMinutes"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is older than the specified amount of minutes. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is older than the specified amount of minutes. </ReturnType>
+  </Function>
+  <Function Name="OlderThanXMonths"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is older than the specified amount of months. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is older than the specified amount of months. </ReturnType>
+  </Function>
+  <Function Name="OlderThanXWeeks"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is older than the specified amount of weeks. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is older than the specified amount of weeks. </ReturnType>
+  </Function>
+  <Function Name="OlderThanXYears"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is older than the specified amount of years. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is older than the specified amount of years. </ReturnType>
+  </Function>
+  <Function Name="On"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is on the specified date. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is on the specified date.</ReturnType>
+  </Function>
+  <Function Name="OnOrAfter"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is on or after the specified date. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is on or after the specified date.</ReturnType>
+  </Function>
+  <Function Name="OnOrBefore"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function to evaluate whether the value is on or before the specified date. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+      <Parameter Name="PropertyValue">The value to compare. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the value is on or before the specified date. </ReturnType>
+  </Function>
+  <Function Name="QueryMultipleSchedules"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Searches multiple resources for available time block that match the specified parameters. </Description>
+    <Parameters>
+      <Parameter Name="End">The end time for the scheduled block of time. </Parameter>
+      <Parameter Name="Resource">The resoure. </Parameter>
+      <Parameter Name="Start">The start time for the scheduled block of time.</Parameter>
+      <Parameter Name="TimeCodes">The time codes to look for: Available, Busy, Unavailable, or Filter, which correspond to the resource IDs </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from QueryMultipleSchedules function. </ReturnType>
+  </Function>
+  <Function Name="QuerySchedule"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Searches the specified resource for an available time block that matches the specified parameters.  </Description>
+    <Parameters>
+      <Parameter Name="End">The end time for the scheduled block of time. </Parameter>
+      <Parameter Name="ResourceId">The resource. </Parameter>
+      <Parameter Name="Start">The start time for the scheduled block of time.</Parameter>
+      <Parameter Name="TimeCodes">The time codes to look for: Available, Busy, Unavailable, or Filter, which correspond to the resource IDs </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the QuerySchedule function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveAbsoluteAndSiteCollectionUrl"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the absolute URL and the site collection URL for a SharePoint location record in Microsoft Dynamics CRM. </Description>
+    <Parameters>
+      <Parameter Name="entity">NA Bound Function </Parameter>
+    </Parameters>
+    <ReturnType>The response from this function</ReturnType>
+  </Function>
+  <Function Name="RetrieveAllChildUsersSystemUser"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the collection of users that report to the specified system user (user).  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specifies user entity. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveAllChildUsersSystemUser function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveApplicationRibbon"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieve the data that defines the content and behavior of the application ribbon.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveApplicationRibbon function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveAuditPartitionList"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the list of database partitions that are used to store audited history data.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveAuditPartitionList function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveAvailableLanguages"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the list of language packs that are installed and enabled on the server.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveAvailableLanguages function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveBusinessHierarchyBusinessUnit"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves all business units from the business unit hierarchy.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified business unit. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveBusinessHierarchyBusinessUnit function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveByGroupResource"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves all resources that are related to the specified resource group  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified resource group. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveByGroupResource function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveByResourceResourceGroup"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the resource groups (scheduling groups) that contain the specified resource.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified resource group. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveByResourceResourceGroup function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveByResourcesService"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the collection of services that are related to the specified set of resources.  </Description>
+    <Parameters>
+      <Parameter Name="Resource">The specified resource. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveByResourcesService function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveByTopIncidentProductKbArticle"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the top-ten articles about a specified product from the knowledge base of articles for the organization </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified product record. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveByTopIncidentProductKbArticle function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveByTopIncidentSubjectKbArticle"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the top-ten articles about a specified subject from the knowledge base of articles for your organization.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified product record.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveByTopIncidentSubjectKbArticle function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveChannelAccessProfilePrivileges"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieve the channel access profile with entity privileges. </Description>
+    <Parameters>
+      <Parameter Name="ChannelAccessProfileId">The unique identifier of the channel access profile record. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveChannelAccessProfilePrivileges function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveCurrentOrganization"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieve information about the current organization. </Description>
+    <Parameters>
+      <Parameter Name="AccessType">The access type of the organization's service endpoint. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveCurrentOrganization function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveDataEncryptionKey"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the data encryption key value.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveDataEncryptionKey function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveDependenciesForDelete"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a collection of dependency records that describe any solution components that would prevent a solution component from being deleted. </Description>
+    <Parameters>
+      <Parameter Name="ComponentType">The component type that is to be deleted. </Parameter>
+      <Parameter Name="ObjectId">ID of the solution component to delete.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveDependenciesForDelete function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveDependenciesForUninstall"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a list of the solution component dependencies that can prevent you from uninstalling a managed solution.  </Description>
+    <Parameters>
+      <Parameter Name="SolutionUniqueName">The unique name of the managed solution. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveDependenciesForUninstall function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveDependentComponents"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a list dependencies for solution components that directly depend on a solution component.  </Description>
+    <Parameters>
+      <Parameter Name="ComponentType">The solution component type. </Parameter>
+      <Parameter Name="ObjectId">The ID of the solution component</Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveDependentComponents function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveDeploymentLicenseType"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the type of license for a deployment of Microsoft Dynamics CRM.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveDeploymentLicenseType function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveDeprovisionedLanguages"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a list of language packs that are installed on the server that have been disabled. </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveDeprovisionedLanguages function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveDuplicates"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves duplicates for a specified record.  </Description>
+    <Parameters>
+      <Parameter Name="BusinessEntity">Retrieve duplicates for a specified record. </Parameter>
+      <Parameter Name="MatchingEntityName">Name of the matching entity type. </Parameter>
+      <Parameter Name="PagingInfo">Paging information for the retrieved duplicates. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from RetrieveDuplicates function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveEntityRibbon"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves ribbon definitions for an entity.  </Description>
+    <Parameters>
+      <Parameter Name="EntityName">The name of the specified entity. </Parameter>
+      <Parameter Name="RibbonLocationFilter">A filter to retrieve a specific set of ribbon definitions for an entity. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from RetrieveEntityRibbon function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveExchangeRate"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the exchange rate.  </Description>
+    <Parameters>
+      <Parameter Name="TransactionCurrencyId">The ID of the currency </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from RetrieveExchangeRate function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveFilteredForms"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the entity forms that are available for a specified user. </Description>
+    <Parameters>
+      <Parameter Name="EntityLogicalName">The logical name for the entity </Parameter>
+      <Parameter Name="entityset">The RetrieveFilteredForms function is bound to the systemforms entity.</Parameter>
+      <Parameter Name="FormType">The type of form. </Parameter>
+      <Parameter Name="User">The specified user. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveFilteredForms function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveFormattedImportJobResults"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the formatted results from an import job.  </Description>
+    <Parameters>
+      <Parameter Name="ImportJobId">The ID of the job to import. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveFormattedImportJobResults function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveInstalledLanguagePacks"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the list of language packs that are installed on the server.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveInstalledLanguagePacks function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveInstalledLanguagePackVersion"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the version of an installed language pack.  </Description>
+    <Parameters>
+      <Parameter Name="Language">The installed language pack. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the RetrieveInstalledLanguagePackVersion function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveLicenseInfo"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the number of used and available licenses for a deployment of Microsoft Dynamics CRM. </Description>
+    <Parameters>
+      <Parameter Name="AccessMode">The access mode for retrieving the license information.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveLicenseInfo function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveLocLabels"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves localized labels for a limited set of entity attributes.  </Description>
+    <Parameters>
+      <Parameter Name="AttributeName">The name of the attribute for which to retrieve the localized labels. </Parameter>
+      <Parameter Name="EntityMoniker">The entity. </Parameter>
+      <Parameter Name="IncludeUnpublished">Whether to include unpublished labels </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveLocLabels function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveMailboxTrackingFolders"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves folder-level tracking rules for a mailbox.  </Description>
+    <Parameters>
+      <Parameter Name="MailboxId">The mailbox ID of the user for which you want to retrieve the folder-level tracking rules.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveMailboxTrackingFolders function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveMembersBulkOperation"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the members of a bulk operation. </Description>
+    <Parameters>
+      <Parameter Name="BulkOperationSource">The source for a bulk operation. Required. </Parameter>
+      <Parameter Name="entity">NA Bound function </Parameter>
+      <Parameter Name="EntitySource">Which members of a bulk operation to retrieve.</Parameter>
+    </Parameters>
+    <ReturnType>The members of a bulk operation. </ReturnType>
+  </Function>
+  <Function Name="RetrieveMembersTeam"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Deprecated. </Description>
+    <Parameters>
+      <Parameter Name="EntityId">Deprecated</Parameter>
+    </Parameters>
+    <ReturnType></ReturnType>
+  </Function>
+  <Function Name="RetrieveMissingComponents"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a list of missing components in the target organization.  </Description>
+    <Parameters>
+      <Parameter Name="CustomizationFile">A file for the solution. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the  RetrieveMissingComponents function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveMissingDependencies"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves any required solution components that are not included in the solution. </Description>
+    <Parameters>
+      <Parameter Name="SolutionUniqueName">The unique name of the solution. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveMissingDependencies function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveOrganizationResources"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the resources that are used by an organization.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveOrganizationResources function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveParentGroupsResourceGroup"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the collection of the parent resource groups of the specified resource group (scheduling group).  </Description>
+    <Parameters>
+      <Parameter Name="ResourceGroupId">The ID of the specified group. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveParentGroupsResourceGroup function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveParsedDataImportFile"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the data from the parse table.</Description>
+    <Parameters>
+      <Parameter Name="ImportFileId">ID of the import file that is associated with the parse table. </Parameter>
+      <Parameter Name="PagingInfo">The paging information for the retrieved data. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveParsedDataImportFile function. </ReturnType>
+  </Function>
+  <Function Name="RetrievePersonalWall"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves pages of posts, including comments for each post, for all records that the calling user is following.  </Description>
+    <Parameters>
+      <Parameter Name="CommentsPerPost">The number of comments per post.  </Parameter>
+      <Parameter Name="EndDate">The end date and time of the posts that you want to retrieve </Parameter>
+      <Parameter Name="entityset">The RetrievePersonalWall Function is bound to the mscrm.post entity set</Parameter>
+      <Parameter Name="PageNumber">A specific page of posts that is designated by its page number </Parameter>
+      <Parameter Name="PageSize">The number of posts per page </Parameter>
+      <Parameter Name="Source">The source of the post. </Parameter>
+      <Parameter Name="StartDate">The start date and time of the posts that you want to retrieve. </Parameter>
+      <Parameter Name="Type">Reserved for future use. </Parameter>
+    </Parameters> the
+    <ReturnType>Contains the results from the RetrievePersonalWall function. </ReturnType>
+  </Function>
+  <Function Name="RetrievePrincipalAccess"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the access rights of the specified security principal (team or user) to the specified record.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified user entity. </Parameter>
+      <Parameter Name="Target">The target record for which to retrieve access rights. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrievePrincipalAccess function.</ReturnType>
+  </Function>
+  <Function Name="RetrievePrincipalAttributePrivileges"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves all the secured attribute privileges a user or team has through direct or indirect (through team membership) associations with the FieldSecurityProfile entity. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to retrieve the privileges for. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results of the RetrievePrincipalAttributePrivileges function. </ReturnType>
+  </Function>
+  <Function Name="RetrievePrincipalSyncAttributeMappings"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Parameters>
+      <Parameter Name="entity">For internal use only.</Parameter>
+    </Parameters>
+    <ReturnType>For internal use only.</ReturnType>
+  </Function>
+  <Function Name="RetrievePrivilegeSet"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the set of privileges defined in the system. </Description>
+    <Parameters>
+      <Parameter Name="entityset">NA function bound to collection</Parameter>
+    </Parameters>
+    <ReturnType>A collection of privileges</ReturnType>
+  </Function>
+  <Function Name="RetrieveProductProperties"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieve all the property instances (dynamic property instances) for a product added to an opportunity, quote, order, or invoice. </Description>
+    <Parameters>
+      <Parameter Name="entity"> RetrieveProductProperties Function is bound to opportunityproduct, quotedetail, salesorderdetail, and invoicedetail </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveProductProperties function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveProvisionedLanguagePackVersion"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the version of a provisioned language pack.  </Description>
+    <Parameters>
+      <Parameter Name="Language">The locale Id for the language. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveProvisionedLanguagePackVersion function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveProvisionedLanguages"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the list of provisioned languages.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveProvisionedLanguages function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveRecordWall"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves pages of posts, including comments for each post, for a specified record.</Description>
+    <Parameters>
+      <Parameter Name="CommentsPerPost">The number of comments per post. </Parameter>
+      <Parameter Name="EndDate">The end date and time of the posts to retrieve.</Parameter>
+      <Parameter Name="Entity">The record for which to retrieve the wall. </Parameter>
+      <Parameter Name="entityset">TODO: RetrieveRecordWall Function entityset Parameter Description </Parameter>
+      <Parameter Name="PageNumber">A specific page of posts that is designated by its page number.  </Parameter>
+      <Parameter Name="PageSize">The number of posts per page. </Parameter>
+      <Parameter Name="Source">The source of the post.</Parameter>
+      <Parameter Name="StartDate">The start date and time of the posts to retrieve. </Parameter>
+      <Parameter Name="Type">Reserved for future use.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveRecordWall function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveRequiredComponents"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a collection of solution components that are required for a solution component.  </Description>
+    <Parameters>
+      <Parameter Name="ComponentType">The solution component. </Parameter>
+      <Parameter Name="ObjectId">The ID of the solution component that you want to check.  </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveRequiredComponents function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveRolePrivilegesRole"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the privileges that are assigned to the specified role.  </Description>
+    <Parameters>
+      <Parameter Name="RoleId">The specified role to retrieve the privileges for.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveRolePrivilegesRole function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveSubGroupsResourceGroup"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the collection of child resource groups from the specified resource group.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to retrieve the child resource groups from. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveSubGroupsResourceGroup function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveSubsidiaryTeamsBusinessUnit"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a collection of entity instances based on the specified query criteria. (Deprecated) </Description>
+    <Parameters>
+      <Parameter Name="EntityId">The specified query criteria. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveSubsidiaryTeamsBusinessUnit function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveSubsidiaryUsersBusinessUnit"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves all user information from the child business units of the specified business unit. (Deprecated) </Description>
+    <Parameters>
+      <Parameter Name="EntityId">The specified record to retrieve the information from. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveSubsidiaryUsersBusinessUnit function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveTeamPrivileges"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the privileges for a team. </Description>
+    <Parameters>
+      <Parameter Name="entity">The record to retrieve the privileges for. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveTeamPrivileges function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveTeamsSystemUser"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the list of teams of which the specified user is a member.  </Description>
+    <Parameters>
+      <Parameter Name="EntityId">The specified user record.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveTeamsSystemUser function.</ReturnType>
+  </Function>
+  <Function Name="RetrieveTimestamp"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves a time stamp for the metadata.  </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the the RetrieveTimestamp function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveUserPrivileges"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the privileges a system user (user) has through his or her roles in the specified business unit.  </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified system user </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveUserPrivilegesResponse function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveUserQueues"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves all private queues of a specified user and optionally all public queues. </Description>
+    <Parameters>
+      <Parameter Name="entity">The specified user record. </Parameter>
+      <Parameter Name="IncludePublic">Whether the response should include public queues. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveUserQueuesResponse function. </ReturnType>
+  </Function>
+  <Function Name="RetrieveUserSettingsSystemUser"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the user settings for the specified system user. (Deprecated) </Description>
+    <Parameters>
+      <Parameter Name="EntityId">ID of the entity to retrieve. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the RetrieveUserSettingsSystemUser function.  </ReturnType>
+  </Function>
+  <Function Name="RetrieveVersion"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves the version number of the Microsoft Dynamics CRM Server. </Description>
+    <Parameters />
+    <ReturnType>Contains the results from the RetrieveVersion function </ReturnType>
+  </Function>
+  <Function Name="Search"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Searches for available time slots that fulfill the specified appointment request.  </Description>
+    <Parameters>
+      <Parameter Name="AppointmentRequest">The appointment request. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the results from the Search function. </ReturnType>
+  </Function>
+  <Function Name="SearchByBodyKbArticle"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Searches for knowledge base articles that contain the specified body text. </Description>
+    <Parameters>
+      <Parameter Name="entityset">SearchByBodyKbArticle Function is bound to the kbarticle entity collection </Parameter>
+      <Parameter Name="SearchText">The title in the articles </Parameter>
+      <Parameter Name="Subject"> Subject for the knowledge base article </Parameter>
+      <Parameter Name="UseInflection">Indicates whether to use inflectional stem matching when you search for knowledge base articles by a specific title.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from SearchByBodyKbArticle function. </ReturnType>
+  </Function>
+  <Function Name="SearchByKeywordsKbArticle"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Searches for knowledge base articles that contain the specified keywords.  </Description>
+    <Parameters>
+      <Parameter Name="entityset">SearchByKeywordsKbArticle Function is bound to the kbarticle entity collection</Parameter>
+      <Parameter Name="SearchText">The title in the articles </Parameter>
+      <Parameter Name="Subject"> Subject for the knowledge base article </Parameter>
+      <Parameter Name="UseInflection">Indicates whether to use inflectional stem matching when you search for knowledge base articles by a specific title.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the SearchByKeywordsKbArticle function. </ReturnType>
+  </Function>
+  <Function Name="SearchByTitleKbArticle"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Searches for knowledge base articles that contain the specified title.  </Description>
+    <Parameters>
+      <Parameter Name="entityset">SearchByTitleKbArticle Function is bound to the kbarticle entity collection</Parameter>
+      <Parameter Name="SearchText">The title in the articles </Parameter>
+      <Parameter Name="Subject"> Subject for the knowledge base article </Parameter>
+      <Parameter Name="UseInflection">Indicates whether to use inflectional stem matching when you search for knowledge base articles by a specific title.</Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from theSearchByTitleKbArticle function </ReturnType>
+  </Function>
+  <Function Name="ThisFiscalPeriod"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the current fiscal period. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the date is within the current fiscal period. </ReturnType>
+  </Function>
+  <Function Name="ThisFiscalYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the current fiscal year.</Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the date is within the current fiscal year. </ReturnType>
+  </Function>
+  <Function Name="ThisMonth"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the current month. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate </Parameter>
+    </Parameters>
+    <ReturnType>Whether the date is within the current month. </ReturnType>
+  </Function>
+  <Function Name="ThisWeek"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the current week.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The property to evaluate </Parameter>
+    </Parameters>
+    <ReturnType>Whether the date is within the current week. </ReturnType>
+  </Function>
+  <Function Name="ThisYear"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value is within the current year. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate </Parameter>
+    </Parameters>
+    <ReturnType>Whether the date is within the current year. </ReturnType>
+  </Function>
+  <Function Name="Today"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value equals today’s date.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate </Parameter>
+    </Parameters>
+    <ReturnType>Whether the date equals today’s date. </ReturnType>
+  </Function>
+  <Function Name="Tomorrow"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the value equals tomorrow’s date.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the date equals tomorrow’s date </ReturnType>
+  </Function>
+  <Function Name="Under"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity is below the referenced record in the hierarchy.  </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate </Parameter>
+      <Parameter Name="PropertyValue">The value to compare </Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity is below the referenced record in the hierarchy</ReturnType>
+  </Function>
+  <Function Name="UnderOrEqual"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity is under or equal to the referenced entity in the hierarchy. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate.</Parameter>
+      <Parameter Name="PropertyValue">The value to compare.</Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity is under or equal to the referenced entity in the hierarchy.</ReturnType>
+  </Function>
+  <Function Name="ValidateRecurrenceRule"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Validates a rule for a recurring appointment. </Description>
+    <Parameters>
+      <Parameter Name="Target">The recurrence rule record to validate. </Parameter>
+    </Parameters>
+    <ReturnType>Contains the response from the ValidateRecurrenceRule function.</ReturnType>
+  </Function>
+  <Function Name="WhoAmI"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Retrieves system information for the currently logged on user.</Description>
+    <Parameters />
+    <ReturnType>Contains the response from the WhoAmI function. </ReturnType>
+  </Function>
+  <Function Name="Yesterday"
+            Status="Written"
+            Writer="crmSDK">
+    <Description>Query function that evaluates whether the entity is under or equal to the referenced entity in the hierarchy. </Description>
+    <Parameters>
+      <Parameter Name="PropertyName">The name of the property to evaluate. </Parameter>
+    </Parameters>
+    <ReturnType>Whether the entity is under or equal to the referenced entity in the hierarchy.</ReturnType>
+  </Function>
+</Functions>

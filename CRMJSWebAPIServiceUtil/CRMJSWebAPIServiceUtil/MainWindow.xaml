@@ -1,0 +1,675 @@
+﻿<!--
+The MIT License (MIT)
+
+Copyright (c) 2016 Jim Daly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+    <Window x:Class="CRMJSWebAPIServiceUtil.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CRMJSWebAPIServiceUtil"
+        Title="CRM Web API JavaScript Library Generator"
+        Height="400"
+        Width="600"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <local:GridRowHeightConverter x:Key="gridRowHeightConverter" />
+        <local:TwoValueGridRowHeightConverter x:Key="twoValueGridRowHeightConverter" />
+        <local:StringLengthToBooleanConverter x:Key="stringLengthToBooleanConverter" />
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem x:Name="ConnectTab">
+                <TabItem.Header>
+                    <Label Content="Connect"
+                           ToolTip="Connect to CRM or open an existing library definition." />
+                </TabItem.Header>
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125" />
+                        <ColumnDefinition Width="400" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0"
+                            Grid.Column="0"
+                            Content="Login to CRM"
+                            Click="LoginButton_Click"
+                            ToolTip="Connect to Microsoft CRM to create a new CRM Web API JavaScript Library"
+                            Margin="10" />
+                    <Button x:Name="openButton"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Content="Open"
+                            ToolTip="Open an existing CRM Web API JavaScript library definition file"
+                            Margin="10"
+                            IsEnabled="False"
+                            Click="openButton_Click" />
+                    <TextBlock x:Name="loginMessage"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               Text="You must login to Microsoft Dynamics CRM to begin."
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap" />
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="SelectEntitiesTab"
+                     IsEnabled="False">
+                <TabItem.Header>
+                    <Label Content="Select Entities"
+                           ToolTip="Select or edit which entities are used by the library." />
+                </TabItem.Header>
+                <Grid Margin="10,0,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="260" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Content="Available Entities"
+                           Target="{Binding ElementName=entityList}"
+                           Margin="0"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center" />
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Content="Selected Entities"
+                           Target="{Binding ElementName=selectedEntityList}"
+                           Margin="0"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center" />
+                    <ListBox Grid.Row="1"
+                             Grid.Column="0"
+                             x:Name="entityList"
+                             MouseDoubleClick="selectEntity">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LogicalName}"
+                                           Margin="0,0,0,0"
+                                           ToolTip="{Binding Description}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox Grid.Row="1"
+                             Grid.Column="2"
+                             x:Name="selectedEntityList"
+                             MouseDoubleClick="deSelectEntity">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LogicalName}"
+                                           Margin="0,0,0,0"
+                                           ToolTip="{Binding Description}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="selectPropertiesTab"
+                     IsEnabled="False">
+                <TabItem.Header>
+                    <Label Content="Select Properties"
+                           ToolTip="Select or edit which properties for each entity are used by the library."
+                           HorizontalAlignment="Right" />
+                </TabItem.Header>
+                <Grid Margin="10,0,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="260" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Target="{Binding ElementName=selectedEntityComboBox}"
+                           Content="Select Entity"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Bottom" />
+                    <ComboBox Grid.Row="0"
+                              Grid.Column="1"
+                              Margin="0"
+                              x:Name="selectedEntityComboBox"
+                              SelectionChanged="selectedEntityComboBox_SelectionChanged"
+                              VerticalAlignment="Bottom">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{ Binding LogicalName}"
+                                           Margin="0,0,0,0"
+                                           ToolTip="{ Binding Description}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="AddUsedProperties" 
+                            ToolTip="Adds any properties included in any forms for the entity."
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Content="Add Used Properties"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Margin="-1,0,0,0"
+                            Padding="5,1"
+                            Click="AddUsedProperties_Click" />
+                    <Grid Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="260" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="260" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Content="Available Properties"
+                               Width="260"
+                               HorizontalAlignment="Left"
+                               Margin="0"
+                               Target="{Binding ElementName=propertyList}"
+                               Padding="0"
+                               VerticalAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center" />
+                        <Label Grid.Row="0"
+                               Grid.Column="2"
+                               Content="Selected Properties"
+                               Width="260"
+                               HorizontalAlignment="Right"
+                               Margin="0"
+                               Target="{Binding ElementName=selectedPropertyList}"
+                               Padding="0"
+                               VerticalAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center" />
+                        <ListBox Grid.Row="1"
+                                 Grid.Column="0"
+                                 x:Name="propertyList"
+                                 Width="260"
+                                 HorizontalAlignment="Left"
+                                 MouseDoubleClick="selectProperty">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding LogicalName}"
+                                               Margin="0,0,0,0"
+                                               ToolTip="{Binding Description}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox Grid.Row="1"
+                                 Grid.Column="2"
+                                 x:Name="selectedPropertyList"
+                                 Width="258"
+                                 HorizontalAlignment="Right"
+                                 MouseDoubleClick="deSelectProperty">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding LogicalName}"
+                                               Margin="0,0,0,0"
+                                               ToolTip="{Binding Description}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="selectFunctionsTab"
+                     IsEnabled="False">
+                <TabItem.Header>
+                    <Label Content="Select Functions"
+                           ToolTip="Select or edit which functions are used by the library." />
+                </TabItem.Header>
+                <Grid Margin="10,0,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="260" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Content="Available Functions"
+                           Target="{Binding ElementName=functionList}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Content="Selected Functions"
+                           Target="{Binding ElementName=selectedFunctionList}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <ListBox Grid.Row="1"
+                             Grid.Column="0"
+                             x:Name="functionList"
+                             MouseDoubleClick="selectFunction">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                           Margin="0,0,0,0"
+                                           ToolTip="{Binding Description}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox Grid.Row="1"
+                             Grid.Column="2"
+                             x:Name="selectedFunctionList"
+                             MouseDoubleClick="deSelectFunction">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                           Margin="0,0,0,0"
+                                           ToolTip="{Binding Description}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="selectActionsTab"
+                     IsEnabled="False">
+                <TabItem.Header>
+                    <Label Content="Select Actions"
+                           ToolTip="Select or edit which actions are used by the library." />
+                </TabItem.Header>
+                <Grid Margin="10,0,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="260" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Content="Available Actions"
+                           Target="{Binding ElementName=actionList}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Content="Selected Actions"
+                           Target="{Binding ElementName=selectedActionList}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <ListBox Grid.Row="1"
+                             Grid.Column="0"
+                             x:Name="actionList"
+                             MouseDoubleClick="selectAction">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                           Margin="0,0,0,0"
+                                           ToolTip="{Binding Description}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox Grid.Row="1"
+                             Grid.Column="2"
+                             x:Name="selectedActionList"
+                             MouseDoubleClick="deSelectAction">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                           Margin="0,0,0,0"
+                                           ToolTip="{Binding Description}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="buildTab"
+                     IsEnabled="False">
+                <TabItem.Header>
+                    <Label Content="Build"
+                           ToolTip="Generate the file for the library." />
+                </TabItem.Header>
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="125" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Content="Base Namespace"
+                           Target="{Binding ElementName=baseNamespace}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"
+                             x:Name="baseNamespace"
+                             TextChanged="baseNamespace_TextChanged"
+                             VerticalAlignment="Center">
+                        <TextBox.ToolTip>Enter a base namespace value. 'Xrm' or 'Crm' are not allowed.</TextBox.ToolTip>
+                    </TextBox>
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Content="Sub Namespace"
+                           Target="{Binding ElementName=subNamespace}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"
+                             x:Name="subNamespace"
+                             TextChanged="subNamespace_TextChanged"
+                             VerticalAlignment="Center">
+                        <TextBox.ToolTip>Enter a sub namespace value. This should indicate the context this library is intended for.</TextBox.ToolTip>
+                    </TextBox>
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Content="File Name"
+                           Target="{Binding ElementName=fileName}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"
+                             x:Name="fileName"
+                             TextChanged="fileName_TextChanged"
+                             VerticalAlignment="Center">
+                        <TextBox.ToolTip>Enter the name of the library.</TextBox.ToolTip>
+                    </TextBox>
+                    <Label Grid.Row="3"
+                           Grid.Column="0"
+                           Content="File Folder"
+                           Target="{Binding ElementName=fileFolder}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <TextBox Grid.Row="3"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="3"
+                             x:Name="fileFolder"
+                             TextChanged="fileFolder_TextChanged"
+                             VerticalAlignment="Center">
+                        <TextBox.ToolTip>Enter the location to save the library file.</TextBox.ToolTip>
+                    </TextBox>
+                    <Button Grid.Row="3"
+                            Grid.Column="4"
+                            Margin="10"
+                            x:Name="folderChooser"
+                            Content="Choose folder"
+                            ToolTip="Use a dialog to select the folder to save the library in."
+                            Click="folderChooser_Click" />
+                    <CheckBox x:Name="includePropertyComments"
+                              Grid.Row="1" Grid.Column="3"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0,0,5,0"
+                              IsChecked="False"
+                              ToolTip="There is a known issue where Visual Studio JavaScript service may crash when comments for properties are included."
+                              Checked="includePropertyComments_Checked"
+                              />
+                    <Label Target="{Binding ElementName=includePropertyComments}"
+                           Grid.Row="1"
+                           Grid.Column="4"
+                           Grid.ColumnSpan="2"
+                           VerticalAlignment="Center"
+                           Margin="5,0,0,0">
+                        <TextBlock TextWrapping="WrapWithOverflow">Include property comments</TextBlock>
+                    </Label>
+                    <CheckBox x:Name="enableOAuth"
+                              Checked="enableOAuth_Checked"
+                              Grid.Row="4"
+                              Grid.Column="0"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0,0,5,0"
+                              IsChecked="False" />
+                    <Label Target="{Binding ElementName=enableOAuth}"
+                           Grid.Row="4"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="4"
+                           Content="Enable OAuth for Cross-Origin Resource Sharing (CORS)"
+                           VerticalAlignment="Center"
+                           Margin="5,0,0,0" />
+                    <Button Grid.Row="5"
+                            Grid.Column="0"
+                            Margin="10"
+                            x:Name="buildButton"
+                            Content="Build library"
+                            ToolTip="Build the library and save it to the file folder location"
+                            IsEnabled="False"
+                            Click="buildButton_Click" />
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="1"
+                               x:Name="buildMessageLabel"
+                               Grid.ColumnSpan="3"
+                               Text=""
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                    <Button Grid.Row="5"
+                            Grid.Column="4"
+                            Margin="10"
+                            x:Name="openFolderButton"
+                            Content="Open folder"
+                            ToolTip="Open the file folder location where the built library was saved."
+                            IsEnabled="False"
+                            Click="openFolderButton_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="saveTab"
+                     IsEnabled="False">
+                <TabItem.Header>
+                    <Label Content="Save"
+                           ToolTip="Save the file definition so you can edit it later." />
+                </TabItem.Header>
+                <Grid Margin="10"
+                      HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding ElementName=enableOAuth,Path=IsChecked,Converter={StaticResource gridRowHeightConverter}}" />
+                        <RowDefinition>
+                            <RowDefinition.Height>
+                                <MultiBinding Converter="{StaticResource twoValueGridRowHeightConverter}">
+                                    <Binding ElementName="enableOAuth"
+                                             Path="IsChecked" />
+                                    <Binding ElementName="saveWebResource"
+                                             Path="IsChecked" />
+                                </MultiBinding>
+                            </RowDefinition.Height>
+                        </RowDefinition>
+                        <RowDefinition>
+                            <RowDefinition.Height>
+                                <MultiBinding Converter="{StaticResource twoValueGridRowHeightConverter}">
+                                    <Binding ElementName="enableOAuth"
+                                             Path="IsChecked" />
+                                    <Binding ElementName="saveWebResource"
+                                             Path="IsChecked" />
+                                </MultiBinding>
+                            </RowDefinition.Height>
+                        </RowDefinition>
+                        <RowDefinition>
+                            <RowDefinition.Height>
+                                <MultiBinding Converter="{StaticResource twoValueGridRowHeightConverter}">
+                                    <Binding ElementName="enableOAuth"
+                                             Path="IsChecked" />
+                                    <Binding ElementName="saveWebResource"
+                                             Path="IsChecked" />
+                                </MultiBinding>
+                            </RowDefinition.Height>
+                        </RowDefinition>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="125" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="saveWebResource"                             
+                              Grid.Column="0"
+                              Grid.Row="0"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Right"
+                              Margin="0,0,5,0" 
+                              IsChecked="True"
+                              />
+                    <Label Grid.Row="0"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="3"
+                           Content="Save as minified web resource in CRM"
+                           Target="{Binding ElementName=saveWebResource}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="5,0,0,0"
+                           FontWeight="Bold"
+                           ToolTip="Minify this library and save it as a JavaScript web resource in the CRM solution of your choice." />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Content="Choose Solution:"
+                           VerticalAlignment="Center"
+                           Target="{Binding ElementName=solutionsCmbx}"
+                           ToolTip="Choose the solution to add the web resource to" />
+                    <ComboBox x:Name="solutionsCmbx"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              Grid.ColumnSpan="3"
+                              VerticalAlignment="Center"                              
+                              DisplayMemberPath="friendlyname"
+                              SelectionChanged="solutionsCmbx_SelectionChanged" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Content="Name:"
+                           VerticalAlignment="Center"
+                           Target="{Binding ElementName=webResourceName}"
+                           ToolTip="Choose the name of the solution to add the web resource to." />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               x:Name="solutionPrefix"
+                               VerticalAlignment="Center"
+                               Width="50"
+                               HorizontalAlignment="Left" 
+                               TextAlignment="Right"
+                               />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="3"
+                             x:Name="webResourceName" 
+                             VerticalAlignment="Center"
+                             Margin="50,0,5,0"  />
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="4"
+                                Orientation="Horizontal"
+                                Margin="5,0,0,0">
+                        <CheckBox x:Name="overwriteWebResource"
+                                  VerticalAlignment="Center"
+                                  IsChecked="False" />
+                        <Label Content="Overwrite if exists"
+                               Target="{Binding ElementName=overwriteWebResource}"
+                               VerticalAlignment="Center"
+                               ToolTip="Overwrite any existing web resource with the same name." />
+                    </StackPanel>
+
+                    <Button x:Name="saveAsWebResourceButton"
+                            Content="Save web resource"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="5"
+                            ToolTip="Save the library as a minified web resource in CRM."
+                            HorizontalAlignment="Left" Padding="5"
+                            IsEnabled="{Binding ElementName=webResourceName,Path=Text,Converter={StaticResource stringLengthToBooleanConverter}}"
+                            Click="saveAsWebResourceButton_Click" />
+                    <TextBlock x:Name="saveWebResourceMessage"
+                               Grid.Row="3"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="4"
+                               VerticalAlignment="Center"
+                               Margin="25,0,0,0" />
+
+                    <Label Grid.Row="4"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Content="Save Definition of this library"
+                           VerticalAlignment="Bottom"
+                           FontWeight="Bold" />
+                    <Label Grid.Row="5"
+                           Grid.Column="0"
+                           Content="Output folder:"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Target="{Binding ElementName=libraryDefinitionFolder}" />
+                    <TextBox x:Name="libraryDefinitionFolder"
+                             Grid.Row="5"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="3"
+                             VerticalAlignment="Center" />
+                    <Button Grid.Row="5"
+                            Grid.Column="4"
+                            Margin="10"
+                            x:Name="definitionFolderChooser"
+                            Content="Change folder"
+                            ToolTip="Select the folder to save the library definition in."
+                            Click="folderChooser_Click" />
+                    <Button x:Name="saveLibraryDefinitionButton"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Content="Save definition"
+                            Margin="5"
+                            Click="saveLibraryDefinitionButton_Click"
+                            ToolTip="Save the library definition so you can edit it later."
+                            IsEnabled="{Binding ElementName=libraryDefinitionFolder,Path=Text,Converter={StaticResource stringLengthToBooleanConverter}}"
+                            />
+                    <TextBlock x:Name="libraryDefinitionSavedMessageLabel"
+                               Grid.Row="6"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="4"
+                               Text=""
+                               VerticalAlignment="Center" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

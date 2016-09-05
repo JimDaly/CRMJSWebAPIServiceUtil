@@ -1,0 +1,2358 @@
+{
+  "entities": [
+    {
+      "LogicalName": "contact",
+      "Description": "Person with whom a business unit has a relationship, such as customer, supplier, and colleague.",
+      "selectedProperties": [
+        {
+          "LogicalName": "firstname",
+          "Description": "Type the contact's first name to make sure the contact is addressed correctly in sales calls, email, and marketing campaigns."
+        },
+        {
+          "LogicalName": "lastname",
+          "Description": "Type the contact's last name to make sure the contact is addressed correctly in sales calls, email, and marketing campaigns."
+        },
+        {
+          "LogicalName": "annualincome",
+          "Description": "Type the contact's annual income for use in profiling and financial analysis."
+        },
+        {
+          "LogicalName": "jobtitle",
+          "Description": "Type the job title of the contact to make sure the contact is addressed correctly in sales calls, email, and marketing campaigns."
+        },
+        {
+          "LogicalName": "fullname",
+          "Description": "Combines and shows the contact's first and last names so that the full name can be displayed in views and reports."
+        },
+        {
+          "LogicalName": "description",
+          "Description": "Type additional information to describe the contact, such as an excerpt from the company's website."
+        },
+        {
+          "LogicalName": "contactid",
+          "Description": "Unique identifier of the contact."
+        },
+        {
+          "LogicalName": "telephone1",
+          "Description": "Type the main phone number for this contact."
+        },
+        {
+          "LogicalName": "createdon",
+          "Description": "Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        }
+      ],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "accountrolecode",
+          "Description": "Select the contact's role within the company or sales process, such as decision maker, employee, or influencer."
+        },
+        {
+          "LogicalName": "address1_addressid",
+          "Description": "Unique identifier for address 1."
+        },
+        {
+          "LogicalName": "address1_addresstypecode",
+          "Description": "Select the primary address type."
+        },
+        {
+          "LogicalName": "address1_city",
+          "Description": "Type the city for the primary address."
+        },
+        {
+          "LogicalName": "address1_composite",
+          "Description": "Shows the complete primary address."
+        },
+        {
+          "LogicalName": "address1_country",
+          "Description": "Type the country or region for the primary address."
+        },
+        {
+          "LogicalName": "address1_county",
+          "Description": "Type the county for the primary address."
+        },
+        {
+          "LogicalName": "address1_fax",
+          "Description": "Type the fax number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_freighttermscode",
+          "Description": "Select the freight terms for the primary address to make sure shipping orders are processed correctly."
+        },
+        {
+          "LogicalName": "address1_latitude",
+          "Description": "Type the latitude value for the primary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address1_line1",
+          "Description": "Type the first line of the primary address."
+        },
+        {
+          "LogicalName": "address1_line2",
+          "Description": "Type the second line of the primary address."
+        },
+        {
+          "LogicalName": "address1_line3",
+          "Description": "Type the third line of the primary address."
+        },
+        {
+          "LogicalName": "address1_longitude",
+          "Description": "Type the longitude value for the primary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address1_name",
+          "Description": "Type a descriptive name for the primary address, such as Corporate Headquarters."
+        },
+        {
+          "LogicalName": "address1_postalcode",
+          "Description": "Type the ZIP Code or postal code for the primary address."
+        },
+        {
+          "LogicalName": "address1_postofficebox",
+          "Description": "Type the post office box number of the primary address."
+        },
+        {
+          "LogicalName": "address1_primarycontactname",
+          "Description": "Type the name of the main contact at the account's primary address."
+        },
+        {
+          "LogicalName": "address1_shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "address1_stateorprovince",
+          "Description": "Type the state or province of the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone1",
+          "Description": "Type the main phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone2",
+          "Description": "Type a second phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone3",
+          "Description": "Type a third phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_upszone",
+          "Description": "Type the UPS zone of the primary address to make sure shipping charges are calculated correctly and deliveries are made promptly, if shipped by UPS."
+        },
+        {
+          "LogicalName": "address1_utcoffset",
+          "Description": "Select the time zone, or UTC offset, for this address so that other people can reference it when they contact someone at this address."
+        },
+        {
+          "LogicalName": "address2_addressid",
+          "Description": "Unique identifier for address 2."
+        },
+        {
+          "LogicalName": "address2_addresstypecode",
+          "Description": "Select the secondary address type."
+        },
+        {
+          "LogicalName": "address2_city",
+          "Description": "Type the city for the secondary address."
+        },
+        {
+          "LogicalName": "address2_composite",
+          "Description": "Shows the complete secondary address."
+        },
+        {
+          "LogicalName": "address2_country",
+          "Description": "Type the country or region for the secondary address."
+        },
+        {
+          "LogicalName": "address2_county",
+          "Description": "Type the county for the secondary address."
+        },
+        {
+          "LogicalName": "address2_fax",
+          "Description": "Type the fax number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_freighttermscode",
+          "Description": "Select the freight terms for the secondary address to make sure shipping orders are processed correctly."
+        },
+        {
+          "LogicalName": "address2_latitude",
+          "Description": "Type the latitude value for the secondary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address2_line1",
+          "Description": "Type the first line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_line2",
+          "Description": "Type the second line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_line3",
+          "Description": "Type the third line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_longitude",
+          "Description": "Type the longitude value for the secondary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address2_name",
+          "Description": "Type a descriptive name for the secondary address, such as Corporate Headquarters."
+        },
+        {
+          "LogicalName": "address2_postalcode",
+          "Description": "Type the ZIP Code or postal code for the secondary address."
+        },
+        {
+          "LogicalName": "address2_postofficebox",
+          "Description": "Type the post office box number of the secondary address."
+        },
+        {
+          "LogicalName": "address2_primarycontactname",
+          "Description": "Type the name of the main contact at the account's secondary address."
+        },
+        {
+          "LogicalName": "address2_shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "address2_stateorprovince",
+          "Description": "Type the state or province of the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone1",
+          "Description": "Type the main phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone2",
+          "Description": "Type a second phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone3",
+          "Description": "Type a third phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_upszone",
+          "Description": "Type the UPS zone of the secondary address to make sure shipping charges are calculated correctly and deliveries are made promptly, if shipped by UPS."
+        },
+        {
+          "LogicalName": "address2_utcoffset",
+          "Description": "Select the time zone, or UTC offset, for this address so that other people can reference it when they contact someone at this address."
+        },
+        {
+          "LogicalName": "address3_addressid",
+          "Description": "Unique identifier for address 3."
+        },
+        {
+          "LogicalName": "address3_addresstypecode",
+          "Description": "Select the third address type."
+        },
+        {
+          "LogicalName": "address3_city",
+          "Description": "Type the city for the 3rd address."
+        },
+        {
+          "LogicalName": "address3_composite",
+          "Description": "Shows the complete third address."
+        },
+        {
+          "LogicalName": "address3_country",
+          "Description": "the country or region for the 3rd address."
+        },
+        {
+          "LogicalName": "address3_county",
+          "Description": "Type the county for the third address."
+        },
+        {
+          "LogicalName": "address3_fax",
+          "Description": "Type the fax number associated with the third address."
+        },
+        {
+          "LogicalName": "address3_freighttermscode",
+          "Description": "Select the freight terms for the third address to make sure shipping orders are processed correctly."
+        },
+        {
+          "LogicalName": "address3_latitude",
+          "Description": "Type the latitude value for the third address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address3_line1",
+          "Description": "the first line of the 3rd address."
+        },
+        {
+          "LogicalName": "address3_line2",
+          "Description": "the second line of the 3rd address."
+        },
+        {
+          "LogicalName": "address3_line3",
+          "Description": "the third line of the 3rd address."
+        },
+        {
+          "LogicalName": "address3_longitude",
+          "Description": "Type the longitude value for the third address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address3_name",
+          "Description": "Type a descriptive name for the third address, such as Corporate Headquarters."
+        },
+        {
+          "LogicalName": "address3_postalcode",
+          "Description": "the ZIP Code or postal code for the 3rd address."
+        },
+        {
+          "LogicalName": "address3_postofficebox",
+          "Description": "the post office box number of the 3rd address."
+        },
+        {
+          "LogicalName": "address3_primarycontactname",
+          "Description": "Type the name of the main contact at the account's third address."
+        },
+        {
+          "LogicalName": "address3_shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "address3_stateorprovince",
+          "Description": "the state or province of the third address."
+        },
+        {
+          "LogicalName": "address3_telephone1",
+          "Description": "Type the main phone number associated with the third address."
+        },
+        {
+          "LogicalName": "address3_telephone2",
+          "Description": "Type a second phone number associated with the third address."
+        },
+        {
+          "LogicalName": "address3_telephone3",
+          "Description": "Type a third phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address3_upszone",
+          "Description": "Type the UPS zone of the third address to make sure shipping charges are calculated correctly and deliveries are made promptly, if shipped by UPS."
+        },
+        {
+          "LogicalName": "address3_utcoffset",
+          "Description": "Select the time zone, or UTC offset, for this address so that other people can reference it when they contact someone at this address."
+        },
+        {
+          "LogicalName": "aging30",
+          "Description": "For system use only."
+        },
+        {
+          "LogicalName": "aging30_base",
+          "Description": "Shows the Aging 30 field converted to the system's default base currency. The calculations use the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "aging60",
+          "Description": "For system use only."
+        },
+        {
+          "LogicalName": "aging60_base",
+          "Description": "Shows the Aging 60 field converted to the system's default base currency. The calculations use the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "aging90",
+          "Description": "For system use only."
+        },
+        {
+          "LogicalName": "aging90_base",
+          "Description": "Shows the Aging 90 field converted to the system's default base currency. The calculations use the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "anniversary",
+          "Description": "Enter the date of the contact's wedding or service anniversary for use in customer gift programs or other communications."
+        },
+        {
+          "LogicalName": "annualincome_base",
+          "Description": "Shows the Annual Income field converted to the system's default base currency. The calculations use the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "assistantname",
+          "Description": "Type the name of the contact's assistant."
+        },
+        {
+          "LogicalName": "assistantphone",
+          "Description": "Type the phone number for the contact's assistant."
+        },
+        {
+          "LogicalName": "birthdate",
+          "Description": "Enter the contact's birthday for use in customer gift programs or other communications."
+        },
+        {
+          "LogicalName": "business2",
+          "Description": "Type a second business phone number for this contact."
+        },
+        {
+          "LogicalName": "callback",
+          "Description": "Type a callback phone number for this contact."
+        },
+        {
+          "LogicalName": "childrensnames",
+          "Description": "Type the names of the contact's children for reference in communications and client programs."
+        },
+        {
+          "LogicalName": "company",
+          "Description": "Type the company phone of the contact."
+        },
+        {
+          "LogicalName": "creditlimit",
+          "Description": "Type the credit limit of the contact for reference when you address invoice and accounting issues with the customer."
+        },
+        {
+          "LogicalName": "creditlimit_base",
+          "Description": "Shows the Credit Limit field converted to the system's default base currency for reporting purposes. The calculations use the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "creditonhold",
+          "Description": "Select whether the contact is on a credit hold, for reference when addressing invoice and accounting issues."
+        },
+        {
+          "LogicalName": "customersizecode",
+          "Description": "Select the size of the contact's company for segmentation and reporting purposes."
+        },
+        {
+          "LogicalName": "customertypecode",
+          "Description": "Select the category that best describes the relationship between the contact and your organization."
+        },
+        {
+          "LogicalName": "department",
+          "Description": "Type the department or business unit where the contact works in the parent company or business."
+        },
+        {
+          "LogicalName": "donotbulkemail",
+          "Description": "Select whether the contact accepts bulk email sent through marketing campaigns or quick campaigns. If Do Not Allow is selected, the contact can be added to marketing lists, but will be excluded from the email."
+        },
+        {
+          "LogicalName": "donotbulkpostalmail",
+          "Description": "Select whether the contact accepts bulk postal mail sent through marketing campaigns or quick campaigns. If Do Not Allow is selected, the contact can be added to marketing lists, but will be excluded from the letters."
+        },
+        {
+          "LogicalName": "donotemail",
+          "Description": "Select whether the contact allows direct email sent from Microsoft Dynamics CRM. If Do Not Allow is selected, Microsoft Dynamics CRM will not send the email."
+        },
+        {
+          "LogicalName": "donotfax",
+          "Description": "Select whether the contact allows faxes. If Do Not Allow is selected, the contact will be excluded from any fax activities distributed in marketing campaigns."
+        },
+        {
+          "LogicalName": "donotphone",
+          "Description": "Select whether the contact accepts phone calls. If Do Not Allow is selected, the contact will be excluded from any phone call activities distributed in marketing campaigns."
+        },
+        {
+          "LogicalName": "donotpostalmail",
+          "Description": "Select whether the contact allows direct mail. If Do Not Allow is selected, the contact will be excluded from letter activities distributed in marketing campaigns."
+        },
+        {
+          "LogicalName": "donotsendmm",
+          "Description": "Select whether the contact accepts marketing materials, such as brochures or catalogs. Contacts that opt out can be excluded from marketing initiatives."
+        },
+        {
+          "LogicalName": "educationcode",
+          "Description": "Select the contact's highest level of education for use in segmentation and analysis."
+        },
+        {
+          "LogicalName": "emailaddress1",
+          "Description": "Type the primary email address for the contact."
+        },
+        {
+          "LogicalName": "emailaddress2",
+          "Description": "Type the secondary email address for the contact."
+        },
+        {
+          "LogicalName": "emailaddress3",
+          "Description": "Type an alternate email address for the contact."
+        },
+        {
+          "LogicalName": "employeeid",
+          "Description": "Type the employee ID or number for the contact for reference in orders, service cases, or other communications with the contact's organization."
+        },
+        {
+          "LogicalName": "entityimage",
+          "Description": "Shows the default image for the record."
+        },
+        {
+          "LogicalName": "entityimage_timestamp",
+          "Description": ""
+        },
+        {
+          "LogicalName": "entityimage_url",
+          "Description": ""
+        },
+        {
+          "LogicalName": "entityimageid",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "exchangerate",
+          "Description": "Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency."
+        },
+        {
+          "LogicalName": "externaluseridentifier",
+          "Description": "Identifier for an external user."
+        },
+        {
+          "LogicalName": "familystatuscode",
+          "Description": "Select the marital status of the contact for reference in follow-up phone calls and other communications."
+        },
+        {
+          "LogicalName": "fax",
+          "Description": "Type the fax number for the contact."
+        },
+        {
+          "LogicalName": "ftpsiteurl",
+          "Description": "Type the URL for the contact's FTP site to enable users to access data and share documents."
+        },
+        {
+          "LogicalName": "gendercode",
+          "Description": "Select the contact's gender to make sure the contact is addressed correctly in sales calls, email, and marketing campaigns."
+        },
+        {
+          "LogicalName": "governmentid",
+          "Description": "Type the passport number or other government ID for the contact for use in documents or reports."
+        },
+        {
+          "LogicalName": "haschildrencode",
+          "Description": "Select whether the contact has any children for reference in follow-up phone calls and other communications."
+        },
+        {
+          "LogicalName": "home2",
+          "Description": "Type a second home phone number for this contact."
+        },
+        {
+          "LogicalName": "importsequencenumber",
+          "Description": "Unique identifier of the data import or data migration that created this record."
+        },
+        {
+          "LogicalName": "isbackofficecustomer",
+          "Description": "Select whether the contact exists in a separate accounting or other system, such as Microsoft Dynamics GP or another ERP database, for use in integration processes."
+        },
+        {
+          "LogicalName": "lastonholdtime",
+          "Description": "Contains the date and time stamp of the last on hold time."
+        },
+        {
+          "LogicalName": "lastusedincampaign",
+          "Description": "Shows the date when the contact was last included in a marketing campaign or quick campaign."
+        },
+        {
+          "LogicalName": "leadsourcecode",
+          "Description": "Select the primary marketing source that directed the contact to your organization."
+        },
+        {
+          "LogicalName": "managername",
+          "Description": "Type the name of the contact's manager for use in escalating issues or other follow-up communications with the contact."
+        },
+        {
+          "LogicalName": "managerphone",
+          "Description": "Type the phone number for the contact's manager."
+        },
+        {
+          "LogicalName": "merged",
+          "Description": "Shows whether the account has been merged with a master contact."
+        },
+        {
+          "LogicalName": "middlename",
+          "Description": "Type the contact's middle name or initial to make sure the contact is addressed correctly."
+        },
+        {
+          "LogicalName": "mobilephone",
+          "Description": "Type the mobile phone number for the contact."
+        },
+        {
+          "LogicalName": "modifiedon",
+          "Description": "Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "nickname",
+          "Description": "Type the contact's nickname."
+        },
+        {
+          "LogicalName": "numberofchildren",
+          "Description": "Type the number of children the contact has for reference in follow-up phone calls and other communications."
+        },
+        {
+          "LogicalName": "onholdtime",
+          "Description": "Shows how long, in minutes, that the record was on hold."
+        },
+        {
+          "LogicalName": "overriddencreatedon",
+          "Description": "Date and time that the record was migrated."
+        },
+        {
+          "LogicalName": "pager",
+          "Description": "Type the pager number for the contact."
+        },
+        {
+          "LogicalName": "participatesinworkflow",
+          "Description": "Shows whether the contact participates in workflow rules."
+        },
+        {
+          "LogicalName": "paymenttermscode",
+          "Description": "Select the payment terms to indicate when the customer needs to pay the total amount."
+        },
+        {
+          "LogicalName": "preferredappointmentdaycode",
+          "Description": "Select the preferred day of the week for service appointments."
+        },
+        {
+          "LogicalName": "preferredappointmenttimecode",
+          "Description": "Select the preferred time of day for service appointments."
+        },
+        {
+          "LogicalName": "preferredcontactmethodcode",
+          "Description": "Select the preferred method of contact."
+        },
+        {
+          "LogicalName": "processid",
+          "Description": "Shows the ID of the process."
+        },
+        {
+          "LogicalName": "salutation",
+          "Description": "Type the salutation of the contact to make sure the contact is addressed correctly in sales calls, email messages, and marketing campaigns."
+        },
+        {
+          "LogicalName": "shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "spousesname",
+          "Description": "Type the name of the contact's spouse or partner for reference during calls, events, or other communications with the contact."
+        },
+        {
+          "LogicalName": "stageid",
+          "Description": "Shows the ID of the stage."
+        },
+        {
+          "LogicalName": "statecode",
+          "Description": "Shows whether the contact is active or inactive. Inactive contacts are read-only and can't be edited unless they are reactivated."
+        },
+        {
+          "LogicalName": "statuscode",
+          "Description": "Select the contact's status."
+        },
+        {
+          "LogicalName": "subscriptionid",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "suffix",
+          "Description": "Type the suffix used in the contact's name, such as Jr. or Sr. to make sure the contact is addressed correctly in sales calls, email, and marketing campaigns."
+        },
+        {
+          "LogicalName": "telephone2",
+          "Description": "Type a second phone number for this contact."
+        },
+        {
+          "LogicalName": "telephone3",
+          "Description": "Type a third phone number for this contact."
+        },
+        {
+          "LogicalName": "territorycode",
+          "Description": "Select a region or territory for the contact for use in segmentation and analysis."
+        },
+        {
+          "LogicalName": "timezoneruleversionnumber",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "traversedpath",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "utcconversiontimezonecode",
+          "Description": "Time zone code that was in use when the record was created."
+        },
+        {
+          "LogicalName": "versionnumber",
+          "Description": "Version number of the contact."
+        },
+        {
+          "LogicalName": "websiteurl",
+          "Description": "Type the contact's professional or personal website or blog URL."
+        },
+        {
+          "LogicalName": "yomifirstname",
+          "Description": "Type the phonetic spelling of the contact's first name, if the name is specified in Japanese, to make sure the name is pronounced correctly in phone calls with the contact."
+        },
+        {
+          "LogicalName": "yomifullname",
+          "Description": "Shows the combined Yomi first and last names of the contact so that the full phonetic name can be displayed in views and reports."
+        },
+        {
+          "LogicalName": "yomilastname",
+          "Description": "Type the phonetic spelling of the contact's last name, if the name is specified in Japanese, to make sure the name is pronounced correctly in phone calls with the contact."
+        },
+        {
+          "LogicalName": "yomimiddlename",
+          "Description": "Type the phonetic spelling of the contact's middle name, if the name is specified in Japanese, to make sure the name is pronounced correctly in phone calls with the contact."
+        }
+      ]
+    },
+    {
+      "LogicalName": "account",
+      "Description": "Business that represents a customer or potential customer. The company that is billed in business transactions.",
+      "selectedProperties": [
+        {
+          "LogicalName": "telephone1",
+          "Description": "Type the main phone number for this account."
+        },
+        {
+          "LogicalName": "name",
+          "Description": "Type the company or business name."
+        },
+        {
+          "LogicalName": "accountid",
+          "Description": "Unique identifier of the account."
+        },
+        {
+          "LogicalName": "revenue",
+          "Description": "Type the annual revenue for the account, used as an indicator in financial performance analysis."
+        },
+        {
+          "LogicalName": "description",
+          "Description": "Type additional information to describe the account, such as an excerpt from the company's website."
+        }
+      ],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "accountcategorycode",
+          "Description": "Select a category to indicate whether the customer account is standard or preferred."
+        },
+        {
+          "LogicalName": "accountclassificationcode",
+          "Description": "Select a classification code to indicate the potential value of the customer account based on the projected return on investment, cooperation level, sales cycle length or other criteria."
+        },
+        {
+          "LogicalName": "accountnumber",
+          "Description": "Type an ID number or code for the account to quickly search and identify the account in system views."
+        },
+        {
+          "LogicalName": "accountratingcode",
+          "Description": "Select a rating to indicate the value of the customer account."
+        },
+        {
+          "LogicalName": "address1_addressid",
+          "Description": "Unique identifier for address 1."
+        },
+        {
+          "LogicalName": "address1_addresstypecode",
+          "Description": "Select the primary address type."
+        },
+        {
+          "LogicalName": "address1_city",
+          "Description": "Type the city for the primary address."
+        },
+        {
+          "LogicalName": "address1_composite",
+          "Description": "Shows the complete primary address."
+        },
+        {
+          "LogicalName": "address1_country",
+          "Description": "Type the country or region for the primary address."
+        },
+        {
+          "LogicalName": "address1_county",
+          "Description": "Type the county for the primary address."
+        },
+        {
+          "LogicalName": "address1_fax",
+          "Description": "Type the fax number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_freighttermscode",
+          "Description": "Select the freight terms for the primary address to make sure shipping orders are processed correctly."
+        },
+        {
+          "LogicalName": "address1_latitude",
+          "Description": "Type the latitude value for the primary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address1_line1",
+          "Description": "Type the first line of the primary address."
+        },
+        {
+          "LogicalName": "address1_line2",
+          "Description": "Type the second line of the primary address."
+        },
+        {
+          "LogicalName": "address1_line3",
+          "Description": "Type the third line of the primary address."
+        },
+        {
+          "LogicalName": "address1_longitude",
+          "Description": "Type the longitude value for the primary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address1_name",
+          "Description": "Type a descriptive name for the primary address, such as Corporate Headquarters."
+        },
+        {
+          "LogicalName": "address1_postalcode",
+          "Description": "Type the ZIP Code or postal code for the primary address."
+        },
+        {
+          "LogicalName": "address1_postofficebox",
+          "Description": "Type the post office box number of the primary address."
+        },
+        {
+          "LogicalName": "address1_primarycontactname",
+          "Description": "Type the name of the main contact at the account's primary address."
+        },
+        {
+          "LogicalName": "address1_shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "address1_stateorprovince",
+          "Description": "Type the state or province of the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone1",
+          "Description": "Type the main phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone2",
+          "Description": "Type a second phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone3",
+          "Description": "Type a third phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_upszone",
+          "Description": "Type the UPS zone of the primary address to make sure shipping charges are calculated correctly and deliveries are made promptly, if shipped by UPS."
+        },
+        {
+          "LogicalName": "address1_utcoffset",
+          "Description": "Select the time zone, or UTC offset, for this address so that other people can reference it when they contact someone at this address."
+        },
+        {
+          "LogicalName": "address2_addressid",
+          "Description": "Unique identifier for address 2."
+        },
+        {
+          "LogicalName": "address2_addresstypecode",
+          "Description": "Select the secondary address type."
+        },
+        {
+          "LogicalName": "address2_city",
+          "Description": "Type the city for the secondary address."
+        },
+        {
+          "LogicalName": "address2_composite",
+          "Description": "Shows the complete secondary address."
+        },
+        {
+          "LogicalName": "address2_country",
+          "Description": "Type the country or region for the secondary address."
+        },
+        {
+          "LogicalName": "address2_county",
+          "Description": "Type the county for the secondary address."
+        },
+        {
+          "LogicalName": "address2_fax",
+          "Description": "Type the fax number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_freighttermscode",
+          "Description": "Select the freight terms for the secondary address to make sure shipping orders are processed correctly."
+        },
+        {
+          "LogicalName": "address2_latitude",
+          "Description": "Type the latitude value for the secondary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address2_line1",
+          "Description": "Type the first line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_line2",
+          "Description": "Type the second line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_line3",
+          "Description": "Type the third line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_longitude",
+          "Description": "Type the longitude value for the secondary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address2_name",
+          "Description": "Type a descriptive name for the secondary address, such as Corporate Headquarters."
+        },
+        {
+          "LogicalName": "address2_postalcode",
+          "Description": "Type the ZIP Code or postal code for the secondary address."
+        },
+        {
+          "LogicalName": "address2_postofficebox",
+          "Description": "Type the post office box number of the secondary address."
+        },
+        {
+          "LogicalName": "address2_primarycontactname",
+          "Description": "Type the name of the main contact at the account's secondary address."
+        },
+        {
+          "LogicalName": "address2_shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "address2_stateorprovince",
+          "Description": "Type the state or province of the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone1",
+          "Description": "Type the main phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone2",
+          "Description": "Type a second phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone3",
+          "Description": "Type a third phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_upszone",
+          "Description": "Type the UPS zone of the secondary address to make sure shipping charges are calculated correctly and deliveries are made promptly, if shipped by UPS."
+        },
+        {
+          "LogicalName": "address2_utcoffset",
+          "Description": "Select the time zone, or UTC offset, for this address so that other people can reference it when they contact someone at this address."
+        },
+        {
+          "LogicalName": "aging30",
+          "Description": "For system use only."
+        },
+        {
+          "LogicalName": "aging30_base",
+          "Description": "The base currency equivalent of the aging 30 field."
+        },
+        {
+          "LogicalName": "aging60",
+          "Description": "For system use only."
+        },
+        {
+          "LogicalName": "aging60_base",
+          "Description": "The base currency equivalent of the aging 60 field."
+        },
+        {
+          "LogicalName": "aging90",
+          "Description": "For system use only."
+        },
+        {
+          "LogicalName": "aging90_base",
+          "Description": "The base currency equivalent of the aging 90 field."
+        },
+        {
+          "LogicalName": "businesstypecode",
+          "Description": "Select the legal designation or other business type of the account for contracts or reporting purposes."
+        },
+        {
+          "LogicalName": "createdon",
+          "Description": "Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "creditlimit",
+          "Description": "Type the credit limit of the account. This is a useful reference when you address invoice and accounting issues with the customer."
+        },
+        {
+          "LogicalName": "creditlimit_base",
+          "Description": "Shows the credit limit converted to the system's default base currency for reporting purposes."
+        },
+        {
+          "LogicalName": "creditonhold",
+          "Description": "Select whether the credit for the account is on hold. This is a useful reference while addressing the invoice and accounting issues with the customer."
+        },
+        {
+          "LogicalName": "customersizecode",
+          "Description": "Select the size category or range of the account for segmentation and reporting purposes."
+        },
+        {
+          "LogicalName": "customertypecode",
+          "Description": "Select the category that best describes the relationship between the account and your organization."
+        },
+        {
+          "LogicalName": "donotbulkemail",
+          "Description": "Select whether the account allows bulk email sent through campaigns. If Do Not Allow is selected, the account can be added to marketing lists, but is excluded from email."
+        },
+        {
+          "LogicalName": "donotbulkpostalmail",
+          "Description": "Select whether the account allows bulk postal mail sent through marketing campaigns or quick campaigns. If Do Not Allow is selected, the account can be added to marketing lists, but will be excluded from the postal mail."
+        },
+        {
+          "LogicalName": "donotemail",
+          "Description": "Select whether the account allows direct email sent from Microsoft Dynamics CRM."
+        },
+        {
+          "LogicalName": "donotfax",
+          "Description": "Select whether the account allows faxes. If Do Not Allow is selected, the account will be excluded from fax activities distributed in marketing campaigns."
+        },
+        {
+          "LogicalName": "donotphone",
+          "Description": "Select whether the account allows phone calls. If Do Not Allow is selected, the account will be excluded from phone call activities distributed in marketing campaigns."
+        },
+        {
+          "LogicalName": "donotpostalmail",
+          "Description": "Select whether the account allows direct mail. If Do Not Allow is selected, the account will be excluded from letter activities distributed in marketing campaigns."
+        },
+        {
+          "LogicalName": "donotsendmm",
+          "Description": "Select whether the account accepts marketing materials, such as brochures or catalogs."
+        },
+        {
+          "LogicalName": "emailaddress1",
+          "Description": "Type the primary email address for the account."
+        },
+        {
+          "LogicalName": "emailaddress2",
+          "Description": "Type the secondary email address for the account."
+        },
+        {
+          "LogicalName": "emailaddress3",
+          "Description": "Type an alternate email address for the account."
+        },
+        {
+          "LogicalName": "entityimage",
+          "Description": "Shows the default image for the record."
+        },
+        {
+          "LogicalName": "entityimage_timestamp",
+          "Description": ""
+        },
+        {
+          "LogicalName": "entityimage_url",
+          "Description": ""
+        },
+        {
+          "LogicalName": "entityimageid",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "exchangerate",
+          "Description": "Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency."
+        },
+        {
+          "LogicalName": "fax",
+          "Description": "Type the fax number for the account."
+        },
+        {
+          "LogicalName": "ftpsiteurl",
+          "Description": "Type the URL for the account's FTP site to enable users to access data and share documents."
+        },
+        {
+          "LogicalName": "importsequencenumber",
+          "Description": "Unique identifier of the data import or data migration that created this record."
+        },
+        {
+          "LogicalName": "industrycode",
+          "Description": "Select the account's primary industry for use in marketing segmentation and demographic analysis."
+        },
+        {
+          "LogicalName": "lastonholdtime",
+          "Description": "Contains the date and time stamp of the last on hold time."
+        },
+        {
+          "LogicalName": "lastusedincampaign",
+          "Description": "Shows the date when the account was last included in a marketing campaign or quick campaign."
+        },
+        {
+          "LogicalName": "marketcap",
+          "Description": "Type the market capitalization of the account to identify the company's equity, used as an indicator in financial performance analysis."
+        },
+        {
+          "LogicalName": "marketcap_base",
+          "Description": "Shows the market capitalization converted to the system's default base currency."
+        },
+        {
+          "LogicalName": "merged",
+          "Description": "Shows whether the account has been merged with another account."
+        },
+        {
+          "LogicalName": "modifiedon",
+          "Description": "Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "numberofemployees",
+          "Description": "Type the number of employees that work at the account for use in marketing segmentation and demographic analysis."
+        },
+        {
+          "LogicalName": "onholdtime",
+          "Description": "Shows how long, in minutes, that the record was on hold."
+        },
+        {
+          "LogicalName": "opendeals",
+          "Description": "Number of open opportunities against an account and its child accounts."
+        },
+        {
+          "LogicalName": "opendeals_date",
+          "Description": "The date time for Open Deals."
+        },
+        {
+          "LogicalName": "opendeals_state",
+          "Description": "State of Open Deals."
+        },
+        {
+          "LogicalName": "openrevenue",
+          "Description": "Sum of open revenue against an account and its child accounts."
+        },
+        {
+          "LogicalName": "openrevenue_base",
+          "Description": "Sum of open revenue against an account and its child accounts."
+        },
+        {
+          "LogicalName": "openrevenue_date",
+          "Description": "The date time for Open Revenue."
+        },
+        {
+          "LogicalName": "openrevenue_state",
+          "Description": "State of Open Revenue."
+        },
+        {
+          "LogicalName": "overriddencreatedon",
+          "Description": "Date and time that the record was migrated."
+        },
+        {
+          "LogicalName": "ownershipcode",
+          "Description": "Select the account's ownership structure, such as public or private."
+        },
+        {
+          "LogicalName": "participatesinworkflow",
+          "Description": "For system use only. Legacy Microsoft Dynamics CRM 3.0 workflow data."
+        },
+        {
+          "LogicalName": "paymenttermscode",
+          "Description": "Select the payment terms to indicate when the customer needs to pay the total amount."
+        },
+        {
+          "LogicalName": "preferredappointmentdaycode",
+          "Description": "Select the preferred day of the week for service appointments."
+        },
+        {
+          "LogicalName": "preferredappointmenttimecode",
+          "Description": "Select the preferred time of day for service appointments."
+        },
+        {
+          "LogicalName": "preferredcontactmethodcode",
+          "Description": "Select the preferred method of contact."
+        },
+        {
+          "LogicalName": "primarysatoriid",
+          "Description": "Primary Satori ID for Account"
+        },
+        {
+          "LogicalName": "primarytwitterid",
+          "Description": "Primary Twitter ID for Account"
+        },
+        {
+          "LogicalName": "processid",
+          "Description": "Shows the ID of the process."
+        },
+        {
+          "LogicalName": "revenue_base",
+          "Description": "Shows the annual revenue converted to the system's default base currency. The calculations use the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "sharesoutstanding",
+          "Description": "Type the number of shares available to the public for the account. This number is used as an indicator in financial performance analysis."
+        },
+        {
+          "LogicalName": "shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to the account's address to designate the preferred carrier or other delivery option."
+        },
+        {
+          "LogicalName": "sic",
+          "Description": "Type the Standard Industrial Classification (SIC) code that indicates the account's primary industry of business, for use in marketing segmentation and demographic analysis."
+        },
+        {
+          "LogicalName": "stageid",
+          "Description": "Shows the ID of the stage."
+        },
+        {
+          "LogicalName": "statecode",
+          "Description": "Shows whether the account is active or inactive. Inactive accounts are read-only and can't be edited unless they are reactivated."
+        },
+        {
+          "LogicalName": "statuscode",
+          "Description": "Select the account's status."
+        },
+        {
+          "LogicalName": "stockexchange",
+          "Description": "Type the stock exchange at which the account is listed to track their stock and financial performance of the company."
+        },
+        {
+          "LogicalName": "telephone2",
+          "Description": "Type a second phone number for this account."
+        },
+        {
+          "LogicalName": "telephone3",
+          "Description": "Type a third phone number for this account."
+        },
+        {
+          "LogicalName": "territorycode",
+          "Description": "Select a region or territory for the account for use in segmentation and analysis."
+        },
+        {
+          "LogicalName": "tickersymbol",
+          "Description": "Type the stock exchange symbol for the account to track financial performance of the company. You can click the code entered in this field to access the latest trading information from MSN Money."
+        },
+        {
+          "LogicalName": "timezoneruleversionnumber",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "traversedpath",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "utcconversiontimezonecode",
+          "Description": "Time zone code that was in use when the record was created."
+        },
+        {
+          "LogicalName": "versionnumber",
+          "Description": "Version number of the account."
+        },
+        {
+          "LogicalName": "websiteurl",
+          "Description": "Type the account's website URL to get quick details about the company profile."
+        },
+        {
+          "LogicalName": "yominame",
+          "Description": "Type the phonetic spelling of the company name, if specified in Japanese, to make sure the name is pronounced correctly in phone calls and other communications."
+        }
+      ]
+    },
+    {
+      "LogicalName": "task",
+      "Description": "Generic activity representing work needed to be done.",
+      "selectedProperties": [],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "category",
+          "Description": "Type a category to identify the task type, such as lead gathering or customer follow up, to tie the task to a business group or function."
+        },
+        {
+          "LogicalName": "crmtaskassigneduniqueid",
+          "Description": "Assigned Task Unique Id"
+        },
+        {
+          "LogicalName": "importsequencenumber",
+          "Description": "Unique identifier of the data import or data migration that created this record."
+        },
+        {
+          "LogicalName": "overriddencreatedon",
+          "Description": "Date and time that the record was migrated."
+        },
+        {
+          "LogicalName": "percentcomplete",
+          "Description": "Type the percentage complete value for the task to track tasks to completion."
+        },
+        {
+          "LogicalName": "subcategory",
+          "Description": "Type a subcategory to identify the task type and relate the activity to a specific product, sales region, business group, or other function."
+        },
+        {
+          "LogicalName": "subscriptionid",
+          "Description": "For internal use only."
+        }
+      ]
+    },
+    {
+      "LogicalName": "activitypointer",
+      "Description": "Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.",
+      "selectedProperties": [
+        {
+          "LogicalName": "subject",
+          "Description": "Subject associated with the activity."
+        },
+        {
+          "LogicalName": "description",
+          "Description": "Description of the activity."
+        },
+        {
+          "LogicalName": "scheduledstart",
+          "Description": "Scheduled start time of the activity."
+        },
+        {
+          "LogicalName": "scheduledend",
+          "Description": "Scheduled end time of the activity."
+        },
+        {
+          "LogicalName": "activityid",
+          "Description": "Unique identifier of the activity."
+        },
+        {
+          "LogicalName": "actualdurationminutes",
+          "Description": "Actual duration of the activity in minutes."
+        }
+      ],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "activityadditionalparams",
+          "Description": "Additional information provided by the external application as JSON. For internal use only."
+        },
+        {
+          "LogicalName": "activitytypecode",
+          "Description": "Type of activity."
+        },
+        {
+          "LogicalName": "actualend",
+          "Description": "Actual end time of the activity."
+        },
+        {
+          "LogicalName": "actualstart",
+          "Description": "Actual start time of the activity."
+        },
+        {
+          "LogicalName": "community",
+          "Description": "Shows how contact about the social activity originated, such as from Twitter or Facebook. This field is read-only."
+        },
+        {
+          "LogicalName": "createdon",
+          "Description": "Date and time when the activity was created."
+        },
+        {
+          "LogicalName": "deliverylastattemptedon",
+          "Description": "Date and time when the delivery of the activity was last attempted."
+        },
+        {
+          "LogicalName": "deliveryprioritycode",
+          "Description": "Priority of delivery of the activity to the email server."
+        },
+        {
+          "LogicalName": "exchangerate",
+          "Description": "Exchange rate for the currency associated with the activitypointer with respect to the base currency."
+        },
+        {
+          "LogicalName": "instancetypecode",
+          "Description": "Type of instance of a recurring series."
+        },
+        {
+          "LogicalName": "isbilled",
+          "Description": "Information regarding whether the activity was billed as part of resolving a case."
+        },
+        {
+          "LogicalName": "ismapiprivate",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "isregularactivity",
+          "Description": "Information regarding whether the activity is a regular activity type or event type."
+        },
+        {
+          "LogicalName": "isworkflowcreated",
+          "Description": "Information regarding whether the activity was created from a workflow rule."
+        },
+        {
+          "LogicalName": "lastonholdtime",
+          "Description": "Contains the date and time stamp of the last on hold time."
+        },
+        {
+          "LogicalName": "leftvoicemail",
+          "Description": "Left the voice mail"
+        },
+        {
+          "LogicalName": "modifiedon",
+          "Description": "Date and time when activity was last modified."
+        },
+        {
+          "LogicalName": "onholdtime",
+          "Description": "Shows how long, in minutes, that the record was on hold."
+        },
+        {
+          "LogicalName": "postponeactivityprocessinguntil",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "prioritycode",
+          "Description": "Priority of the activity."
+        },
+        {
+          "LogicalName": "processid",
+          "Description": "Unique identifier of the Process."
+        },
+        {
+          "LogicalName": "scheduleddurationminutes",
+          "Description": "Scheduled duration of the activity, specified in minutes."
+        },
+        {
+          "LogicalName": "senton",
+          "Description": "Date and time when the activity was sent."
+        },
+        {
+          "LogicalName": "seriesid",
+          "Description": "Uniqueidentifier specifying the id of recurring series of an instance."
+        },
+        {
+          "LogicalName": "stageid",
+          "Description": "Unique identifier of the Stage."
+        },
+        {
+          "LogicalName": "statecode",
+          "Description": "Status of the activity."
+        },
+        {
+          "LogicalName": "statuscode",
+          "Description": "Reason for the status of the activity."
+        },
+        {
+          "LogicalName": "timezoneruleversionnumber",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "traversedpath",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "utcconversiontimezonecode",
+          "Description": "Time zone code that was in use when the record was created."
+        },
+        {
+          "LogicalName": "versionnumber",
+          "Description": "Version number of the activity."
+        }
+      ]
+    },
+    {
+      "LogicalName": "competitor",
+      "Description": "Business competing for the sale represented by a lead or opportunity.",
+      "selectedProperties": [
+        {
+          "LogicalName": "strengths",
+          "Description": "Type notes or other information about the competitor's strengths, such as top-selling products and targeted industries or markets."
+        },
+        {
+          "LogicalName": "name",
+          "Description": "Type the company or business name used to identify the competitor in data views and related records."
+        }
+      ],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "address1_addressid",
+          "Description": "Unique identifier for address 1."
+        },
+        {
+          "LogicalName": "address1_addresstypecode",
+          "Description": "Select the primary address type."
+        },
+        {
+          "LogicalName": "address1_city",
+          "Description": "Type the city for the primary address."
+        },
+        {
+          "LogicalName": "address1_composite",
+          "Description": "Shows the complete primary address."
+        },
+        {
+          "LogicalName": "address1_country",
+          "Description": "Type the country or region for the primary address."
+        },
+        {
+          "LogicalName": "address1_county",
+          "Description": "Type the county for the primary address."
+        },
+        {
+          "LogicalName": "address1_fax",
+          "Description": "Type the fax number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_latitude",
+          "Description": "Type the latitude value for the primary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address1_line1",
+          "Description": "Type the first line of the primary address."
+        },
+        {
+          "LogicalName": "address1_line2",
+          "Description": "Type the second line of the primary address."
+        },
+        {
+          "LogicalName": "address1_line3",
+          "Description": "Type the third line of the primary address."
+        },
+        {
+          "LogicalName": "address1_longitude",
+          "Description": "Type the longitude value for the primary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address1_name",
+          "Description": "Type a descriptive name for the primary address, such as Corporate Headquarters."
+        },
+        {
+          "LogicalName": "address1_postalcode",
+          "Description": "Type the ZIP Code or postal code for the primary address."
+        },
+        {
+          "LogicalName": "address1_postofficebox",
+          "Description": "Type the post office box number of the primary address."
+        },
+        {
+          "LogicalName": "address1_shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "address1_stateorprovince",
+          "Description": "Type the state or province of the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone1",
+          "Description": "Type the main phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone2",
+          "Description": "Type a second phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_telephone3",
+          "Description": "Type a third phone number associated with the primary address."
+        },
+        {
+          "LogicalName": "address1_upszone",
+          "Description": "Type the UPS zone of the primary address to make sure shipping charges are calculated correctly and deliveries are made promptly, if shipped by UPS."
+        },
+        {
+          "LogicalName": "address1_utcoffset",
+          "Description": "Select the time zone, or UTC offset, for this address so that other people can reference it when they contact someone at this address."
+        },
+        {
+          "LogicalName": "address2_addressid",
+          "Description": "Unique identifier for address 2."
+        },
+        {
+          "LogicalName": "address2_addresstypecode",
+          "Description": "Select the secondary address type."
+        },
+        {
+          "LogicalName": "address2_city",
+          "Description": "Type the city for the secondary address."
+        },
+        {
+          "LogicalName": "address2_composite",
+          "Description": "Shows the complete secondary address."
+        },
+        {
+          "LogicalName": "address2_country",
+          "Description": "Type the country or region for the secondary address."
+        },
+        {
+          "LogicalName": "address2_county",
+          "Description": "Type the county for the secondary address."
+        },
+        {
+          "LogicalName": "address2_fax",
+          "Description": "Type the fax number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_latitude",
+          "Description": "Type the latitude value for the secondary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address2_line1",
+          "Description": "Type the first line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_line2",
+          "Description": "Type the second line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_line3",
+          "Description": "Type the third line of the secondary address."
+        },
+        {
+          "LogicalName": "address2_longitude",
+          "Description": "Type the longitude value for the secondary address for use in mapping and other applications."
+        },
+        {
+          "LogicalName": "address2_name",
+          "Description": "Type a descriptive name for the secondary address, such as Corporate Headquarters."
+        },
+        {
+          "LogicalName": "address2_postalcode",
+          "Description": "Type the ZIP Code or postal code for the secondary address."
+        },
+        {
+          "LogicalName": "address2_postofficebox",
+          "Description": "Type the post office box number of the secondary address."
+        },
+        {
+          "LogicalName": "address2_shippingmethodcode",
+          "Description": "Select a shipping method for deliveries sent to this address."
+        },
+        {
+          "LogicalName": "address2_stateorprovince",
+          "Description": "Type the state or province of the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone1",
+          "Description": "Type the main phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone2",
+          "Description": "Type a second phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_telephone3",
+          "Description": "Type a third phone number associated with the secondary address."
+        },
+        {
+          "LogicalName": "address2_upszone",
+          "Description": "Type the UPS zone of the secondary address to make sure shipping charges are calculated correctly and deliveries are made promptly , if shipped by UPS."
+        },
+        {
+          "LogicalName": "address2_utcoffset",
+          "Description": "Select the time zone, or UTC offset, for this address so that other people can reference it when they contact someone at this address."
+        },
+        {
+          "LogicalName": "competitorid",
+          "Description": "Unique identifier of the competitor."
+        },
+        {
+          "LogicalName": "createdon",
+          "Description": "Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "entityimage",
+          "Description": "Shows the default image for the record."
+        },
+        {
+          "LogicalName": "entityimage_timestamp",
+          "Description": ""
+        },
+        {
+          "LogicalName": "entityimage_url",
+          "Description": ""
+        },
+        {
+          "LogicalName": "entityimageid",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "exchangerate",
+          "Description": "Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency."
+        },
+        {
+          "LogicalName": "importsequencenumber",
+          "Description": "Unique identifier of the data import or data migration that created this record."
+        },
+        {
+          "LogicalName": "keyproduct",
+          "Description": "Type the competitor's primary product, service, or specialty."
+        },
+        {
+          "LogicalName": "modifiedon",
+          "Description": "Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "opportunities",
+          "Description": "Type notes or other information about the competitive opportunities or selling points you can make."
+        },
+        {
+          "LogicalName": "overriddencreatedon",
+          "Description": "Date and time that the record was migrated."
+        },
+        {
+          "LogicalName": "overview",
+          "Description": "Type notes or other information about the competitor's business, such as location, revenue, or distribution channel."
+        },
+        {
+          "LogicalName": "processid",
+          "Description": "Shows the ID of the process."
+        },
+        {
+          "LogicalName": "referenceinfourl",
+          "Description": "Type the URL for the website used to obtain reference information about the competitor."
+        },
+        {
+          "LogicalName": "reportedrevenue",
+          "Description": "Type the amount of revenue reported in the competitor's annual report or other source."
+        },
+        {
+          "LogicalName": "reportedrevenue_base",
+          "Description": "Shows the Reported Revenue field converted to the system's default base currency for reporting purposes. The calculations use the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "reportingquarter",
+          "Description": "Type the quarter number during which the competitor's reported revenue was recorded or announced for use in reporting and analysis."
+        },
+        {
+          "LogicalName": "reportingyear",
+          "Description": "Type the fiscal year during which the competitor's reported revenue was announced for use in reporting and analysis."
+        },
+        {
+          "LogicalName": "stageid",
+          "Description": "Shows the ID of the stage."
+        },
+        {
+          "LogicalName": "stockexchange",
+          "Description": "Type the stock exchange at which the competitor is listed to track their stock and financial performance of the company."
+        },
+        {
+          "LogicalName": "threats",
+          "Description": "Type notes or other information about the competitor's threats to your organization when you sell to the same prospect or customer."
+        },
+        {
+          "LogicalName": "tickersymbol",
+          "Description": "Type the stock exchange symbol for the competitor to track financial performance of the company. You can click the code entered in this field to access the latest trading information from MSN Money."
+        },
+        {
+          "LogicalName": "timezoneruleversionnumber",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "traversedpath",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "utcconversiontimezonecode",
+          "Description": "Time zone code that was in use when the record was created."
+        },
+        {
+          "LogicalName": "versionnumber",
+          "Description": "Version number of the competitor."
+        },
+        {
+          "LogicalName": "weaknesses",
+          "Description": "Type notes or other information about the competitor's weaknesses or areas in which your organization outperforms the competitor."
+        },
+        {
+          "LogicalName": "websiteurl",
+          "Description": "Type the website URL for the competitor."
+        },
+        {
+          "LogicalName": "winpercentage",
+          "Description": "Type the percentage of your organization's lost opportunities that are won by the competitor to identify your strongest competitors."
+        },
+        {
+          "LogicalName": "yominame",
+          "Description": "Type the phonetic spelling of the competitor's name, if specified in Japanese, to make sure the name is pronounced correctly in phone calls and other communications."
+        }
+      ]
+    },
+    {
+      "LogicalName": "opportunity",
+      "Description": "Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.",
+      "selectedProperties": [
+        {
+          "LogicalName": "name",
+          "Description": "Type a subject or descriptive name, such as the expected order or company name, for the opportunity."
+        },
+        {
+          "LogicalName": "description",
+          "Description": "Type additional information to describe the opportunity, such as possible products to sell or past purchases from the customer."
+        }
+      ],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "actualclosedate",
+          "Description": "Shows the date and time when the opportunity was closed or canceled."
+        },
+        {
+          "LogicalName": "actualvalue",
+          "Description": "Type the actual revenue amount for the opportunity for reporting and analysis of estimated versus actual sales. Field defaults to the Est. Revenue value when an opportunity is won."
+        },
+        {
+          "LogicalName": "actualvalue_base",
+          "Description": "Shows the Actual Revenue field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "budgetamount",
+          "Description": "Type a value between 0 and 1,000,000,000,000 to indicate the lead's potential available budget."
+        },
+        {
+          "LogicalName": "budgetamount_base",
+          "Description": "Shows the budget amount converted to the system's base currency."
+        },
+        {
+          "LogicalName": "budgetstatus",
+          "Description": "Select the likely budget status for the lead's company. This may help determine the lead rating or your sales approach."
+        },
+        {
+          "LogicalName": "captureproposalfeedback",
+          "Description": "Choose whether the proposal feedback has been captured for the opportunity."
+        },
+        {
+          "LogicalName": "closeprobability",
+          "Description": "Type a number from 0 to 100 that represents the likelihood of closing the opportunity. This can aid the sales team in their efforts to convert the opportunity in a sale."
+        },
+        {
+          "LogicalName": "completefinalproposal",
+          "Description": "Select whether a final proposal has been completed for the opportunity."
+        },
+        {
+          "LogicalName": "completeinternalreview",
+          "Description": "Select whether an internal review has been completed for this opportunity."
+        },
+        {
+          "LogicalName": "confirminterest",
+          "Description": "Select whether the lead confirmed interest in your offerings. This helps in determining the lead quality and the probability of it turning into an opportunity."
+        },
+        {
+          "LogicalName": "createdon",
+          "Description": "Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "currentsituation",
+          "Description": "Type notes about the company or organization associated with the opportunity."
+        },
+        {
+          "LogicalName": "customerneed",
+          "Description": "Type some notes about the customer's requirements, to help the sales team identify products and services that could meet their requirements."
+        },
+        {
+          "LogicalName": "customerpainpoints",
+          "Description": "Type notes about the customer's pain points to help the sales team identify products and services that could address these pain points."
+        },
+        {
+          "LogicalName": "decisionmaker",
+          "Description": "Select whether your notes include information about who makes the purchase decisions at the lead's company."
+        },
+        {
+          "LogicalName": "developproposal",
+          "Description": "Select whether a proposal has been developed for the opportunity."
+        },
+        {
+          "LogicalName": "discountamount",
+          "Description": "Type the discount amount for the opportunity if the customer is eligible for special savings."
+        },
+        {
+          "LogicalName": "discountamount_base",
+          "Description": "Shows the Opportunity Discount Amount field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "discountpercentage",
+          "Description": "Type the discount rate that should be applied to the Product Totals field to include additional savings for the customer in the opportunity."
+        },
+        {
+          "LogicalName": "estimatedclosedate",
+          "Description": "Enter the expected closing date of the opportunity to help make accurate revenue forecasts."
+        },
+        {
+          "LogicalName": "estimatedvalue",
+          "Description": "Type the estimated revenue amount to indicate the potential sale or value of the opportunity for revenue forecasting. This field can be either system-populated or editable based on the selection in the Revenue field."
+        },
+        {
+          "LogicalName": "estimatedvalue_base",
+          "Description": "Shows the Actual Revenue field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "evaluatefit",
+          "Description": "Select whether the fit between the lead's requirements and your offerings was evaluated."
+        },
+        {
+          "LogicalName": "exchangerate",
+          "Description": "Shows the conversion rate of the record's currency. The exchange rate is used to convert all money fields in the record from the local currency to the system's default currency."
+        },
+        {
+          "LogicalName": "filedebrief",
+          "Description": "Choose whether the sales team has recorded detailed notes on the proposals and the account's responses."
+        },
+        {
+          "LogicalName": "finaldecisiondate",
+          "Description": "Enter the date and time when the final decision of the opportunity was made."
+        },
+        {
+          "LogicalName": "freightamount",
+          "Description": "Type the cost of freight or shipping for the products included in the opportunity for use in calculating the Total Amount field."
+        },
+        {
+          "LogicalName": "freightamount_base",
+          "Description": "Shows the Freight Amount field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "identifycompetitors",
+          "Description": "Select whether information about competitors is included."
+        },
+        {
+          "LogicalName": "identifycustomercontacts",
+          "Description": "Select whether the customer contacts for this opportunity have been identified."
+        },
+        {
+          "LogicalName": "identifypursuitteam",
+          "Description": "Choose whether you have recorded who will pursue the opportunity."
+        },
+        {
+          "LogicalName": "importsequencenumber",
+          "Description": "Unique identifier of the data import or data migration that created this record."
+        },
+        {
+          "LogicalName": "initialcommunication",
+          "Description": "Choose whether someone from the sales team contacted this lead earlier."
+        },
+        {
+          "LogicalName": "isrevenuesystemcalculated",
+          "Description": "Select whether the estimated revenue for the opportunity is calculated automatically based on the products entered or entered manually by a user."
+        },
+        {
+          "LogicalName": "lastonholdtime",
+          "Description": "Contains the date time stamp of the last on hold time."
+        },
+        {
+          "LogicalName": "modifiedon",
+          "Description": "Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "need",
+          "Description": "Choose how high the level of need is for the lead's company."
+        },
+        {
+          "LogicalName": "onholdtime",
+          "Description": "Shows the duration in minutes for which the opportunity was on hold."
+        },
+        {
+          "LogicalName": "opportunityid",
+          "Description": "Unique identifier of the opportunity."
+        },
+        {
+          "LogicalName": "opportunityratingcode",
+          "Description": "Select the expected value or priority of the opportunity based on revenue, customer status, or closing probability."
+        },
+        {
+          "LogicalName": "overriddencreatedon",
+          "Description": "Date and time that the record was migrated."
+        },
+        {
+          "LogicalName": "participatesinworkflow",
+          "Description": "Information about whether the opportunity participates in workflow rules."
+        },
+        {
+          "LogicalName": "presentfinalproposal",
+          "Description": "Select whether the final proposal has been presented to the account."
+        },
+        {
+          "LogicalName": "presentproposal",
+          "Description": "Select whether a proposal for the opportunity has been presented to the account."
+        },
+        {
+          "LogicalName": "pricingerrorcode",
+          "Description": "Pricing error for the opportunity."
+        },
+        {
+          "LogicalName": "prioritycode",
+          "Description": "Select the priority so that preferred customers or critical issues are handled quickly."
+        },
+        {
+          "LogicalName": "processid",
+          "Description": "Shows the ID of the process."
+        },
+        {
+          "LogicalName": "proposedsolution",
+          "Description": "Type notes about the proposed solution for the opportunity."
+        },
+        {
+          "LogicalName": "purchaseprocess",
+          "Description": "Choose whether an individual or a committee will be involved in the purchase process for the lead."
+        },
+        {
+          "LogicalName": "purchasetimeframe",
+          "Description": "Choose how long the lead will likely take to make the purchase."
+        },
+        {
+          "LogicalName": "pursuitdecision",
+          "Description": "Select whether the decision about pursuing the opportunity has been made."
+        },
+        {
+          "LogicalName": "qualificationcomments",
+          "Description": "Type comments about the qualification or scoring of the lead."
+        },
+        {
+          "LogicalName": "quotecomments",
+          "Description": "Type comments about the quotes associated with the opportunity."
+        },
+        {
+          "LogicalName": "resolvefeedback",
+          "Description": "Choose whether the proposal feedback has been captured and resolved for the opportunity."
+        },
+        {
+          "LogicalName": "salesstage",
+          "Description": "Select the sales stage of this opportunity to aid the sales team in their efforts to win this opportunity."
+        },
+        {
+          "LogicalName": "salesstagecode",
+          "Description": "Select the sales process stage for the opportunity to indicate the probability of closing the opportunity."
+        },
+        {
+          "LogicalName": "schedulefollowup_prospect",
+          "Description": "Enter the date and time of the prospecting follow-up meeting with the lead."
+        },
+        {
+          "LogicalName": "schedulefollowup_qualify",
+          "Description": "Enter the date and time of the qualifying follow-up meeting with the lead."
+        },
+        {
+          "LogicalName": "scheduleproposalmeeting",
+          "Description": "Enter the date and time of the proposal meeting for the opportunity."
+        },
+        {
+          "LogicalName": "sendthankyounote",
+          "Description": "Select whether a thank you note has been sent to the account for considering the proposal."
+        },
+        {
+          "LogicalName": "stageid",
+          "Description": "Shows the ID of the stage."
+        },
+        {
+          "LogicalName": "statecode",
+          "Description": "Shows whether the opportunity is open, won, or lost. Won and lost opportunities are read-only and can't be edited until they are reactivated."
+        },
+        {
+          "LogicalName": "statuscode",
+          "Description": "Select the opportunity's status."
+        },
+        {
+          "LogicalName": "stepid",
+          "Description": "Shows the ID of the workflow step."
+        },
+        {
+          "LogicalName": "stepname",
+          "Description": "Shows the current phase in the sales pipeline for the opportunity. This is updated by a workflow."
+        },
+        {
+          "LogicalName": "timeline",
+          "Description": "Select when the opportunity is likely to be closed."
+        },
+        {
+          "LogicalName": "timezoneruleversionnumber",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "totalamount",
+          "Description": "Shows the total amount due, calculated as the sum of the products, discounts, freight, and taxes for the opportunity."
+        },
+        {
+          "LogicalName": "totalamount_base",
+          "Description": "Shows the Total Amount field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "totalamountlessfreight",
+          "Description": "Shows the total product amount for the opportunity, minus any discounts. This value is added to freight and tax amounts in the calculation for the total amount of the opportunity."
+        },
+        {
+          "LogicalName": "totalamountlessfreight_base",
+          "Description": "Shows the Total Pre-Freight Amount field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "totaldiscountamount",
+          "Description": "Shows the total discount amount, based on the discount price and rate entered on the opportunity."
+        },
+        {
+          "LogicalName": "totaldiscountamount_base",
+          "Description": "Shows the Total Discount Amount field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "totallineitemamount",
+          "Description": "Shows the sum of all existing and write-in products included on the opportunity, based on the specified price list and quantities."
+        },
+        {
+          "LogicalName": "totallineitemamount_base",
+          "Description": "Shows the Total Detail Amount field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "totallineitemdiscountamount",
+          "Description": "Shows the total of the Manual Discount amounts specified on all products included in the opportunity. This value is reflected in the Total Detail Amount field on the opportunity and is added to any discount amount or rate specified on the opportunity."
+        },
+        {
+          "LogicalName": "totallineitemdiscountamount_base",
+          "Description": "Shows the Total Line Item Discount Amount field to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "totaltax",
+          "Description": "Shows the total of the Tax amounts specified on all products included in the opportunity, included in the Total Amount field calculation for the opportunity."
+        },
+        {
+          "LogicalName": "totaltax_base",
+          "Description": "Shows the Total Tax field converted to the system's default base currency for reporting purposes. The calculation uses the exchange rate specified in the Currencies area."
+        },
+        {
+          "LogicalName": "traversedpath",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "utcconversiontimezonecode",
+          "Description": "Time zone code that was in use when the record was created."
+        },
+        {
+          "LogicalName": "versionnumber",
+          "Description": "Version number of the opportunity."
+        }
+      ]
+    },
+    {
+      "LogicalName": "savedquery",
+      "Description": "Saved query against the database.",
+      "selectedProperties": [
+        {
+          "LogicalName": "name",
+          "Description": "Type a name for the view to describe what results the view will contain. This name is visible to users in the View list."
+        },
+        {
+          "LogicalName": "savedqueryid",
+          "Description": "Unique identifier of the view."
+        }
+      ],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "advancedgroupby",
+          "Description": "Type the column name that will be used to group the results from the data collected across multiple records from a system view."
+        },
+        {
+          "LogicalName": "canbedeleted",
+          "Description": "Tells whether the view can be deleted."
+        },
+        {
+          "LogicalName": "columnsetxml",
+          "Description": "Contains the columns and sorting criteria for the view, stored in XML format."
+        },
+        {
+          "LogicalName": "componentstate",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "conditionalformatting",
+          "Description": "Type information about how the items in the system view are formatted."
+        },
+        {
+          "LogicalName": "createdon",
+          "Description": "Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "description",
+          "Description": "Type additional information to describe the view, such as the filter criteria or intended results set."
+        },
+        {
+          "LogicalName": "fetchxml",
+          "Description": "String specifying the query in Fetch XML language."
+        },
+        {
+          "LogicalName": "introducedversion",
+          "Description": "Version in which the form is introduced."
+        },
+        {
+          "LogicalName": "iscustom",
+          "Description": "Tells whether a user created the view."
+        },
+        {
+          "LogicalName": "iscustomizable",
+          "Description": "Tells whether the component can be customized."
+        },
+        {
+          "LogicalName": "isdefault",
+          "Description": "Tells whether the view is the default view for the specified record type (entity)."
+        },
+        {
+          "LogicalName": "ismanaged",
+          "Description": "Tells whether the record is part of a managed solution."
+        },
+        {
+          "LogicalName": "isquickfindquery",
+          "Description": "Choose whether the view is compatible with Quick Find. When users search for specific items, you define the fields that are searched in."
+        },
+        {
+          "LogicalName": "isuserdefined",
+          "Description": "Tells whether the view was created by a user."
+        },
+        {
+          "LogicalName": "layoutxml",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "modifiedon",
+          "Description": "Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "organizationtaborder",
+          "Description": "For the organization, type the tab order to determine how users navigate through the screen using only the Tab key."
+        },
+        {
+          "LogicalName": "overwritetime",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "queryapi",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "queryappusage",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "querytype",
+          "Description": "Shows the type of the query."
+        },
+        {
+          "LogicalName": "returnedtypecode",
+          "Description": "Type of entity displayed in the view."
+        },
+        {
+          "LogicalName": "savedqueryidunique",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "solutionid",
+          "Description": "Unique identifier of the associated solution."
+        },
+        {
+          "LogicalName": "statecode",
+          "Description": "Shows the status of the view."
+        },
+        {
+          "LogicalName": "statuscode",
+          "Description": "Shows the reason code that explains the status of the record."
+        },
+        {
+          "LogicalName": "versionnumber",
+          "Description": "Version number of the view."
+        }
+      ]
+    },
+    {
+      "LogicalName": "userquery",
+      "Description": "Saved database query that is owned by a user.",
+      "selectedProperties": [
+        {
+          "LogicalName": "userqueryid",
+          "Description": "Unique identifier of the saved view."
+        },
+        {
+          "LogicalName": "name",
+          "Description": "Type a descriptive name for the saved view."
+        }
+      ],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "advancedgroupby",
+          "Description": "Type the column name that will be used to group the results from the data collected across multiple records from a user view."
+        },
+        {
+          "LogicalName": "columnsetxml",
+          "Description": "Shows the columns and sorting criteria for the saved view, stored in XML format."
+        },
+        {
+          "LogicalName": "conditionalformatting",
+          "Description": "Type information about how the items in the user view are formatted."
+        },
+        {
+          "LogicalName": "createdon",
+          "Description": "Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "description",
+          "Description": "Type additional information to describe the saved view, such as the filter criteria or intended results set."
+        },
+        {
+          "LogicalName": "fetchxml",
+          "Description": "Contains the Fetch XML query that defines the entities and attributes included in the saved view."
+        },
+        {
+          "LogicalName": "layoutxml",
+          "Description": "For internal use only."
+        },
+        {
+          "LogicalName": "modifiedon",
+          "Description": "Shows the date and time when the record was last updated. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options."
+        },
+        {
+          "LogicalName": "querytype",
+          "Description": "Shows the code for the query type to indicate whether the saved view is an address book filter, advanced search, or other view."
+        },
+        {
+          "LogicalName": "returnedtypecode",
+          "Description": "Type of entity that the saved view displays."
+        },
+        {
+          "LogicalName": "statecode",
+          "Description": "Shows whether the saved view is active or inactive."
+        },
+        {
+          "LogicalName": "statuscode",
+          "Description": "Select the item's status."
+        },
+        {
+          "LogicalName": "versionnumber",
+          "Description": "Version number of the saved view."
+        }
+      ]
+    },
+    {
+      "LogicalName": "letter",
+      "Description": "Activity that tracks the delivery of a letter. The activity can contain the electronic copy of the letter.",
+      "selectedProperties": [],
+      "unSelectedProperties": [
+        {
+          "LogicalName": "address",
+          "Description": "Type the complete recipient address for the letter to ensure timely delivery."
+        },
+        {
+          "LogicalName": "category",
+          "Description": "Type a category to identify the letter type, such as sales offer or past due notice, to tie the letter to a business group or function."
+        },
+        {
+          "LogicalName": "directioncode",
+          "Description": "Select the direction of the letter as incoming or outbound."
+        },
+        {
+          "LogicalName": "importsequencenumber",
+          "Description": "Unique identifier of the data import or data migration that created this record."
+        },
+        {
+          "LogicalName": "overriddencreatedon",
+          "Description": "Date and time that the record was migrated."
+        },
+        {
+          "LogicalName": "subcategory",
+          "Description": "Type a subcategory to identify the letter type and relate the activity to a specific product, sales region, business group, or other function."
+        },
+        {
+          "LogicalName": "subscriptionid",
+          "Description": "For internal use only."
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "Name": "WhoAmI",
+      "Description": "Retrieves system information for the currently logged on user."
+    },
+    {
+      "Name": "GetTimeZoneCodeByLocalizedName",
+      "Description": "Retrieves the time zone code for the specified localized time zone name. "
+    },
+    {
+      "Name": "CalculateTotalTimeIncident",
+      "Description": "Calculates the total time, in minutes, that you used while you worked on an incident (case).  "
+    }
+  ],
+  "actions": [
+    {
+      "Name": "WinOpportunity",
+      "Description": "Sets the state of an opportunity to Won.  "
+    },
+    {
+      "Name": "AddToQueue",
+      "Description": "Moves an entity record from a source queue to a destination queue."
+    },
+    {
+      "Name": "sample_AddNoteToContact",
+      "Description": "No description available."
+    },
+    {
+      "Name": "sample_CreateCustomer",
+      "Description": "No description available."
+    }
+  ],
+  "baseNamespace": "Sdk",
+  "subNamespace": "Sample",
+  "libraryName": "WebAPISamples",
+  "fileFolder": "A:\\Users\\Jim\\Documents\\Visual Studio 2015\\Projects\\SdkSamples\\SdkSamples",
+  "enableOAuth": false,
+  "writePropertyComments": false,
+  "saveWebResource": true,
+  "solutionUniqueName": "CustomActions",
+  "solutionPrefix": "new_",
+  "webResourceName": "/Sdk.Sample.WebAPISamples.js",
+  "overwriteWebResource": false,
+  "libraryDefinitionFolder": "A:\\Users\\Jim\\Documents\\Visual Studio 2015\\Projects\\SdkSamples\\SdkSamples"
+}

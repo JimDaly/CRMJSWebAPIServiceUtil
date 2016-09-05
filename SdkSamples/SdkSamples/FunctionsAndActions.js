@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    Sdk.Sample.setClientUrl("http://jdalyv8ga/Contoso");
     functionsAndActionsSample();
 });
 var entitiesToDelete = []; // Entity URIs to be deleted later 

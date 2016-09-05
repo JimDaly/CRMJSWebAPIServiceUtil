@@ -1,6 +1,6 @@
 # CRM JavaScript Web API Service Utility
 A WPF application which generates a custom JavaScript library 
-and companion TypeScript definition file to provide a robust design-time  
+and companion TypeScript definition file to provide a robust design-time
 experience with Visual Studio 2015 when writing client-side JavaScript to perform operations using the 
 Microsoft Dynamics CRM Web API.
 ## In this README

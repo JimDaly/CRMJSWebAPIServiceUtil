@@ -25,6 +25,7 @@ to describe the interfaces for the functionality included in **Sdk.Sample.WebAPI
 * **app.css**: This is just the default CSS file provided by a TypeScript project. 
 It would be a CSS web resource named `sdk_/sdksample/app.css`.
 
+[Go to Top](#in-this-readme)
 ## Basic Operations Sample
 This sample implements the operations detailed in the 
 [Web API Basic Operations Sample](https://msdn.microsoft.com/en-us/library/mt770366.aspx).
@@ -128,7 +129,7 @@ requests with 100MS gap in between:
         })
 ```
 
-
+[Go to Top](#in-this-readme)
 ## Conditional Operations Sample
 This sample implements the operations detailed in the 
 [Web API Conditional Operations Sample](https://msdn.microsoft.com/en-us/library/mt742427.aspx).
@@ -152,7 +153,7 @@ corresponding entity on the server has been updated since it was retrieved. The 
 a new entity because it will apply the `req.setRequestHeader("If-Match", "*");` header unless **cancelWhenOlder** is specfied, which has the same effect.
 * The **upsert** method has an optional boolean **preventUpdate** parameter which controls whether to allow the upsert operation to update existing records. Default is false 
 
-
+[Go to Top](#in-this-readme)
 ## Functions and Actions Sample
 This sample implements the operations detailed in the 
 [Web API Functions and Actions Sample](https://msdn.microsoft.com/en-us/library/mt770368.aspx).

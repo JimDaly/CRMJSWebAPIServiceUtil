@@ -138,64 +138,64 @@ Including these comments in the generated JavaScript library is not enabled by d
     * This is a Visual Studio 2015 solution, I haven't tried any previous version.
 2. If you need to connect to Microsoft Dynamics CRM Online, you must edit the MainWindow.xaml.cs line 88
 and add your own **clientid** and **redirecturi** values to replace what you find here:
-```C#
+  ```C#
         //TODO: If you need to connect to a CRM Online instance
         string redirectUri = "https://yourDomain/yourApp";
         string clientId = "########-####-####-####-############";
-```
-See [Walkthrough: Register a CRM app with Azure Active Directory](https://msdn.microsoft.com/en-us/library/mt622431.aspx).
+  ```
+  See [Walkthrough: Register a CRM app with Azure Active Directory](https://msdn.microsoft.com/en-us/library/mt622431.aspx).
 
-> **Note**: This is not required to connect to a CRM on-premise server.
+  > **Note**: This is not required to connect to a CRM on-premise server.
 
 3. Press F5 to run the application in debug mode. You will see this:
 
-![Opening screen](images/open.PNG)
+  ![Opening screen](images/open.PNG)
 
-Press **Login to CRM** to continue.
+  Press **Login to CRM** to continue.
 
 4. Enter your credentials for CRM. Only enter domain for on-premises.
 
-![Enter credentials](images/enterCredentials.PNG)
+  ![Enter credentials](images/enterCredentials.PNG)
 
 5. When you connect, wait a moment while metadata is downloaded. After you are connected, the **Open** button is enabled to open any pre-existing library definitions
 you have saved from a previous session. Saving a library definition is described in step 9.
 
-![After you are connected](images/Connected.PNG)
+  ![After you are connected](images/Connected.PNG)
 
 6. In the **Select Entities** tab, select any entities you plan to use in your library by double clicking them.
 
-![Choose Entities](images/ChooseEntities.PNG)
+  ![Choose Entities](images/ChooseEntities.PNG)
 
-> **Tip**: If you choose any activity entities (task, email, letter, etc) the **activitypointer** base class will
-be included but you won't have the option to choose properties for the **activitypointer** entity in the next step.
-Many of the common properties you want to use with activities are in the  **activitypointer** entity.
-So it is a good idea to explicitly choose **activitypointer**.
+  > **Tip**: If you choose any activity entities (task, email, letter, etc) the **activitypointer** base class will
+  be included but you won't have the option to choose properties for the **activitypointer** entity in the next step.
+  Many of the common properties you want to use with activities are in the  **activitypointer** entity.
+  So it is a good idea to explicitly choose **activitypointer**.
 
->**Note**: Adding an entity will add relationship information for any other entity that is also included in the library.
+  >**Note**: Adding an entity will add relationship information for any other entity that is also included in the library.
 
 7. On the **Select Properties** tab, select an entity from the drop-down list and choose which properties of that entity you need to use in your
 project by double clicking them.
-> **Note**: You don't have to select properties to use them. If you do not choose any properties, the primary key property
-will be included anyway. You will have a class for the entity that you can instantiate, but you will need to use the entity
-**get** and **set** methods to work with properties.
+  > **Note**: You don't have to select properties to use them. If you do not choose any properties, the primary key property
+  will be included anyway. You will have a class for the entity that you can instantiate, but you will need to use the entity
+  **get** and **set** methods to work with properties.
 
-![Select Properties](images/SelectProperties.PNG)
+  ![Select Properties](images/SelectProperties.PNG)
 
-The **Add Used Properties** button will evaluate the FormXML of all the forms for the entity and add all the properties
-which are displayed as fields in the form. These are more likely to be properties you would use. Some entities do not have forms, so this button will do nothing for those entities.
+  The **Add Used Properties** button will evaluate the FormXML of all the forms for the entity and add all the properties
+  which are displayed as fields in the form. These are more likely to be properties you would use. Some entities do not have forms, so this button will do nothing for those entities.
 
-![Property descriptions](images/PropertyDescriptions.PNG)
+  ![Property descriptions](images/PropertyDescriptions.PNG)
 
->**Tip**: Hover over the property to see the description from the metadata.
+  >**Tip**: Hover over the property to see the description from the metadata.
 
 8. On the **Select Functions** and **Select Actions** tabs, simply select the Web API Functions and Actions you want to 
 use in the generated library. Custom actions are available on the **Actions** tab.
 
-![Select Functions and Actions](images/SelectFunctionsAndActions.PNG)
+  ![Select Functions and Actions](images/SelectFunctionsAndActions.PNG)
 
 9. On the **Build** tab you have a number of choices to make:
 
-![Set Build options](images/Build.PNG)
+  ![Set Build options](images/Build.PNG)
 
 | Field        | Description    | 
 | ------------- |-------------|
@@ -210,11 +210,11 @@ use in the generated library. Custom actions are available on the **Actions** ta
 
 10. After you build the library, the **Save** tab is enabled.
 
-If you did not choose the  **Enable OAuth for Cross-Origin Resource Sharing (CORS)** option on the build tab, you will see this:
+  If you did not choose the  **Enable OAuth for Cross-Origin Resource Sharing (CORS)** option on the build tab, you will see this:
 
-![Ordinary Web Resource option](images/SaveOption1.PNG)
+  ![Ordinary Web Resource option](images/SaveOption1.PNG)
 
-You have the following options:
+  You have the following options:
 
 | Option | Description |
 | ------------- |-------------|
@@ -225,23 +225,23 @@ You have the following options:
 |**Save web resource**| Click to save the web resource.|
 
 
-Whether you chose to enable OAuth or not, you will always see the option to **Save a definition of this library**.
+  Whether you chose to enable OAuth or not, you will always see the option to **Save a definition of this library**.
 
-![Ordinary Web Resource option](images/SaveOption2.PNG)
+  ![Ordinary Web Resource option](images/SaveOption2.PNG)
 
-Choose where you want the definition to be saved. The default is the same location as the output folder for
-the JavaScript and TypeScript files and click **Save definition**.
+  Choose where you want the definition to be saved. The default is the same location as the output folder for
+  the JavaScript and TypeScript files and click **Save definition**.
 
-The definition is a file containing JSON data that describes the options in the application. 
-After you connect to CRM you can use the **Open** button described in step 4 to use a previously defined
-library definition as an advanced starting point, or if you just want to edit an existing library.
+  The definition is a file containing JSON data that describes the options in the application. 
+  After you connect to CRM you can use the **Open** button described in step 4 to use a previously defined
+  library definition as an advanced starting point, or if you just want to edit an existing library.
 
-> **Note**: You cannot load a library definition which does not include any of the selected entities, entity properties
-or Web API Functions or Actions selected.
+  > **Note**: You cannot load a library definition which does not include any of the selected entities, entity properties
+  or Web API Functions or Actions selected.
 
-The library definition is just a JSON file that contains the data displayed in the application. You can edit this manually.
-The following is an example of a My.Example.LibraryDefinition_Definition.json file.
-```JSON
+  The library definition is just a JSON file that contains the data displayed in the application. You can edit this manually.
+  The following is an example of a My.Example.LibraryDefinition_Definition.json file.
+  ```JSON
 {
   "entities": [
     {
@@ -297,7 +297,7 @@ The following is an example of a My.Example.LibraryDefinition_Definition.json fi
   "overwriteWebResource": false,
   "libraryDefinitionFolder": "A:\\Users\\Jim\\Desktop\\temp"
 }
-```
+  ```
 
 [Go to Top](#in-this-readme)
 ## About this project

@@ -4,7 +4,8 @@ The **SdkSamples** project is a TypeScript project which contains four samples t
 the operations performed by the [Web API Samples](https://msdn.microsoft.com/en-us/library/mt742425.aspx) in the SDK.
 
 For each sample I've included a little commentary about how the generated library is used in TypeScript.
-> Although I don't refer to the JavaScript files generated from TypeScript, it is worth looking at them if
+
+Although I don't refer to the JavaScript files generated from TypeScript, it is worth looking at them if
 you don't use TypeScript. **You don't have to use TypeScript!** You can use the usual methods to enjoy some level of IntelliSense with only the 
 generated JavaScript library. But it isn't as robust as TypeScript. See [JavaScript IntelliSense](https://msdn.microsoft.com/en-us/library/bb385682.aspx)
 
@@ -45,6 +46,7 @@ It would be a JScript web resource named `sdk_/sdksample/BasicOperations.js`
     * From a uri (line 36): `contact1 = new ns.contact(uri); //URI to constructor`
     * From JSON in a response (line 54): `contact1 = new ns.contact(response); //JSON to constructor`
 * The first retrieve operation (line 47) leverages the **getUri** and **getColumnSet** methods as parameters to the **retrieve** method:
+
 ```typescript
             return ns.retrieve(
                 contact1.getUri(),
@@ -52,21 +54,28 @@ It would be a JScript web resource named `sdk_/sdksample/BasicOperations.js`
                 null, true
             );
 ```
+
 * After using **retrieveTypedEntity** in TypeScript you must tell TypeScript what the type is (line 81),
 But this 'hint' doesn't get included in the generated JavaScript file.
+
 ```typescript
 contact1 = <Sdk.Sample.contact>response; //Need to tell TypeScript that this is a specific type.
 ```
+
 * Notice the use of the property metadata (line 139):
+
 ```typescript
 contact1.getFormattedValue(contact1.properties.annualincome.name) //Could also just use "annualincome"
 ```
+
 Each entity has a **properties**, **lookups**, and **collections** property which contains metadata for the 
 corresponding properties included in the library. Each of these properties has a **name** and **type** property
 where the name is the string and type is the data type. The idea is that you can use auto-complete with this
 to ensure that you get the name right. Once you have the name, you can simplify to a string if you wish.
+
 * Notice the use of the entity class with JSON passed to the constructor when a *deep insert* operation is 
 performed (line 150):
+
 ```typescript
             contact2.Contact_Tasks = [
                 new ns.task({
@@ -86,9 +95,12 @@ performed (line 150):
                 })
             ];
 ```
+
 This is required because the **Contact_Tasks** collection-valued navigation property will verify that these
 objects being added to the collection are actually instances of the **Sdk.Sample.task** class.
+
 * Notice how you must construct the string to define the expansion of navigation properties (Line 234):
+
 ```typescript
             //Get collection of contacts related to account2
             return ns.retrieve(
@@ -98,13 +110,16 @@ objects being added to the collection are actually instances of the **Sdk.Sample
                 true
             );
 ```
+
 The **navProperties** properties of **retrieve** requires a string array which can include just the name of the navigation property. 
 But if you don't explicitly set the **$select** it will return all properties by default.
+
 * At the end of the sample any created records are deleted using a final **then** after the **catch**. This serves as a kind of **finally** catch
 regardless of any errors that might occur in the sample, this **then** will still be called.
 Since this loops through an array of Uris and deletes them, I've noticed an occasional Generic SQL error. 
 This function appears to mitigate this by slowing down the 
 requests with 100MS gap in between:
+
 ```typescript
 .then(function () {
             //always do this
@@ -166,14 +181,16 @@ It would be a JScript web resource named `sdk_/sdksample/FunctionsAndActions.js`
 * **FunctionsAndActions.ts** This is the TypeScript library used to write the sample. 
 
 ### Remarks
-> **Important**: This sample will only work when the managed solution included in the 
+**Important**: This sample will only work when the managed solution included in the 
 [Web API Functions and Actions Sample (Client-side JavaScript)](https://msdn.microsoft.com/en-us/library/mt742429.aspx)
 sample is installed in your environment. This managed solution provides the custom **sample\_AddNoteToContact** and **sample_CreateCustomer** 
 custom actions that are called in this sample.
+
 * This sample demonstrates how the Web API Functions and Actions are converted to JavaScript functions and any necessary complex types or enums 
 returned or required are included in the generated library.
 * The **getUsersFullName** function simply shows a composed function that includes the **WhoAmI** function with a retrieve operation to return
 results in a single function:
+
 ```typescript
 /**
  * @function Sdk.getUsersFullName
@@ -197,15 +214,18 @@ function getUsersFullName() {
     });
 }
 ```
+
 * When you call a function which returns a complex type you will need to define what type it is within the anonymous function within the 
 **then** using the full namespace. See Line 53:
+
 ```typescript
             return ns.GetTimeZoneCodeByLocalizedName("Pacific Standard Time", 1033)
         })
         .then(function (response: Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse) {
             console.log("\tFunction returned time zone %s, with code '%s'.", "Pacific Standard Time", response.TimeZoneCode);
 ```
-> Because the **Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse** complex type is automatically included in the library, 
+
+Because the **Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse** complex type is automatically included in the library, 
 you don't need to look it up to see it has a **TimeZoneCode** property.
 * The call to the **sample_CreateCustomer** custom action on line 137 is intended to fail by passing incorrect
 parameters. This just shows how custom error messages defined within a custom action are passed back to the user.
@@ -217,7 +237,6 @@ the flow so it only proceeds after all the **update** operations finish.
                 // An array to hold a set of promises.
                 var promises = [];
                 // The data to use to update the tasks so that they are closed.
-
                 taskReferences.forEach(function (tr) {
                     var task = new ns.task(tr);
                     //statecode and statuscode are not defined in the library, so using set
@@ -227,6 +246,7 @@ the flow so it only proceeds after all the **update** operations finish.
                 })
                 return Promise.all(promises);
 ```
+[Go to Top](#in-this-readme)
 ## Query Data Sample
 This sample implements the operations detailed in the 
 [Web API Query Data  Sample](https://msdn.microsoft.com/en-us/library/mt770367.aspx).
@@ -243,6 +263,7 @@ It would be a JScript web resource named `sdk_/sdksample/QueryData.js`
 * On line 16 you can see how a class can be initialized with JSON representing all the related data to complete a 
 *deep insert* operation when the entity is created down on line 109.
 * On line 154 you can see the use of the entity *entitySetName* property when constructing a query:
+
 ```typescript
             let filter = "&$filter=contains(fullname,'(sample)')";
             return ns.query(
@@ -250,9 +271,11 @@ It would be a JScript web resource named `sdk_/sdksample/QueryData.js`
                 "$select=" + contactProperties.join() + filter,
                 true);
 ```
->In this case it is using an existing contact instance which just happens to be available, but if there isn't one
+
+In this case it is using an existing contact instance which just happens to be available, but if there isn't one
 available you could also just 'new up' an instance in case you don't happen to know that the entity set 
 name of contact entity is `contacts`. Of course if you know the string value, you should just use that:
+
 ```typescript
     let filter = "&$filter=contains(fullname,'(sample)')";
             return ns.query(
@@ -260,7 +283,9 @@ name of contact entity is `contacts`. Of course if you know the string value, yo
                 "$select=" + contactProperties.join() + filter,
                 true);
 ```
+
 * On line 166 you can see an example of using one of the Microsoft CRM Query functions. 
+
 ```typescript
             let filter = "&$filter=Microsoft.Dynamics.CRM.LastXHours(PropertyName='createdon',PropertyValue='1')";
             return ns.query(contact.entitySetName,
@@ -268,15 +293,18 @@ name of contact entity is `contacts`. Of course if you know the string value, yo
                 true
             );
 ```
-> I haven't gotten around to creating a helper function for this, but I think it will be pretty straightforward, 
+
+I haven't gotten around to creating a helper function for this, but I think it will be pretty straightforward, 
 in the generated library, something like:
+
 ```javascript
     this.qf.LastXHours = function(propertyName,propertyValue){
         return "Microsoft.Dynamics.CRM.LastXHours(PropertyName='"+propertyName+"',PropertyValue='"+propertyValue+"')";
-
     }
 ```
-> I think it would be good to put these within a container like `qf` because there are so many of them. Then the query would look like this:
+
+I think it would be good to put these within a container like `qf` because there are so many of them. Then the query would look like this:
+
 ```typescript
             let filter = "&$filter="+ns.qf.LastXHours('createdon','1');
             return ns.query(contact.entitySetName,
@@ -284,8 +312,11 @@ in the generated library, something like:
                 true
             );
 ```
-> If you want this, let me know.
-* on line 287 you can see the **getNextPage** function in use:
+
+If you want this, let me know.
+
+* On line 287 you can see the **getNextPage** function in use:
+
 ```typescript
         .then(function (results) {
             let count = results.count;
@@ -307,10 +338,13 @@ in the generated library, something like:
         .then(function (results) {
             let count = results.count;
 ```
-> This shows how the return value of a query is modeled as a **entityCollection** object which has three properties: 
+
+This shows how the return value of a query is modeled as a **entityCollection** object which has three properties: 
 **value**, **nextLink**, and **count**. This helps mitigate the fact that the OData properties *@odata.nextLink** 
 and **@odata.count** don't play well with IntelliSense due to the `@` character.
+
 * Line 345 shows how the results of a collection can be instantiated in one line using the **map** function of an array.
+
 ```typescript
             return ns.retrieve(
                 contact.getUri(),
@@ -328,7 +362,9 @@ and **@odata.count** don't play well with IntelliSense due to the `@` character.
                 accountProperties
             );
 ```
-> Although this sample doesn't use it, this could be applied to the **value** property of results returned.
+
+Although this sample doesn't use it, this could be applied to the **value** property of results returned.
+
 * Finally, the sample ends up with a couple examples using **executeFetch**. For example, at line 420:
 ```typescript
             let page = 3;

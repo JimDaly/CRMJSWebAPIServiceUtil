@@ -338,10 +338,10 @@ this project uses XML resources (in the **Resources** folder) that contain the d
 comments. Visual Studio 2015 supports the use of JSDoc style comments for the IntelliSense exposed by the JavaScript language service.
 
 ### Generate a language neutral model and then create a Writer class to output the file
-The ModelGenerator.cs class accepts the users choices of entities and their properties as well as any Web API functions or actions. It then processes
+The ModelGenerator class accepts the users choices of entities and their properties as well as any Web API functions or actions. It then processes
 the CSDL $metadata service document it has downloaded from the server and identifies any complex types or enums that have to be represented.
 The model generator uses the XML description resources and retrieves appropriate CRM metadata descriptions to provide available descriptions
-for entities and each of the properties. It assembles the data necessary to generate an instance of the **Model** class defined in CrmWebAPIModel.js
+for entities and each of the properties. It assembles the data necessary to generate an instance of the **Model** class defined in CrmWebAPIModel.cs.
 
 From this point, all I needed to do was write a class that would accept the model definition and output a file written in the style of the library I had in mind.
 The **JavaScriptWriter** class in CRMWebAPIJavaScriptWriter.cs uses this model information together with information from the **Build** tab to write and save 
@@ -350,7 +350,7 @@ file which contains the structure for the entire generated library and any of th
 
 It wasn't originally my goal to include a companion TypeScript definition, but because I'd used a model, 
 I was able to add a **TypeScriptDefinitionWriter** class in the CRMWebAPITypeScriptDefinitionWriter.cs file which followed a similar 
-pattern as the **JavaScriptWriter** class, including the use of a template file: CoreTSDefinition.t.ts.
+pattern as the **JavaScriptWriter** class, including the use of a template file: CoreTSDefinition.d.ts.
 
 All the work to generate the libraries is found in the **Worker_DoWork** method of the MainWindow.xaml.cs:
 ```C#

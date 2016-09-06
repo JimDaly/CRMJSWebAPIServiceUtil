@@ -208,6 +208,7 @@ use in the generated library. Custom actions are available on the **Actions** ta
 | **Build Library**| This button is enabled when the required fields have data. Click this button to build the library. It may take a moment or two. Please be patient.     | 
 | **Open folder**| After the library is built, use this button to open the folder and take a look.   | 
 
+
 10. After you build the library, the **Save** tab is enabled.
 
   If you did not choose the  **Enable OAuth for Cross-Origin Resource Sharing (CORS)** option on the build tab, you will see this:

@@ -56,7 +56,7 @@ It would be a JScript web resource named `sdk_/sdksample/BasicOperations.js`
 ```typescript
 contact1 = <Sdk.Sample.contact>response; //Need to tell TypeScript that this is a specific type.
 ```
-> But this 'hint' doesn't get included in the generated JavaScript file.
+But this 'hint' doesn't get included in the generated JavaScript file.
 * Notice the use of the property metadata (line 139):
 ```typescript
 contact1.getFormattedValue(contact1.properties.annualincome.name) //Could also just use "annualincome"
@@ -110,7 +110,6 @@ requests with 100MS gap in between:
             //always do this
             console.log("\n--Section 5 started--");
             if (deleteData) {
-
                 entitiesToDelete.forEach(function (uri, i) {
 
                     //Spacing out the deletion operations by 100 ms to avoid Generic SQL error

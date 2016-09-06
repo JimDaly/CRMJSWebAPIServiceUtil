@@ -197,16 +197,16 @@ use in the generated library. Custom actions are available on the **Actions** ta
 
   ![Set Build options](images/Build.PNG)
 
-| Field        | Description    | 
-| ------------- |-------------|
-| **Base Namespace**| All generated libraries have a two-level namespace. Recommend you choose a value that matches the customization prefix used for your solution. | 
-| **Sub Namespace**| Recommend you use a namespace that describes the sub-set of capabilities in your library      | 
-| **File Name**| The name of the files to generate. i.e.: Base.Sub.filename.js  and Base.Sub.filename.d.ts   | 
-| **File Folder**| Use the **Choose folder** button to select a folder where files will be written. Both the JavaScript and TypeScript files will be written to this folder.  | 
-| **Include property comments**| JSDoc Property comments in the generated JavaScript file have been known to cause the Visual Studio JavaScript Language service to crash when you are depending on it to provide IntelliSense descriptions. It doesn't always happen, but often enough to make this option **off** by default. Turn this **on** if you have faith in the JavaScript Language service or if this behavior changes in the future. The TypeScript definition file also include property comments and seems more robust, so they are always included.| 
-| **Enable OAuth for Cross-Origin Resource Sharing (CORS)**| With this option selected the generated library will include the adal.js library and will be modified to wrap all operations in the necessary code to create a Single Page Application (SPA). See [Use OAuth with Cross-Origin Resource Sharing to connect a Single Page Application to Microsoft Dynamics CRM](https://msdn.microsoft.com/en-us/library/mt595799.aspx) | 
-| **Build Library**| This button is enabled when the required fields have data. Click this button to build the library. It may take a moment or two. Please be patient.     | 
-| **Open folder**| After the library is built, use this button to open the folder and take a look.   | 
+  Field        | Description    | 
+  ------------- |-------------|
+  **Base Namespace**| All generated libraries have a two-level namespace. Recommend you choose a value that matches the customization prefix used for your solution. | 
+  **Sub Namespace**| Recommend you use a namespace that describes the sub-set of capabilities in your library      | 
+  **File Name**| The name of the files to generate. i.e.: Base.Sub.filename.js  and Base.Sub.filename.d.ts   | 
+  **File Folder**| Use the **Choose folder** button to select a folder where files will be written. Both the JavaScript and TypeScript files will be written to this folder.  | 
+  **Include property comments**| JSDoc Property comments in the generated JavaScript file have been known to cause the Visual Studio JavaScript Language service to crash when you are depending on it to provide IntelliSense descriptions. It doesn't always happen, but often enough to make this option **off** by default. Turn this **on** if you have faith in the JavaScript Language service or if this behavior changes in the future. The TypeScript definition file also include property comments and seems more robust, so they are always included.| 
+  **Enable OAuth for Cross-Origin Resource Sharing (CORS)**| With this option selected the generated library will include the adal.js library and will be modified to wrap all operations in the necessary code to create a Single Page Application (SPA). See [Use OAuth with Cross-Origin Resource Sharing to connect a Single Page Application to Microsoft Dynamics CRM](https://msdn.microsoft.com/en-us/library/mt595799.aspx) | 
+  **Build Library**| This button is enabled when the required fields have data. Click this button to build the library. It may take a moment or two. Please be patient.     | 
+  **Open folder**| After the library is built, use this button to open the folder and take a look.   | 
 
 
 10. After you build the library, the **Save** tab is enabled.
@@ -217,13 +217,13 @@ use in the generated library. Custom actions are available on the **Actions** ta
 
   You have the following options:
 
-| Option | Description |
-| ------------- |-------------|
-| **Save as minified web resource in CRM**| When this is checked you will have the options necessary to choose a solution and a name for the web resource.|
-|**Choose Solution**| Choose from available unmanaged solutions in your deployment. Your choice will apply the appropriate customization prefix to the name of the web resource and included it in the solution.|
-|**Name** | Edit the default name selected for the web resource to be created |
-|**Overwrite if exists**| Choose this to allow overwriting a web resource with the same name.|
-|**Save web resource**| Click to save the web resource.|
+  Option | Description |
+  ------------- |-------------|
+  **Save as minified web resource in CRM**| When this is checked you will have the options necessary to choose a solution and a name for the web resource.|
+  **Choose Solution**| Choose from available unmanaged solutions in your deployment. Your choice will apply the appropriate customization prefix to the name of the web resource and included it in the solution.|
+  **Name** | Edit the default name selected for the web resource to be created |
+  **Overwrite if exists**| Choose this to allow overwriting a web resource with the same name.|
+  **Save web resource**| Click to save the web resource.|
 
 
   Whether you chose to enable OAuth or not, you will always see the option to **Save a definition of this library**.
@@ -242,7 +242,7 @@ use in the generated library. Custom actions are available on the **Actions** ta
 
   The library definition is just a JSON file that contains the data displayed in the application. You can edit this manually.
   The following is an example of a My.Example.LibraryDefinition_Definition.json file.
-  ```JSON
+  ```json
 {
   "entities": [
     {

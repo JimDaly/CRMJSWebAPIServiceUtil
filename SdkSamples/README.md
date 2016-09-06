@@ -57,13 +57,11 @@ But this 'hint' doesn't get included in the generated JavaScript file.
 ```typescript
 contact1 = <Sdk.Sample.contact>response; //Need to tell TypeScript that this is a specific type.
 ```
-
-
 * Notice the use of the property metadata (line 139):
 ```typescript
 contact1.getFormattedValue(contact1.properties.annualincome.name) //Could also just use "annualincome"
 ```
- > Each entity has a **properties**, **lookups**, and **collections** property which contains metadata for the 
+Each entity has a **properties**, **lookups**, and **collections** property which contains metadata for the 
 corresponding properties included in the library. Each of these properties has a **name** and **type** property
 where the name is the string and type is the data type. The idea is that you can use auto-complete with this
 to ensure that you get the name right. Once you have the name, you can simplify to a string if you wish.
@@ -88,7 +86,7 @@ performed (line 150):
                 })
             ];
 ```
->This is required because the **Contact_Tasks** collection-valued navigation property will verify that these
+This is required because the **Contact_Tasks** collection-valued navigation property will verify that these
 objects being added to the collection are actually instances of the **Sdk.Sample.task** class.
 * Notice how you must construct the string to define the expansion of navigation properties (Line 234):
 ```typescript
@@ -100,7 +98,7 @@ objects being added to the collection are actually instances of the **Sdk.Sample
                 true
             );
 ```
-> The **navProperties** properties of **retrieve** requires a string array which can include just the name of the navigation property. 
+The **navProperties** properties of **retrieve** requires a string array which can include just the name of the navigation property. 
 But if you don't explicitly set the **$select** it will return all properties by default.
 * At the end of the sample any created records are deleted using a final **then** after the **catch**. This serves as a kind of **finally** catch
 regardless of any errors that might occur in the sample, this **then** will still be called.
@@ -170,7 +168,7 @@ It would be a JScript web resource named `sdk_/sdksample/FunctionsAndActions.js`
 ### Remarks
 > **Important**: This sample will only work when the managed solution included in the 
 [Web API Functions and Actions Sample (Client-side JavaScript)](https://msdn.microsoft.com/en-us/library/mt742429.aspx)
-sample is installed in your environment. This managed solution provides the custom **sample_AddNoteToContact** and **sample_CreateCustomer** 
+sample is installed in your environment. This managed solution provides the custom **sample\_AddNoteToContact** and **sample_CreateCustomer** 
 custom actions that are called in this sample.
 * This sample demonstrates how the Web API Functions and Actions are converted to JavaScript functions and any necessary complex types or enums 
 returned or required are included in the generated library.

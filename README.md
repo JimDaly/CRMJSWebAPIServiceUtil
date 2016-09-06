@@ -144,22 +144,25 @@ and add your own **clientid** and **redirecturi** values to replace what you fin
         string clientId = "########-####-####-####-############";
 ```
 See [Walkthrough: Register a CRM app with Azure Active Directory](https://msdn.microsoft.com/en-us/library/mt622431.aspx).
+
 > **Note**: This is not required to connect to a CRM on-premise server.
+
 3. Press F5 to run the application in debug mode. You will see this:
 
 ![Opening screen](images/open.PNG)
 
 Press **Login to CRM** to continue.
-3. Enter your credentials for CRM. Only enter domain for on-premises.
+
+4. Enter your credentials for CRM. Only enter domain for on-premises.
 
 ![Enter credentials](images/enterCredentials.PNG)
 
-4. When you connect, wait a moment while metadata is downloaded. After you are connected, the **Open** button is enabled to open any pre-existing library definitions
+5. When you connect, wait a moment while metadata is downloaded. After you are connected, the **Open** button is enabled to open any pre-existing library definitions
 you have saved from a previous session. Saving a library definition is described in step 9.
 
 ![After you are connected](images/Connected.PNG)
 
-5. In the **Select Entities** tab, select any entities you plan to use in your library by double clicking them.
+6. In the **Select Entities** tab, select any entities you plan to use in your library by double clicking them.
 
 ![Choose Entities](images/ChooseEntities.PNG)
 
@@ -170,7 +173,7 @@ So it is a good idea to explicitly choose **activitypointer**.
 
 >**Note**: Adding an entity will add relationship information for any other entity that is also included in the library.
 
-6. On the **Select Properties** tab, select an entity from the drop-down list and choose which properties of that entity you need to use in your
+7. On the **Select Properties** tab, select an entity from the drop-down list and choose which properties of that entity you need to use in your
 project by double clicking them.
 > **Note**: You don't have to select properties to use them. If you do not choose any properties, the primary key property
 will be included anyway. You will have a class for the entity that you can instantiate, but you will need to use the entity
@@ -185,12 +188,12 @@ which are displayed as fields in the form. These are more likely to be propertie
 
 >**Tip**: Hover over the property to see the description from the metadata.
 
-7. On the **Select Functions** and **Select Actions** tabs, simply select the Web API Functions and Actions you want to 
+8. On the **Select Functions** and **Select Actions** tabs, simply select the Web API Functions and Actions you want to 
 use in the generated library. Custom actions are available on the **Actions** tab.
 
 ![Select Functions and Actions](images/SelectFunctionsAndActions.PNG)
 
-8. On the **Build** tab you have a number of choices to make:
+9. On the **Build** tab you have a number of choices to make:
 
 ![Set Build options](images/Build.PNG)
 
@@ -205,7 +208,7 @@ use in the generated library. Custom actions are available on the **Actions** ta
 | **Build Library**| This button is enabled when the required fields have data. Click this button to build the library. It may take a moment or two. Please be patient.     | 
 | **Open folder**| After the library is built, use this button to open the folder and take a look.   | 
 
-9. After you build the library, the **Save** tab is enabled.
+10. After you build the library, the **Save** tab is enabled.
 
 If you did not choose the  **Enable OAuth for Cross-Origin Resource Sharing (CORS)** option on the build tab, you will see this:
 

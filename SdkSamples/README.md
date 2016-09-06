@@ -52,11 +52,13 @@ It would be a JScript web resource named `sdk_/sdksample/BasicOperations.js`
                 null, true
             );
 ```
-* After using **retrieveTypedEntity** in TypeScript you must tell TypeScript what the type is (line 81):
+* After using **retrieveTypedEntity** in TypeScript you must tell TypeScript what the type is (line 81),
+But this 'hint' doesn't get included in the generated JavaScript file.
 ```typescript
 contact1 = <Sdk.Sample.contact>response; //Need to tell TypeScript that this is a specific type.
 ```
-But this 'hint' doesn't get included in the generated JavaScript file.
+
+
 * Notice the use of the property metadata (line 139):
 ```typescript
 contact1.getFormattedValue(contact1.properties.annualincome.name) //Could also just use "annualincome"

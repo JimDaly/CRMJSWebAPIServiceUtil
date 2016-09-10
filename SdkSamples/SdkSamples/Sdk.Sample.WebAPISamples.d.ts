@@ -1,4 +1,26 @@
+/*
+The MIT License (MIT)
 
+Copyright (c) 2016 Jim Daly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 
 declare namespace Sdk.Sample {
@@ -10,6 +32,11 @@ declare namespace Sdk.Sample {
     interface propertyType {
         readonly name: string;
         readonly type: string;
+    }
+
+    interface navigationPropertyType {
+        readonly name: string;
+        readonly type: Function;
     }
 
     interface entityCollection {
@@ -32,16 +59,16 @@ declare namespace Sdk.Sample {
     readonly subject: propertyType;
 }
 interface activitypointerLookups {
-    readonly regardingobjectid_account: propertyType;
-    readonly regardingobjectid_contact: propertyType;
-    readonly regardingobjectid_incident: propertyType;
-    readonly regardingobjectid_opportunity: propertyType;
+    readonly regardingobjectid_account: navigationPropertyType;
+    readonly regardingobjectid_contact: navigationPropertyType;
+    readonly regardingobjectid_incident: navigationPropertyType;
+    readonly regardingobjectid_opportunity: navigationPropertyType;
 }
 interface activitypointerCollections {
-    readonly activity_pointer_letter: propertyType;
-    readonly activity_pointer_opportunity_close: propertyType;
-    readonly activity_pointer_task: propertyType;
-    readonly ActivityPointer_QueueItem: propertyType;
+    readonly activity_pointer_letter: navigationPropertyType;
+    readonly activity_pointer_opportunity_close: navigationPropertyType;
+    readonly activity_pointer_task: navigationPropertyType;
+    readonly ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface contactProperties {
     readonly annualincome: propertyType;
@@ -55,23 +82,23 @@ interface contactProperties {
     readonly telephone1: propertyType;
 }
 interface contactLookups {
-    readonly masterid: propertyType;
-    readonly parentcustomerid_account: propertyType;
-    readonly parentcustomerid_contact: propertyType;
+    readonly masterid: navigationPropertyType;
+    readonly parentcustomerid_account: navigationPropertyType;
+    readonly parentcustomerid_contact: navigationPropertyType;
 }
 interface contactCollections {
-    readonly account_primary_contact: propertyType;
-    readonly Contact_ActivityPointers: propertyType;
-    readonly Contact_Annotation: propertyType;
-    readonly contact_as_primary_contact: propertyType;
-    readonly contact_as_responsible_contact: propertyType;
-    readonly contact_customer_contacts: propertyType;
-    readonly Contact_Letters: propertyType;
-    readonly contact_master_contact: propertyType;
-    readonly Contact_Tasks: propertyType;
-    readonly incident_customer_contacts: propertyType;
-    readonly opportunity_customer_contacts: propertyType;
-    readonly opportunity_parent_contact: propertyType;
+    readonly account_primary_contact: navigationPropertyType;
+    readonly Contact_ActivityPointers: navigationPropertyType;
+    readonly Contact_Annotation: navigationPropertyType;
+    readonly contact_as_primary_contact: navigationPropertyType;
+    readonly contact_as_responsible_contact: navigationPropertyType;
+    readonly contact_customer_contacts: navigationPropertyType;
+    readonly Contact_Letters: navigationPropertyType;
+    readonly contact_master_contact: navigationPropertyType;
+    readonly Contact_Tasks: navigationPropertyType;
+    readonly incident_customer_contacts: navigationPropertyType;
+    readonly opportunity_customer_contacts: navigationPropertyType;
+    readonly opportunity_parent_contact: navigationPropertyType;
 }
 interface accountProperties {
     readonly accountid: propertyType;
@@ -81,21 +108,21 @@ interface accountProperties {
     readonly telephone1: propertyType;
 }
 interface accountLookups {
-    readonly masterid: propertyType;
-    readonly parentaccountid: propertyType;
-    readonly primarycontactid: propertyType;
+    readonly masterid: navigationPropertyType;
+    readonly parentaccountid: navigationPropertyType;
+    readonly primarycontactid: navigationPropertyType;
 }
 interface accountCollections {
-    readonly Account_ActivityPointers: propertyType;
-    readonly Account_Annotation: propertyType;
-    readonly Account_Letters: propertyType;
-    readonly account_master_account: propertyType;
-    readonly account_parent_account: propertyType;
-    readonly Account_Tasks: propertyType;
-    readonly contact_customer_accounts: propertyType;
-    readonly incident_customer_accounts: propertyType;
-    readonly opportunity_customer_accounts: propertyType;
-    readonly opportunity_parent_account: propertyType;
+    readonly Account_ActivityPointers: navigationPropertyType;
+    readonly Account_Annotation: navigationPropertyType;
+    readonly Account_Letters: navigationPropertyType;
+    readonly account_master_account: navigationPropertyType;
+    readonly account_parent_account: navigationPropertyType;
+    readonly Account_Tasks: navigationPropertyType;
+    readonly contact_customer_accounts: navigationPropertyType;
+    readonly incident_customer_accounts: navigationPropertyType;
+    readonly opportunity_customer_accounts: navigationPropertyType;
+    readonly opportunity_parent_account: navigationPropertyType;
 }
 interface taskProperties {
     readonly activityid: propertyType;
@@ -106,23 +133,23 @@ interface taskProperties {
     readonly subject: propertyType;
 }
 interface taskLookups {
-    readonly activityid_activitypointer: propertyType;
-    readonly regardingobjectid_account_task: propertyType;
-    readonly regardingobjectid_contact_task: propertyType;
-    readonly regardingobjectid_incident_task: propertyType;
-    readonly regardingobjectid_opportunity_task: propertyType;
-    readonly regardingobjectid_account: propertyType;
-    readonly regardingobjectid_contact: propertyType;
-    readonly regardingobjectid_incident: propertyType;
-    readonly regardingobjectid_opportunity: propertyType;
+    readonly activityid_activitypointer: navigationPropertyType;
+    readonly regardingobjectid_account_task: navigationPropertyType;
+    readonly regardingobjectid_contact_task: navigationPropertyType;
+    readonly regardingobjectid_incident_task: navigationPropertyType;
+    readonly regardingobjectid_opportunity_task: navigationPropertyType;
+    readonly regardingobjectid_account: navigationPropertyType;
+    readonly regardingobjectid_contact: navigationPropertyType;
+    readonly regardingobjectid_incident: navigationPropertyType;
+    readonly regardingobjectid_opportunity: navigationPropertyType;
 }
 interface taskCollections {
-    readonly Task_Annotation: propertyType;
-    readonly Task_QueueItem: propertyType;
-    readonly activity_pointer_letter: propertyType;
-    readonly activity_pointer_opportunity_close: propertyType;
-    readonly activity_pointer_task: propertyType;
-    readonly ActivityPointer_QueueItem: propertyType;
+    readonly Task_Annotation: navigationPropertyType;
+    readonly Task_QueueItem: navigationPropertyType;
+    readonly activity_pointer_letter: navigationPropertyType;
+    readonly activity_pointer_opportunity_close: navigationPropertyType;
+    readonly activity_pointer_task: navigationPropertyType;
+    readonly ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface competitorProperties {
     readonly competitorid: propertyType;
@@ -130,9 +157,9 @@ interface competitorProperties {
     readonly strengths: propertyType;
 }
 interface competitorCollections {
-    readonly Competitor_Annotation: propertyType;
-    readonly competitor_opportunity_activities: propertyType;
-    readonly opportunitycompetitors_association: propertyType;
+    readonly Competitor_Annotation: navigationPropertyType;
+    readonly competitor_opportunity_activities: navigationPropertyType;
+    readonly opportunitycompetitors_association: navigationPropertyType;
 }
 interface opportunityProperties {
     readonly description: propertyType;
@@ -140,18 +167,18 @@ interface opportunityProperties {
     readonly opportunityid: propertyType;
 }
 interface opportunityLookups {
-    readonly customerid_account: propertyType;
-    readonly customerid_contact: propertyType;
-    readonly parentaccountid: propertyType;
-    readonly parentcontactid: propertyType;
+    readonly customerid_account: navigationPropertyType;
+    readonly customerid_contact: navigationPropertyType;
+    readonly parentaccountid: navigationPropertyType;
+    readonly parentcontactid: navigationPropertyType;
 }
 interface opportunityCollections {
-    readonly Opportunity_ActivityPointers: propertyType;
-    readonly Opportunity_Annotation: propertyType;
-    readonly Opportunity_Letters: propertyType;
-    readonly Opportunity_OpportunityClose: propertyType;
-    readonly Opportunity_Tasks: propertyType;
-    readonly opportunitycompetitors_association: propertyType;
+    readonly Opportunity_ActivityPointers: navigationPropertyType;
+    readonly Opportunity_Annotation: navigationPropertyType;
+    readonly Opportunity_Letters: navigationPropertyType;
+    readonly Opportunity_OpportunityClose: navigationPropertyType;
+    readonly Opportunity_Tasks: navigationPropertyType;
+    readonly opportunitycompetitors_association: navigationPropertyType;
 }
 interface savedqueryProperties {
     readonly name: propertyType;
@@ -170,23 +197,23 @@ interface letterProperties {
     readonly subject: propertyType;
 }
 interface letterLookups {
-    readonly activityid_activitypointer: propertyType;
-    readonly regardingobjectid_account_letter: propertyType;
-    readonly regardingobjectid_contact_letter: propertyType;
-    readonly regardingobjectid_incident_letter: propertyType;
-    readonly regardingobjectid_opportunity_letter: propertyType;
-    readonly regardingobjectid_account: propertyType;
-    readonly regardingobjectid_contact: propertyType;
-    readonly regardingobjectid_incident: propertyType;
-    readonly regardingobjectid_opportunity: propertyType;
+    readonly activityid_activitypointer: navigationPropertyType;
+    readonly regardingobjectid_account_letter: navigationPropertyType;
+    readonly regardingobjectid_contact_letter: navigationPropertyType;
+    readonly regardingobjectid_incident_letter: navigationPropertyType;
+    readonly regardingobjectid_opportunity_letter: navigationPropertyType;
+    readonly regardingobjectid_account: navigationPropertyType;
+    readonly regardingobjectid_contact: navigationPropertyType;
+    readonly regardingobjectid_incident: navigationPropertyType;
+    readonly regardingobjectid_opportunity: navigationPropertyType;
 }
 interface letterCollections {
-    readonly Letter_Annotation: propertyType;
-    readonly Letter_QueueItem: propertyType;
-    readonly activity_pointer_letter: propertyType;
-    readonly activity_pointer_opportunity_close: propertyType;
-    readonly activity_pointer_task: propertyType;
-    readonly ActivityPointer_QueueItem: propertyType;
+    readonly Letter_Annotation: navigationPropertyType;
+    readonly Letter_QueueItem: navigationPropertyType;
+    readonly activity_pointer_letter: navigationPropertyType;
+    readonly activity_pointer_opportunity_close: navigationPropertyType;
+    readonly activity_pointer_task: navigationPropertyType;
+    readonly ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface opportunitycloseProperties {
     readonly activityid: propertyType;
@@ -197,71 +224,71 @@ interface opportunitycloseProperties {
     readonly subject: propertyType;
 }
 interface opportunitycloseLookups {
-    readonly activityid_activitypointer: propertyType;
-    readonly competitorid: propertyType;
-    readonly opportunityid: propertyType;
-    readonly regardingobjectid_account: propertyType;
-    readonly regardingobjectid_contact: propertyType;
-    readonly regardingobjectid_incident: propertyType;
-    readonly regardingobjectid_opportunity: propertyType;
+    readonly activityid_activitypointer: navigationPropertyType;
+    readonly competitorid: navigationPropertyType;
+    readonly opportunityid: navigationPropertyType;
+    readonly regardingobjectid_account: navigationPropertyType;
+    readonly regardingobjectid_contact: navigationPropertyType;
+    readonly regardingobjectid_incident: navigationPropertyType;
+    readonly regardingobjectid_opportunity: navigationPropertyType;
 }
 interface opportunitycloseCollections {
-    readonly OpportunityClose_Annotation: propertyType;
-    readonly activity_pointer_letter: propertyType;
-    readonly activity_pointer_opportunity_close: propertyType;
-    readonly activity_pointer_task: propertyType;
-    readonly ActivityPointer_QueueItem: propertyType;
+    readonly OpportunityClose_Annotation: navigationPropertyType;
+    readonly activity_pointer_letter: navigationPropertyType;
+    readonly activity_pointer_opportunity_close: navigationPropertyType;
+    readonly activity_pointer_task: navigationPropertyType;
+    readonly ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface queueProperties {
     readonly queueid: propertyType;
 }
 interface queueCollections {
-    readonly queue_entries: propertyType;
+    readonly queue_entries: navigationPropertyType;
 }
 interface queueitemProperties {
     readonly queueitemid: propertyType;
 }
 interface queueitemLookups {
-    readonly objectid_activitypointer: propertyType;
-    readonly objectid_incident: propertyType;
-    readonly objectid_letter: propertyType;
-    readonly objectid_task: propertyType;
-    readonly queueid: propertyType;
+    readonly objectid_activitypointer: navigationPropertyType;
+    readonly objectid_incident: navigationPropertyType;
+    readonly objectid_letter: navigationPropertyType;
+    readonly objectid_task: navigationPropertyType;
+    readonly queueid: navigationPropertyType;
 }
 interface annotationProperties {
     readonly annotationid: propertyType;
 }
 interface annotationLookups {
-    readonly objectid_account: propertyType;
-    readonly objectid_competitor: propertyType;
-    readonly objectid_contact: propertyType;
-    readonly objectid_incident: propertyType;
-    readonly objectid_letter: propertyType;
-    readonly objectid_opportunity: propertyType;
-    readonly objectid_opportunityclose: propertyType;
-    readonly objectid_task: propertyType;
+    readonly objectid_account: navigationPropertyType;
+    readonly objectid_competitor: navigationPropertyType;
+    readonly objectid_contact: navigationPropertyType;
+    readonly objectid_incident: navigationPropertyType;
+    readonly objectid_letter: navigationPropertyType;
+    readonly objectid_opportunity: navigationPropertyType;
+    readonly objectid_opportunityclose: navigationPropertyType;
+    readonly objectid_task: navigationPropertyType;
 }
 interface incidentProperties {
     readonly incidentid: propertyType;
 }
 interface incidentLookups {
-    readonly customerid_account: propertyType;
-    readonly customerid_contact: propertyType;
-    readonly existingcase: propertyType;
-    readonly masterid: propertyType;
-    readonly parentcaseid: propertyType;
-    readonly primarycontactid: propertyType;
-    readonly responsiblecontactid: propertyType;
+    readonly customerid_account: navigationPropertyType;
+    readonly customerid_contact: navigationPropertyType;
+    readonly existingcase: navigationPropertyType;
+    readonly masterid: navigationPropertyType;
+    readonly parentcaseid: navigationPropertyType;
+    readonly primarycontactid: navigationPropertyType;
+    readonly responsiblecontactid: navigationPropertyType;
 }
 interface incidentCollections {
-    readonly Incident_ActivityPointers: propertyType;
-    readonly Incident_Annotation: propertyType;
-    readonly incident_existingcase: propertyType;
-    readonly Incident_Letters: propertyType;
-    readonly incident_master_incident: propertyType;
-    readonly incident_parent_incident: propertyType;
-    readonly Incident_QueueItem: propertyType;
-    readonly Incident_Tasks: propertyType;
+    readonly Incident_ActivityPointers: navigationPropertyType;
+    readonly Incident_Annotation: navigationPropertyType;
+    readonly incident_existingcase: navigationPropertyType;
+    readonly Incident_Letters: navigationPropertyType;
+    readonly incident_master_incident: navigationPropertyType;
+    readonly incident_parent_incident: navigationPropertyType;
+    readonly Incident_QueueItem: navigationPropertyType;
+    readonly Incident_Tasks: navigationPropertyType;
 }
 
     //Metadata property interfaces END

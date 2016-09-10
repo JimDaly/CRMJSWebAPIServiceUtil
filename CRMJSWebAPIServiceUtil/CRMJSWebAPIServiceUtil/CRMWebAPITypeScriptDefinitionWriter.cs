@@ -88,7 +88,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Lookups {{", getEntityName(e)));
                         foreach (Property l in e.Lookups)
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: propertyType;", l.Name));
+                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", l.Name));
                         }
                         sb.AppendLine("}");
                     }
@@ -99,7 +99,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Collections {{", getEntityName(e)));
                         foreach (Property c in e.Collections)
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: propertyType;", c.Name));
+                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", c.Name));
                         }
                         sb.AppendLine("}");
                     }
@@ -126,7 +126,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Lookups {{", getEntityName(e)));
                         foreach (Property l in e.Lookups.Union(baseEntity.Lookups))
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: propertyType;", l.Name));
+                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", l.Name));
                         }
                         sb.AppendLine("}");
                     }
@@ -137,7 +137,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Collections {{", getEntityName(e)));
                         foreach (Property c in e.Collections.Union(baseEntity.Collections))
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: propertyType;", c.Name));
+                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", c.Name));
                         }
                         sb.AppendLine("}");
                     }

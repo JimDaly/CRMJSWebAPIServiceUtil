@@ -48,8 +48,9 @@ namespace CRMWebAPIJavaScriptWriter
         //It doesn't make sense to include callerId parameter on these functions
         private static List<String> excludeCallerId = new List<string>(new string[] { "WhoAmI", "RetrieveUserPrivileges", "RetrieveVersion" });
 
-        public async Task<string> getJavaScriptFileString() {
-                      
+        public async Task<string> getJavaScriptFileString()
+        {
+
             StringBuilder sb = new StringBuilder();
 
             try
@@ -61,7 +62,7 @@ namespace CRMWebAPIJavaScriptWriter
                 throw new Exception("Error downloading es6-promise polyfill library.");
             }
 
-            
+
 
             if (enableOAuth)
             {
@@ -74,7 +75,7 @@ namespace CRMWebAPIJavaScriptWriter
 
                     throw new Exception("Error downloading adal.min.js library.");
                 }
-                
+
             }
 
             AddCoreLibrary(sb, ModelDefinitions());
@@ -82,19 +83,19 @@ namespace CRMWebAPIJavaScriptWriter
             return sb.ToString();
 
         }
-        public void WriteJavaScriptFile(string path,string fileString)
+        public void WriteJavaScriptFile(string path, string fileString)
         {
-            if (RootNameSpace == null || RootNameSpace == string.Empty)
+            if (string.IsNullOrEmpty(RootNameSpace))
             { throw new Exception("RootNameSpace property must be set"); }
-            if (SubNamespace == null || SubNamespace == string.Empty)
+            if (string.IsNullOrEmpty(SubNamespace))
             { throw new Exception("SubNamespace property must be set"); }
-            if (libraryName == null || libraryName == string.Empty)
+            if (string.IsNullOrEmpty(libraryName))
             { throw new Exception("libraryName property must be set"); }
 
-            if (path == null || path == string.Empty)
+            if (string.IsNullOrEmpty(path))
             { throw new Exception("path parameter is required"); }
 
-            if (fileString == null || fileString == string.Empty)
+            if (string.IsNullOrEmpty(fileString))
             { throw new Exception("fileString parameter is required"); }
 
 
@@ -106,7 +107,7 @@ namespace CRMWebAPIJavaScriptWriter
         {
             using (HttpClient client = new HttpClient())
             {
-                
+
                 HttpResponseMessage externalLibraryResponse = await client.GetAsync(externalLibraryUrl);
 
                 if (externalLibraryResponse.StatusCode != HttpStatusCode.OK)
@@ -267,7 +268,7 @@ namespace CRMWebAPIJavaScriptWriter
             {
                 if (entity.Name != "crmbaseentity")
                 {
-                    
+
                     sb.Append(writeEntityComments(entity));
                     sb.Append(writeEntityDefinition(entity));
                 }
@@ -283,15 +284,17 @@ namespace CRMWebAPIJavaScriptWriter
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private string getEntityName(Entity entity) {
-            if (entity.Name == "import") {
+        private string getEntityName(Entity entity)
+        {
+            if (entity.Name == "import")
+            {
                 return "Import";
             }
-            return entity.Name;   
+            return entity.Name;
         }
         private string writeEntityComments(Entity entity)
         {
-            
+
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(@"
 /**");
@@ -303,7 +306,7 @@ namespace CRMWebAPIJavaScriptWriter
             {
                 sb.Append(writeEntityPropertyComments(entity));
             }
-            
+
 
             sb.AppendLine("*/");
 
@@ -355,7 +358,7 @@ namespace CRMWebAPIJavaScriptWriter
 
         private string writeEntityDefinition(Entity entity)
         {
-          
+
 
             StringBuilder sb = new StringBuilder();
 
@@ -452,11 +455,11 @@ namespace CRMWebAPIJavaScriptWriter
                 }
                 foreach (LookupProperty lp in activitypointer.Lookups)
                 {
-                    lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:\"{1}\"}}", lp.Name, lp.Type));
+                    lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", lp.Name, RootNameSpace, SubNamespace, lp.Type));
                 }
                 foreach (CollectionProperty cp in activitypointer.Collections)
                 {
-                    collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:\"{1}\"}}", cp.Name, cp.Type));
+                    collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", cp.Name, RootNameSpace, SubNamespace, cp.Type));
                 }
             }
             foreach (EntityProperty p in entity.Properties)
@@ -465,11 +468,11 @@ namespace CRMWebAPIJavaScriptWriter
             }
             foreach (LookupProperty lp in entity.Lookups)
             {
-                lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:\"{1}\"}}", lp.Name, lp.Type));
+                lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", lp.Name, RootNameSpace, SubNamespace, lp.Type));
             }
             foreach (CollectionProperty cp in entity.Collections)
             {
-                collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:\"{1}\"}}", cp.Name, cp.Type));
+                collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", cp.Name, RootNameSpace, SubNamespace, cp.Type));
             }
 
             sb.AppendLine(string.Format("this.{0}.prototype.properties = Object.freeze({{{1}}});", getEntityName(entity), string.Join("," + Environment.NewLine, propertyNames.ToArray())));
@@ -507,69 +510,41 @@ namespace CRMWebAPIJavaScriptWriter
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(string.Format("            \"{0}\": {{", p.Name));
             sb.AppendLine(string.Format("                get: function () {{ return this.internal.{0}; }},", p.Name));
+            string setterFunctionName = "isNotImplemented";
             if (!p.IsReadOnly)
             {
-                sb.AppendLine("                set: function (value) {");
-                string validationFunctionName = "isNotImplemented";
-                string JSType;
-                string convertFunctionName = "noChange";
                 switch (p.Type)
                 {
                     case "Edm.Int64":
                     case "Edm.Int32":
                     case "Edm.Decimal":
                     case "Edm.Double":
-                        validationFunctionName = "isNumberOrNull";
-                        JSType = "a Number";
+                        setterFunctionName = "setNumberOrNullProperty";
                         break;
                     case "Edm.Boolean":
-                        validationFunctionName = "isBoolean";
-                        JSType = "a Boolean";
+                        setterFunctionName = "setBooleanProperty";
                         break;
                     case "Edm.DateTimeOffset":
-                        validationFunctionName = "isDateOrNull";
-                        JSType = "a Date";
+                        setterFunctionName = "setDateTimeOffsetProperty";
                         break;
                     case "Edm.Date":
-                        validationFunctionName = "isDateOrNull";
-                        JSType = "a Date";
-                        convertFunctionName = "convertToEdmDateString";
+                        setterFunctionName = "setDateOnlyProperty";
                         break;
                     case "Edm.String":
                     case "Edm.Binary":
-                        validationFunctionName = "isStringOrNull";
-                        JSType = "a String";
+                        setterFunctionName = "setStringOrNullProperty";
                         break;
                     case "Edm.Guid":
-                        validationFunctionName = "isGuidOrNull";
-                        JSType = "String representation of a GUID";
+                        setterFunctionName = "setGuidOrNullProperty";
                         break;
                     case "mscrm.BooleanManagedProperty":
-                        validationFunctionName = "isBooleanManagedProperty";
-                        JSType = string.Format("a {0}.{1}.BooleanManagedProperty", RootNameSpace, SubNamespace);
+                        setterFunctionName = "setBooleanManagedProperty";
                         break;
                     default:
                         throw new Exception("Unexpected property type:" + p.Type);
-
-                }
-                sb.AppendLine(string.Format("                    if (!{0}(value)) {{", validationFunctionName));
-                if (JSType == "Boolean")
-                {
-                    sb.AppendLine(string.Format("                        throw new Error(NS + \".{0} {1} property must be {2} value.\");", entityName, p.Name, JSType));
-                }
-                else
-                {
-                    sb.AppendLine(string.Format("                        throw new Error(NS + \".{0} {1} property must be {2} value or null.\");", entityName, p.Name, JSType));
                 }
 
-                sb.AppendLine("                    }");
-                sb.AppendLine(string.Format("                    if (this.internal.{0} != value)", p.Name));
-                sb.AppendLine("                    {");
-                sb.AppendLine(string.Format("                        this.addChangedProperty(\"{0}\");", p.Name));
-                sb.AppendLine(string.Format("                        this.internal.{0} = {1}(value);", p.Name, convertFunctionName));
-                sb.AppendLine("                    }");
-                sb.AppendLine("                },");
-
+                sb.AppendLine(string.Format("                set: function (value) {{ {0}(this, \"{1}\", value) }},", setterFunctionName, p.Name));
             }
             sb.AppendLine("                enumerable: true");
             sb.Append("            }");
@@ -582,13 +557,7 @@ namespace CRMWebAPIJavaScriptWriter
             sb.AppendLine(string.Format("                get: function () {{ return this.internal.{0}; }},", lp.Name));
             if (!lp.IsReadOnly)
             {
-                sb.AppendLine("                set: function (value) {");
-                sb.AppendLine(string.Format("                    if (!isInstanceOf({0}.{1}.{2}, value)) {{", RootNameSpace, SubNamespace, lp.Type));
-                sb.AppendLine(string.Format("                        throw new Error(NS + \".{0}.{1} must be a \" + NS + \".{2} value.\");", entityName, lp.Name, lp.Type));
-                sb.AppendLine("                    }");
-                sb.AppendLine(string.Format("                    this.addChangedProperty(\"{0}\");", lp.Name));
-                sb.AppendLine(string.Format("                    this.internal.{0} = value;", lp.Name));
-                sb.AppendLine("                },");
+                sb.AppendLine(string.Format("                set: function (value) {{ lookupPropertySetter({0}.{1}.{2},\"{2}\", this, \"{3}\", value)}},", RootNameSpace, SubNamespace, lp.Type, lp.Name));
             }
             sb.AppendLine("                enumerable: true");
 
@@ -598,13 +567,7 @@ namespace CRMWebAPIJavaScriptWriter
 
                 sb.AppendLine(string.Format("            \"{0}@odata.bind\": {{", lp.Name));
                 sb.AppendLine(string.Format("                get: function () {{ return this.internal.{0}Uri; }},", lp.Name));
-                sb.AppendLine("                set: function (value) {");
-                sb.AppendLine(string.Format("                    if (!isTypedUri({0}.{1}.{2},value)) {{", RootNameSpace, SubNamespace, lp.Type));
-                sb.AppendLine(string.Format("                        throw new Error(NS + \".{0}.{1}@odata.bind must be a URI for an \"+NS+\".{2}.\");", entityName, lp.Name, lp.Type));
-                sb.AppendLine("                    }");
-                sb.AppendLine(string.Format("                    this.addChangedProperty(\"{0}@odata.bind\");", lp.Name));
-                sb.AppendLine(string.Format("                    this.internal.{0}Uri = value;", lp.Name));
-                sb.AppendLine("                },");
+                sb.AppendLine(string.Format("                set: function (value) {{ lookupPropertyBinder({0}.{1}.{2},\"{2}\", this, \"{3}\", value)}},", RootNameSpace, SubNamespace, lp.Type, lp.Name));
                 sb.AppendLine("                enumerable: true");
                 sb.Append("            }");
             }
@@ -619,13 +582,7 @@ namespace CRMWebAPIJavaScriptWriter
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(string.Format("            \"{0}\": {{", cp.Name));
             sb.AppendLine(string.Format("                get: function () {{ return this.internal.{0}; }},", cp.Name));
-            sb.AppendLine("                set: function (value) {");
-            sb.AppendLine(string.Format("                    if (!isArrayOf({0}.{1}.{2}, value)) {{", RootNameSpace, SubNamespace, cp.Type));
-            sb.AppendLine(string.Format("                        throw new Error(NS + \".{0}.{1} must be an Array of \" + NS + \".{2}.\");", entityName, cp.Name, cp.Type));
-            sb.AppendLine("                    }");
-            sb.AppendLine(string.Format("                        this.addChangedProperty(\"{0}\");", cp.Name));
-            sb.AppendLine(string.Format("                    this.internal.{0} = value;", cp.Name));
-            sb.AppendLine("                },");
+            sb.AppendLine(string.Format("                set: function (value) {{ collectionPropertySetter({0}.{1}.{2},\"{2}\", this, \"{3}\", value)}},", RootNameSpace, SubNamespace, cp.Type, cp.Name));
             sb.AppendLine("                enumerable: true,");
             sb.Append("            }");
 
@@ -760,10 +717,11 @@ namespace CRMWebAPIJavaScriptWriter
                 parameterNames.Add("callerId");
             }
 
-            if (parameterNames.Count > 0) {
+            if (parameterNames.Count > 0)
+            {
                 sb.AppendLine(string.Format("    this.{0} = function (", function.Name));
                 sb.Append("        ");
-                sb.Append(string.Join(","+Environment.NewLine+ "        ", parameterNames.ToArray()));
+                sb.Append(string.Join("," + Environment.NewLine + "        ", parameterNames.ToArray()));
                 sb.AppendLine(Environment.NewLine + "        ) {");
             }
             else
@@ -771,7 +729,7 @@ namespace CRMWebAPIJavaScriptWriter
                 sb.AppendLine(string.Format("    this.{0} = function (){{", function.Name));
             }
 
-            
+
 
 
             if (isBound)
@@ -829,7 +787,7 @@ namespace CRMWebAPIJavaScriptWriter
 
                 foreach (Parameter p in function.Parameters)
                 {
-                    
+
                     if (p.Type == "Edm.Boolean")
                     {
                         sb.AppendLine(string.Format("        if (isBoolean({0})) {{", lowerCaseFirstLetter(p.Name)));
@@ -838,9 +796,9 @@ namespace CRMWebAPIJavaScriptWriter
                     {
                         sb.AppendLine(string.Format("        if ({0}) {{", lowerCaseFirstLetter(p.Name)));
                     }
-                    
 
-                        string modelType = getModelTypeByName(p.Type);
+
+                    string modelType = getModelTypeByName(p.Type);
                     switch (modelType)
                     {
                         case "EnumType":
@@ -854,14 +812,15 @@ namespace CRMWebAPIJavaScriptWriter
                             break;
                         default:
 
-                            switch (p.Type) {
+                            switch (p.Type)
+                            {
                                 case "Edm.DateTimeOffset":
                                     sb.AppendLine(string.Format(@"        parameters.push({{ ""{0}"": {1}, isDate: true  }});", p.Name, lowerCaseFirstLetter(p.Name)));
                                     break;
                                 default:
                                     sb.AppendLine(string.Format(@"        parameters.push({{ ""{0}"": {1} }});", p.Name, lowerCaseFirstLetter(p.Name)));
                                     break;
-                            }                            
+                            }
                             break;
                     }
                     sb.AppendLine("        }");
@@ -932,7 +891,7 @@ namespace CRMWebAPIJavaScriptWriter
 
         private string getComplexTypePropertyValidationFunction(ComplexTypeProperty p, string type)
         {
-            string validationFunction ="isNotImplemented(value)";
+            string validationFunction = "isNotImplemented(value)";
 
             //Is it a CRM type?
             if (type.StartsWith(string.Format("{0}.{1}.", RootNameSpace, SubNamespace)))
@@ -951,7 +910,7 @@ namespace CRMWebAPIJavaScriptWriter
                         }
                         else
                         {
-                           
+
                             validationFunction = string.Format("isEnumMember({0}, value)", type);
                         }
                         break;
@@ -1041,7 +1000,7 @@ namespace CRMWebAPIJavaScriptWriter
 
                                     }
                                     else
-                                    {                                        
+                                    {
                                         validationFunction = string.Format("isArrayOfEnumMember({0},value)", JSCollectionType);
                                     }
                                     break;
@@ -1053,14 +1012,14 @@ namespace CRMWebAPIJavaScriptWriter
                                     }
                                     else
                                     {
-                                        validationFunction = string.Format("isArrayOf({0},value)",  JSCollectionType);
+                                        validationFunction = string.Format("isArrayOf({0},value)", JSCollectionType);
                                     }
                                     break;
                                 default:
                                     //Entities, Functions and Actions are not used as Complextype properties
-                                     throw new Exception("Unexpected parameter array type.");
+                                    throw new Exception("Unexpected parameter array type.");
                                     break;
-                                    
+
 
                             }
                         }
@@ -1153,12 +1112,12 @@ namespace CRMWebAPIJavaScriptWriter
                     case "EnumType":
                         if (p.Nullable)
                         {
-                            validationFunction = string.Format("isOptionalEnumMemberOrNull({0},{1})", type,lowerCaseFirstLetter(p.Name));
+                            validationFunction = string.Format("isOptionalEnumMemberOrNull({0},{1})", type, lowerCaseFirstLetter(p.Name));
 
                         }
                         else
                         {
-                            validationFunction = string.Format("isEnumMember({0},{1})", type,lowerCaseFirstLetter(p.Name));
+                            validationFunction = string.Format("isEnumMember({0},{1})", type, lowerCaseFirstLetter(p.Name));
                         }
                         break;
                     case "ComplexType":
@@ -1185,7 +1144,7 @@ namespace CRMWebAPIJavaScriptWriter
                 switch (type)
                 {
                     case "Boolean":
-                        
+
                         if (p.Nullable)
                         {
                             validationFunction = string.Format("isOptionalBoolean({0})", lowerCaseFirstLetter(p.Name));
@@ -1253,19 +1212,19 @@ namespace CRMWebAPIJavaScriptWriter
                                 case "EnumType":
                                     if (p.Nullable)
                                     {
-                                        validationFunction = string.Format("isOptionalArrayOfEnumMemberOrNull({0},{1})", JSCollectionType,lowerCaseFirstLetter(p.Name));
+                                        validationFunction = string.Format("isOptionalArrayOfEnumMemberOrNull({0},{1})", JSCollectionType, lowerCaseFirstLetter(p.Name));
 
                                     }
                                     else
                                     {
-                                        validationFunction = string.Format("isArrayOfEnumMember({0},{1})", JSCollectionType,lowerCaseFirstLetter(p.Name));
+                                        validationFunction = string.Format("isArrayOfEnumMember({0},{1})", JSCollectionType, lowerCaseFirstLetter(p.Name));
                                     }
                                     break;
                                 case "ComplexType":
                                 case "Entity":
                                     if (p.Nullable)
                                     {
-                                        validationFunction = string.Format("isOptionalArrayOfOrNull({0},{1})",  JSCollectionType, lowerCaseFirstLetter(p.Name));
+                                        validationFunction = string.Format("isOptionalArrayOfOrNull({0},{1})", JSCollectionType, lowerCaseFirstLetter(p.Name));
 
                                     }
                                     else
@@ -1371,7 +1330,7 @@ namespace CRMWebAPIJavaScriptWriter
 
                 throw new Exception("Error writing Actions");
             }
-            
+
 
 
             return sb.ToString();
@@ -1428,7 +1387,7 @@ namespace CRMWebAPIJavaScriptWriter
                 {
                     sb.AppendLine(string.Format("    * @param {{{0}}} {1} {2}", type, lowerCaseFirstLetter(p.Name), p.Description));
                 }
-                
+
 
 
             }
@@ -1473,7 +1432,7 @@ namespace CRMWebAPIJavaScriptWriter
             {
                 sb.AppendLine(string.Format("    this.{0} = function (", action.Name));
                 sb.Append("        ");
-                sb.AppendLine(string.Join(","+Environment.NewLine+ "        ", parameters.ToArray()));
+                sb.AppendLine(string.Join("," + Environment.NewLine + "        ", parameters.ToArray()));
                 sb.AppendLine("        ) {");
             }
             else
@@ -1521,7 +1480,8 @@ namespace CRMWebAPIJavaScriptWriter
             foreach (Parameter p in action.Parameters)
             {
                 //parametersProperties.Add(string.Format("            {0}: {1}", p.Name, lowerCaseFirstLetter(p.Name)));
-                if (p.Nullable) {
+                if (p.Nullable)
+                {
                     sb.AppendLine(string.Format("        (!isNullOrUndefined({0})? parameterObj.{1} = {0} : null);", lowerCaseFirstLetter(p.Name), p.Name));
                 }
                 else
@@ -1530,7 +1490,7 @@ namespace CRMWebAPIJavaScriptWriter
                 }
 
             }
-           // sb.AppendLine(string.Join("," + Environment.NewLine, parametersProperties.ToArray()));
+            // sb.AppendLine(string.Join("," + Environment.NewLine, parametersProperties.ToArray()));
 
             //sb.AppendLine("        };");
 

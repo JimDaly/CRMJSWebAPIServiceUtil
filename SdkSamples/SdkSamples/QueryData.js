@@ -170,7 +170,7 @@ function startQueryDataSample() {
         return ns.query(contact.entitySetName + "/$count");
     })
         .then(function (results) {
-        console.log("The contacts collection has %s contacts.", results);
+        console.log("The contacts collection has %s contacts.", results.count);
         let filter = "&$filter=contains(jobtitle,'senior') or contains(jobtitle, 'manager')&$count=true";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })

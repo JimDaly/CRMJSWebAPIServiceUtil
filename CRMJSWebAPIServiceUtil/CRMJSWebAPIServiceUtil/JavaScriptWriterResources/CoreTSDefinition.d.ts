@@ -34,6 +34,11 @@ declare namespace ROOTNAMESPACE.SUBNAMESPACE {
         readonly type: string;
     }
 
+    interface navigationPropertyType {
+        readonly name: string;
+        readonly type: Function;
+    }
+
     interface entityCollection {
         value: Array<crmbaseentity>;
         nextLink?: string;

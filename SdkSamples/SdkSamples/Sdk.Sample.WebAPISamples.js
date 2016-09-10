@@ -1,15 +1,38 @@
 //Don't overwrite native promise
-if(!window.Promise){
-/*!
- * @overview es6-promise - a tiny implementation of Promises/A+.
- * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
- * @license   Licensed under MIT license
- *            See https://raw.githubusercontent.com/jakearchibald/es6-promise/master/LICENSE
- * @version   3.0.2
- */
+if (!window.Promise) {
+    /*!
+     * @overview es6-promise - a tiny implementation of Promises/A+.
+     * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
+     * @license   Licensed under MIT license
+     *            See https://raw.githubusercontent.com/jakearchibald/es6-promise/master/LICENSE
+     * @version   3.0.2
+     */
 
-(function(){"use strict";function lib$es6$promise$utils$$objectOrFunction(x){return typeof x==="function"||typeof x==="object"&&x!==null}function lib$es6$promise$utils$$isFunction(x){return typeof x==="function"}function lib$es6$promise$utils$$isMaybeThenable(x){return typeof x==="object"&&x!==null}var lib$es6$promise$utils$$_isArray;if(!Array.isArray){lib$es6$promise$utils$$_isArray=function(x){return Object.prototype.toString.call(x)==="[object Array]"}}else{lib$es6$promise$utils$$_isArray=Array.isArray}var lib$es6$promise$utils$$isArray=lib$es6$promise$utils$$_isArray;var lib$es6$promise$asap$$len=0;var lib$es6$promise$asap$$toString={}.toString;var lib$es6$promise$asap$$vertxNext;var lib$es6$promise$asap$$customSchedulerFn;var lib$es6$promise$asap$$asap=function asap(callback,arg){lib$es6$promise$asap$$queue[lib$es6$promise$asap$$len]=callback;lib$es6$promise$asap$$queue[lib$es6$promise$asap$$len+1]=arg;lib$es6$promise$asap$$len+=2;if(lib$es6$promise$asap$$len===2){if(lib$es6$promise$asap$$customSchedulerFn){lib$es6$promise$asap$$customSchedulerFn(lib$es6$promise$asap$$flush)}else{lib$es6$promise$asap$$scheduleFlush()}}};function lib$es6$promise$asap$$setScheduler(scheduleFn){lib$es6$promise$asap$$customSchedulerFn=scheduleFn}function lib$es6$promise$asap$$setAsap(asapFn){lib$es6$promise$asap$$asap=asapFn}var lib$es6$promise$asap$$browserWindow=typeof window!=="undefined"?window:undefined;var lib$es6$promise$asap$$browserGlobal=lib$es6$promise$asap$$browserWindow||{};var lib$es6$promise$asap$$BrowserMutationObserver=lib$es6$promise$asap$$browserGlobal.MutationObserver||lib$es6$promise$asap$$browserGlobal.WebKitMutationObserver;var lib$es6$promise$asap$$isNode=typeof process!=="undefined"&&{}.toString.call(process)==="[object process]";var lib$es6$promise$asap$$isWorker=typeof Uint8ClampedArray!=="undefined"&&typeof importScripts!=="undefined"&&typeof MessageChannel!=="undefined";function lib$es6$promise$asap$$useNextTick(){return function(){process.nextTick(lib$es6$promise$asap$$flush)}}function lib$es6$promise$asap$$useVertxTimer(){return function(){lib$es6$promise$asap$$vertxNext(lib$es6$promise$asap$$flush)}}function lib$es6$promise$asap$$useMutationObserver(){var iterations=0;var observer=new lib$es6$promise$asap$$BrowserMutationObserver(lib$es6$promise$asap$$flush);var node=document.createTextNode("");observer.observe(node,{characterData:true});return function(){node.data=iterations=++iterations%2}}function lib$es6$promise$asap$$useMessageChannel(){var channel=new MessageChannel;channel.port1.onmessage=lib$es6$promise$asap$$flush;return function(){channel.port2.postMessage(0)}}function lib$es6$promise$asap$$useSetTimeout(){return function(){setTimeout(lib$es6$promise$asap$$flush,1)}}var lib$es6$promise$asap$$queue=new Array(1e3);function lib$es6$promise$asap$$flush(){for(var i=0;i<lib$es6$promise$asap$$len;i+=2){var callback=lib$es6$promise$asap$$queue[i];var arg=lib$es6$promise$asap$$queue[i+1];callback(arg);lib$es6$promise$asap$$queue[i]=undefined;lib$es6$promise$asap$$queue[i+1]=undefined}lib$es6$promise$asap$$len=0}function lib$es6$promise$asap$$attemptVertx(){try{var r=require;var vertx=r("vertx");lib$es6$promise$asap$$vertxNext=vertx.runOnLoop||vertx.runOnContext;return lib$es6$promise$asap$$useVertxTimer()}catch(e){return lib$es6$promise$asap$$useSetTimeout()}}var lib$es6$promise$asap$$scheduleFlush;if(lib$es6$promise$asap$$isNode){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useNextTick()}else if(lib$es6$promise$asap$$BrowserMutationObserver){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useMutationObserver()}else if(lib$es6$promise$asap$$isWorker){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useMessageChannel()}else if(lib$es6$promise$asap$$browserWindow===undefined&&typeof require==="function"){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$attemptVertx()}else{lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useSetTimeout()}function lib$es6$promise$$internal$$noop(){}var lib$es6$promise$$internal$$PENDING=void 0;var lib$es6$promise$$internal$$FULFILLED=1;var lib$es6$promise$$internal$$REJECTED=2;var lib$es6$promise$$internal$$GET_THEN_ERROR=new lib$es6$promise$$internal$$ErrorObject;function lib$es6$promise$$internal$$selfFulfillment(){return new TypeError("You cannot resolve a promise with itself")}function lib$es6$promise$$internal$$cannotReturnOwn(){return new TypeError("A promises callback cannot return that same promise.")}function lib$es6$promise$$internal$$getThen(promise){try{return promise.then}catch(error){lib$es6$promise$$internal$$GET_THEN_ERROR.error=error;return lib$es6$promise$$internal$$GET_THEN_ERROR}}function lib$es6$promise$$internal$$tryThen(then,value,fulfillmentHandler,rejectionHandler){try{then.call(value,fulfillmentHandler,rejectionHandler)}catch(e){return e}}function lib$es6$promise$$internal$$handleForeignThenable(promise,thenable,then){lib$es6$promise$asap$$asap(function(promise){var sealed=false;var error=lib$es6$promise$$internal$$tryThen(then,thenable,function(value){if(sealed){return}sealed=true;if(thenable!==value){lib$es6$promise$$internal$$resolve(promise,value)}else{lib$es6$promise$$internal$$fulfill(promise,value)}},function(reason){if(sealed){return}sealed=true;lib$es6$promise$$internal$$reject(promise,reason)},"Settle: "+(promise._label||" unknown promise"));if(!sealed&&error){sealed=true;lib$es6$promise$$internal$$reject(promise,error)}},promise)}function lib$es6$promise$$internal$$handleOwnThenable(promise,thenable){if(thenable._state===lib$es6$promise$$internal$$FULFILLED){lib$es6$promise$$internal$$fulfill(promise,thenable._result)}else if(thenable._state===lib$es6$promise$$internal$$REJECTED){lib$es6$promise$$internal$$reject(promise,thenable._result)}else{lib$es6$promise$$internal$$subscribe(thenable,undefined,function(value){lib$es6$promise$$internal$$resolve(promise,value)},function(reason){lib$es6$promise$$internal$$reject(promise,reason)})}}function lib$es6$promise$$internal$$handleMaybeThenable(promise,maybeThenable){if(maybeThenable.constructor===promise.constructor){lib$es6$promise$$internal$$handleOwnThenable(promise,maybeThenable)}else{var then=lib$es6$promise$$internal$$getThen(maybeThenable);if(then===lib$es6$promise$$internal$$GET_THEN_ERROR){lib$es6$promise$$internal$$reject(promise,lib$es6$promise$$internal$$GET_THEN_ERROR.error)}else if(then===undefined){lib$es6$promise$$internal$$fulfill(promise,maybeThenable)}else if(lib$es6$promise$utils$$isFunction(then)){lib$es6$promise$$internal$$handleForeignThenable(promise,maybeThenable,then)}else{lib$es6$promise$$internal$$fulfill(promise,maybeThenable)}}}function lib$es6$promise$$internal$$resolve(promise,value){if(promise===value){lib$es6$promise$$internal$$reject(promise,lib$es6$promise$$internal$$selfFulfillment())}else if(lib$es6$promise$utils$$objectOrFunction(value)){lib$es6$promise$$internal$$handleMaybeThenable(promise,value)}else{lib$es6$promise$$internal$$fulfill(promise,value)}}function lib$es6$promise$$internal$$publishRejection(promise){if(promise._onerror){promise._onerror(promise._result)}lib$es6$promise$$internal$$publish(promise)}function lib$es6$promise$$internal$$fulfill(promise,value){if(promise._state!==lib$es6$promise$$internal$$PENDING){return}promise._result=value;promise._state=lib$es6$promise$$internal$$FULFILLED;if(promise._subscribers.length!==0){lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publish,promise)}}function lib$es6$promise$$internal$$reject(promise,reason){if(promise._state!==lib$es6$promise$$internal$$PENDING){return}promise._state=lib$es6$promise$$internal$$REJECTED;promise._result=reason;lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publishRejection,promise)}function lib$es6$promise$$internal$$subscribe(parent,child,onFulfillment,onRejection){var subscribers=parent._subscribers;var length=subscribers.length;parent._onerror=null;subscribers[length]=child;subscribers[length+lib$es6$promise$$internal$$FULFILLED]=onFulfillment;subscribers[length+lib$es6$promise$$internal$$REJECTED]=onRejection;if(length===0&&parent._state){lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publish,parent)}}function lib$es6$promise$$internal$$publish(promise){var subscribers=promise._subscribers;var settled=promise._state;if(subscribers.length===0){return}var child,callback,detail=promise._result;for(var i=0;i<subscribers.length;i+=3){child=subscribers[i];callback=subscribers[i+settled];if(child){lib$es6$promise$$internal$$invokeCallback(settled,child,callback,detail)}else{callback(detail)}}promise._subscribers.length=0}function lib$es6$promise$$internal$$ErrorObject(){this.error=null}var lib$es6$promise$$internal$$TRY_CATCH_ERROR=new lib$es6$promise$$internal$$ErrorObject;function lib$es6$promise$$internal$$tryCatch(callback,detail){try{return callback(detail)}catch(e){lib$es6$promise$$internal$$TRY_CATCH_ERROR.error=e;return lib$es6$promise$$internal$$TRY_CATCH_ERROR}}function lib$es6$promise$$internal$$invokeCallback(settled,promise,callback,detail){var hasCallback=lib$es6$promise$utils$$isFunction(callback),value,error,succeeded,failed;if(hasCallback){value=lib$es6$promise$$internal$$tryCatch(callback,detail);if(value===lib$es6$promise$$internal$$TRY_CATCH_ERROR){failed=true;error=value.error;value=null}else{succeeded=true}if(promise===value){lib$es6$promise$$internal$$reject(promise,lib$es6$promise$$internal$$cannotReturnOwn());return}}else{value=detail;succeeded=true}if(promise._state!==lib$es6$promise$$internal$$PENDING){}else if(hasCallback&&succeeded){lib$es6$promise$$internal$$resolve(promise,value)}else if(failed){lib$es6$promise$$internal$$reject(promise,error)}else if(settled===lib$es6$promise$$internal$$FULFILLED){lib$es6$promise$$internal$$fulfill(promise,value)}else if(settled===lib$es6$promise$$internal$$REJECTED){lib$es6$promise$$internal$$reject(promise,value)}}function lib$es6$promise$$internal$$initializePromise(promise,resolver){try{resolver(function resolvePromise(value){lib$es6$promise$$internal$$resolve(promise,value)},function rejectPromise(reason){lib$es6$promise$$internal$$reject(promise,reason)})}catch(e){lib$es6$promise$$internal$$reject(promise,e)}}function lib$es6$promise$enumerator$$Enumerator(Constructor,input){var enumerator=this;enumerator._instanceConstructor=Constructor;enumerator.promise=new Constructor(lib$es6$promise$$internal$$noop);if(enumerator._validateInput(input)){enumerator._input=input;enumerator.length=input.length;enumerator._remaining=input.length;enumerator._init();if(enumerator.length===0){lib$es6$promise$$internal$$fulfill(enumerator.promise,enumerator._result)}else{enumerator.length=enumerator.length||0;enumerator._enumerate();if(enumerator._remaining===0){lib$es6$promise$$internal$$fulfill(enumerator.promise,enumerator._result)}}}else{lib$es6$promise$$internal$$reject(enumerator.promise,enumerator._validationError())}}lib$es6$promise$enumerator$$Enumerator.prototype._validateInput=function(input){return lib$es6$promise$utils$$isArray(input)};lib$es6$promise$enumerator$$Enumerator.prototype._validationError=function(){return new Error("Array Methods must be provided an Array")};lib$es6$promise$enumerator$$Enumerator.prototype._init=function(){this._result=new Array(this.length)};var lib$es6$promise$enumerator$$default=lib$es6$promise$enumerator$$Enumerator;lib$es6$promise$enumerator$$Enumerator.prototype._enumerate=function(){var enumerator=this;var length=enumerator.length;var promise=enumerator.promise;var input=enumerator._input;for(var i=0;promise._state===lib$es6$promise$$internal$$PENDING&&i<length;i++){enumerator._eachEntry(input[i],i)}};lib$es6$promise$enumerator$$Enumerator.prototype._eachEntry=function(entry,i){var enumerator=this;var c=enumerator._instanceConstructor;if(lib$es6$promise$utils$$isMaybeThenable(entry)){if(entry.constructor===c&&entry._state!==lib$es6$promise$$internal$$PENDING){entry._onerror=null;enumerator._settledAt(entry._state,i,entry._result)}else{enumerator._willSettleAt(c.resolve(entry),i)}}else{enumerator._remaining--;enumerator._result[i]=entry}};lib$es6$promise$enumerator$$Enumerator.prototype._settledAt=function(state,i,value){var enumerator=this;var promise=enumerator.promise;if(promise._state===lib$es6$promise$$internal$$PENDING){enumerator._remaining--;if(state===lib$es6$promise$$internal$$REJECTED){lib$es6$promise$$internal$$reject(promise,value)}else{enumerator._result[i]=value}}if(enumerator._remaining===0){lib$es6$promise$$internal$$fulfill(promise,enumerator._result)}};lib$es6$promise$enumerator$$Enumerator.prototype._willSettleAt=function(promise,i){var enumerator=this;lib$es6$promise$$internal$$subscribe(promise,undefined,function(value){enumerator._settledAt(lib$es6$promise$$internal$$FULFILLED,i,value)},function(reason){enumerator._settledAt(lib$es6$promise$$internal$$REJECTED,i,reason)})};function lib$es6$promise$promise$all$$all(entries){return new lib$es6$promise$enumerator$$default(this,entries).promise}var lib$es6$promise$promise$all$$default=lib$es6$promise$promise$all$$all;function lib$es6$promise$promise$race$$race(entries){var Constructor=this;var promise=new Constructor(lib$es6$promise$$internal$$noop);if(!lib$es6$promise$utils$$isArray(entries)){lib$es6$promise$$internal$$reject(promise,new TypeError("You must pass an array to race."));return promise}var length=entries.length;function onFulfillment(value){lib$es6$promise$$internal$$resolve(promise,value)}function onRejection(reason){lib$es6$promise$$internal$$reject(promise,reason)}for(var i=0;promise._state===lib$es6$promise$$internal$$PENDING&&i<length;i++){lib$es6$promise$$internal$$subscribe(Constructor.resolve(entries[i]),undefined,onFulfillment,onRejection)}return promise}var lib$es6$promise$promise$race$$default=lib$es6$promise$promise$race$$race;function lib$es6$promise$promise$resolve$$resolve(object){var Constructor=this;if(object&&typeof object==="object"&&object.constructor===Constructor){return object}var promise=new Constructor(lib$es6$promise$$internal$$noop);lib$es6$promise$$internal$$resolve(promise,object);return promise}var lib$es6$promise$promise$resolve$$default=lib$es6$promise$promise$resolve$$resolve;function lib$es6$promise$promise$reject$$reject(reason){var Constructor=this;var promise=new Constructor(lib$es6$promise$$internal$$noop);lib$es6$promise$$internal$$reject(promise,reason);return promise}var lib$es6$promise$promise$reject$$default=lib$es6$promise$promise$reject$$reject;var lib$es6$promise$promise$$counter=0;function lib$es6$promise$promise$$needsResolver(){throw new TypeError("You must pass a resolver function as the first argument to the promise constructor")}function lib$es6$promise$promise$$needsNew(){throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.")}var lib$es6$promise$promise$$default=lib$es6$promise$promise$$Promise;function lib$es6$promise$promise$$Promise(resolver){this._id=lib$es6$promise$promise$$counter++;this._state=undefined;this._result=undefined;this._subscribers=[];if(lib$es6$promise$$internal$$noop!==resolver){if(!lib$es6$promise$utils$$isFunction(resolver)){lib$es6$promise$promise$$needsResolver()}if(!(this instanceof lib$es6$promise$promise$$Promise)){lib$es6$promise$promise$$needsNew()}lib$es6$promise$$internal$$initializePromise(this,resolver)}}lib$es6$promise$promise$$Promise.all=lib$es6$promise$promise$all$$default;lib$es6$promise$promise$$Promise.race=lib$es6$promise$promise$race$$default;lib$es6$promise$promise$$Promise.resolve=lib$es6$promise$promise$resolve$$default;lib$es6$promise$promise$$Promise.reject=lib$es6$promise$promise$reject$$default;lib$es6$promise$promise$$Promise._setScheduler=lib$es6$promise$asap$$setScheduler;lib$es6$promise$promise$$Promise._setAsap=lib$es6$promise$asap$$setAsap;lib$es6$promise$promise$$Promise._asap=lib$es6$promise$asap$$asap;lib$es6$promise$promise$$Promise.prototype={constructor:lib$es6$promise$promise$$Promise,then:function(onFulfillment,onRejection){var parent=this;var state=parent._state;if(state===lib$es6$promise$$internal$$FULFILLED&&!onFulfillment||state===lib$es6$promise$$internal$$REJECTED&&!onRejection){return this}var child=new this.constructor(lib$es6$promise$$internal$$noop);var result=parent._result;if(state){var callback=arguments[state-1];lib$es6$promise$asap$$asap(function(){lib$es6$promise$$internal$$invokeCallback(state,child,callback,result)})}else{lib$es6$promise$$internal$$subscribe(parent,child,onFulfillment,onRejection)}return child},"catch":function(onRejection){return this.then(null,onRejection)}};function lib$es6$promise$polyfill$$polyfill(){var local;if(typeof global!=="undefined"){local=global}else if(typeof self!=="undefined"){local=self}else{try{local=Function("return this")()}catch(e){throw new Error("polyfill failed because global object is unavailable in this environment")}}var P=local.Promise;if(P&&Object.prototype.toString.call(P.resolve())==="[object Promise]"&&!P.cast){return}local.Promise=lib$es6$promise$promise$$default}var lib$es6$promise$polyfill$$default=lib$es6$promise$polyfill$$polyfill;var lib$es6$promise$umd$$ES6Promise={Promise:lib$es6$promise$promise$$default,polyfill:lib$es6$promise$polyfill$$default};if(typeof define==="function"&&define["amd"]){define(function(){return lib$es6$promise$umd$$ES6Promise})}else if(typeof module!=="undefined"&&module["exports"]){module["exports"]=lib$es6$promise$umd$$ES6Promise}else if(typeof this!=="undefined"){this["ES6Promise"]=lib$es6$promise$umd$$ES6Promise}lib$es6$promise$polyfill$$default()}).call(this);
+    (function () { "use strict"; function lib$es6$promise$utils$$objectOrFunction(x) { return typeof x === "function" || typeof x === "object" && x !== null } function lib$es6$promise$utils$$isFunction(x) { return typeof x === "function" } function lib$es6$promise$utils$$isMaybeThenable(x) { return typeof x === "object" && x !== null } var lib$es6$promise$utils$$_isArray; if (!Array.isArray) { lib$es6$promise$utils$$_isArray = function (x) { return Object.prototype.toString.call(x) === "[object Array]" } } else { lib$es6$promise$utils$$_isArray = Array.isArray } var lib$es6$promise$utils$$isArray = lib$es6$promise$utils$$_isArray; var lib$es6$promise$asap$$len = 0; var lib$es6$promise$asap$$toString = {}.toString; var lib$es6$promise$asap$$vertxNext; var lib$es6$promise$asap$$customSchedulerFn; var lib$es6$promise$asap$$asap = function asap(callback, arg) { lib$es6$promise$asap$$queue[lib$es6$promise$asap$$len] = callback; lib$es6$promise$asap$$queue[lib$es6$promise$asap$$len + 1] = arg; lib$es6$promise$asap$$len += 2; if (lib$es6$promise$asap$$len === 2) { if (lib$es6$promise$asap$$customSchedulerFn) { lib$es6$promise$asap$$customSchedulerFn(lib$es6$promise$asap$$flush) } else { lib$es6$promise$asap$$scheduleFlush() } } }; function lib$es6$promise$asap$$setScheduler(scheduleFn) { lib$es6$promise$asap$$customSchedulerFn = scheduleFn } function lib$es6$promise$asap$$setAsap(asapFn) { lib$es6$promise$asap$$asap = asapFn } var lib$es6$promise$asap$$browserWindow = typeof window !== "undefined" ? window : undefined; var lib$es6$promise$asap$$browserGlobal = lib$es6$promise$asap$$browserWindow || {}; var lib$es6$promise$asap$$BrowserMutationObserver = lib$es6$promise$asap$$browserGlobal.MutationObserver || lib$es6$promise$asap$$browserGlobal.WebKitMutationObserver; var lib$es6$promise$asap$$isNode = typeof process !== "undefined" && {}.toString.call(process) === "[object process]"; var lib$es6$promise$asap$$isWorker = typeof Uint8ClampedArray !== "undefined" && typeof importScripts !== "undefined" && typeof MessageChannel !== "undefined"; function lib$es6$promise$asap$$useNextTick() { return function () { process.nextTick(lib$es6$promise$asap$$flush) } } function lib$es6$promise$asap$$useVertxTimer() { return function () { lib$es6$promise$asap$$vertxNext(lib$es6$promise$asap$$flush) } } function lib$es6$promise$asap$$useMutationObserver() { var iterations = 0; var observer = new lib$es6$promise$asap$$BrowserMutationObserver(lib$es6$promise$asap$$flush); var node = document.createTextNode(""); observer.observe(node, { characterData: true }); return function () { node.data = iterations = ++iterations % 2 } } function lib$es6$promise$asap$$useMessageChannel() { var channel = new MessageChannel; channel.port1.onmessage = lib$es6$promise$asap$$flush; return function () { channel.port2.postMessage(0) } } function lib$es6$promise$asap$$useSetTimeout() { return function () { setTimeout(lib$es6$promise$asap$$flush, 1) } } var lib$es6$promise$asap$$queue = new Array(1e3); function lib$es6$promise$asap$$flush() { for (var i = 0; i < lib$es6$promise$asap$$len; i += 2) { var callback = lib$es6$promise$asap$$queue[i]; var arg = lib$es6$promise$asap$$queue[i + 1]; callback(arg); lib$es6$promise$asap$$queue[i] = undefined; lib$es6$promise$asap$$queue[i + 1] = undefined } lib$es6$promise$asap$$len = 0 } function lib$es6$promise$asap$$attemptVertx() { try { var r = require; var vertx = r("vertx"); lib$es6$promise$asap$$vertxNext = vertx.runOnLoop || vertx.runOnContext; return lib$es6$promise$asap$$useVertxTimer() } catch (e) { return lib$es6$promise$asap$$useSetTimeout() } } var lib$es6$promise$asap$$scheduleFlush; if (lib$es6$promise$asap$$isNode) { lib$es6$promise$asap$$scheduleFlush = lib$es6$promise$asap$$useNextTick() } else if (lib$es6$promise$asap$$BrowserMutationObserver) { lib$es6$promise$asap$$scheduleFlush = lib$es6$promise$asap$$useMutationObserver() } else if (lib$es6$promise$asap$$isWorker) { lib$es6$promise$asap$$scheduleFlush = lib$es6$promise$asap$$useMessageChannel() } else if (lib$es6$promise$asap$$browserWindow === undefined && typeof require === "function") { lib$es6$promise$asap$$scheduleFlush = lib$es6$promise$asap$$attemptVertx() } else { lib$es6$promise$asap$$scheduleFlush = lib$es6$promise$asap$$useSetTimeout() } function lib$es6$promise$$internal$$noop() { } var lib$es6$promise$$internal$$PENDING = void 0; var lib$es6$promise$$internal$$FULFILLED = 1; var lib$es6$promise$$internal$$REJECTED = 2; var lib$es6$promise$$internal$$GET_THEN_ERROR = new lib$es6$promise$$internal$$ErrorObject; function lib$es6$promise$$internal$$selfFulfillment() { return new TypeError("You cannot resolve a promise with itself") } function lib$es6$promise$$internal$$cannotReturnOwn() { return new TypeError("A promises callback cannot return that same promise.") } function lib$es6$promise$$internal$$getThen(promise) { try { return promise.then } catch (error) { lib$es6$promise$$internal$$GET_THEN_ERROR.error = error; return lib$es6$promise$$internal$$GET_THEN_ERROR } } function lib$es6$promise$$internal$$tryThen(then, value, fulfillmentHandler, rejectionHandler) { try { then.call(value, fulfillmentHandler, rejectionHandler) } catch (e) { return e } } function lib$es6$promise$$internal$$handleForeignThenable(promise, thenable, then) { lib$es6$promise$asap$$asap(function (promise) { var sealed = false; var error = lib$es6$promise$$internal$$tryThen(then, thenable, function (value) { if (sealed) { return } sealed = true; if (thenable !== value) { lib$es6$promise$$internal$$resolve(promise, value) } else { lib$es6$promise$$internal$$fulfill(promise, value) } }, function (reason) { if (sealed) { return } sealed = true; lib$es6$promise$$internal$$reject(promise, reason) }, "Settle: " + (promise._label || " unknown promise")); if (!sealed && error) { sealed = true; lib$es6$promise$$internal$$reject(promise, error) } }, promise) } function lib$es6$promise$$internal$$handleOwnThenable(promise, thenable) { if (thenable._state === lib$es6$promise$$internal$$FULFILLED) { lib$es6$promise$$internal$$fulfill(promise, thenable._result) } else if (thenable._state === lib$es6$promise$$internal$$REJECTED) { lib$es6$promise$$internal$$reject(promise, thenable._result) } else { lib$es6$promise$$internal$$subscribe(thenable, undefined, function (value) { lib$es6$promise$$internal$$resolve(promise, value) }, function (reason) { lib$es6$promise$$internal$$reject(promise, reason) }) } } function lib$es6$promise$$internal$$handleMaybeThenable(promise, maybeThenable) { if (maybeThenable.constructor === promise.constructor) { lib$es6$promise$$internal$$handleOwnThenable(promise, maybeThenable) } else { var then = lib$es6$promise$$internal$$getThen(maybeThenable); if (then === lib$es6$promise$$internal$$GET_THEN_ERROR) { lib$es6$promise$$internal$$reject(promise, lib$es6$promise$$internal$$GET_THEN_ERROR.error) } else if (then === undefined) { lib$es6$promise$$internal$$fulfill(promise, maybeThenable) } else if (lib$es6$promise$utils$$isFunction(then)) { lib$es6$promise$$internal$$handleForeignThenable(promise, maybeThenable, then) } else { lib$es6$promise$$internal$$fulfill(promise, maybeThenable) } } } function lib$es6$promise$$internal$$resolve(promise, value) { if (promise === value) { lib$es6$promise$$internal$$reject(promise, lib$es6$promise$$internal$$selfFulfillment()) } else if (lib$es6$promise$utils$$objectOrFunction(value)) { lib$es6$promise$$internal$$handleMaybeThenable(promise, value) } else { lib$es6$promise$$internal$$fulfill(promise, value) } } function lib$es6$promise$$internal$$publishRejection(promise) { if (promise._onerror) { promise._onerror(promise._result) } lib$es6$promise$$internal$$publish(promise) } function lib$es6$promise$$internal$$fulfill(promise, value) { if (promise._state !== lib$es6$promise$$internal$$PENDING) { return } promise._result = value; promise._state = lib$es6$promise$$internal$$FULFILLED; if (promise._subscribers.length !== 0) { lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publish, promise) } } function lib$es6$promise$$internal$$reject(promise, reason) { if (promise._state !== lib$es6$promise$$internal$$PENDING) { return } promise._state = lib$es6$promise$$internal$$REJECTED; promise._result = reason; lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publishRejection, promise) } function lib$es6$promise$$internal$$subscribe(parent, child, onFulfillment, onRejection) { var subscribers = parent._subscribers; var length = subscribers.length; parent._onerror = null; subscribers[length] = child; subscribers[length + lib$es6$promise$$internal$$FULFILLED] = onFulfillment; subscribers[length + lib$es6$promise$$internal$$REJECTED] = onRejection; if (length === 0 && parent._state) { lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publish, parent) } } function lib$es6$promise$$internal$$publish(promise) { var subscribers = promise._subscribers; var settled = promise._state; if (subscribers.length === 0) { return } var child, callback, detail = promise._result; for (var i = 0; i < subscribers.length; i += 3) { child = subscribers[i]; callback = subscribers[i + settled]; if (child) { lib$es6$promise$$internal$$invokeCallback(settled, child, callback, detail) } else { callback(detail) } } promise._subscribers.length = 0 } function lib$es6$promise$$internal$$ErrorObject() { this.error = null } var lib$es6$promise$$internal$$TRY_CATCH_ERROR = new lib$es6$promise$$internal$$ErrorObject; function lib$es6$promise$$internal$$tryCatch(callback, detail) { try { return callback(detail) } catch (e) { lib$es6$promise$$internal$$TRY_CATCH_ERROR.error = e; return lib$es6$promise$$internal$$TRY_CATCH_ERROR } } function lib$es6$promise$$internal$$invokeCallback(settled, promise, callback, detail) { var hasCallback = lib$es6$promise$utils$$isFunction(callback), value, error, succeeded, failed; if (hasCallback) { value = lib$es6$promise$$internal$$tryCatch(callback, detail); if (value === lib$es6$promise$$internal$$TRY_CATCH_ERROR) { failed = true; error = value.error; value = null } else { succeeded = true } if (promise === value) { lib$es6$promise$$internal$$reject(promise, lib$es6$promise$$internal$$cannotReturnOwn()); return } } else { value = detail; succeeded = true } if (promise._state !== lib$es6$promise$$internal$$PENDING) { } else if (hasCallback && succeeded) { lib$es6$promise$$internal$$resolve(promise, value) } else if (failed) { lib$es6$promise$$internal$$reject(promise, error) } else if (settled === lib$es6$promise$$internal$$FULFILLED) { lib$es6$promise$$internal$$fulfill(promise, value) } else if (settled === lib$es6$promise$$internal$$REJECTED) { lib$es6$promise$$internal$$reject(promise, value) } } function lib$es6$promise$$internal$$initializePromise(promise, resolver) { try { resolver(function resolvePromise(value) { lib$es6$promise$$internal$$resolve(promise, value) }, function rejectPromise(reason) { lib$es6$promise$$internal$$reject(promise, reason) }) } catch (e) { lib$es6$promise$$internal$$reject(promise, e) } } function lib$es6$promise$enumerator$$Enumerator(Constructor, input) { var enumerator = this; enumerator._instanceConstructor = Constructor; enumerator.promise = new Constructor(lib$es6$promise$$internal$$noop); if (enumerator._validateInput(input)) { enumerator._input = input; enumerator.length = input.length; enumerator._remaining = input.length; enumerator._init(); if (enumerator.length === 0) { lib$es6$promise$$internal$$fulfill(enumerator.promise, enumerator._result) } else { enumerator.length = enumerator.length || 0; enumerator._enumerate(); if (enumerator._remaining === 0) { lib$es6$promise$$internal$$fulfill(enumerator.promise, enumerator._result) } } } else { lib$es6$promise$$internal$$reject(enumerator.promise, enumerator._validationError()) } } lib$es6$promise$enumerator$$Enumerator.prototype._validateInput = function (input) { return lib$es6$promise$utils$$isArray(input) }; lib$es6$promise$enumerator$$Enumerator.prototype._validationError = function () { return new Error("Array Methods must be provided an Array") }; lib$es6$promise$enumerator$$Enumerator.prototype._init = function () { this._result = new Array(this.length) }; var lib$es6$promise$enumerator$$default = lib$es6$promise$enumerator$$Enumerator; lib$es6$promise$enumerator$$Enumerator.prototype._enumerate = function () { var enumerator = this; var length = enumerator.length; var promise = enumerator.promise; var input = enumerator._input; for (var i = 0; promise._state === lib$es6$promise$$internal$$PENDING && i < length; i++) { enumerator._eachEntry(input[i], i) } }; lib$es6$promise$enumerator$$Enumerator.prototype._eachEntry = function (entry, i) { var enumerator = this; var c = enumerator._instanceConstructor; if (lib$es6$promise$utils$$isMaybeThenable(entry)) { if (entry.constructor === c && entry._state !== lib$es6$promise$$internal$$PENDING) { entry._onerror = null; enumerator._settledAt(entry._state, i, entry._result) } else { enumerator._willSettleAt(c.resolve(entry), i) } } else { enumerator._remaining--; enumerator._result[i] = entry } }; lib$es6$promise$enumerator$$Enumerator.prototype._settledAt = function (state, i, value) { var enumerator = this; var promise = enumerator.promise; if (promise._state === lib$es6$promise$$internal$$PENDING) { enumerator._remaining--; if (state === lib$es6$promise$$internal$$REJECTED) { lib$es6$promise$$internal$$reject(promise, value) } else { enumerator._result[i] = value } } if (enumerator._remaining === 0) { lib$es6$promise$$internal$$fulfill(promise, enumerator._result) } }; lib$es6$promise$enumerator$$Enumerator.prototype._willSettleAt = function (promise, i) { var enumerator = this; lib$es6$promise$$internal$$subscribe(promise, undefined, function (value) { enumerator._settledAt(lib$es6$promise$$internal$$FULFILLED, i, value) }, function (reason) { enumerator._settledAt(lib$es6$promise$$internal$$REJECTED, i, reason) }) }; function lib$es6$promise$promise$all$$all(entries) { return new lib$es6$promise$enumerator$$default(this, entries).promise } var lib$es6$promise$promise$all$$default = lib$es6$promise$promise$all$$all; function lib$es6$promise$promise$race$$race(entries) { var Constructor = this; var promise = new Constructor(lib$es6$promise$$internal$$noop); if (!lib$es6$promise$utils$$isArray(entries)) { lib$es6$promise$$internal$$reject(promise, new TypeError("You must pass an array to race.")); return promise } var length = entries.length; function onFulfillment(value) { lib$es6$promise$$internal$$resolve(promise, value) } function onRejection(reason) { lib$es6$promise$$internal$$reject(promise, reason) } for (var i = 0; promise._state === lib$es6$promise$$internal$$PENDING && i < length; i++) { lib$es6$promise$$internal$$subscribe(Constructor.resolve(entries[i]), undefined, onFulfillment, onRejection) } return promise } var lib$es6$promise$promise$race$$default = lib$es6$promise$promise$race$$race; function lib$es6$promise$promise$resolve$$resolve(object) { var Constructor = this; if (object && typeof object === "object" && object.constructor === Constructor) { return object } var promise = new Constructor(lib$es6$promise$$internal$$noop); lib$es6$promise$$internal$$resolve(promise, object); return promise } var lib$es6$promise$promise$resolve$$default = lib$es6$promise$promise$resolve$$resolve; function lib$es6$promise$promise$reject$$reject(reason) { var Constructor = this; var promise = new Constructor(lib$es6$promise$$internal$$noop); lib$es6$promise$$internal$$reject(promise, reason); return promise } var lib$es6$promise$promise$reject$$default = lib$es6$promise$promise$reject$$reject; var lib$es6$promise$promise$$counter = 0; function lib$es6$promise$promise$$needsResolver() { throw new TypeError("You must pass a resolver function as the first argument to the promise constructor") } function lib$es6$promise$promise$$needsNew() { throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.") } var lib$es6$promise$promise$$default = lib$es6$promise$promise$$Promise; function lib$es6$promise$promise$$Promise(resolver) { this._id = lib$es6$promise$promise$$counter++; this._state = undefined; this._result = undefined; this._subscribers = []; if (lib$es6$promise$$internal$$noop !== resolver) { if (!lib$es6$promise$utils$$isFunction(resolver)) { lib$es6$promise$promise$$needsResolver() } if (!(this instanceof lib$es6$promise$promise$$Promise)) { lib$es6$promise$promise$$needsNew() } lib$es6$promise$$internal$$initializePromise(this, resolver) } } lib$es6$promise$promise$$Promise.all = lib$es6$promise$promise$all$$default; lib$es6$promise$promise$$Promise.race = lib$es6$promise$promise$race$$default; lib$es6$promise$promise$$Promise.resolve = lib$es6$promise$promise$resolve$$default; lib$es6$promise$promise$$Promise.reject = lib$es6$promise$promise$reject$$default; lib$es6$promise$promise$$Promise._setScheduler = lib$es6$promise$asap$$setScheduler; lib$es6$promise$promise$$Promise._setAsap = lib$es6$promise$asap$$setAsap; lib$es6$promise$promise$$Promise._asap = lib$es6$promise$asap$$asap; lib$es6$promise$promise$$Promise.prototype = { constructor: lib$es6$promise$promise$$Promise, then: function (onFulfillment, onRejection) { var parent = this; var state = parent._state; if (state === lib$es6$promise$$internal$$FULFILLED && !onFulfillment || state === lib$es6$promise$$internal$$REJECTED && !onRejection) { return this } var child = new this.constructor(lib$es6$promise$$internal$$noop); var result = parent._result; if (state) { var callback = arguments[state - 1]; lib$es6$promise$asap$$asap(function () { lib$es6$promise$$internal$$invokeCallback(state, child, callback, result) }) } else { lib$es6$promise$$internal$$subscribe(parent, child, onFulfillment, onRejection) } return child }, "catch": function (onRejection) { return this.then(null, onRejection) } }; function lib$es6$promise$polyfill$$polyfill() { var local; if (typeof global !== "undefined") { local = global } else if (typeof self !== "undefined") { local = self } else { try { local = Function("return this")() } catch (e) { throw new Error("polyfill failed because global object is unavailable in this environment") } } var P = local.Promise; if (P && Object.prototype.toString.call(P.resolve()) === "[object Promise]" && !P.cast) { return } local.Promise = lib$es6$promise$promise$$default } var lib$es6$promise$polyfill$$default = lib$es6$promise$polyfill$$polyfill; var lib$es6$promise$umd$$ES6Promise = { Promise: lib$es6$promise$promise$$default, polyfill: lib$es6$promise$polyfill$$default }; if (typeof define === "function" && define["amd"]) { define(function () { return lib$es6$promise$umd$$ES6Promise }) } else if (typeof module !== "undefined" && module["exports"]) { module["exports"] = lib$es6$promise$umd$$ES6Promise } else if (typeof this !== "undefined") { this["ES6Promise"] = lib$es6$promise$umd$$ES6Promise } lib$es6$promise$polyfill$$default() }).call(this);
 }
+/*
+The MIT License (MIT)
+
+Copyright (c) 2016 Jim Daly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 "use strict";
 var Sdk = window.Sdk || {};
@@ -18,7 +41,7 @@ Sdk.Sample = Sdk.Sample || {};
     var _clientUrl;
     var _webAPIVersion = "8.1";
 
-    
+
 
     var NS = "Sdk.Sample";
 
@@ -70,11 +93,9 @@ Sdk.Sample = Sdk.Sample || {};
         var retVal = {};
         retVal["@odata.type"] = this["@odata.type"];
         //Always include the primary key value if it is set;
-        if (!isNullOrUndefined(this[this.primaryKey]))
-        {
+        if (!isNullOrUndefined(this[this.primaryKey])) {
             retVal[this.primaryKey] = this[this.primaryKey];
         }
-
         var self = this;
         this.changedProperties.forEach(function (p) {
             if (p.charAt(0) != "_" && p.charAt(0) != "@" && p.indexOf("@OData.Community") == -1) {
@@ -259,256 +280,138 @@ Sdk.Sample = Sdk.Sample || {};
             }
         });
 
-        if (collection.value && Array.isArray(collection.value)) {
-            _value = collection.value;
+        if (isNumber(collection)) {
+            _value = [];
+            _count = collection;
         }
         else {
-            throw new Error(NS + ".entityCollection collection parameter must have a value property that is an Array.");
+            if (collection.value && Array.isArray(collection.value)) {
+                _value = collection.value;
+            }
+            else {
+
+                throw new Error(NS + ".entityCollection collection parameter must have a value property that is an Array.");
+            }
+            if (collection["@odata.nextLink"]) {
+                _nextLink = collection["@odata.nextLink"];
+            }
+            if (collection["@odata.count"]) {
+                _count = parseInt(collection["@odata.count"]);
+            }
         }
-        if (collection["@odata.nextLink"]) {
-            _nextLink = collection["@odata.nextLink"];
-        }
-        if (collection["@odata.count"]) {
-            _count = parseInt(collection["@odata.count"]);
-        }
+
     }
 
-    
-/**
-@typeref {object} Sdk.Sample.activitypointer
-@extends Sdk.Sample.crmbaseentity
-@description Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
-@param {String|Object}[activitypointerReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.activitypointer = function (activitypointerReference) {
-if (!(isInstanceOf(Sdk.Sample.activitypointer, this))) {
-    return new Sdk.Sample.activitypointer(activitypointerReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.activitypointer
+    @extends Sdk.Sample.crmbaseentity
+    @description Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
+    @param {String|Object}[activitypointerReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.activitypointer = function (activitypointerReference) {
+        if (!(isInstanceOf(Sdk.Sample.activitypointer, this))) {
+            return new Sdk.Sample.activitypointer(activitypointerReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true,
                 configurable: true
             },
-    //Properties,
+            //Properties,
             "activityid": {
                 get: function () { return this.internal.activityid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".activitypointer activityid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.activityid != value)
-                    {
-                        this.addChangedProperty("activityid");
-                        this.internal.activityid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "activityid", value) },
                 enumerable: true
             },
             "actualdurationminutes": {
                 get: function () { return this.internal.actualdurationminutes; },
-                set: function (value) {
-                    if (!isNumberOrNull(value)) {
-                        throw new Error(NS + ".activitypointer actualdurationminutes property must be a Number value or null.");
-                    }
-                    if (this.internal.actualdurationminutes != value)
-                    {
-                        this.addChangedProperty("actualdurationminutes");
-                        this.internal.actualdurationminutes = noChange(value);
-                    }
-                },
+                set: function (value) { setNumberOrNullProperty(this, "actualdurationminutes", value) },
                 enumerable: true
             },
             "description": {
                 get: function () { return this.internal.description; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".activitypointer description property must be a String value or null.");
-                    }
-                    if (this.internal.description != value)
-                    {
-                        this.addChangedProperty("description");
-                        this.internal.description = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "description", value) },
                 enumerable: true
             },
             "scheduledend": {
                 get: function () { return this.internal.scheduledend; },
-                set: function (value) {
-                    if (!isDateOrNull(value)) {
-                        throw new Error(NS + ".activitypointer scheduledend property must be a Date value or null.");
-                    }
-                    if (this.internal.scheduledend != value)
-                    {
-                        this.addChangedProperty("scheduledend");
-                        this.internal.scheduledend = noChange(value);
-                    }
-                },
+                set: function (value) { setDateTimeOffsetProperty(this, "scheduledend", value) },
                 enumerable: true
             },
             "scheduledstart": {
                 get: function () { return this.internal.scheduledstart; },
-                set: function (value) {
-                    if (!isDateOrNull(value)) {
-                        throw new Error(NS + ".activitypointer scheduledstart property must be a Date value or null.");
-                    }
-                    if (this.internal.scheduledstart != value)
-                    {
-                        this.addChangedProperty("scheduledstart");
-                        this.internal.scheduledstart = noChange(value);
-                    }
-                },
+                set: function (value) { setDateTimeOffsetProperty(this, "scheduledstart", value) },
                 enumerable: true
             },
             "subject": {
                 get: function () { return this.internal.subject; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".activitypointer subject property must be a String value or null.");
-                    }
-                    if (this.internal.subject != value)
-                    {
-                        this.addChangedProperty("subject");
-                        this.internal.subject = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "subject", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
+            //Single-valued Navigation Properties,
             "regardingobjectid_account": {
                 get: function () { return this.internal.regardingobjectid_account; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_account must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_account");
-                    this.internal.regardingobjectid_account = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "regardingobjectid_account", value) },
                 enumerable: true
             },
             "regardingobjectid_account@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_accountUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_account@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("regardingobjectid_account@odata.bind");
-                    this.internal.regardingobjectid_accountUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "regardingobjectid_account", value) },
                 enumerable: true
             },
             "regardingobjectid_contact": {
                 get: function () { return this.internal.regardingobjectid_contact; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_contact must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_contact");
-                    this.internal.regardingobjectid_contact = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact", value) },
                 enumerable: true
             },
             "regardingobjectid_contact@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_contactUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_contact@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("regardingobjectid_contact@odata.bind");
-                    this.internal.regardingobjectid_contactUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact", value) },
                 enumerable: true
             },
             "regardingobjectid_incident": {
                 get: function () { return this.internal.regardingobjectid_incident; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_incident must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_incident");
-                    this.internal.regardingobjectid_incident = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident", value) },
                 enumerable: true
             },
             "regardingobjectid_incident@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_incidentUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_incident@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("regardingobjectid_incident@odata.bind");
-                    this.internal.regardingobjectid_incidentUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident", value) },
                 enumerable: true
             },
             "regardingobjectid_opportunity": {
                 get: function () { return this.internal.regardingobjectid_opportunity; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_opportunity must be a " + NS + ".opportunity value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_opportunity");
-                    this.internal.regardingobjectid_opportunity = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity", value) },
                 enumerable: true
             },
             "regardingobjectid_opportunity@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_opportunityUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.opportunity,value)) {
-                        throw new Error(NS + ".activitypointer.regardingobjectid_opportunity@odata.bind must be a URI for an "+NS+".opportunity.");
-                    }
-                    this.addChangedProperty("regardingobjectid_opportunity@odata.bind");
-                    this.internal.regardingobjectid_opportunityUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "activity_pointer_letter": {
                 get: function () { return this.internal.activity_pointer_letter; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.letter, value)) {
-                        throw new Error(NS + ".activitypointer.activity_pointer_letter must be an Array of " + NS + ".letter.");
-                    }
-                        this.addChangedProperty("activity_pointer_letter");
-                    this.internal.activity_pointer_letter = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "activity_pointer_letter", value) },
                 enumerable: true,
             },
             "activity_pointer_opportunity_close": {
                 get: function () { return this.internal.activity_pointer_opportunity_close; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunityclose, value)) {
-                        throw new Error(NS + ".activitypointer.activity_pointer_opportunity_close must be an Array of " + NS + ".opportunityclose.");
-                    }
-                        this.addChangedProperty("activity_pointer_opportunity_close");
-                    this.internal.activity_pointer_opportunity_close = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "activity_pointer_opportunity_close", value) },
                 enumerable: true,
             },
             "activity_pointer_task": {
                 get: function () { return this.internal.activity_pointer_task; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.task, value)) {
-                        throw new Error(NS + ".activitypointer.activity_pointer_task must be an Array of " + NS + ".task.");
-                    }
-                        this.addChangedProperty("activity_pointer_task");
-                    this.internal.activity_pointer_task = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "activity_pointer_task", value) },
                 enumerable: true,
             },
             "ActivityPointer_QueueItem": {
                 get: function () { return this.internal.ActivityPointer_QueueItem; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.queueitem, value)) {
-                        throw new Error(NS + ".activitypointer.ActivityPointer_QueueItem must be an Array of " + NS + ".queueitem.");
-                    }
-                        this.addChangedProperty("ActivityPointer_QueueItem");
-                    this.internal.ActivityPointer_QueueItem = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "ActivityPointer_QueueItem", value) },
                 enumerable: true,
             }
         });
@@ -518,25 +421,31 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return this;
     }
-this.activitypointer.prototype = Object.create(this.crmbaseentity.prototype);
-this.activitypointer.isEntityClass = true;
-this.activitypointer.prototype.type = "activitypointer";
-this.activitypointer.prototype.primaryKey = "activityid";
-this.activitypointer.prototype.entitySetName = "activitypointers";
-this.activitypointer.prototype.properties = Object.freeze({            activityid:{ name:"activityid", type:"Guid"},
-            actualdurationminutes:{ name:"actualdurationminutes", type:"Number"},
-            description:{ name:"description", type:"String"},
-            scheduledend:{ name:"scheduledend", type:"Date"},
-            scheduledstart:{ name:"scheduledstart", type:"Date"},
-            subject:{ name:"subject", type:"String"}});
-this.activitypointer.prototype.lookups = Object.freeze({            regardingobjectid_account:{ name:"regardingobjectid_account", type:"account"},
-            regardingobjectid_contact:{ name:"regardingobjectid_contact", type:"contact"},
-            regardingobjectid_incident:{ name:"regardingobjectid_incident", type:"incident"},
-            regardingobjectid_opportunity:{ name:"regardingobjectid_opportunity", type:"opportunity"}});
-this.activitypointer.prototype.collections = Object.freeze({            activity_pointer_letter:{ name:"activity_pointer_letter", type:"letter"},
-            activity_pointer_opportunity_close:{ name:"activity_pointer_opportunity_close", type:"opportunityclose"},
-            activity_pointer_task:{ name:"activity_pointer_task", type:"task"},
-            ActivityPointer_QueueItem:{ name:"ActivityPointer_QueueItem", type:"queueitem"}});
+    this.activitypointer.prototype = Object.create(this.crmbaseentity.prototype);
+    this.activitypointer.isEntityClass = true;
+    this.activitypointer.prototype.type = "activitypointer";
+    this.activitypointer.prototype.primaryKey = "activityid";
+    this.activitypointer.prototype.entitySetName = "activitypointers";
+    this.activitypointer.prototype.properties = Object.freeze({
+        activityid: { name: "activityid", type: "Guid" },
+        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        description: { name: "description", type: "String" },
+        scheduledend: { name: "scheduledend", type: "Date" },
+        scheduledstart: { name: "scheduledstart", type: "Date" },
+        subject: { name: "subject", type: "String" }
+    });
+    this.activitypointer.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity }
+    });
+    this.activitypointer.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem }
+    });
 
     /**
     @method regardingobjectid_accountUri
@@ -547,7 +456,7 @@ this.activitypointer.prototype.collections = Object.freeze({            activity
     this.activitypointer.prototype.regardingobjectid_accountUri = function (uri) {
         this["regardingobjectid_account@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_contactUri
     @memberof Sdk.Sample.activitypointer
@@ -557,7 +466,7 @@ this.activitypointer.prototype.collections = Object.freeze({            activity
     this.activitypointer.prototype.regardingobjectid_contactUri = function (uri) {
         this["regardingobjectid_contact@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_incidentUri
     @memberof Sdk.Sample.activitypointer
@@ -567,7 +476,7 @@ this.activitypointer.prototype.collections = Object.freeze({            activity
     this.activitypointer.prototype.regardingobjectid_incidentUri = function (uri) {
         this["regardingobjectid_incident@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_opportunityUri
     @memberof Sdk.Sample.activitypointer
@@ -577,51 +486,33 @@ this.activitypointer.prototype.collections = Object.freeze({            activity
     this.activitypointer.prototype.regardingobjectid_opportunityUri = function (uri) {
         this["regardingobjectid_opportunity@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.contact
-@extends Sdk.Sample.crmbaseentity
-@description Person with whom a business unit has a relationship, such as customer, supplier, and colleague.
-@param {String|Object}[contactReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.contact = function (contactReference) {
-if (!(isInstanceOf(Sdk.Sample.contact, this))) {
-    return new Sdk.Sample.contact(contactReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.contact
+    @extends Sdk.Sample.crmbaseentity
+    @description Person with whom a business unit has a relationship, such as customer, supplier, and colleague.
+    @param {String|Object}[contactReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.contact = function (contactReference) {
+        if (!(isInstanceOf(Sdk.Sample.contact, this))) {
+            return new Sdk.Sample.contact(contactReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "annualincome": {
                 get: function () { return this.internal.annualincome; },
-                set: function (value) {
-                    if (!isNumberOrNull(value)) {
-                        throw new Error(NS + ".contact annualincome property must be a Number value or null.");
-                    }
-                    if (this.internal.annualincome != value)
-                    {
-                        this.addChangedProperty("annualincome");
-                        this.internal.annualincome = noChange(value);
-                    }
-                },
+                set: function (value) { setNumberOrNullProperty(this, "annualincome", value) },
                 enumerable: true
             },
             "contactid": {
                 get: function () { return this.internal.contactid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".contact contactid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.contactid != value)
-                    {
-                        this.addChangedProperty("contactid");
-                        this.internal.contactid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "contactid", value) },
                 enumerable: true
             },
             "createdon": {
@@ -630,30 +521,12 @@ Sdk.Sample.crmbaseentity.call(this);
             },
             "description": {
                 get: function () { return this.internal.description; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".contact description property must be a String value or null.");
-                    }
-                    if (this.internal.description != value)
-                    {
-                        this.addChangedProperty("description");
-                        this.internal.description = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "description", value) },
                 enumerable: true
             },
             "firstname": {
                 get: function () { return this.internal.firstname; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".contact firstname property must be a String value or null.");
-                    }
-                    if (this.internal.firstname != value)
-                    {
-                        this.addChangedProperty("firstname");
-                        this.internal.firstname = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "firstname", value) },
                 enumerable: true
             },
             "fullname": {
@@ -662,226 +535,103 @@ Sdk.Sample.crmbaseentity.call(this);
             },
             "jobtitle": {
                 get: function () { return this.internal.jobtitle; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".contact jobtitle property must be a String value or null.");
-                    }
-                    if (this.internal.jobtitle != value)
-                    {
-                        this.addChangedProperty("jobtitle");
-                        this.internal.jobtitle = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "jobtitle", value) },
                 enumerable: true
             },
             "lastname": {
                 get: function () { return this.internal.lastname; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".contact lastname property must be a String value or null.");
-                    }
-                    if (this.internal.lastname != value)
-                    {
-                        this.addChangedProperty("lastname");
-                        this.internal.lastname = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "lastname", value) },
                 enumerable: true
             },
             "telephone1": {
                 get: function () { return this.internal.telephone1; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".contact telephone1 property must be a String value or null.");
-                    }
-                    if (this.internal.telephone1 != value)
-                    {
-                        this.addChangedProperty("telephone1");
-                        this.internal.telephone1 = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "telephone1", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
+            //Single-valued Navigation Properties,
             "masterid": {
                 get: function () { return this.internal.masterid; },
                 enumerable: true
             },
             "parentcustomerid_account": {
                 get: function () { return this.internal.parentcustomerid_account; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".contact.parentcustomerid_account must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("parentcustomerid_account");
-                    this.internal.parentcustomerid_account = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "parentcustomerid_account", value) },
                 enumerable: true
             },
             "parentcustomerid_account@odata.bind": {
                 get: function () { return this.internal.parentcustomerid_accountUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".contact.parentcustomerid_account@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("parentcustomerid_account@odata.bind");
-                    this.internal.parentcustomerid_accountUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "parentcustomerid_account", value) },
                 enumerable: true
             },
             "parentcustomerid_contact": {
                 get: function () { return this.internal.parentcustomerid_contact; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".contact.parentcustomerid_contact must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("parentcustomerid_contact");
-                    this.internal.parentcustomerid_contact = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "parentcustomerid_contact", value) },
                 enumerable: true
             },
             "parentcustomerid_contact@odata.bind": {
                 get: function () { return this.internal.parentcustomerid_contactUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".contact.parentcustomerid_contact@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("parentcustomerid_contact@odata.bind");
-                    this.internal.parentcustomerid_contactUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "parentcustomerid_contact", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "account_primary_contact": {
                 get: function () { return this.internal.account_primary_contact; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".contact.account_primary_contact must be an Array of " + NS + ".account.");
-                    }
-                        this.addChangedProperty("account_primary_contact");
-                    this.internal.account_primary_contact = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.account, "account", this, "account_primary_contact", value) },
                 enumerable: true,
             },
             "Contact_ActivityPointers": {
                 get: function () { return this.internal.Contact_ActivityPointers; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".contact.Contact_ActivityPointers must be an Array of " + NS + ".activitypointer.");
-                    }
-                        this.addChangedProperty("Contact_ActivityPointers");
-                    this.internal.Contact_ActivityPointers = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Contact_ActivityPointers", value) },
                 enumerable: true,
             },
             "Contact_Annotation": {
                 get: function () { return this.internal.Contact_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".contact.Contact_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("Contact_Annotation");
-                    this.internal.Contact_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Contact_Annotation", value) },
                 enumerable: true,
             },
             "contact_as_primary_contact": {
                 get: function () { return this.internal.contact_as_primary_contact; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".contact.contact_as_primary_contact must be an Array of " + NS + ".incident.");
-                    }
-                        this.addChangedProperty("contact_as_primary_contact");
-                    this.internal.contact_as_primary_contact = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "contact_as_primary_contact", value) },
                 enumerable: true,
             },
             "contact_as_responsible_contact": {
                 get: function () { return this.internal.contact_as_responsible_contact; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".contact.contact_as_responsible_contact must be an Array of " + NS + ".incident.");
-                    }
-                        this.addChangedProperty("contact_as_responsible_contact");
-                    this.internal.contact_as_responsible_contact = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "contact_as_responsible_contact", value) },
                 enumerable: true,
             },
             "contact_customer_contacts": {
                 get: function () { return this.internal.contact_customer_contacts; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".contact.contact_customer_contacts must be an Array of " + NS + ".contact.");
-                    }
-                        this.addChangedProperty("contact_customer_contacts");
-                    this.internal.contact_customer_contacts = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.contact, "contact", this, "contact_customer_contacts", value) },
                 enumerable: true,
             },
             "Contact_Letters": {
                 get: function () { return this.internal.Contact_Letters; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.letter, value)) {
-                        throw new Error(NS + ".contact.Contact_Letters must be an Array of " + NS + ".letter.");
-                    }
-                        this.addChangedProperty("Contact_Letters");
-                    this.internal.Contact_Letters = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Contact_Letters", value) },
                 enumerable: true,
             },
             "contact_master_contact": {
                 get: function () { return this.internal.contact_master_contact; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".contact.contact_master_contact must be an Array of " + NS + ".contact.");
-                    }
-                        this.addChangedProperty("contact_master_contact");
-                    this.internal.contact_master_contact = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.contact, "contact", this, "contact_master_contact", value) },
                 enumerable: true,
             },
             "Contact_Tasks": {
                 get: function () { return this.internal.Contact_Tasks; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.task, value)) {
-                        throw new Error(NS + ".contact.Contact_Tasks must be an Array of " + NS + ".task.");
-                    }
-                        this.addChangedProperty("Contact_Tasks");
-                    this.internal.Contact_Tasks = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Contact_Tasks", value) },
                 enumerable: true,
             },
             "incident_customer_contacts": {
                 get: function () { return this.internal.incident_customer_contacts; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".contact.incident_customer_contacts must be an Array of " + NS + ".incident.");
-                    }
-                        this.addChangedProperty("incident_customer_contacts");
-                    this.internal.incident_customer_contacts = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_customer_contacts", value) },
                 enumerable: true,
             },
             "opportunity_customer_contacts": {
                 get: function () { return this.internal.opportunity_customer_contacts; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".contact.opportunity_customer_contacts must be an Array of " + NS + ".opportunity.");
-                    }
-                        this.addChangedProperty("opportunity_customer_contacts");
-                    this.internal.opportunity_customer_contacts = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_customer_contacts", value) },
                 enumerable: true,
             },
             "opportunity_parent_contact": {
                 get: function () { return this.internal.opportunity_parent_contact; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".contact.opportunity_parent_contact must be an Array of " + NS + ".opportunity.");
-                    }
-                        this.addChangedProperty("opportunity_parent_contact");
-                    this.internal.opportunity_parent_contact = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_parent_contact", value) },
                 enumerable: true,
             }
         });
@@ -891,35 +641,41 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.contact.prototype = Object.create(this.crmbaseentity.prototype);
-this.contact.isEntityClass = true;
-this.contact.prototype.type = "contact";
-this.contact.prototype.primaryKey = "contactid";
-this.contact.prototype.entitySetName = "contacts";
-this.contact.prototype.properties = Object.freeze({            annualincome:{ name:"annualincome", type:"Number"},
-            contactid:{ name:"contactid", type:"Guid"},
-            createdon:{ name:"createdon", type:"Date"},
-            description:{ name:"description", type:"String"},
-            firstname:{ name:"firstname", type:"String"},
-            fullname:{ name:"fullname", type:"String"},
-            jobtitle:{ name:"jobtitle", type:"String"},
-            lastname:{ name:"lastname", type:"String"},
-            telephone1:{ name:"telephone1", type:"String"}});
-this.contact.prototype.lookups = Object.freeze({            masterid:{ name:"masterid", type:"contact"},
-            parentcustomerid_account:{ name:"parentcustomerid_account", type:"account"},
-            parentcustomerid_contact:{ name:"parentcustomerid_contact", type:"contact"}});
-this.contact.prototype.collections = Object.freeze({            account_primary_contact:{ name:"account_primary_contact", type:"account"},
-            Contact_ActivityPointers:{ name:"Contact_ActivityPointers", type:"activitypointer"},
-            Contact_Annotation:{ name:"Contact_Annotation", type:"annotation"},
-            contact_as_primary_contact:{ name:"contact_as_primary_contact", type:"incident"},
-            contact_as_responsible_contact:{ name:"contact_as_responsible_contact", type:"incident"},
-            contact_customer_contacts:{ name:"contact_customer_contacts", type:"contact"},
-            Contact_Letters:{ name:"Contact_Letters", type:"letter"},
-            contact_master_contact:{ name:"contact_master_contact", type:"contact"},
-            Contact_Tasks:{ name:"Contact_Tasks", type:"task"},
-            incident_customer_contacts:{ name:"incident_customer_contacts", type:"incident"},
-            opportunity_customer_contacts:{ name:"opportunity_customer_contacts", type:"opportunity"},
-            opportunity_parent_contact:{ name:"opportunity_parent_contact", type:"opportunity"}});
+    this.contact.prototype = Object.create(this.crmbaseentity.prototype);
+    this.contact.isEntityClass = true;
+    this.contact.prototype.type = "contact";
+    this.contact.prototype.primaryKey = "contactid";
+    this.contact.prototype.entitySetName = "contacts";
+    this.contact.prototype.properties = Object.freeze({
+        annualincome: { name: "annualincome", type: "Number" },
+        contactid: { name: "contactid", type: "Guid" },
+        createdon: { name: "createdon", type: "Date" },
+        description: { name: "description", type: "String" },
+        firstname: { name: "firstname", type: "String" },
+        fullname: { name: "fullname", type: "String" },
+        jobtitle: { name: "jobtitle", type: "String" },
+        lastname: { name: "lastname", type: "String" },
+        telephone1: { name: "telephone1", type: "String" }
+    });
+    this.contact.prototype.lookups = Object.freeze({
+        masterid: { name: "masterid", type: Sdk.Sample.contact },
+        parentcustomerid_account: { name: "parentcustomerid_account", type: Sdk.Sample.account },
+        parentcustomerid_contact: { name: "parentcustomerid_contact", type: Sdk.Sample.contact }
+    });
+    this.contact.prototype.collections = Object.freeze({
+        account_primary_contact: { name: "account_primary_contact", type: Sdk.Sample.account },
+        Contact_ActivityPointers: { name: "Contact_ActivityPointers", type: Sdk.Sample.activitypointer },
+        Contact_Annotation: { name: "Contact_Annotation", type: Sdk.Sample.annotation },
+        contact_as_primary_contact: { name: "contact_as_primary_contact", type: Sdk.Sample.incident },
+        contact_as_responsible_contact: { name: "contact_as_responsible_contact", type: Sdk.Sample.incident },
+        contact_customer_contacts: { name: "contact_customer_contacts", type: Sdk.Sample.contact },
+        Contact_Letters: { name: "Contact_Letters", type: Sdk.Sample.letter },
+        contact_master_contact: { name: "contact_master_contact", type: Sdk.Sample.contact },
+        Contact_Tasks: { name: "Contact_Tasks", type: Sdk.Sample.task },
+        incident_customer_contacts: { name: "incident_customer_contacts", type: Sdk.Sample.incident },
+        opportunity_customer_contacts: { name: "opportunity_customer_contacts", type: Sdk.Sample.opportunity },
+        opportunity_parent_contact: { name: "opportunity_parent_contact", type: Sdk.Sample.opportunity }
+    });
 
     /**
     @method parentcustomerid_accountUri
@@ -930,7 +686,7 @@ this.contact.prototype.collections = Object.freeze({            account_primary_
     this.contact.prototype.parentcustomerid_accountUri = function (uri) {
         this["parentcustomerid_account@odata.bind"] = uri;
     }
-                
+
     /**
     @method parentcustomerid_contactUri
     @memberof Sdk.Sample.contact
@@ -940,253 +696,124 @@ this.contact.prototype.collections = Object.freeze({            account_primary_
     this.contact.prototype.parentcustomerid_contactUri = function (uri) {
         this["parentcustomerid_contact@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.account
-@extends Sdk.Sample.crmbaseentity
-@description Business that represents a customer or potential customer. The company that is billed in business transactions.
-@param {String|Object}[accountReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.account = function (accountReference) {
-if (!(isInstanceOf(Sdk.Sample.account, this))) {
-    return new Sdk.Sample.account(accountReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.account
+    @extends Sdk.Sample.crmbaseentity
+    @description Business that represents a customer or potential customer. The company that is billed in business transactions.
+    @param {String|Object}[accountReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.account = function (accountReference) {
+        if (!(isInstanceOf(Sdk.Sample.account, this))) {
+            return new Sdk.Sample.account(accountReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "accountid": {
                 get: function () { return this.internal.accountid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".account accountid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.accountid != value)
-                    {
-                        this.addChangedProperty("accountid");
-                        this.internal.accountid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "accountid", value) },
                 enumerable: true
             },
             "description": {
                 get: function () { return this.internal.description; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".account description property must be a String value or null.");
-                    }
-                    if (this.internal.description != value)
-                    {
-                        this.addChangedProperty("description");
-                        this.internal.description = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "description", value) },
                 enumerable: true
             },
             "name": {
                 get: function () { return this.internal.name; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".account name property must be a String value or null.");
-                    }
-                    if (this.internal.name != value)
-                    {
-                        this.addChangedProperty("name");
-                        this.internal.name = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "name", value) },
                 enumerable: true
             },
             "revenue": {
                 get: function () { return this.internal.revenue; },
-                set: function (value) {
-                    if (!isNumberOrNull(value)) {
-                        throw new Error(NS + ".account revenue property must be a Number value or null.");
-                    }
-                    if (this.internal.revenue != value)
-                    {
-                        this.addChangedProperty("revenue");
-                        this.internal.revenue = noChange(value);
-                    }
-                },
+                set: function (value) { setNumberOrNullProperty(this, "revenue", value) },
                 enumerable: true
             },
             "telephone1": {
                 get: function () { return this.internal.telephone1; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".account telephone1 property must be a String value or null.");
-                    }
-                    if (this.internal.telephone1 != value)
-                    {
-                        this.addChangedProperty("telephone1");
-                        this.internal.telephone1 = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "telephone1", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
+            //Single-valued Navigation Properties,
             "masterid": {
                 get: function () { return this.internal.masterid; },
                 enumerable: true
             },
             "parentaccountid": {
                 get: function () { return this.internal.parentaccountid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".account.parentaccountid must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("parentaccountid");
-                    this.internal.parentaccountid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "parentaccountid", value) },
                 enumerable: true
             },
             "parentaccountid@odata.bind": {
                 get: function () { return this.internal.parentaccountidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".account.parentaccountid@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("parentaccountid@odata.bind");
-                    this.internal.parentaccountidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "parentaccountid", value) },
                 enumerable: true
             },
             "primarycontactid": {
                 get: function () { return this.internal.primarycontactid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".account.primarycontactid must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("primarycontactid");
-                    this.internal.primarycontactid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
             "primarycontactid@odata.bind": {
                 get: function () { return this.internal.primarycontactidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".account.primarycontactid@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("primarycontactid@odata.bind");
-                    this.internal.primarycontactidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "Account_ActivityPointers": {
                 get: function () { return this.internal.Account_ActivityPointers; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".account.Account_ActivityPointers must be an Array of " + NS + ".activitypointer.");
-                    }
-                        this.addChangedProperty("Account_ActivityPointers");
-                    this.internal.Account_ActivityPointers = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Account_ActivityPointers", value) },
                 enumerable: true,
             },
             "Account_Annotation": {
                 get: function () { return this.internal.Account_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".account.Account_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("Account_Annotation");
-                    this.internal.Account_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Account_Annotation", value) },
                 enumerable: true,
             },
             "Account_Letters": {
                 get: function () { return this.internal.Account_Letters; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.letter, value)) {
-                        throw new Error(NS + ".account.Account_Letters must be an Array of " + NS + ".letter.");
-                    }
-                        this.addChangedProperty("Account_Letters");
-                    this.internal.Account_Letters = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Account_Letters", value) },
                 enumerable: true,
             },
             "account_master_account": {
                 get: function () { return this.internal.account_master_account; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".account.account_master_account must be an Array of " + NS + ".account.");
-                    }
-                        this.addChangedProperty("account_master_account");
-                    this.internal.account_master_account = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.account, "account", this, "account_master_account", value) },
                 enumerable: true,
             },
             "account_parent_account": {
                 get: function () { return this.internal.account_parent_account; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".account.account_parent_account must be an Array of " + NS + ".account.");
-                    }
-                        this.addChangedProperty("account_parent_account");
-                    this.internal.account_parent_account = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.account, "account", this, "account_parent_account", value) },
                 enumerable: true,
             },
             "Account_Tasks": {
                 get: function () { return this.internal.Account_Tasks; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.task, value)) {
-                        throw new Error(NS + ".account.Account_Tasks must be an Array of " + NS + ".task.");
-                    }
-                        this.addChangedProperty("Account_Tasks");
-                    this.internal.Account_Tasks = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Account_Tasks", value) },
                 enumerable: true,
             },
             "contact_customer_accounts": {
                 get: function () { return this.internal.contact_customer_accounts; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".account.contact_customer_accounts must be an Array of " + NS + ".contact.");
-                    }
-                        this.addChangedProperty("contact_customer_accounts");
-                    this.internal.contact_customer_accounts = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.contact, "contact", this, "contact_customer_accounts", value) },
                 enumerable: true,
             },
             "incident_customer_accounts": {
                 get: function () { return this.internal.incident_customer_accounts; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".account.incident_customer_accounts must be an Array of " + NS + ".incident.");
-                    }
-                        this.addChangedProperty("incident_customer_accounts");
-                    this.internal.incident_customer_accounts = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_customer_accounts", value) },
                 enumerable: true,
             },
             "opportunity_customer_accounts": {
                 get: function () { return this.internal.opportunity_customer_accounts; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".account.opportunity_customer_accounts must be an Array of " + NS + ".opportunity.");
-                    }
-                        this.addChangedProperty("opportunity_customer_accounts");
-                    this.internal.opportunity_customer_accounts = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_customer_accounts", value) },
                 enumerable: true,
             },
             "opportunity_parent_account": {
                 get: function () { return this.internal.opportunity_parent_account; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".account.opportunity_parent_account must be an Array of " + NS + ".opportunity.");
-                    }
-                        this.addChangedProperty("opportunity_parent_account");
-                    this.internal.opportunity_parent_account = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_parent_account", value) },
                 enumerable: true,
             }
         });
@@ -1196,29 +823,35 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.account.prototype = Object.create(this.crmbaseentity.prototype);
-this.account.isEntityClass = true;
-this.account.prototype.type = "account";
-this.account.prototype.primaryKey = "accountid";
-this.account.prototype.entitySetName = "accounts";
-this.account.prototype.properties = Object.freeze({            accountid:{ name:"accountid", type:"Guid"},
-            description:{ name:"description", type:"String"},
-            name:{ name:"name", type:"String"},
-            revenue:{ name:"revenue", type:"Number"},
-            telephone1:{ name:"telephone1", type:"String"}});
-this.account.prototype.lookups = Object.freeze({            masterid:{ name:"masterid", type:"account"},
-            parentaccountid:{ name:"parentaccountid", type:"account"},
-            primarycontactid:{ name:"primarycontactid", type:"contact"}});
-this.account.prototype.collections = Object.freeze({            Account_ActivityPointers:{ name:"Account_ActivityPointers", type:"activitypointer"},
-            Account_Annotation:{ name:"Account_Annotation", type:"annotation"},
-            Account_Letters:{ name:"Account_Letters", type:"letter"},
-            account_master_account:{ name:"account_master_account", type:"account"},
-            account_parent_account:{ name:"account_parent_account", type:"account"},
-            Account_Tasks:{ name:"Account_Tasks", type:"task"},
-            contact_customer_accounts:{ name:"contact_customer_accounts", type:"contact"},
-            incident_customer_accounts:{ name:"incident_customer_accounts", type:"incident"},
-            opportunity_customer_accounts:{ name:"opportunity_customer_accounts", type:"opportunity"},
-            opportunity_parent_account:{ name:"opportunity_parent_account", type:"opportunity"}});
+    this.account.prototype = Object.create(this.crmbaseentity.prototype);
+    this.account.isEntityClass = true;
+    this.account.prototype.type = "account";
+    this.account.prototype.primaryKey = "accountid";
+    this.account.prototype.entitySetName = "accounts";
+    this.account.prototype.properties = Object.freeze({
+        accountid: { name: "accountid", type: "Guid" },
+        description: { name: "description", type: "String" },
+        name: { name: "name", type: "String" },
+        revenue: { name: "revenue", type: "Number" },
+        telephone1: { name: "telephone1", type: "String" }
+    });
+    this.account.prototype.lookups = Object.freeze({
+        masterid: { name: "masterid", type: Sdk.Sample.account },
+        parentaccountid: { name: "parentaccountid", type: Sdk.Sample.account },
+        primarycontactid: { name: "primarycontactid", type: Sdk.Sample.contact }
+    });
+    this.account.prototype.collections = Object.freeze({
+        Account_ActivityPointers: { name: "Account_ActivityPointers", type: Sdk.Sample.activitypointer },
+        Account_Annotation: { name: "Account_Annotation", type: Sdk.Sample.annotation },
+        Account_Letters: { name: "Account_Letters", type: Sdk.Sample.letter },
+        account_master_account: { name: "account_master_account", type: Sdk.Sample.account },
+        account_parent_account: { name: "account_parent_account", type: Sdk.Sample.account },
+        Account_Tasks: { name: "Account_Tasks", type: Sdk.Sample.task },
+        contact_customer_accounts: { name: "contact_customer_accounts", type: Sdk.Sample.contact },
+        incident_customer_accounts: { name: "incident_customer_accounts", type: Sdk.Sample.incident },
+        opportunity_customer_accounts: { name: "opportunity_customer_accounts", type: Sdk.Sample.opportunity },
+        opportunity_parent_account: { name: "opportunity_parent_account", type: Sdk.Sample.opportunity }
+    });
 
     /**
     @method parentaccountidUri
@@ -1229,7 +862,7 @@ this.account.prototype.collections = Object.freeze({            Account_Activity
     this.account.prototype.parentaccountidUri = function (uri) {
         this["parentaccountid@odata.bind"] = uri;
     }
-                
+
     /**
     @method primarycontactidUri
     @memberof Sdk.Sample.account
@@ -1239,157 +872,85 @@ this.account.prototype.collections = Object.freeze({            Account_Activity
     this.account.prototype.primarycontactidUri = function (uri) {
         this["primarycontactid@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.task
-@extends Sdk.Sample.activitypointer
-@description Generic activity representing work needed to be done.
-@param {String|Object}[taskReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.task = function (taskReference) {
-if (!(isInstanceOf(Sdk.Sample.task, this))) {
-    return new Sdk.Sample.task(taskReference);
-}
-Sdk.Sample.activitypointer.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.task
+    @extends Sdk.Sample.activitypointer
+    @description Generic activity representing work needed to be done.
+    @param {String|Object}[taskReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.task = function (taskReference) {
+        if (!(isInstanceOf(Sdk.Sample.task, this))) {
+            return new Sdk.Sample.task(taskReference);
+        }
+        Sdk.Sample.activitypointer.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
-    //Single-valued Navigation Properties,
+            //Properties,
+            //Single-valued Navigation Properties,
             "activityid_activitypointer": {
                 get: function () { return this.internal.activityid_activitypointer; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".task.activityid_activitypointer must be a " + NS + ".activitypointer value.");
-                    }
-                    this.addChangedProperty("activityid_activitypointer");
-                    this.internal.activityid_activitypointer = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "activityid_activitypointer@odata.bind": {
                 get: function () { return this.internal.activityid_activitypointerUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.activitypointer,value)) {
-                        throw new Error(NS + ".task.activityid_activitypointer@odata.bind must be a URI for an "+NS+".activitypointer.");
-                    }
-                    this.addChangedProperty("activityid_activitypointer@odata.bind");
-                    this.internal.activityid_activitypointerUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "regardingobjectid_account_task": {
                 get: function () { return this.internal.regardingobjectid_account_task; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".task.regardingobjectid_account_task must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_account_task");
-                    this.internal.regardingobjectid_account_task = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "regardingobjectid_account_task", value) },
                 enumerable: true
             },
             "regardingobjectid_account_task@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_account_taskUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".task.regardingobjectid_account_task@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("regardingobjectid_account_task@odata.bind");
-                    this.internal.regardingobjectid_account_taskUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "regardingobjectid_account_task", value) },
                 enumerable: true
             },
             "regardingobjectid_contact_task": {
                 get: function () { return this.internal.regardingobjectid_contact_task; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".task.regardingobjectid_contact_task must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_contact_task");
-                    this.internal.regardingobjectid_contact_task = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_task", value) },
                 enumerable: true
             },
             "regardingobjectid_contact_task@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_contact_taskUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".task.regardingobjectid_contact_task@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("regardingobjectid_contact_task@odata.bind");
-                    this.internal.regardingobjectid_contact_taskUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_task", value) },
                 enumerable: true
             },
             "regardingobjectid_incident_task": {
                 get: function () { return this.internal.regardingobjectid_incident_task; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".task.regardingobjectid_incident_task must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_incident_task");
-                    this.internal.regardingobjectid_incident_task = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_task", value) },
                 enumerable: true
             },
             "regardingobjectid_incident_task@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_incident_taskUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".task.regardingobjectid_incident_task@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("regardingobjectid_incident_task@odata.bind");
-                    this.internal.regardingobjectid_incident_taskUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_task", value) },
                 enumerable: true
             },
             "regardingobjectid_opportunity_task": {
                 get: function () { return this.internal.regardingobjectid_opportunity_task; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".task.regardingobjectid_opportunity_task must be a " + NS + ".opportunity value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_opportunity_task");
-                    this.internal.regardingobjectid_opportunity_task = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_task", value) },
                 enumerable: true
             },
             "regardingobjectid_opportunity_task@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_opportunity_taskUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.opportunity,value)) {
-                        throw new Error(NS + ".task.regardingobjectid_opportunity_task@odata.bind must be a URI for an "+NS+".opportunity.");
-                    }
-                    this.addChangedProperty("regardingobjectid_opportunity_task@odata.bind");
-                    this.internal.regardingobjectid_opportunity_taskUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_task", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "Task_Annotation": {
                 get: function () { return this.internal.Task_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".task.Task_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("Task_Annotation");
-                    this.internal.Task_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Task_Annotation", value) },
                 enumerable: true,
             },
             "Task_QueueItem": {
                 get: function () { return this.internal.Task_QueueItem; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.queueitem, value)) {
-                        throw new Error(NS + ".task.Task_QueueItem must be an Array of " + NS + ".queueitem.");
-                    }
-                        this.addChangedProperty("Task_QueueItem");
-                    this.internal.Task_QueueItem = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "Task_QueueItem", value) },
                 enumerable: true,
             }
         });
@@ -1399,32 +960,38 @@ Sdk.Sample.activitypointer.call(this);
         }
         return Object.seal(this);
     }
-this.task.prototype = Object.create(this.activitypointer.prototype);
-this.task.isEntityClass = true;
-this.task.prototype.type = "task";
-this.task.prototype.primaryKey = "activityid";
-this.task.prototype.entitySetName = "tasks";
-this.task.prototype.properties = Object.freeze({            activityid:{ name:"activityid", type:"Guid"},
-            actualdurationminutes:{ name:"actualdurationminutes", type:"Number"},
-            description:{ name:"description", type:"String"},
-            scheduledend:{ name:"scheduledend", type:"Date"},
-            scheduledstart:{ name:"scheduledstart", type:"Date"},
-            subject:{ name:"subject", type:"String"}});
-this.task.prototype.lookups = Object.freeze({            regardingobjectid_account:{ name:"regardingobjectid_account", type:"account"},
-            regardingobjectid_contact:{ name:"regardingobjectid_contact", type:"contact"},
-            regardingobjectid_incident:{ name:"regardingobjectid_incident", type:"incident"},
-            regardingobjectid_opportunity:{ name:"regardingobjectid_opportunity", type:"opportunity"},
-            activityid_activitypointer:{ name:"activityid_activitypointer", type:"activitypointer"},
-            regardingobjectid_account_task:{ name:"regardingobjectid_account_task", type:"account"},
-            regardingobjectid_contact_task:{ name:"regardingobjectid_contact_task", type:"contact"},
-            regardingobjectid_incident_task:{ name:"regardingobjectid_incident_task", type:"incident"},
-            regardingobjectid_opportunity_task:{ name:"regardingobjectid_opportunity_task", type:"opportunity"}});
-this.task.prototype.collections = Object.freeze({            activity_pointer_letter:{ name:"activity_pointer_letter", type:"letter"},
-            activity_pointer_opportunity_close:{ name:"activity_pointer_opportunity_close", type:"opportunityclose"},
-            activity_pointer_task:{ name:"activity_pointer_task", type:"task"},
-            ActivityPointer_QueueItem:{ name:"ActivityPointer_QueueItem", type:"queueitem"},
-            Task_Annotation:{ name:"Task_Annotation", type:"annotation"},
-            Task_QueueItem:{ name:"Task_QueueItem", type:"queueitem"}});
+    this.task.prototype = Object.create(this.activitypointer.prototype);
+    this.task.isEntityClass = true;
+    this.task.prototype.type = "task";
+    this.task.prototype.primaryKey = "activityid";
+    this.task.prototype.entitySetName = "tasks";
+    this.task.prototype.properties = Object.freeze({
+        activityid: { name: "activityid", type: "Guid" },
+        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        description: { name: "description", type: "String" },
+        scheduledend: { name: "scheduledend", type: "Date" },
+        scheduledstart: { name: "scheduledstart", type: "Date" },
+        subject: { name: "subject", type: "String" }
+    });
+    this.task.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
+        regardingobjectid_account_task: { name: "regardingobjectid_account_task", type: Sdk.Sample.account },
+        regardingobjectid_contact_task: { name: "regardingobjectid_contact_task", type: Sdk.Sample.contact },
+        regardingobjectid_incident_task: { name: "regardingobjectid_incident_task", type: Sdk.Sample.incident },
+        regardingobjectid_opportunity_task: { name: "regardingobjectid_opportunity_task", type: Sdk.Sample.opportunity }
+    });
+    this.task.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
+        Task_Annotation: { name: "Task_Annotation", type: Sdk.Sample.annotation },
+        Task_QueueItem: { name: "Task_QueueItem", type: Sdk.Sample.queueitem }
+    });
 
     /**
     @method activityid_activitypointerUri
@@ -1435,7 +1002,7 @@ this.task.prototype.collections = Object.freeze({            activity_pointer_le
     this.task.prototype.activityid_activitypointerUri = function (uri) {
         this["activityid_activitypointer@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_account_taskUri
     @memberof Sdk.Sample.task
@@ -1445,7 +1012,7 @@ this.task.prototype.collections = Object.freeze({            activity_pointer_le
     this.task.prototype.regardingobjectid_account_taskUri = function (uri) {
         this["regardingobjectid_account_task@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_contact_taskUri
     @memberof Sdk.Sample.task
@@ -1455,7 +1022,7 @@ this.task.prototype.collections = Object.freeze({            activity_pointer_le
     this.task.prototype.regardingobjectid_contact_taskUri = function (uri) {
         this["regardingobjectid_contact_task@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_incident_taskUri
     @memberof Sdk.Sample.task
@@ -1465,7 +1032,7 @@ this.task.prototype.collections = Object.freeze({            activity_pointer_le
     this.task.prototype.regardingobjectid_incident_taskUri = function (uri) {
         this["regardingobjectid_incident_task@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_opportunity_taskUri
     @memberof Sdk.Sample.task
@@ -1475,100 +1042,55 @@ this.task.prototype.collections = Object.freeze({            activity_pointer_le
     this.task.prototype.regardingobjectid_opportunity_taskUri = function (uri) {
         this["regardingobjectid_opportunity_task@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.competitor
-@extends Sdk.Sample.crmbaseentity
-@description Business competing for the sale represented by a lead or opportunity.
-@param {String|Object}[competitorReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.competitor = function (competitorReference) {
-if (!(isInstanceOf(Sdk.Sample.competitor, this))) {
-    return new Sdk.Sample.competitor(competitorReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.competitor
+    @extends Sdk.Sample.crmbaseentity
+    @description Business competing for the sale represented by a lead or opportunity.
+    @param {String|Object}[competitorReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.competitor = function (competitorReference) {
+        if (!(isInstanceOf(Sdk.Sample.competitor, this))) {
+            return new Sdk.Sample.competitor(competitorReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "competitorid": {
                 get: function () { return this.internal.competitorid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".competitor competitorid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.competitorid != value)
-                    {
-                        this.addChangedProperty("competitorid");
-                        this.internal.competitorid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "competitorid", value) },
                 enumerable: true
             },
             "name": {
                 get: function () { return this.internal.name; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".competitor name property must be a String value or null.");
-                    }
-                    if (this.internal.name != value)
-                    {
-                        this.addChangedProperty("name");
-                        this.internal.name = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "name", value) },
                 enumerable: true
             },
             "strengths": {
                 get: function () { return this.internal.strengths; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".competitor strengths property must be a String value or null.");
-                    }
-                    if (this.internal.strengths != value)
-                    {
-                        this.addChangedProperty("strengths");
-                        this.internal.strengths = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "strengths", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
-    //Collection-Valued Navigation Properties,
+            //Single-valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "Competitor_Annotation": {
                 get: function () { return this.internal.Competitor_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".competitor.Competitor_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("Competitor_Annotation");
-                    this.internal.Competitor_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Competitor_Annotation", value) },
                 enumerable: true,
             },
             "competitor_opportunity_activities": {
                 get: function () { return this.internal.competitor_opportunity_activities; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunityclose, value)) {
-                        throw new Error(NS + ".competitor.competitor_opportunity_activities must be an Array of " + NS + ".opportunityclose.");
-                    }
-                        this.addChangedProperty("competitor_opportunity_activities");
-                    this.internal.competitor_opportunity_activities = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "competitor_opportunity_activities", value) },
                 enumerable: true,
             },
             "opportunitycompetitors_association": {
                 get: function () { return this.internal.opportunitycompetitors_association; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".competitor.opportunitycompetitors_association must be an Array of " + NS + ".opportunity.");
-                    }
-                        this.addChangedProperty("opportunitycompetitors_association");
-                    this.internal.opportunitycompetitors_association = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunitycompetitors_association", value) },
                 enumerable: true,
             }
         });
@@ -1578,233 +1100,126 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.competitor.prototype = Object.create(this.crmbaseentity.prototype);
-this.competitor.isEntityClass = true;
-this.competitor.prototype.type = "competitor";
-this.competitor.prototype.primaryKey = "competitorid";
-this.competitor.prototype.entitySetName = "competitors";
-this.competitor.prototype.properties = Object.freeze({            competitorid:{ name:"competitorid", type:"Guid"},
-            name:{ name:"name", type:"String"},
-            strengths:{ name:"strengths", type:"String"}});
-this.competitor.prototype.lookups = Object.freeze({});
-this.competitor.prototype.collections = Object.freeze({            Competitor_Annotation:{ name:"Competitor_Annotation", type:"annotation"},
-            competitor_opportunity_activities:{ name:"competitor_opportunity_activities", type:"opportunityclose"},
-            opportunitycompetitors_association:{ name:"opportunitycompetitors_association", type:"opportunity"}});
+    this.competitor.prototype = Object.create(this.crmbaseentity.prototype);
+    this.competitor.isEntityClass = true;
+    this.competitor.prototype.type = "competitor";
+    this.competitor.prototype.primaryKey = "competitorid";
+    this.competitor.prototype.entitySetName = "competitors";
+    this.competitor.prototype.properties = Object.freeze({
+        competitorid: { name: "competitorid", type: "Guid" },
+        name: { name: "name", type: "String" },
+        strengths: { name: "strengths", type: "String" }
+    });
+    this.competitor.prototype.lookups = Object.freeze({});
+    this.competitor.prototype.collections = Object.freeze({
+        Competitor_Annotation: { name: "Competitor_Annotation", type: Sdk.Sample.annotation },
+        competitor_opportunity_activities: { name: "competitor_opportunity_activities", type: Sdk.Sample.opportunityclose },
+        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: Sdk.Sample.opportunity }
+    });
 
-/**
-@typeref {object} Sdk.Sample.opportunity
-@extends Sdk.Sample.crmbaseentity
-@description Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
-@param {String|Object}[opportunityReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.opportunity = function (opportunityReference) {
-if (!(isInstanceOf(Sdk.Sample.opportunity, this))) {
-    return new Sdk.Sample.opportunity(opportunityReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+    /**
+    @typeref {object} Sdk.Sample.opportunity
+    @extends Sdk.Sample.crmbaseentity
+    @description Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
+    @param {String|Object}[opportunityReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.opportunity = function (opportunityReference) {
+        if (!(isInstanceOf(Sdk.Sample.opportunity, this))) {
+            return new Sdk.Sample.opportunity(opportunityReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "description": {
                 get: function () { return this.internal.description; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".opportunity description property must be a String value or null.");
-                    }
-                    if (this.internal.description != value)
-                    {
-                        this.addChangedProperty("description");
-                        this.internal.description = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "description", value) },
                 enumerable: true
             },
             "name": {
                 get: function () { return this.internal.name; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".opportunity name property must be a String value or null.");
-                    }
-                    if (this.internal.name != value)
-                    {
-                        this.addChangedProperty("name");
-                        this.internal.name = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "name", value) },
                 enumerable: true
             },
             "opportunityid": {
                 get: function () { return this.internal.opportunityid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".opportunity opportunityid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.opportunityid != value)
-                    {
-                        this.addChangedProperty("opportunityid");
-                        this.internal.opportunityid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "opportunityid", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
+            //Single-valued Navigation Properties,
             "customerid_account": {
                 get: function () { return this.internal.customerid_account; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".opportunity.customerid_account must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("customerid_account");
-                    this.internal.customerid_account = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "customerid_account", value) },
                 enumerable: true
             },
             "customerid_account@odata.bind": {
                 get: function () { return this.internal.customerid_accountUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".opportunity.customerid_account@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("customerid_account@odata.bind");
-                    this.internal.customerid_accountUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "customerid_account", value) },
                 enumerable: true
             },
             "customerid_contact": {
                 get: function () { return this.internal.customerid_contact; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".opportunity.customerid_contact must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("customerid_contact");
-                    this.internal.customerid_contact = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
                 enumerable: true
             },
             "customerid_contact@odata.bind": {
                 get: function () { return this.internal.customerid_contactUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".opportunity.customerid_contact@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("customerid_contact@odata.bind");
-                    this.internal.customerid_contactUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
                 enumerable: true
             },
             "parentaccountid": {
                 get: function () { return this.internal.parentaccountid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".opportunity.parentaccountid must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("parentaccountid");
-                    this.internal.parentaccountid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "parentaccountid", value) },
                 enumerable: true
             },
             "parentaccountid@odata.bind": {
                 get: function () { return this.internal.parentaccountidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".opportunity.parentaccountid@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("parentaccountid@odata.bind");
-                    this.internal.parentaccountidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "parentaccountid", value) },
                 enumerable: true
             },
             "parentcontactid": {
                 get: function () { return this.internal.parentcontactid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".opportunity.parentcontactid must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("parentcontactid");
-                    this.internal.parentcontactid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "parentcontactid", value) },
                 enumerable: true
             },
             "parentcontactid@odata.bind": {
                 get: function () { return this.internal.parentcontactidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".opportunity.parentcontactid@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("parentcontactid@odata.bind");
-                    this.internal.parentcontactidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "parentcontactid", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "Opportunity_ActivityPointers": {
                 get: function () { return this.internal.Opportunity_ActivityPointers; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".opportunity.Opportunity_ActivityPointers must be an Array of " + NS + ".activitypointer.");
-                    }
-                        this.addChangedProperty("Opportunity_ActivityPointers");
-                    this.internal.Opportunity_ActivityPointers = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Opportunity_ActivityPointers", value) },
                 enumerable: true,
             },
             "Opportunity_Annotation": {
                 get: function () { return this.internal.Opportunity_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".opportunity.Opportunity_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("Opportunity_Annotation");
-                    this.internal.Opportunity_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Opportunity_Annotation", value) },
                 enumerable: true,
             },
             "Opportunity_Letters": {
                 get: function () { return this.internal.Opportunity_Letters; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.letter, value)) {
-                        throw new Error(NS + ".opportunity.Opportunity_Letters must be an Array of " + NS + ".letter.");
-                    }
-                        this.addChangedProperty("Opportunity_Letters");
-                    this.internal.Opportunity_Letters = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Opportunity_Letters", value) },
                 enumerable: true,
             },
             "Opportunity_OpportunityClose": {
                 get: function () { return this.internal.Opportunity_OpportunityClose; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.opportunityclose, value)) {
-                        throw new Error(NS + ".opportunity.Opportunity_OpportunityClose must be an Array of " + NS + ".opportunityclose.");
-                    }
-                        this.addChangedProperty("Opportunity_OpportunityClose");
-                    this.internal.Opportunity_OpportunityClose = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "Opportunity_OpportunityClose", value) },
                 enumerable: true,
             },
             "Opportunity_Tasks": {
                 get: function () { return this.internal.Opportunity_Tasks; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.task, value)) {
-                        throw new Error(NS + ".opportunity.Opportunity_Tasks must be an Array of " + NS + ".task.");
-                    }
-                        this.addChangedProperty("Opportunity_Tasks");
-                    this.internal.Opportunity_Tasks = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Opportunity_Tasks", value) },
                 enumerable: true,
             },
             "opportunitycompetitors_association": {
                 get: function () { return this.internal.opportunitycompetitors_association; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.competitor, value)) {
-                        throw new Error(NS + ".opportunity.opportunitycompetitors_association must be an Array of " + NS + ".competitor.");
-                    }
-                        this.addChangedProperty("opportunitycompetitors_association");
-                    this.internal.opportunitycompetitors_association = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.competitor, "competitor", this, "opportunitycompetitors_association", value) },
                 enumerable: true,
             }
         });
@@ -1814,24 +1229,30 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.opportunity.prototype = Object.create(this.crmbaseentity.prototype);
-this.opportunity.isEntityClass = true;
-this.opportunity.prototype.type = "opportunity";
-this.opportunity.prototype.primaryKey = "opportunityid";
-this.opportunity.prototype.entitySetName = "opportunities";
-this.opportunity.prototype.properties = Object.freeze({            description:{ name:"description", type:"String"},
-            name:{ name:"name", type:"String"},
-            opportunityid:{ name:"opportunityid", type:"Guid"}});
-this.opportunity.prototype.lookups = Object.freeze({            customerid_account:{ name:"customerid_account", type:"account"},
-            customerid_contact:{ name:"customerid_contact", type:"contact"},
-            parentaccountid:{ name:"parentaccountid", type:"account"},
-            parentcontactid:{ name:"parentcontactid", type:"contact"}});
-this.opportunity.prototype.collections = Object.freeze({            Opportunity_ActivityPointers:{ name:"Opportunity_ActivityPointers", type:"activitypointer"},
-            Opportunity_Annotation:{ name:"Opportunity_Annotation", type:"annotation"},
-            Opportunity_Letters:{ name:"Opportunity_Letters", type:"letter"},
-            Opportunity_OpportunityClose:{ name:"Opportunity_OpportunityClose", type:"opportunityclose"},
-            Opportunity_Tasks:{ name:"Opportunity_Tasks", type:"task"},
-            opportunitycompetitors_association:{ name:"opportunitycompetitors_association", type:"competitor"}});
+    this.opportunity.prototype = Object.create(this.crmbaseentity.prototype);
+    this.opportunity.isEntityClass = true;
+    this.opportunity.prototype.type = "opportunity";
+    this.opportunity.prototype.primaryKey = "opportunityid";
+    this.opportunity.prototype.entitySetName = "opportunities";
+    this.opportunity.prototype.properties = Object.freeze({
+        description: { name: "description", type: "String" },
+        name: { name: "name", type: "String" },
+        opportunityid: { name: "opportunityid", type: "Guid" }
+    });
+    this.opportunity.prototype.lookups = Object.freeze({
+        customerid_account: { name: "customerid_account", type: Sdk.Sample.account },
+        customerid_contact: { name: "customerid_contact", type: Sdk.Sample.contact },
+        parentaccountid: { name: "parentaccountid", type: Sdk.Sample.account },
+        parentcontactid: { name: "parentcontactid", type: Sdk.Sample.contact }
+    });
+    this.opportunity.prototype.collections = Object.freeze({
+        Opportunity_ActivityPointers: { name: "Opportunity_ActivityPointers", type: Sdk.Sample.activitypointer },
+        Opportunity_Annotation: { name: "Opportunity_Annotation", type: Sdk.Sample.annotation },
+        Opportunity_Letters: { name: "Opportunity_Letters", type: Sdk.Sample.letter },
+        Opportunity_OpportunityClose: { name: "Opportunity_OpportunityClose", type: Sdk.Sample.opportunityclose },
+        Opportunity_Tasks: { name: "Opportunity_Tasks", type: Sdk.Sample.task },
+        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: Sdk.Sample.competitor }
+    });
 
     /**
     @method customerid_accountUri
@@ -1842,7 +1263,7 @@ this.opportunity.prototype.collections = Object.freeze({            Opportunity_
     this.opportunity.prototype.customerid_accountUri = function (uri) {
         this["customerid_account@odata.bind"] = uri;
     }
-                
+
     /**
     @method customerid_contactUri
     @memberof Sdk.Sample.opportunity
@@ -1852,7 +1273,7 @@ this.opportunity.prototype.collections = Object.freeze({            Opportunity_
     this.opportunity.prototype.customerid_contactUri = function (uri) {
         this["customerid_contact@odata.bind"] = uri;
     }
-                
+
     /**
     @method parentaccountidUri
     @memberof Sdk.Sample.opportunity
@@ -1862,7 +1283,7 @@ this.opportunity.prototype.collections = Object.freeze({            Opportunity_
     this.opportunity.prototype.parentaccountidUri = function (uri) {
         this["parentaccountid@odata.bind"] = uri;
     }
-                
+
     /**
     @method parentcontactidUri
     @memberof Sdk.Sample.opportunity
@@ -1872,55 +1293,37 @@ this.opportunity.prototype.collections = Object.freeze({            Opportunity_
     this.opportunity.prototype.parentcontactidUri = function (uri) {
         this["parentcontactid@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.savedquery
-@extends Sdk.Sample.crmbaseentity
-@description Saved query against the database.
-@param {String|Object}[savedqueryReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.savedquery = function (savedqueryReference) {
-if (!(isInstanceOf(Sdk.Sample.savedquery, this))) {
-    return new Sdk.Sample.savedquery(savedqueryReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.savedquery
+    @extends Sdk.Sample.crmbaseentity
+    @description Saved query against the database.
+    @param {String|Object}[savedqueryReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.savedquery = function (savedqueryReference) {
+        if (!(isInstanceOf(Sdk.Sample.savedquery, this))) {
+            return new Sdk.Sample.savedquery(savedqueryReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "name": {
                 get: function () { return this.internal.name; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".savedquery name property must be a String value or null.");
-                    }
-                    if (this.internal.name != value)
-                    {
-                        this.addChangedProperty("name");
-                        this.internal.name = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "name", value) },
                 enumerable: true
             },
             "savedqueryid": {
                 get: function () { return this.internal.savedqueryid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".savedquery savedqueryid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.savedqueryid != value)
-                    {
-                        this.addChangedProperty("savedqueryid");
-                        this.internal.savedqueryid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "savedqueryid", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
-    //Collection-Valued Navigation Properties
+            //Single-valued Navigation Properties,
+            //Collection-Valued Navigation Properties
         });
 
         if (savedqueryReference) {
@@ -1928,64 +1331,48 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.savedquery.prototype = Object.create(this.crmbaseentity.prototype);
-this.savedquery.isEntityClass = true;
-this.savedquery.prototype.type = "savedquery";
-this.savedquery.prototype.primaryKey = "savedqueryid";
-this.savedquery.prototype.entitySetName = "savedqueries";
-this.savedquery.prototype.properties = Object.freeze({            name:{ name:"name", type:"String"},
-            savedqueryid:{ name:"savedqueryid", type:"Guid"}});
-this.savedquery.prototype.lookups = Object.freeze({});
-this.savedquery.prototype.collections = Object.freeze({});
+    this.savedquery.prototype = Object.create(this.crmbaseentity.prototype);
+    this.savedquery.isEntityClass = true;
+    this.savedquery.prototype.type = "savedquery";
+    this.savedquery.prototype.primaryKey = "savedqueryid";
+    this.savedquery.prototype.entitySetName = "savedqueries";
+    this.savedquery.prototype.properties = Object.freeze({
+        name: { name: "name", type: "String" },
+        savedqueryid: { name: "savedqueryid", type: "Guid" }
+    });
+    this.savedquery.prototype.lookups = Object.freeze({});
+    this.savedquery.prototype.collections = Object.freeze({});
 
-/**
-@typeref {object} Sdk.Sample.userquery
-@extends Sdk.Sample.crmbaseentity
-@description Saved database query that is owned by a user.
-@param {String|Object}[userqueryReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.userquery = function (userqueryReference) {
-if (!(isInstanceOf(Sdk.Sample.userquery, this))) {
-    return new Sdk.Sample.userquery(userqueryReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+    /**
+    @typeref {object} Sdk.Sample.userquery
+    @extends Sdk.Sample.crmbaseentity
+    @description Saved database query that is owned by a user.
+    @param {String|Object}[userqueryReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.userquery = function (userqueryReference) {
+        if (!(isInstanceOf(Sdk.Sample.userquery, this))) {
+            return new Sdk.Sample.userquery(userqueryReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "name": {
                 get: function () { return this.internal.name; },
-                set: function (value) {
-                    if (!isStringOrNull(value)) {
-                        throw new Error(NS + ".userquery name property must be a String value or null.");
-                    }
-                    if (this.internal.name != value)
-                    {
-                        this.addChangedProperty("name");
-                        this.internal.name = noChange(value);
-                    }
-                },
+                set: function (value) { setStringOrNullProperty(this, "name", value) },
                 enumerable: true
             },
             "userqueryid": {
                 get: function () { return this.internal.userqueryid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".userquery userqueryid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.userqueryid != value)
-                    {
-                        this.addChangedProperty("userqueryid");
-                        this.internal.userqueryid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "userqueryid", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
-    //Collection-Valued Navigation Properties
+            //Single-valued Navigation Properties,
+            //Collection-Valued Navigation Properties
         });
 
         if (userqueryReference) {
@@ -1993,166 +1380,96 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.userquery.prototype = Object.create(this.crmbaseentity.prototype);
-this.userquery.isEntityClass = true;
-this.userquery.prototype.type = "userquery";
-this.userquery.prototype.primaryKey = "userqueryid";
-this.userquery.prototype.entitySetName = "userqueries";
-this.userquery.prototype.properties = Object.freeze({            name:{ name:"name", type:"String"},
-            userqueryid:{ name:"userqueryid", type:"Guid"}});
-this.userquery.prototype.lookups = Object.freeze({});
-this.userquery.prototype.collections = Object.freeze({});
+    this.userquery.prototype = Object.create(this.crmbaseentity.prototype);
+    this.userquery.isEntityClass = true;
+    this.userquery.prototype.type = "userquery";
+    this.userquery.prototype.primaryKey = "userqueryid";
+    this.userquery.prototype.entitySetName = "userqueries";
+    this.userquery.prototype.properties = Object.freeze({
+        name: { name: "name", type: "String" },
+        userqueryid: { name: "userqueryid", type: "Guid" }
+    });
+    this.userquery.prototype.lookups = Object.freeze({});
+    this.userquery.prototype.collections = Object.freeze({});
 
-/**
-@typeref {object} Sdk.Sample.letter
-@extends Sdk.Sample.activitypointer
-@description Activity that tracks the delivery of a letter. The activity can contain the electronic copy of the letter.
-@param {String|Object}[letterReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.letter = function (letterReference) {
-if (!(isInstanceOf(Sdk.Sample.letter, this))) {
-    return new Sdk.Sample.letter(letterReference);
-}
-Sdk.Sample.activitypointer.call(this);
+    /**
+    @typeref {object} Sdk.Sample.letter
+    @extends Sdk.Sample.activitypointer
+    @description Activity that tracks the delivery of a letter. The activity can contain the electronic copy of the letter.
+    @param {String|Object}[letterReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.letter = function (letterReference) {
+        if (!(isInstanceOf(Sdk.Sample.letter, this))) {
+            return new Sdk.Sample.letter(letterReference);
+        }
+        Sdk.Sample.activitypointer.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
-    //Single-valued Navigation Properties,
+            //Properties,
+            //Single-valued Navigation Properties,
             "activityid_activitypointer": {
                 get: function () { return this.internal.activityid_activitypointer; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".letter.activityid_activitypointer must be a " + NS + ".activitypointer value.");
-                    }
-                    this.addChangedProperty("activityid_activitypointer");
-                    this.internal.activityid_activitypointer = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "activityid_activitypointer@odata.bind": {
                 get: function () { return this.internal.activityid_activitypointerUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.activitypointer,value)) {
-                        throw new Error(NS + ".letter.activityid_activitypointer@odata.bind must be a URI for an "+NS+".activitypointer.");
-                    }
-                    this.addChangedProperty("activityid_activitypointer@odata.bind");
-                    this.internal.activityid_activitypointerUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "regardingobjectid_account_letter": {
                 get: function () { return this.internal.regardingobjectid_account_letter; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_account_letter must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_account_letter");
-                    this.internal.regardingobjectid_account_letter = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "regardingobjectid_account_letter", value) },
                 enumerable: true
             },
             "regardingobjectid_account_letter@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_account_letterUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_account_letter@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("regardingobjectid_account_letter@odata.bind");
-                    this.internal.regardingobjectid_account_letterUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "regardingobjectid_account_letter", value) },
                 enumerable: true
             },
             "regardingobjectid_contact_letter": {
                 get: function () { return this.internal.regardingobjectid_contact_letter; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_contact_letter must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_contact_letter");
-                    this.internal.regardingobjectid_contact_letter = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_letter", value) },
                 enumerable: true
             },
             "regardingobjectid_contact_letter@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_contact_letterUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_contact_letter@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("regardingobjectid_contact_letter@odata.bind");
-                    this.internal.regardingobjectid_contact_letterUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_letter", value) },
                 enumerable: true
             },
             "regardingobjectid_incident_letter": {
                 get: function () { return this.internal.regardingobjectid_incident_letter; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_incident_letter must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_incident_letter");
-                    this.internal.regardingobjectid_incident_letter = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_letter", value) },
                 enumerable: true
             },
             "regardingobjectid_incident_letter@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_incident_letterUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_incident_letter@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("regardingobjectid_incident_letter@odata.bind");
-                    this.internal.regardingobjectid_incident_letterUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_letter", value) },
                 enumerable: true
             },
             "regardingobjectid_opportunity_letter": {
                 get: function () { return this.internal.regardingobjectid_opportunity_letter; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_opportunity_letter must be a " + NS + ".opportunity value.");
-                    }
-                    this.addChangedProperty("regardingobjectid_opportunity_letter");
-                    this.internal.regardingobjectid_opportunity_letter = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_letter", value) },
                 enumerable: true
             },
             "regardingobjectid_opportunity_letter@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_opportunity_letterUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.opportunity,value)) {
-                        throw new Error(NS + ".letter.regardingobjectid_opportunity_letter@odata.bind must be a URI for an "+NS+".opportunity.");
-                    }
-                    this.addChangedProperty("regardingobjectid_opportunity_letter@odata.bind");
-                    this.internal.regardingobjectid_opportunity_letterUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_letter", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "Letter_Annotation": {
                 get: function () { return this.internal.Letter_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".letter.Letter_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("Letter_Annotation");
-                    this.internal.Letter_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Letter_Annotation", value) },
                 enumerable: true,
             },
             "Letter_QueueItem": {
                 get: function () { return this.internal.Letter_QueueItem; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.queueitem, value)) {
-                        throw new Error(NS + ".letter.Letter_QueueItem must be an Array of " + NS + ".queueitem.");
-                    }
-                        this.addChangedProperty("Letter_QueueItem");
-                    this.internal.Letter_QueueItem = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "Letter_QueueItem", value) },
                 enumerable: true,
             }
         });
@@ -2162,32 +1479,38 @@ Sdk.Sample.activitypointer.call(this);
         }
         return Object.seal(this);
     }
-this.letter.prototype = Object.create(this.activitypointer.prototype);
-this.letter.isEntityClass = true;
-this.letter.prototype.type = "letter";
-this.letter.prototype.primaryKey = "activityid";
-this.letter.prototype.entitySetName = "letters";
-this.letter.prototype.properties = Object.freeze({            activityid:{ name:"activityid", type:"Guid"},
-            actualdurationminutes:{ name:"actualdurationminutes", type:"Number"},
-            description:{ name:"description", type:"String"},
-            scheduledend:{ name:"scheduledend", type:"Date"},
-            scheduledstart:{ name:"scheduledstart", type:"Date"},
-            subject:{ name:"subject", type:"String"}});
-this.letter.prototype.lookups = Object.freeze({            regardingobjectid_account:{ name:"regardingobjectid_account", type:"account"},
-            regardingobjectid_contact:{ name:"regardingobjectid_contact", type:"contact"},
-            regardingobjectid_incident:{ name:"regardingobjectid_incident", type:"incident"},
-            regardingobjectid_opportunity:{ name:"regardingobjectid_opportunity", type:"opportunity"},
-            activityid_activitypointer:{ name:"activityid_activitypointer", type:"activitypointer"},
-            regardingobjectid_account_letter:{ name:"regardingobjectid_account_letter", type:"account"},
-            regardingobjectid_contact_letter:{ name:"regardingobjectid_contact_letter", type:"contact"},
-            regardingobjectid_incident_letter:{ name:"regardingobjectid_incident_letter", type:"incident"},
-            regardingobjectid_opportunity_letter:{ name:"regardingobjectid_opportunity_letter", type:"opportunity"}});
-this.letter.prototype.collections = Object.freeze({            activity_pointer_letter:{ name:"activity_pointer_letter", type:"letter"},
-            activity_pointer_opportunity_close:{ name:"activity_pointer_opportunity_close", type:"opportunityclose"},
-            activity_pointer_task:{ name:"activity_pointer_task", type:"task"},
-            ActivityPointer_QueueItem:{ name:"ActivityPointer_QueueItem", type:"queueitem"},
-            Letter_Annotation:{ name:"Letter_Annotation", type:"annotation"},
-            Letter_QueueItem:{ name:"Letter_QueueItem", type:"queueitem"}});
+    this.letter.prototype = Object.create(this.activitypointer.prototype);
+    this.letter.isEntityClass = true;
+    this.letter.prototype.type = "letter";
+    this.letter.prototype.primaryKey = "activityid";
+    this.letter.prototype.entitySetName = "letters";
+    this.letter.prototype.properties = Object.freeze({
+        activityid: { name: "activityid", type: "Guid" },
+        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        description: { name: "description", type: "String" },
+        scheduledend: { name: "scheduledend", type: "Date" },
+        scheduledstart: { name: "scheduledstart", type: "Date" },
+        subject: { name: "subject", type: "String" }
+    });
+    this.letter.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
+        regardingobjectid_account_letter: { name: "regardingobjectid_account_letter", type: Sdk.Sample.account },
+        regardingobjectid_contact_letter: { name: "regardingobjectid_contact_letter", type: Sdk.Sample.contact },
+        regardingobjectid_incident_letter: { name: "regardingobjectid_incident_letter", type: Sdk.Sample.incident },
+        regardingobjectid_opportunity_letter: { name: "regardingobjectid_opportunity_letter", type: Sdk.Sample.opportunity }
+    });
+    this.letter.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
+        Letter_Annotation: { name: "Letter_Annotation", type: Sdk.Sample.annotation },
+        Letter_QueueItem: { name: "Letter_QueueItem", type: Sdk.Sample.queueitem }
+    });
 
     /**
     @method activityid_activitypointerUri
@@ -2198,7 +1521,7 @@ this.letter.prototype.collections = Object.freeze({            activity_pointer_
     this.letter.prototype.activityid_activitypointerUri = function (uri) {
         this["activityid_activitypointer@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_account_letterUri
     @memberof Sdk.Sample.letter
@@ -2208,7 +1531,7 @@ this.letter.prototype.collections = Object.freeze({            activity_pointer_
     this.letter.prototype.regardingobjectid_account_letterUri = function (uri) {
         this["regardingobjectid_account_letter@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_contact_letterUri
     @memberof Sdk.Sample.letter
@@ -2218,7 +1541,7 @@ this.letter.prototype.collections = Object.freeze({            activity_pointer_
     this.letter.prototype.regardingobjectid_contact_letterUri = function (uri) {
         this["regardingobjectid_contact_letter@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_incident_letterUri
     @memberof Sdk.Sample.letter
@@ -2228,7 +1551,7 @@ this.letter.prototype.collections = Object.freeze({            activity_pointer_
     this.letter.prototype.regardingobjectid_incident_letterUri = function (uri) {
         this["regardingobjectid_incident_letter@odata.bind"] = uri;
     }
-                
+
     /**
     @method regardingobjectid_opportunity_letterUri
     @memberof Sdk.Sample.letter
@@ -2238,102 +1561,60 @@ this.letter.prototype.collections = Object.freeze({            activity_pointer_
     this.letter.prototype.regardingobjectid_opportunity_letterUri = function (uri) {
         this["regardingobjectid_opportunity_letter@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.opportunityclose
-@extends Sdk.Sample.activitypointer
-@description Activity that is created automatically when an opportunity is closed, containing information such as the description of the closing and actual revenue.
-@param {String|Object}[opportunitycloseReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.opportunityclose = function (opportunitycloseReference) {
-if (!(isInstanceOf(Sdk.Sample.opportunityclose, this))) {
-    return new Sdk.Sample.opportunityclose(opportunitycloseReference);
-}
-Sdk.Sample.activitypointer.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.opportunityclose
+    @extends Sdk.Sample.activitypointer
+    @description Activity that is created automatically when an opportunity is closed, containing information such as the description of the closing and actual revenue.
+    @param {String|Object}[opportunitycloseReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.opportunityclose = function (opportunitycloseReference) {
+        if (!(isInstanceOf(Sdk.Sample.opportunityclose, this))) {
+            return new Sdk.Sample.opportunityclose(opportunitycloseReference);
+        }
+        Sdk.Sample.activitypointer.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
-    //Single-valued Navigation Properties,
+            //Properties,
+            //Single-valued Navigation Properties,
             "activityid_activitypointer": {
                 get: function () { return this.internal.activityid_activitypointer; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".opportunityclose.activityid_activitypointer must be a " + NS + ".activitypointer value.");
-                    }
-                    this.addChangedProperty("activityid_activitypointer");
-                    this.internal.activityid_activitypointer = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "activityid_activitypointer@odata.bind": {
                 get: function () { return this.internal.activityid_activitypointerUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.activitypointer,value)) {
-                        throw new Error(NS + ".opportunityclose.activityid_activitypointer@odata.bind must be a URI for an "+NS+".activitypointer.");
-                    }
-                    this.addChangedProperty("activityid_activitypointer@odata.bind");
-                    this.internal.activityid_activitypointerUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "competitorid": {
                 get: function () { return this.internal.competitorid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.competitor, value)) {
-                        throw new Error(NS + ".opportunityclose.competitorid must be a " + NS + ".competitor value.");
-                    }
-                    this.addChangedProperty("competitorid");
-                    this.internal.competitorid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.competitor, "competitor", this, "competitorid", value) },
                 enumerable: true
             },
             "competitorid@odata.bind": {
                 get: function () { return this.internal.competitoridUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.competitor,value)) {
-                        throw new Error(NS + ".opportunityclose.competitorid@odata.bind must be a URI for an "+NS+".competitor.");
-                    }
-                    this.addChangedProperty("competitorid@odata.bind");
-                    this.internal.competitoridUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.competitor, "competitor", this, "competitorid", value) },
                 enumerable: true
             },
             "opportunityid": {
                 get: function () { return this.internal.opportunityid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".opportunityclose.opportunityid must be a " + NS + ".opportunity value.");
-                    }
-                    this.addChangedProperty("opportunityid");
-                    this.internal.opportunityid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunityid", value) },
                 enumerable: true
             },
             "opportunityid@odata.bind": {
                 get: function () { return this.internal.opportunityidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.opportunity,value)) {
-                        throw new Error(NS + ".opportunityclose.opportunityid@odata.bind must be a URI for an "+NS+".opportunity.");
-                    }
-                    this.addChangedProperty("opportunityid@odata.bind");
-                    this.internal.opportunityidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "opportunityid", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "OpportunityClose_Annotation": {
                 get: function () { return this.internal.OpportunityClose_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".opportunityclose.OpportunityClose_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("OpportunityClose_Annotation");
-                    this.internal.OpportunityClose_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "OpportunityClose_Annotation", value) },
                 enumerable: true,
             }
         });
@@ -2343,29 +1624,35 @@ Sdk.Sample.activitypointer.call(this);
         }
         return Object.seal(this);
     }
-this.opportunityclose.prototype = Object.create(this.activitypointer.prototype);
-this.opportunityclose.isEntityClass = true;
-this.opportunityclose.prototype.type = "opportunityclose";
-this.opportunityclose.prototype.primaryKey = "activityid";
-this.opportunityclose.prototype.entitySetName = "opportunitycloses";
-this.opportunityclose.prototype.properties = Object.freeze({            activityid:{ name:"activityid", type:"Guid"},
-            actualdurationminutes:{ name:"actualdurationminutes", type:"Number"},
-            description:{ name:"description", type:"String"},
-            scheduledend:{ name:"scheduledend", type:"Date"},
-            scheduledstart:{ name:"scheduledstart", type:"Date"},
-            subject:{ name:"subject", type:"String"}});
-this.opportunityclose.prototype.lookups = Object.freeze({            regardingobjectid_account:{ name:"regardingobjectid_account", type:"account"},
-            regardingobjectid_contact:{ name:"regardingobjectid_contact", type:"contact"},
-            regardingobjectid_incident:{ name:"regardingobjectid_incident", type:"incident"},
-            regardingobjectid_opportunity:{ name:"regardingobjectid_opportunity", type:"opportunity"},
-            activityid_activitypointer:{ name:"activityid_activitypointer", type:"activitypointer"},
-            competitorid:{ name:"competitorid", type:"competitor"},
-            opportunityid:{ name:"opportunityid", type:"opportunity"}});
-this.opportunityclose.prototype.collections = Object.freeze({            activity_pointer_letter:{ name:"activity_pointer_letter", type:"letter"},
-            activity_pointer_opportunity_close:{ name:"activity_pointer_opportunity_close", type:"opportunityclose"},
-            activity_pointer_task:{ name:"activity_pointer_task", type:"task"},
-            ActivityPointer_QueueItem:{ name:"ActivityPointer_QueueItem", type:"queueitem"},
-            OpportunityClose_Annotation:{ name:"OpportunityClose_Annotation", type:"annotation"}});
+    this.opportunityclose.prototype = Object.create(this.activitypointer.prototype);
+    this.opportunityclose.isEntityClass = true;
+    this.opportunityclose.prototype.type = "opportunityclose";
+    this.opportunityclose.prototype.primaryKey = "activityid";
+    this.opportunityclose.prototype.entitySetName = "opportunitycloses";
+    this.opportunityclose.prototype.properties = Object.freeze({
+        activityid: { name: "activityid", type: "Guid" },
+        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        description: { name: "description", type: "String" },
+        scheduledend: { name: "scheduledend", type: "Date" },
+        scheduledstart: { name: "scheduledstart", type: "Date" },
+        subject: { name: "subject", type: "String" }
+    });
+    this.opportunityclose.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
+        competitorid: { name: "competitorid", type: Sdk.Sample.competitor },
+        opportunityid: { name: "opportunityid", type: Sdk.Sample.opportunity }
+    });
+    this.opportunityclose.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
+        OpportunityClose_Annotation: { name: "OpportunityClose_Annotation", type: Sdk.Sample.annotation }
+    });
 
     /**
     @method activityid_activitypointerUri
@@ -2376,7 +1663,7 @@ this.opportunityclose.prototype.collections = Object.freeze({            activit
     this.opportunityclose.prototype.activityid_activitypointerUri = function (uri) {
         this["activityid_activitypointer@odata.bind"] = uri;
     }
-                
+
     /**
     @method competitoridUri
     @memberof Sdk.Sample.opportunityclose
@@ -2386,7 +1673,7 @@ this.opportunityclose.prototype.collections = Object.freeze({            activit
     this.opportunityclose.prototype.competitoridUri = function (uri) {
         this["competitorid@odata.bind"] = uri;
     }
-                
+
     /**
     @method opportunityidUri
     @memberof Sdk.Sample.opportunityclose
@@ -2396,50 +1683,35 @@ this.opportunityclose.prototype.collections = Object.freeze({            activit
     this.opportunityclose.prototype.opportunityidUri = function (uri) {
         this["opportunityid@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.queue
-@extends Sdk.Sample.crmbaseentity
-@description A list of records that require action, such as accounts, activities, and cases.
-@param {String|Object}[queueReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.queue = function (queueReference) {
-if (!(isInstanceOf(Sdk.Sample.queue, this))) {
-    return new Sdk.Sample.queue(queueReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.queue
+    @extends Sdk.Sample.crmbaseentity
+    @description A list of records that require action, such as accounts, activities, and cases.
+    @param {String|Object}[queueReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.queue = function (queueReference) {
+        if (!(isInstanceOf(Sdk.Sample.queue, this))) {
+            return new Sdk.Sample.queue(queueReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "queueid": {
                 get: function () { return this.internal.queueid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".queue queueid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.queueid != value)
-                    {
-                        this.addChangedProperty("queueid");
-                        this.internal.queueid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "queueid", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
-    //Collection-Valued Navigation Properties,
+            //Single-valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "queue_entries": {
                 get: function () { return this.internal.queue_entries; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.queueitem, value)) {
-                        throw new Error(NS + ".queue.queue_entries must be an Array of " + NS + ".queueitem.");
-                    }
-                        this.addChangedProperty("queue_entries");
-                    this.internal.queue_entries = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "queue_entries", value) },
                 enumerable: true,
             }
         });
@@ -2449,159 +1721,90 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.queue.prototype = Object.create(this.crmbaseentity.prototype);
-this.queue.isEntityClass = true;
-this.queue.prototype.type = "queue";
-this.queue.prototype.primaryKey = "queueid";
-this.queue.prototype.entitySetName = "queues";
-this.queue.prototype.properties = Object.freeze({            queueid:{ name:"queueid", type:"Guid"}});
-this.queue.prototype.lookups = Object.freeze({});
-this.queue.prototype.collections = Object.freeze({            queue_entries:{ name:"queue_entries", type:"queueitem"}});
+    this.queue.prototype = Object.create(this.crmbaseentity.prototype);
+    this.queue.isEntityClass = true;
+    this.queue.prototype.type = "queue";
+    this.queue.prototype.primaryKey = "queueid";
+    this.queue.prototype.entitySetName = "queues";
+    this.queue.prototype.properties = Object.freeze({ queueid: { name: "queueid", type: "Guid" } });
+    this.queue.prototype.lookups = Object.freeze({});
+    this.queue.prototype.collections = Object.freeze({ queue_entries: { name: "queue_entries", type: Sdk.Sample.queueitem } });
 
-/**
-@typeref {object} Sdk.Sample.queueitem
-@extends Sdk.Sample.crmbaseentity
-@description A specific item in a queue, such as a case record or an activity record.
-@param {String|Object}[queueitemReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.queueitem = function (queueitemReference) {
-if (!(isInstanceOf(Sdk.Sample.queueitem, this))) {
-    return new Sdk.Sample.queueitem(queueitemReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+    /**
+    @typeref {object} Sdk.Sample.queueitem
+    @extends Sdk.Sample.crmbaseentity
+    @description A specific item in a queue, such as a case record or an activity record.
+    @param {String|Object}[queueitemReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.queueitem = function (queueitemReference) {
+        if (!(isInstanceOf(Sdk.Sample.queueitem, this))) {
+            return new Sdk.Sample.queueitem(queueitemReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "queueitemid": {
                 get: function () { return this.internal.queueitemid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".queueitem queueitemid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.queueitemid != value)
-                    {
-                        this.addChangedProperty("queueitemid");
-                        this.internal.queueitemid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "queueitemid", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
+            //Single-valued Navigation Properties,
             "objectid_activitypointer": {
                 get: function () { return this.internal.objectid_activitypointer; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".queueitem.objectid_activitypointer must be a " + NS + ".activitypointer value.");
-                    }
-                    this.addChangedProperty("objectid_activitypointer");
-                    this.internal.objectid_activitypointer = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "objectid_activitypointer", value) },
                 enumerable: true
             },
             "objectid_activitypointer@odata.bind": {
                 get: function () { return this.internal.objectid_activitypointerUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.activitypointer,value)) {
-                        throw new Error(NS + ".queueitem.objectid_activitypointer@odata.bind must be a URI for an "+NS+".activitypointer.");
-                    }
-                    this.addChangedProperty("objectid_activitypointer@odata.bind");
-                    this.internal.objectid_activitypointerUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "objectid_activitypointer", value) },
                 enumerable: true
             },
             "objectid_incident": {
                 get: function () { return this.internal.objectid_incident; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".queueitem.objectid_incident must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("objectid_incident");
-                    this.internal.objectid_incident = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
                 enumerable: true
             },
             "objectid_incident@odata.bind": {
                 get: function () { return this.internal.objectid_incidentUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".queueitem.objectid_incident@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("objectid_incident@odata.bind");
-                    this.internal.objectid_incidentUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
                 enumerable: true
             },
             "objectid_letter": {
                 get: function () { return this.internal.objectid_letter; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.letter, value)) {
-                        throw new Error(NS + ".queueitem.objectid_letter must be a " + NS + ".letter value.");
-                    }
-                    this.addChangedProperty("objectid_letter");
-                    this.internal.objectid_letter = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
                 enumerable: true
             },
             "objectid_letter@odata.bind": {
                 get: function () { return this.internal.objectid_letterUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.letter,value)) {
-                        throw new Error(NS + ".queueitem.objectid_letter@odata.bind must be a URI for an "+NS+".letter.");
-                    }
-                    this.addChangedProperty("objectid_letter@odata.bind");
-                    this.internal.objectid_letterUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
                 enumerable: true
             },
             "objectid_task": {
                 get: function () { return this.internal.objectid_task; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.task, value)) {
-                        throw new Error(NS + ".queueitem.objectid_task must be a " + NS + ".task value.");
-                    }
-                    this.addChangedProperty("objectid_task");
-                    this.internal.objectid_task = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.task, "task", this, "objectid_task", value) },
                 enumerable: true
             },
             "objectid_task@odata.bind": {
                 get: function () { return this.internal.objectid_taskUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.task,value)) {
-                        throw new Error(NS + ".queueitem.objectid_task@odata.bind must be a URI for an "+NS+".task.");
-                    }
-                    this.addChangedProperty("objectid_task@odata.bind");
-                    this.internal.objectid_taskUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.task, "task", this, "objectid_task", value) },
                 enumerable: true
             },
             "queueid": {
                 get: function () { return this.internal.queueid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.queue, value)) {
-                        throw new Error(NS + ".queueitem.queueid must be a " + NS + ".queue value.");
-                    }
-                    this.addChangedProperty("queueid");
-                    this.internal.queueid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.queue, "queue", this, "queueid", value) },
                 enumerable: true
             },
             "queueid@odata.bind": {
                 get: function () { return this.internal.queueidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.queue,value)) {
-                        throw new Error(NS + ".queueitem.queueid@odata.bind must be a URI for an "+NS+".queue.");
-                    }
-                    this.addChangedProperty("queueid@odata.bind");
-                    this.internal.queueidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.queue, "queue", this, "queueid", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties
+            //Collection-Valued Navigation Properties
         });
 
         if (queueitemReference) {
@@ -2609,18 +1812,20 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.queueitem.prototype = Object.create(this.crmbaseentity.prototype);
-this.queueitem.isEntityClass = true;
-this.queueitem.prototype.type = "queueitem";
-this.queueitem.prototype.primaryKey = "queueitemid";
-this.queueitem.prototype.entitySetName = "queueitems";
-this.queueitem.prototype.properties = Object.freeze({            queueitemid:{ name:"queueitemid", type:"Guid"}});
-this.queueitem.prototype.lookups = Object.freeze({            objectid_activitypointer:{ name:"objectid_activitypointer", type:"activitypointer"},
-            objectid_incident:{ name:"objectid_incident", type:"incident"},
-            objectid_letter:{ name:"objectid_letter", type:"letter"},
-            objectid_task:{ name:"objectid_task", type:"task"},
-            queueid:{ name:"queueid", type:"queue"}});
-this.queueitem.prototype.collections = Object.freeze({});
+    this.queueitem.prototype = Object.create(this.crmbaseentity.prototype);
+    this.queueitem.isEntityClass = true;
+    this.queueitem.prototype.type = "queueitem";
+    this.queueitem.prototype.primaryKey = "queueitemid";
+    this.queueitem.prototype.entitySetName = "queueitems";
+    this.queueitem.prototype.properties = Object.freeze({ queueitemid: { name: "queueitemid", type: "Guid" } });
+    this.queueitem.prototype.lookups = Object.freeze({
+        objectid_activitypointer: { name: "objectid_activitypointer", type: Sdk.Sample.activitypointer },
+        objectid_incident: { name: "objectid_incident", type: Sdk.Sample.incident },
+        objectid_letter: { name: "objectid_letter", type: Sdk.Sample.letter },
+        objectid_task: { name: "objectid_task", type: Sdk.Sample.task },
+        queueid: { name: "queueid", type: Sdk.Sample.queue }
+    });
+    this.queueitem.prototype.collections = Object.freeze({});
 
     /**
     @method objectid_activitypointerUri
@@ -2631,7 +1836,7 @@ this.queueitem.prototype.collections = Object.freeze({});
     this.queueitem.prototype.objectid_activitypointerUri = function (uri) {
         this["objectid_activitypointer@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_incidentUri
     @memberof Sdk.Sample.queueitem
@@ -2641,7 +1846,7 @@ this.queueitem.prototype.collections = Object.freeze({});
     this.queueitem.prototype.objectid_incidentUri = function (uri) {
         this["objectid_incident@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_letterUri
     @memberof Sdk.Sample.queueitem
@@ -2651,7 +1856,7 @@ this.queueitem.prototype.collections = Object.freeze({});
     this.queueitem.prototype.objectid_letterUri = function (uri) {
         this["objectid_letter@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_taskUri
     @memberof Sdk.Sample.queueitem
@@ -2661,7 +1866,7 @@ this.queueitem.prototype.collections = Object.freeze({});
     this.queueitem.prototype.objectid_taskUri = function (uri) {
         this["objectid_task@odata.bind"] = uri;
     }
-                
+
     /**
     @method queueidUri
     @memberof Sdk.Sample.queueitem
@@ -2671,217 +1876,112 @@ this.queueitem.prototype.collections = Object.freeze({});
     this.queueitem.prototype.queueidUri = function (uri) {
         this["queueid@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.annotation
-@extends Sdk.Sample.crmbaseentity
-@description Note that is attached to one or more objects, including other notes.
-@param {String|Object}[annotationReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.annotation = function (annotationReference) {
-if (!(isInstanceOf(Sdk.Sample.annotation, this))) {
-    return new Sdk.Sample.annotation(annotationReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.annotation
+    @extends Sdk.Sample.crmbaseentity
+    @description Note that is attached to one or more objects, including other notes.
+    @param {String|Object}[annotationReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.annotation = function (annotationReference) {
+        if (!(isInstanceOf(Sdk.Sample.annotation, this))) {
+            return new Sdk.Sample.annotation(annotationReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "annotationid": {
                 get: function () { return this.internal.annotationid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".annotation annotationid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.annotationid != value)
-                    {
-                        this.addChangedProperty("annotationid");
-                        this.internal.annotationid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "annotationid", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
+            //Single-valued Navigation Properties,
             "objectid_account": {
                 get: function () { return this.internal.objectid_account; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".annotation.objectid_account must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("objectid_account");
-                    this.internal.objectid_account = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "objectid_account", value) },
                 enumerable: true
             },
             "objectid_account@odata.bind": {
                 get: function () { return this.internal.objectid_accountUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".annotation.objectid_account@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("objectid_account@odata.bind");
-                    this.internal.objectid_accountUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "objectid_account", value) },
                 enumerable: true
             },
             "objectid_competitor": {
                 get: function () { return this.internal.objectid_competitor; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.competitor, value)) {
-                        throw new Error(NS + ".annotation.objectid_competitor must be a " + NS + ".competitor value.");
-                    }
-                    this.addChangedProperty("objectid_competitor");
-                    this.internal.objectid_competitor = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.competitor, "competitor", this, "objectid_competitor", value) },
                 enumerable: true
             },
             "objectid_competitor@odata.bind": {
                 get: function () { return this.internal.objectid_competitorUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.competitor,value)) {
-                        throw new Error(NS + ".annotation.objectid_competitor@odata.bind must be a URI for an "+NS+".competitor.");
-                    }
-                    this.addChangedProperty("objectid_competitor@odata.bind");
-                    this.internal.objectid_competitorUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.competitor, "competitor", this, "objectid_competitor", value) },
                 enumerable: true
             },
             "objectid_contact": {
                 get: function () { return this.internal.objectid_contact; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".annotation.objectid_contact must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("objectid_contact");
-                    this.internal.objectid_contact = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "objectid_contact", value) },
                 enumerable: true
             },
             "objectid_contact@odata.bind": {
                 get: function () { return this.internal.objectid_contactUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".annotation.objectid_contact@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("objectid_contact@odata.bind");
-                    this.internal.objectid_contactUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "objectid_contact", value) },
                 enumerable: true
             },
             "objectid_incident": {
                 get: function () { return this.internal.objectid_incident; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".annotation.objectid_incident must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("objectid_incident");
-                    this.internal.objectid_incident = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
                 enumerable: true
             },
             "objectid_incident@odata.bind": {
                 get: function () { return this.internal.objectid_incidentUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".annotation.objectid_incident@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("objectid_incident@odata.bind");
-                    this.internal.objectid_incidentUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
                 enumerable: true
             },
             "objectid_letter": {
                 get: function () { return this.internal.objectid_letter; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.letter, value)) {
-                        throw new Error(NS + ".annotation.objectid_letter must be a " + NS + ".letter value.");
-                    }
-                    this.addChangedProperty("objectid_letter");
-                    this.internal.objectid_letter = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
                 enumerable: true
             },
             "objectid_letter@odata.bind": {
                 get: function () { return this.internal.objectid_letterUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.letter,value)) {
-                        throw new Error(NS + ".annotation.objectid_letter@odata.bind must be a URI for an "+NS+".letter.");
-                    }
-                    this.addChangedProperty("objectid_letter@odata.bind");
-                    this.internal.objectid_letterUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
                 enumerable: true
             },
             "objectid_opportunity": {
                 get: function () { return this.internal.objectid_opportunity; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.opportunity, value)) {
-                        throw new Error(NS + ".annotation.objectid_opportunity must be a " + NS + ".opportunity value.");
-                    }
-                    this.addChangedProperty("objectid_opportunity");
-                    this.internal.objectid_opportunity = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "objectid_opportunity", value) },
                 enumerable: true
             },
             "objectid_opportunity@odata.bind": {
                 get: function () { return this.internal.objectid_opportunityUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.opportunity,value)) {
-                        throw new Error(NS + ".annotation.objectid_opportunity@odata.bind must be a URI for an "+NS+".opportunity.");
-                    }
-                    this.addChangedProperty("objectid_opportunity@odata.bind");
-                    this.internal.objectid_opportunityUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "objectid_opportunity", value) },
                 enumerable: true
             },
             "objectid_opportunityclose": {
                 get: function () { return this.internal.objectid_opportunityclose; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.opportunityclose, value)) {
-                        throw new Error(NS + ".annotation.objectid_opportunityclose must be a " + NS + ".opportunityclose value.");
-                    }
-                    this.addChangedProperty("objectid_opportunityclose");
-                    this.internal.objectid_opportunityclose = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "objectid_opportunityclose", value) },
                 enumerable: true
             },
             "objectid_opportunityclose@odata.bind": {
                 get: function () { return this.internal.objectid_opportunitycloseUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.opportunityclose,value)) {
-                        throw new Error(NS + ".annotation.objectid_opportunityclose@odata.bind must be a URI for an "+NS+".opportunityclose.");
-                    }
-                    this.addChangedProperty("objectid_opportunityclose@odata.bind");
-                    this.internal.objectid_opportunitycloseUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunityclose, "opportunityclose", this, "objectid_opportunityclose", value) },
                 enumerable: true
             },
             "objectid_task": {
                 get: function () { return this.internal.objectid_task; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.task, value)) {
-                        throw new Error(NS + ".annotation.objectid_task must be a " + NS + ".task value.");
-                    }
-                    this.addChangedProperty("objectid_task");
-                    this.internal.objectid_task = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.task, "task", this, "objectid_task", value) },
                 enumerable: true
             },
             "objectid_task@odata.bind": {
                 get: function () { return this.internal.objectid_taskUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.task,value)) {
-                        throw new Error(NS + ".annotation.objectid_task@odata.bind must be a URI for an "+NS+".task.");
-                    }
-                    this.addChangedProperty("objectid_task@odata.bind");
-                    this.internal.objectid_taskUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.task, "task", this, "objectid_task", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties
+            //Collection-Valued Navigation Properties
         });
 
         if (annotationReference) {
@@ -2889,21 +1989,23 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.annotation.prototype = Object.create(this.crmbaseentity.prototype);
-this.annotation.isEntityClass = true;
-this.annotation.prototype.type = "annotation";
-this.annotation.prototype.primaryKey = "annotationid";
-this.annotation.prototype.entitySetName = "annotations";
-this.annotation.prototype.properties = Object.freeze({            annotationid:{ name:"annotationid", type:"Guid"}});
-this.annotation.prototype.lookups = Object.freeze({            objectid_account:{ name:"objectid_account", type:"account"},
-            objectid_competitor:{ name:"objectid_competitor", type:"competitor"},
-            objectid_contact:{ name:"objectid_contact", type:"contact"},
-            objectid_incident:{ name:"objectid_incident", type:"incident"},
-            objectid_letter:{ name:"objectid_letter", type:"letter"},
-            objectid_opportunity:{ name:"objectid_opportunity", type:"opportunity"},
-            objectid_opportunityclose:{ name:"objectid_opportunityclose", type:"opportunityclose"},
-            objectid_task:{ name:"objectid_task", type:"task"}});
-this.annotation.prototype.collections = Object.freeze({});
+    this.annotation.prototype = Object.create(this.crmbaseentity.prototype);
+    this.annotation.isEntityClass = true;
+    this.annotation.prototype.type = "annotation";
+    this.annotation.prototype.primaryKey = "annotationid";
+    this.annotation.prototype.entitySetName = "annotations";
+    this.annotation.prototype.properties = Object.freeze({ annotationid: { name: "annotationid", type: "Guid" } });
+    this.annotation.prototype.lookups = Object.freeze({
+        objectid_account: { name: "objectid_account", type: Sdk.Sample.account },
+        objectid_competitor: { name: "objectid_competitor", type: Sdk.Sample.competitor },
+        objectid_contact: { name: "objectid_contact", type: Sdk.Sample.contact },
+        objectid_incident: { name: "objectid_incident", type: Sdk.Sample.incident },
+        objectid_letter: { name: "objectid_letter", type: Sdk.Sample.letter },
+        objectid_opportunity: { name: "objectid_opportunity", type: Sdk.Sample.opportunity },
+        objectid_opportunityclose: { name: "objectid_opportunityclose", type: Sdk.Sample.opportunityclose },
+        objectid_task: { name: "objectid_task", type: Sdk.Sample.task }
+    });
+    this.annotation.prototype.collections = Object.freeze({});
 
     /**
     @method objectid_accountUri
@@ -2914,7 +2016,7 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_accountUri = function (uri) {
         this["objectid_account@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_competitorUri
     @memberof Sdk.Sample.annotation
@@ -2924,7 +2026,7 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_competitorUri = function (uri) {
         this["objectid_competitor@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_contactUri
     @memberof Sdk.Sample.annotation
@@ -2934,7 +2036,7 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_contactUri = function (uri) {
         this["objectid_contact@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_incidentUri
     @memberof Sdk.Sample.annotation
@@ -2944,7 +2046,7 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_incidentUri = function (uri) {
         this["objectid_incident@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_letterUri
     @memberof Sdk.Sample.annotation
@@ -2954,7 +2056,7 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_letterUri = function (uri) {
         this["objectid_letter@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_opportunityUri
     @memberof Sdk.Sample.annotation
@@ -2964,7 +2066,7 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_opportunityUri = function (uri) {
         this["objectid_opportunity@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_opportunitycloseUri
     @memberof Sdk.Sample.annotation
@@ -2974,7 +2076,7 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_opportunitycloseUri = function (uri) {
         this["objectid_opportunityclose@odata.bind"] = uri;
     }
-                
+
     /**
     @method objectid_taskUri
     @memberof Sdk.Sample.annotation
@@ -2984,281 +2086,140 @@ this.annotation.prototype.collections = Object.freeze({});
     this.annotation.prototype.objectid_taskUri = function (uri) {
         this["objectid_task@odata.bind"] = uri;
     }
-                
-/**
-@typeref {object} Sdk.Sample.incident
-@extends Sdk.Sample.crmbaseentity
-@description Service request case associated with a contract.
-@param {String|Object}[incidentReference] A GUID, a URI, or a JSON object to set retrieved values.
-*/
-this.incident = function (incidentReference) {
-if (!(isInstanceOf(Sdk.Sample.incident, this))) {
-    return new Sdk.Sample.incident(incidentReference);
-}
-Sdk.Sample.crmbaseentity.call(this);
+
+    /**
+    @typeref {object} Sdk.Sample.incident
+    @extends Sdk.Sample.crmbaseentity
+    @description Service request case associated with a contract.
+    @param {String|Object}[incidentReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.incident = function (incidentReference) {
+        if (!(isInstanceOf(Sdk.Sample.incident, this))) {
+            return new Sdk.Sample.incident(incidentReference);
+        }
+        Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
-                get: function() { return "Microsoft.Dynamics.CRM." + this.type; },
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
                 enumerable: true
             },
-    //Properties,
+            //Properties,
             "incidentid": {
                 get: function () { return this.internal.incidentid; },
-                set: function (value) {
-                    if (!isGuidOrNull(value)) {
-                        throw new Error(NS + ".incident incidentid property must be String representation of a GUID value or null.");
-                    }
-                    if (this.internal.incidentid != value)
-                    {
-                        this.addChangedProperty("incidentid");
-                        this.internal.incidentid = noChange(value);
-                    }
-                },
+                set: function (value) { setGuidOrNullProperty(this, "incidentid", value) },
                 enumerable: true
             },
-    //Single-valued Navigation Properties,
+            //Single-valued Navigation Properties,
             "customerid_account": {
                 get: function () { return this.internal.customerid_account; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.account, value)) {
-                        throw new Error(NS + ".incident.customerid_account must be a " + NS + ".account value.");
-                    }
-                    this.addChangedProperty("customerid_account");
-                    this.internal.customerid_account = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "customerid_account", value) },
                 enumerable: true
             },
             "customerid_account@odata.bind": {
                 get: function () { return this.internal.customerid_accountUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.account,value)) {
-                        throw new Error(NS + ".incident.customerid_account@odata.bind must be a URI for an "+NS+".account.");
-                    }
-                    this.addChangedProperty("customerid_account@odata.bind");
-                    this.internal.customerid_accountUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "customerid_account", value) },
                 enumerable: true
             },
             "customerid_contact": {
                 get: function () { return this.internal.customerid_contact; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".incident.customerid_contact must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("customerid_contact");
-                    this.internal.customerid_contact = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
                 enumerable: true
             },
             "customerid_contact@odata.bind": {
                 get: function () { return this.internal.customerid_contactUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".incident.customerid_contact@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("customerid_contact@odata.bind");
-                    this.internal.customerid_contactUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
                 enumerable: true
             },
             "existingcase": {
                 get: function () { return this.internal.existingcase; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".incident.existingcase must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("existingcase");
-                    this.internal.existingcase = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "existingcase", value) },
                 enumerable: true
             },
             "existingcase@odata.bind": {
                 get: function () { return this.internal.existingcaseUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".incident.existingcase@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("existingcase@odata.bind");
-                    this.internal.existingcaseUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "existingcase", value) },
                 enumerable: true
             },
             "masterid": {
                 get: function () { return this.internal.masterid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".incident.masterid must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("masterid");
-                    this.internal.masterid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "masterid", value) },
                 enumerable: true
             },
             "masterid@odata.bind": {
                 get: function () { return this.internal.masteridUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".incident.masterid@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("masterid@odata.bind");
-                    this.internal.masteridUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "masterid", value) },
                 enumerable: true
             },
             "parentcaseid": {
                 get: function () { return this.internal.parentcaseid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".incident.parentcaseid must be a " + NS + ".incident value.");
-                    }
-                    this.addChangedProperty("parentcaseid");
-                    this.internal.parentcaseid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "parentcaseid", value) },
                 enumerable: true
             },
             "parentcaseid@odata.bind": {
                 get: function () { return this.internal.parentcaseidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.incident,value)) {
-                        throw new Error(NS + ".incident.parentcaseid@odata.bind must be a URI for an "+NS+".incident.");
-                    }
-                    this.addChangedProperty("parentcaseid@odata.bind");
-                    this.internal.parentcaseidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "parentcaseid", value) },
                 enumerable: true
             },
             "primarycontactid": {
                 get: function () { return this.internal.primarycontactid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".incident.primarycontactid must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("primarycontactid");
-                    this.internal.primarycontactid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
             "primarycontactid@odata.bind": {
                 get: function () { return this.internal.primarycontactidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".incident.primarycontactid@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("primarycontactid@odata.bind");
-                    this.internal.primarycontactidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
             "responsiblecontactid": {
                 get: function () { return this.internal.responsiblecontactid; },
-                set: function (value) {
-                    if (!isInstanceOf(Sdk.Sample.contact, value)) {
-                        throw new Error(NS + ".incident.responsiblecontactid must be a " + NS + ".contact value.");
-                    }
-                    this.addChangedProperty("responsiblecontactid");
-                    this.internal.responsiblecontactid = value;
-                },
+                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "responsiblecontactid", value) },
                 enumerable: true
             },
             "responsiblecontactid@odata.bind": {
                 get: function () { return this.internal.responsiblecontactidUri; },
-                set: function (value) {
-                    if (!isTypedUri(Sdk.Sample.contact,value)) {
-                        throw new Error(NS + ".incident.responsiblecontactid@odata.bind must be a URI for an "+NS+".contact.");
-                    }
-                    this.addChangedProperty("responsiblecontactid@odata.bind");
-                    this.internal.responsiblecontactidUri = value;
-                },
+                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "responsiblecontactid", value) },
                 enumerable: true
             },
-    //Collection-Valued Navigation Properties,
+            //Collection-Valued Navigation Properties,
             "Incident_ActivityPointers": {
                 get: function () { return this.internal.Incident_ActivityPointers; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.activitypointer, value)) {
-                        throw new Error(NS + ".incident.Incident_ActivityPointers must be an Array of " + NS + ".activitypointer.");
-                    }
-                        this.addChangedProperty("Incident_ActivityPointers");
-                    this.internal.Incident_ActivityPointers = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Incident_ActivityPointers", value) },
                 enumerable: true,
             },
             "Incident_Annotation": {
                 get: function () { return this.internal.Incident_Annotation; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.annotation, value)) {
-                        throw new Error(NS + ".incident.Incident_Annotation must be an Array of " + NS + ".annotation.");
-                    }
-                        this.addChangedProperty("Incident_Annotation");
-                    this.internal.Incident_Annotation = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Incident_Annotation", value) },
                 enumerable: true,
             },
             "incident_existingcase": {
                 get: function () { return this.internal.incident_existingcase; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".incident.incident_existingcase must be an Array of " + NS + ".incident.");
-                    }
-                        this.addChangedProperty("incident_existingcase");
-                    this.internal.incident_existingcase = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_existingcase", value) },
                 enumerable: true,
             },
             "Incident_Letters": {
                 get: function () { return this.internal.Incident_Letters; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.letter, value)) {
-                        throw new Error(NS + ".incident.Incident_Letters must be an Array of " + NS + ".letter.");
-                    }
-                        this.addChangedProperty("Incident_Letters");
-                    this.internal.Incident_Letters = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Incident_Letters", value) },
                 enumerable: true,
             },
             "incident_master_incident": {
                 get: function () { return this.internal.incident_master_incident; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".incident.incident_master_incident must be an Array of " + NS + ".incident.");
-                    }
-                        this.addChangedProperty("incident_master_incident");
-                    this.internal.incident_master_incident = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_master_incident", value) },
                 enumerable: true,
             },
             "incident_parent_incident": {
                 get: function () { return this.internal.incident_parent_incident; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.incident, value)) {
-                        throw new Error(NS + ".incident.incident_parent_incident must be an Array of " + NS + ".incident.");
-                    }
-                        this.addChangedProperty("incident_parent_incident");
-                    this.internal.incident_parent_incident = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_parent_incident", value) },
                 enumerable: true,
             },
             "Incident_QueueItem": {
                 get: function () { return this.internal.Incident_QueueItem; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.queueitem, value)) {
-                        throw new Error(NS + ".incident.Incident_QueueItem must be an Array of " + NS + ".queueitem.");
-                    }
-                        this.addChangedProperty("Incident_QueueItem");
-                    this.internal.Incident_QueueItem = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "Incident_QueueItem", value) },
                 enumerable: true,
             },
             "Incident_Tasks": {
                 get: function () { return this.internal.Incident_Tasks; },
-                set: function (value) {
-                    if (!isArrayOf(Sdk.Sample.task, value)) {
-                        throw new Error(NS + ".incident.Incident_Tasks must be an Array of " + NS + ".task.");
-                    }
-                        this.addChangedProperty("Incident_Tasks");
-                    this.internal.Incident_Tasks = value;
-                },
+                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Incident_Tasks", value) },
                 enumerable: true,
             }
         });
@@ -3268,27 +2229,31 @@ Sdk.Sample.crmbaseentity.call(this);
         }
         return Object.seal(this);
     }
-this.incident.prototype = Object.create(this.crmbaseentity.prototype);
-this.incident.isEntityClass = true;
-this.incident.prototype.type = "incident";
-this.incident.prototype.primaryKey = "incidentid";
-this.incident.prototype.entitySetName = "incidents";
-this.incident.prototype.properties = Object.freeze({            incidentid:{ name:"incidentid", type:"Guid"}});
-this.incident.prototype.lookups = Object.freeze({            customerid_account:{ name:"customerid_account", type:"account"},
-            customerid_contact:{ name:"customerid_contact", type:"contact"},
-            existingcase:{ name:"existingcase", type:"incident"},
-            masterid:{ name:"masterid", type:"incident"},
-            parentcaseid:{ name:"parentcaseid", type:"incident"},
-            primarycontactid:{ name:"primarycontactid", type:"contact"},
-            responsiblecontactid:{ name:"responsiblecontactid", type:"contact"}});
-this.incident.prototype.collections = Object.freeze({            Incident_ActivityPointers:{ name:"Incident_ActivityPointers", type:"activitypointer"},
-            Incident_Annotation:{ name:"Incident_Annotation", type:"annotation"},
-            incident_existingcase:{ name:"incident_existingcase", type:"incident"},
-            Incident_Letters:{ name:"Incident_Letters", type:"letter"},
-            incident_master_incident:{ name:"incident_master_incident", type:"incident"},
-            incident_parent_incident:{ name:"incident_parent_incident", type:"incident"},
-            Incident_QueueItem:{ name:"Incident_QueueItem", type:"queueitem"},
-            Incident_Tasks:{ name:"Incident_Tasks", type:"task"}});
+    this.incident.prototype = Object.create(this.crmbaseentity.prototype);
+    this.incident.isEntityClass = true;
+    this.incident.prototype.type = "incident";
+    this.incident.prototype.primaryKey = "incidentid";
+    this.incident.prototype.entitySetName = "incidents";
+    this.incident.prototype.properties = Object.freeze({ incidentid: { name: "incidentid", type: "Guid" } });
+    this.incident.prototype.lookups = Object.freeze({
+        customerid_account: { name: "customerid_account", type: Sdk.Sample.account },
+        customerid_contact: { name: "customerid_contact", type: Sdk.Sample.contact },
+        existingcase: { name: "existingcase", type: Sdk.Sample.incident },
+        masterid: { name: "masterid", type: Sdk.Sample.incident },
+        parentcaseid: { name: "parentcaseid", type: Sdk.Sample.incident },
+        primarycontactid: { name: "primarycontactid", type: Sdk.Sample.contact },
+        responsiblecontactid: { name: "responsiblecontactid", type: Sdk.Sample.contact }
+    });
+    this.incident.prototype.collections = Object.freeze({
+        Incident_ActivityPointers: { name: "Incident_ActivityPointers", type: Sdk.Sample.activitypointer },
+        Incident_Annotation: { name: "Incident_Annotation", type: Sdk.Sample.annotation },
+        incident_existingcase: { name: "incident_existingcase", type: Sdk.Sample.incident },
+        Incident_Letters: { name: "Incident_Letters", type: Sdk.Sample.letter },
+        incident_master_incident: { name: "incident_master_incident", type: Sdk.Sample.incident },
+        incident_parent_incident: { name: "incident_parent_incident", type: Sdk.Sample.incident },
+        Incident_QueueItem: { name: "Incident_QueueItem", type: Sdk.Sample.queueitem },
+        Incident_Tasks: { name: "Incident_Tasks", type: Sdk.Sample.task }
+    });
 
     /**
     @method customerid_accountUri
@@ -3299,7 +2264,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     this.incident.prototype.customerid_accountUri = function (uri) {
         this["customerid_account@odata.bind"] = uri;
     }
-                
+
     /**
     @method customerid_contactUri
     @memberof Sdk.Sample.incident
@@ -3309,7 +2274,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     this.incident.prototype.customerid_contactUri = function (uri) {
         this["customerid_contact@odata.bind"] = uri;
     }
-                
+
     /**
     @method existingcaseUri
     @memberof Sdk.Sample.incident
@@ -3319,7 +2284,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     this.incident.prototype.existingcaseUri = function (uri) {
         this["existingcase@odata.bind"] = uri;
     }
-                
+
     /**
     @method masteridUri
     @memberof Sdk.Sample.incident
@@ -3329,7 +2294,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     this.incident.prototype.masteridUri = function (uri) {
         this["masterid@odata.bind"] = uri;
     }
-                
+
     /**
     @method parentcaseidUri
     @memberof Sdk.Sample.incident
@@ -3339,7 +2304,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     this.incident.prototype.parentcaseidUri = function (uri) {
         this["parentcaseid@odata.bind"] = uri;
     }
-                
+
     /**
     @method primarycontactidUri
     @memberof Sdk.Sample.incident
@@ -3349,7 +2314,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     this.incident.prototype.primarycontactidUri = function (uri) {
         this["primarycontactid@odata.bind"] = uri;
     }
-                
+
     /**
     @method responsiblecontactidUri
     @memberof Sdk.Sample.incident
@@ -3359,7 +2324,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     this.incident.prototype.responsiblecontactidUri = function (uri) {
         this["responsiblecontactid@odata.bind"] = uri;
     }
-                
+
     /**
     * @function Sdk.Sample.CalculateTotalTimeIncident
     * @memberOf Sdk.Sample
@@ -3373,12 +2338,12 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
         callerId
         ) {
         if (!isString(uri)) {
-            throw new Error(NS+".CalculateTotalTimeIncident uri parameter must be a string.");
+            throw new Error(NS + ".CalculateTotalTimeIncident uri parameter must be a string.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS+".CalculateTotalTimeIncident callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".CalculateTotalTimeIncident callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
-        return invokeFunction("CalculateTotalTimeIncident",null,uri,null,null,callerId,Sdk.Sample.CalculateTotalTimeIncidentResponse);
+        return invokeFunction("CalculateTotalTimeIncident", null, uri, null, null, callerId, Sdk.Sample.CalculateTotalTimeIncidentResponse);
     }
     /**
     * @function Sdk.Sample.GetTimeZoneCodeByLocalizedName
@@ -3394,23 +2359,23 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
         localeId,
         callerId
         ) {
-        if(!isString(localizedStandardName)) {
+        if (!isString(localizedStandardName)) {
             throw new Error(NS + ".GetTimeZoneCodeByLocalizedName localizedStandardName parameter must be a String value.");
         }
-        if(!isNumber(localeId)) {
+        if (!isNumber(localeId)) {
             throw new Error(NS + ".GetTimeZoneCodeByLocalizedName localeId parameter must be a Number value.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS+".GetTimeZoneCodeByLocalizedName callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".GetTimeZoneCodeByLocalizedName callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
         var parameters = [];
         if (localizedStandardName) {
-        parameters.push({ "LocalizedStandardName": localizedStandardName });
+            parameters.push({ "LocalizedStandardName": localizedStandardName });
         }
         if (localeId) {
-        parameters.push({ "LocaleId": localeId });
+            parameters.push({ "LocaleId": localeId });
         }
-        return invokeFunction("GetTimeZoneCodeByLocalizedName",parameters,null,null,null,callerId,Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse);
+        return invokeFunction("GetTimeZoneCodeByLocalizedName", parameters, null, null, null, callerId, Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse);
     }
     /**
     * @function Sdk.Sample.WhoAmI
@@ -3418,8 +2383,8 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     * @description Retrieves system information for the currently logged on user.
     * @returns {Promise} A Sdk.Sample.WhoAmIResponse instance when resolved or an Error if rejected. 
     */
-    this.WhoAmI = function (){
-        return invokeFunction("WhoAmI",null,null,null,null,null,Sdk.Sample.WhoAmIResponse);
+    this.WhoAmI = function () {
+        return invokeFunction("WhoAmI", null, null, null, null, null, Sdk.Sample.WhoAmIResponse);
     }
 
     /**
@@ -3441,25 +2406,25 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
         callerId
         ) {
         if (!isString(uri)) {
-            throw new Error(NS+".AddToQueue uri parameter must be a string.");
+            throw new Error(NS + ".AddToQueue uri parameter must be a string.");
         }
-        if(!isInstanceOf(Sdk.Sample.crmbaseentity,target)) {
+        if (!isInstanceOf(Sdk.Sample.crmbaseentity, target)) {
             throw new Error(NS + ".AddToQueue target parameter must be a Sdk.Sample.crmbaseentity value.");
         }
-        if(!isOptionalInstanceOfOrNull(Sdk.Sample.queue,sourceQueue)) {
+        if (!isOptionalInstanceOfOrNull(Sdk.Sample.queue, sourceQueue)) {
             throw new Error(NS + ".AddToQueue sourceQueue parameter must be a Sdk.Sample.queue value or null.");
         }
-        if(!isOptionalInstanceOfOrNull(Sdk.Sample.queueitem,queueItemProperties)) {
+        if (!isOptionalInstanceOfOrNull(Sdk.Sample.queueitem, queueItemProperties)) {
             throw new Error(NS + ".AddToQueue queueItemProperties parameter must be a Sdk.Sample.queueitem value or null.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS+".AddToQueue callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".AddToQueue callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
         var parameterObj = {};
         parameterObj.Target = target;
-        (!isNullOrUndefined(sourceQueue)? parameterObj.SourceQueue = sourceQueue : null);
-        (!isNullOrUndefined(queueItemProperties)? parameterObj.QueueItemProperties = queueItemProperties : null);
-        return invokeAction("AddToQueue",parameterObj,uri,callerId,Sdk.Sample.AddToQueueResponse);
+        (!isNullOrUndefined(sourceQueue) ? parameterObj.SourceQueue = sourceQueue : null);
+        (!isNullOrUndefined(queueItemProperties) ? parameterObj.QueueItemProperties = queueItemProperties : null);
+        return invokeAction("AddToQueue", parameterObj, uri, callerId, Sdk.Sample.AddToQueueResponse);
     }
     /**
     * @function Sdk.Sample.sample_AddNoteToContact
@@ -3478,21 +2443,21 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
         callerId
         ) {
         if (!isString(uri)) {
-            throw new Error(NS+".sample_AddNoteToContact uri parameter must be a string.");
+            throw new Error(NS + ".sample_AddNoteToContact uri parameter must be a string.");
         }
-        if(!isString(noteTitle)) {
+        if (!isString(noteTitle)) {
             throw new Error(NS + ".sample_AddNoteToContact noteTitle parameter must be a String value.");
         }
-        if(!isString(noteText)) {
+        if (!isString(noteText)) {
             throw new Error(NS + ".sample_AddNoteToContact noteText parameter must be a String value.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS+".sample_AddNoteToContact callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".sample_AddNoteToContact callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
         var parameterObj = {};
         parameterObj.NoteTitle = noteTitle;
         parameterObj.NoteText = noteText;
-        return invokeAction("sample_AddNoteToContact",parameterObj,uri,callerId,Sdk.Sample.annotation);
+        return invokeAction("sample_AddNoteToContact", parameterObj, uri, callerId, Sdk.Sample.annotation);
     }
     /**
     * @function Sdk.Sample.sample_CreateCustomer
@@ -3512,27 +2477,27 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
         contactLastName,
         callerId
         ) {
-        if(!isString(customerType)) {
+        if (!isString(customerType)) {
             throw new Error(NS + ".sample_CreateCustomer customerType parameter must be a String value.");
         }
-        if(!isOptionalString(accountName)) {
+        if (!isOptionalString(accountName)) {
             throw new Error(NS + ".sample_CreateCustomer accountName parameter must be a String value or null.");
         }
-        if(!isOptionalString(contactFirstName)) {
+        if (!isOptionalString(contactFirstName)) {
             throw new Error(NS + ".sample_CreateCustomer contactFirstName parameter must be a String value or null.");
         }
-        if(!isOptionalString(contactLastName)) {
+        if (!isOptionalString(contactLastName)) {
             throw new Error(NS + ".sample_CreateCustomer contactLastName parameter must be a String value or null.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS+".sample_CreateCustomer callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".sample_CreateCustomer callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
         var parameterObj = {};
         parameterObj.CustomerType = customerType;
-        (!isNullOrUndefined(accountName)? parameterObj.AccountName = accountName : null);
-        (!isNullOrUndefined(contactFirstName)? parameterObj.ContactFirstName = contactFirstName : null);
-        (!isNullOrUndefined(contactLastName)? parameterObj.ContactLastName = contactLastName : null);
-        return invokeAction("sample_CreateCustomer",parameterObj,null,callerId);
+        (!isNullOrUndefined(accountName) ? parameterObj.AccountName = accountName : null);
+        (!isNullOrUndefined(contactFirstName) ? parameterObj.ContactFirstName = contactFirstName : null);
+        (!isNullOrUndefined(contactLastName) ? parameterObj.ContactLastName = contactLastName : null);
+        return invokeAction("sample_CreateCustomer", parameterObj, null, callerId);
     }
     /**
     * @function Sdk.Sample.WinOpportunity
@@ -3548,19 +2513,19 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
         status,
         callerId
         ) {
-        if(!isInstanceOf(Sdk.Sample.opportunityclose,opportunityClose)) {
+        if (!isInstanceOf(Sdk.Sample.opportunityclose, opportunityClose)) {
             throw new Error(NS + ".WinOpportunity opportunityClose parameter must be a Sdk.Sample.opportunityclose value.");
         }
-        if(!isNumber(status)) {
+        if (!isNumber(status)) {
             throw new Error(NS + ".WinOpportunity status parameter must be a Number value.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS+".WinOpportunity callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".WinOpportunity callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
         var parameterObj = {};
         parameterObj.OpportunityClose = opportunityClose;
         parameterObj.Status = status;
-        return invokeAction("WinOpportunity",parameterObj,null,callerId);
+        return invokeAction("WinOpportunity", parameterObj, null, callerId);
     }
 
     /**
@@ -3570,13 +2535,12 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     @property {Guid} QueueItemId The ID of the queue item that is created in the destination queue.
     */
     this.AddToQueueResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.AddToQueueResponse,this)) {
+        if (!isInstanceOf(Sdk.Sample.AddToQueueResponse, this)) {
             return new Sdk.Sample.AddToQueueResponse(JSONData);
         }
         var data = {};
-        if (JSONData)
-        {
-         data = JSONData;
+        if (JSONData) {
+            data = JSONData;
         }
         Object.defineProperties(this,
     {
@@ -3584,7 +2548,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.QueueItemId; },
             set: function (value) {
                 if (!isGuid(value)) {
-                    throw new Error(NS+".QueueItemId must be a Guid.")
+                    throw new Error(NS + ".QueueItemId must be a Guid.")
                 }
                 data["QueueItemId"] = value;
             },
@@ -3601,13 +2565,12 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     @property {String} ManagedPropertyLogicalName The logical name for the managed property.
     */
     this.BooleanManagedProperty = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.BooleanManagedProperty,this)) {
+        if (!isInstanceOf(Sdk.Sample.BooleanManagedProperty, this)) {
             return new Sdk.Sample.BooleanManagedProperty(JSONData);
         }
         var data = {};
-        if (JSONData)
-        {
-         data = JSONData;
+        if (JSONData) {
+            data = JSONData;
         }
         Object.defineProperties(this,
     {
@@ -3615,7 +2578,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.Value; },
             set: function (value) {
                 if (!isBoolean(value)) {
-                    throw new Error(NS+".Value must be a Boolean.")
+                    throw new Error(NS + ".Value must be a Boolean.")
                 }
                 data["Value"] = value;
             },
@@ -3625,7 +2588,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.CanBeChanged; },
             set: function (value) {
                 if (!isBoolean(value)) {
-                    throw new Error(NS+".CanBeChanged must be a Boolean.")
+                    throw new Error(NS + ".CanBeChanged must be a Boolean.")
                 }
                 data["CanBeChanged"] = value;
             },
@@ -3635,7 +2598,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.ManagedPropertyLogicalName; },
             set: function (value) {
                 if (!isStringOrNull(value)) {
-                    throw new Error(NS+".ManagedPropertyLogicalName must be a String or null.")
+                    throw new Error(NS + ".ManagedPropertyLogicalName must be a String or null.")
                 }
                 data["ManagedPropertyLogicalName"] = value;
             },
@@ -3650,13 +2613,12 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     @property {Number} TotalTime The total time in minutes that it takes to work on an incident (case).
     */
     this.CalculateTotalTimeIncidentResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.CalculateTotalTimeIncidentResponse,this)) {
+        if (!isInstanceOf(Sdk.Sample.CalculateTotalTimeIncidentResponse, this)) {
             return new Sdk.Sample.CalculateTotalTimeIncidentResponse(JSONData);
         }
         var data = {};
-        if (JSONData)
-        {
-         data = JSONData;
+        if (JSONData) {
+            data = JSONData;
         }
         Object.defineProperties(this,
     {
@@ -3664,7 +2626,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.TotalTime; },
             set: function (value) {
                 if (!isNumber(value)) {
-                    throw new Error(NS+".TotalTime must be a Number.")
+                    throw new Error(NS + ".TotalTime must be a Number.")
                 }
                 data["TotalTime"] = value;
             },
@@ -3679,13 +2641,12 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     @property {Number} TimeZoneCode The time zone code that has the requested localized name.
     */
     this.GetTimeZoneCodeByLocalizedNameResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse,this)) {
+        if (!isInstanceOf(Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse, this)) {
             return new Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse(JSONData);
         }
         var data = {};
-        if (JSONData)
-        {
-         data = JSONData;
+        if (JSONData) {
+            data = JSONData;
         }
         Object.defineProperties(this,
     {
@@ -3693,7 +2654,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.TimeZoneCode; },
             set: function (value) {
                 if (!isNumber(value)) {
-                    throw new Error(NS+".TimeZoneCode must be a Number.")
+                    throw new Error(NS + ".TimeZoneCode must be a Number.")
                 }
                 data["TimeZoneCode"] = value;
             },
@@ -3710,13 +2671,12 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     @property {Guid} OrganizationId ID of the organization that the user belongs to.
     */
     this.WhoAmIResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.WhoAmIResponse,this)) {
+        if (!isInstanceOf(Sdk.Sample.WhoAmIResponse, this)) {
             return new Sdk.Sample.WhoAmIResponse(JSONData);
         }
         var data = {};
-        if (JSONData)
-        {
-         data = JSONData;
+        if (JSONData) {
+            data = JSONData;
         }
         Object.defineProperties(this,
     {
@@ -3724,7 +2684,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.BusinessUnitId; },
             set: function (value) {
                 if (!isGuid(value)) {
-                    throw new Error(NS+".BusinessUnitId must be a Guid.")
+                    throw new Error(NS + ".BusinessUnitId must be a Guid.")
                 }
                 data["BusinessUnitId"] = value;
             },
@@ -3734,7 +2694,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.UserId; },
             set: function (value) {
                 if (!isGuid(value)) {
-                    throw new Error(NS+".UserId must be a Guid.")
+                    throw new Error(NS + ".UserId must be a Guid.")
                 }
                 data["UserId"] = value;
             },
@@ -3744,7 +2704,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             get: function () { return data.OrganizationId; },
             set: function (value) {
                 if (!isGuid(value)) {
-                    throw new Error(NS+".OrganizationId must be a Guid.")
+                    throw new Error(NS + ".OrganizationId must be a Guid.")
                 }
                 data["OrganizationId"] = value;
             },
@@ -3756,6 +2716,86 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
 
 
     //#region Core functions  
+    //Property Setters
+
+    function setBooleanManagedProperty(entity, propertyName, value) {
+        propertySetter(isBooleanManagedProperty, NS + ".BooleanManagedProperty value or null", entity, propertyName, value);
+    }
+
+    function setGuidOrNullProperty(entity, propertyName, value) {
+        propertySetter(isGuidOrNull, "String representation of a GUID value or null", entity, propertyName, value);
+    }
+
+    function setDateTimeOffsetOrNullProperty(entity, propertyName, value) {
+        propertySetter(isDateOrNull, "Date value or null", entity, propertyName, value);
+    }
+
+    function setBooleanProperty(entity, propertyName, value) {
+        propertySetter(isBoolean, "Boolean value", entity, propertyName, value);
+    }
+
+    function setNumberOrNullProperty(entity, propertyName, value) {
+        propertySetter(isNumberOrNull, "Number value or null", entity, propertyName, value);
+    }
+
+    function setStringOrNullProperty(entity, propertyName, value) {
+        propertySetter(isStringOrNull, "String value or null", entity, propertyName, value);
+    }
+
+    function propertySetter(validationFunction, requirement, entity, propertyName, value) {
+        if (!validationFunction(value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be a " + requirement + ".");
+        }
+        if (entity.internal[propertyName] != value) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = value;
+        }
+    }
+
+    //Special because it requires convertToEdmDateString to be called on the value.
+    function setDateOnlyProperty(entity, propertyName, value) {
+        if (!isDateOrNull(value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be a Date value or null.");
+        }
+        if (entity.internal[propertyName] != convertToEdmDateString(value)) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = convertToEdmDateString(value);
+        }
+    }
+
+    //Lookup Property Setter
+    function lookupPropertySetter(type, typeName, entity, propertyName, value) {
+        if (!isInstanceOf(type, value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be a " + NS + "." + typeName + " value.");
+        }
+        if (entity.internal[propertyName] != value) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = value;
+        }
+    }
+
+    //Lookup Property Binder
+    function lookupPropertyBinder(type, typeName, entity, propertyName, value) {
+        if (!isTypedUri(type, value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + "@odata.bind must be a URI for an " + NS + "." + typeName + ".");
+        }
+        if (entity.internal[propertyName + "Uri"] != value) {
+            entity.addChangedProperty(propertyName + "@odata.bind");
+            entity.internal[propertyName + "Uri"] = value;
+        }
+    }
+
+    //Collection Property Setter
+    function collectionPropertySetter(type, typeName, entity, propertyName, value) {
+        if (!isArrayOf(type, value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be an Array of " + NS + "." + typeName + ".");
+        }
+        if (entity.internal[propertyName] != value) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = value;
+        }
+    }
+
     //Internal Helper functions
 
     //Used in constructors to set initial property values
@@ -3904,7 +2944,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 throw new Error(NS + ".invokeAction returnType parameter must be a function, null, or undefined.");
             }
 
-            
+
 
             var req = new XMLHttpRequest();
 
@@ -3917,7 +2957,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
 
             setStandardHeaders(req, callerId);
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -3956,7 +2996,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 req.send();
             }
 
-            
+
 
         });
     }
@@ -4323,10 +3363,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
     function isUndefined(obj) {
         return (typeof obj === "undefined");
     }
-    //Used within entity property setters when no conversion is required
-    function noChange(value) {
-        return value;
-    }
+
     //Applys standard OData headers to an XMLHTTPRequest object
     function setStandardHeaders(req, callerId) {
         req.setRequestHeader("Accept", "application/json");
@@ -4372,13 +3409,13 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 throw new Error(NS + ".create callerId parameter must be a string representation of a GUID value, null or undefined.");
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             req.open("POST", encodeURI(getWebAPIPath() + entity.entitySetName), true);
             setStandardHeaders(req, callerId);
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -4393,7 +3430,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send(JSON.stringify(entity));
 
-            
+
 
         });
 
@@ -4494,7 +3531,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 }
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             if (uri.charAt(0) === "/") {
@@ -4510,7 +3547,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 req.setRequestHeader("If-None-Match", version);
             }
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -4530,7 +3567,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send();
 
-            
+
 
         });
     }
@@ -4605,7 +3642,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 throw new Error(NS + ".retrieveProperty callerId parameter must be a string representation of a GUID value, null or undefined.");
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             if (uri.charAt(0) === "/") {
@@ -4614,7 +3651,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             req.open("GET", encodeURI(uri + "/" + propertyName), true);
             setStandardHeaders(req, callerId);
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -4622,8 +3659,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                     switch (this.status) {
                         case 200:
                             var obj = JSON.parse(this.response, dateReviver);
-                            if (obj)
-                            {
+                            if (obj) {
                                 if (obj.value) {
                                     resolve(obj.value);
                                 }
@@ -4633,7 +3669,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                             }
                             else {
                                 resolve(null);
-                            }                    
+                            }
                             break;
                         case 204:
                             resolve(null);
@@ -4646,7 +3682,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send();
 
-            
+
 
         });
     }
@@ -4679,7 +3715,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             }
             else {
 
-                
+
 
                 var req = new XMLHttpRequest();
                 req.open("PATCH", encodeURI(entity.getUri()), true);
@@ -4692,7 +3728,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 }
                 req.entity = entity; //Attaching the entity to the request so it will be in scope for the onreadystatechange event handler
 
-                
+
 
                 req.onreadystatechange = function () {
                     if (this.readyState == 4 /* complete */) {
@@ -4709,7 +3745,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 };
                 req.send(JSON.stringify(entity));
 
-                
+
             }
         });
     }
@@ -4735,7 +3771,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 throw new Error(NS + ".upsert callerId parameter must be a string representation of a GUID value, null or undefined.");
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             req.open("PATCH", encodeURI(entity.getUri()), true);
@@ -4744,7 +3780,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 req.setRequestHeader("If-None-Match", "*");
             }
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -4759,7 +3795,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send(JSON.stringify(entity));
 
-            
+
 
         });
     }
@@ -4787,7 +3823,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 throw new Error(NS + ".delete callerId parameter must be a string representation of a GUID value, null or undefined.");
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             if (uri.charAt(0) === "/") {
@@ -4799,7 +3835,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 req.setRequestHeader("If-Match", version);
             }
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -4814,7 +3850,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send();
 
-            
+
 
         });
     }
@@ -4868,13 +3904,13 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 throw new Error(NS + ".addToCollection callerId parameter must be a string representation of a GUID value, null or undefined.");
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             req.open("POST", encodeURI(uri1 + "/" + collectionName + "/$ref"), true);
             setStandardHeaders(req, callerId);
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -4889,7 +3925,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send(JSON.stringify({ "@odata.id": uri2 }));
 
-            
+
 
         });
     }
@@ -4936,13 +3972,13 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 uri = uri + "/$ref";
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             req.open("DELETE", encodeURI(uri), true);
             setStandardHeaders(req, callerId);
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -4957,7 +3993,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send();
 
-            
+
 
         });
     }
@@ -4995,7 +4031,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 url = url + "?" + query;
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             req.open("GET", encodeURI(url), true);
@@ -5014,7 +4050,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 }
             }
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -5036,7 +4072,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send();
 
-            
+
 
         });
 
@@ -5067,7 +4103,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 throw new Error(NS + ".getNextPage callerId parameter must be a string representation of a GUID value, null or undefined.");
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             //Not encoding the nextLink because it came from the system
@@ -5087,7 +4123,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 }
             }
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -5109,7 +4145,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send();
 
-            
+
 
         });
     }
@@ -5163,7 +4199,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 fetchXml = (new XMLSerializer).serializeToString(xml);
             }
 
-            
+
 
             var req = new XMLHttpRequest();
             req.open("GET", encodeURI(getWebAPIPath() + entitySetName + "?fetchXml=" + encodeURIComponent(fetchXml)), true);
@@ -5172,7 +4208,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
                 req.setRequestHeader("Prefer", "odata.include-annotations=\"OData.Community.Display.V1.FormattedValue\"");
             }
 
-            
+
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -5194,7 +4230,7 @@ this.incident.prototype.collections = Object.freeze({            Incident_Activi
             };
             req.send();
 
-            
+
 
         });
     }

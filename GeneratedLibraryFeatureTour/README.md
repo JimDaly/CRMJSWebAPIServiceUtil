@@ -4,11 +4,13 @@ This project will walk you through specific features included in the generated l
 I will add to it over time.
 
 This is a Visual Studio TypeScript project where I've just added the following:
+
 1. **es6-promise.TypeScript.DefinitelyTyped** NuGet package so that promises are recognized when the TypeScript
   ECMAScript version is ECMAScript 5.
 2. The two generated files:
   * **Demo.Tour.TourOfGeneratedLibrary.js**
   * **Demo.Tour.TourOfGeneratedLibrary.d.ts**
+  
 3. **Demo.Tour.TourOfGeneratedLibrary_Definition.json**
   * This is the definition of the library. It only contains OOTB entities functions and actions.
     It isn't used directly by the project, but you should be able to edit the **fileFolder** and

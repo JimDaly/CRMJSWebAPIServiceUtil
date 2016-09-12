@@ -301,3 +301,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/GeneratedLibraryFeatureTour/GeneratedLibraryFeatureTour/Scripts/typings/es6-promise/es6-promise.d.ts
+/SdkSamples/SdkSamples/Scripts/typings/es6-promise/es6-promise.d.ts
+/GeneratedLibraryFeatureTour/GeneratedLibraryFeatureTour.sln

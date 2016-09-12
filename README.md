@@ -195,7 +195,7 @@ use in the generated library. Custom actions are available on the **Actions** ta
 
 9. On the **Build** tab you have a number of choices to make:
 
-  ![Set Build options](images/Build.PNG)
+  ![Set Build options](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/Build.PNG)
 
   Field        | Description    |
   ------------- |-------------|

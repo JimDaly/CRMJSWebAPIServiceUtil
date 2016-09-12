@@ -279,7 +279,7 @@ Sdk.Sample = Sdk.Sample || {};
 
             }
         });
-
+        //if /$count is appended to the query only a number will be returned.
         if (isNumber(collection)) {
             _value = [];
             _count = collection;
@@ -433,18 +433,6 @@ Sdk.Sample = Sdk.Sample || {};
         scheduledend: { name: "scheduledend", type: "Date" },
         scheduledstart: { name: "scheduledstart", type: "Date" },
         subject: { name: "subject", type: "String" }
-    });
-    this.activitypointer.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity }
-    });
-    this.activitypointer.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem }
     });
 
     /**
@@ -657,25 +645,6 @@ Sdk.Sample = Sdk.Sample || {};
         lastname: { name: "lastname", type: "String" },
         telephone1: { name: "telephone1", type: "String" }
     });
-    this.contact.prototype.lookups = Object.freeze({
-        masterid: { name: "masterid", type: Sdk.Sample.contact },
-        parentcustomerid_account: { name: "parentcustomerid_account", type: Sdk.Sample.account },
-        parentcustomerid_contact: { name: "parentcustomerid_contact", type: Sdk.Sample.contact }
-    });
-    this.contact.prototype.collections = Object.freeze({
-        account_primary_contact: { name: "account_primary_contact", type: Sdk.Sample.account },
-        Contact_ActivityPointers: { name: "Contact_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Contact_Annotation: { name: "Contact_Annotation", type: Sdk.Sample.annotation },
-        contact_as_primary_contact: { name: "contact_as_primary_contact", type: Sdk.Sample.incident },
-        contact_as_responsible_contact: { name: "contact_as_responsible_contact", type: Sdk.Sample.incident },
-        contact_customer_contacts: { name: "contact_customer_contacts", type: Sdk.Sample.contact },
-        Contact_Letters: { name: "Contact_Letters", type: Sdk.Sample.letter },
-        contact_master_contact: { name: "contact_master_contact", type: Sdk.Sample.contact },
-        Contact_Tasks: { name: "Contact_Tasks", type: Sdk.Sample.task },
-        incident_customer_contacts: { name: "incident_customer_contacts", type: Sdk.Sample.incident },
-        opportunity_customer_contacts: { name: "opportunity_customer_contacts", type: Sdk.Sample.opportunity },
-        opportunity_parent_contact: { name: "opportunity_parent_contact", type: Sdk.Sample.opportunity }
-    });
 
     /**
     @method parentcustomerid_accountUri
@@ -835,23 +804,6 @@ Sdk.Sample = Sdk.Sample || {};
         revenue: { name: "revenue", type: "Number" },
         telephone1: { name: "telephone1", type: "String" }
     });
-    this.account.prototype.lookups = Object.freeze({
-        masterid: { name: "masterid", type: Sdk.Sample.account },
-        parentaccountid: { name: "parentaccountid", type: Sdk.Sample.account },
-        primarycontactid: { name: "primarycontactid", type: Sdk.Sample.contact }
-    });
-    this.account.prototype.collections = Object.freeze({
-        Account_ActivityPointers: { name: "Account_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Account_Annotation: { name: "Account_Annotation", type: Sdk.Sample.annotation },
-        Account_Letters: { name: "Account_Letters", type: Sdk.Sample.letter },
-        account_master_account: { name: "account_master_account", type: Sdk.Sample.account },
-        account_parent_account: { name: "account_parent_account", type: Sdk.Sample.account },
-        Account_Tasks: { name: "Account_Tasks", type: Sdk.Sample.task },
-        contact_customer_accounts: { name: "contact_customer_accounts", type: Sdk.Sample.contact },
-        incident_customer_accounts: { name: "incident_customer_accounts", type: Sdk.Sample.incident },
-        opportunity_customer_accounts: { name: "opportunity_customer_accounts", type: Sdk.Sample.opportunity },
-        opportunity_parent_account: { name: "opportunity_parent_account", type: Sdk.Sample.opportunity }
-    });
 
     /**
     @method parentaccountidUri
@@ -973,25 +925,6 @@ Sdk.Sample = Sdk.Sample || {};
         scheduledstart: { name: "scheduledstart", type: "Date" },
         subject: { name: "subject", type: "String" }
     });
-    this.task.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
-        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
-        regardingobjectid_account_task: { name: "regardingobjectid_account_task", type: Sdk.Sample.account },
-        regardingobjectid_contact_task: { name: "regardingobjectid_contact_task", type: Sdk.Sample.contact },
-        regardingobjectid_incident_task: { name: "regardingobjectid_incident_task", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity_task: { name: "regardingobjectid_opportunity_task", type: Sdk.Sample.opportunity }
-    });
-    this.task.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
-        Task_Annotation: { name: "Task_Annotation", type: Sdk.Sample.annotation },
-        Task_QueueItem: { name: "Task_QueueItem", type: Sdk.Sample.queueitem }
-    });
 
     /**
     @method activityid_activitypointerUri
@@ -1109,12 +1042,6 @@ Sdk.Sample = Sdk.Sample || {};
         competitorid: { name: "competitorid", type: "Guid" },
         name: { name: "name", type: "String" },
         strengths: { name: "strengths", type: "String" }
-    });
-    this.competitor.prototype.lookups = Object.freeze({});
-    this.competitor.prototype.collections = Object.freeze({
-        Competitor_Annotation: { name: "Competitor_Annotation", type: Sdk.Sample.annotation },
-        competitor_opportunity_activities: { name: "competitor_opportunity_activities", type: Sdk.Sample.opportunityclose },
-        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: Sdk.Sample.opportunity }
     });
 
     /**
@@ -1239,20 +1166,6 @@ Sdk.Sample = Sdk.Sample || {};
         name: { name: "name", type: "String" },
         opportunityid: { name: "opportunityid", type: "Guid" }
     });
-    this.opportunity.prototype.lookups = Object.freeze({
-        customerid_account: { name: "customerid_account", type: Sdk.Sample.account },
-        customerid_contact: { name: "customerid_contact", type: Sdk.Sample.contact },
-        parentaccountid: { name: "parentaccountid", type: Sdk.Sample.account },
-        parentcontactid: { name: "parentcontactid", type: Sdk.Sample.contact }
-    });
-    this.opportunity.prototype.collections = Object.freeze({
-        Opportunity_ActivityPointers: { name: "Opportunity_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Opportunity_Annotation: { name: "Opportunity_Annotation", type: Sdk.Sample.annotation },
-        Opportunity_Letters: { name: "Opportunity_Letters", type: Sdk.Sample.letter },
-        Opportunity_OpportunityClose: { name: "Opportunity_OpportunityClose", type: Sdk.Sample.opportunityclose },
-        Opportunity_Tasks: { name: "Opportunity_Tasks", type: Sdk.Sample.task },
-        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: Sdk.Sample.competitor }
-    });
 
     /**
     @method customerid_accountUri
@@ -1340,8 +1253,6 @@ Sdk.Sample = Sdk.Sample || {};
         name: { name: "name", type: "String" },
         savedqueryid: { name: "savedqueryid", type: "Guid" }
     });
-    this.savedquery.prototype.lookups = Object.freeze({});
-    this.savedquery.prototype.collections = Object.freeze({});
 
     /**
     @typeref {object} Sdk.Sample.userquery
@@ -1389,8 +1300,6 @@ Sdk.Sample = Sdk.Sample || {};
         name: { name: "name", type: "String" },
         userqueryid: { name: "userqueryid", type: "Guid" }
     });
-    this.userquery.prototype.lookups = Object.freeze({});
-    this.userquery.prototype.collections = Object.freeze({});
 
     /**
     @typeref {object} Sdk.Sample.letter
@@ -1491,25 +1400,6 @@ Sdk.Sample = Sdk.Sample || {};
         scheduledend: { name: "scheduledend", type: "Date" },
         scheduledstart: { name: "scheduledstart", type: "Date" },
         subject: { name: "subject", type: "String" }
-    });
-    this.letter.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
-        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
-        regardingobjectid_account_letter: { name: "regardingobjectid_account_letter", type: Sdk.Sample.account },
-        regardingobjectid_contact_letter: { name: "regardingobjectid_contact_letter", type: Sdk.Sample.contact },
-        regardingobjectid_incident_letter: { name: "regardingobjectid_incident_letter", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity_letter: { name: "regardingobjectid_opportunity_letter", type: Sdk.Sample.opportunity }
-    });
-    this.letter.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
-        Letter_Annotation: { name: "Letter_Annotation", type: Sdk.Sample.annotation },
-        Letter_QueueItem: { name: "Letter_QueueItem", type: Sdk.Sample.queueitem }
     });
 
     /**
@@ -1637,22 +1527,6 @@ Sdk.Sample = Sdk.Sample || {};
         scheduledstart: { name: "scheduledstart", type: "Date" },
         subject: { name: "subject", type: "String" }
     });
-    this.opportunityclose.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
-        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
-        competitorid: { name: "competitorid", type: Sdk.Sample.competitor },
-        opportunityid: { name: "opportunityid", type: Sdk.Sample.opportunity }
-    });
-    this.opportunityclose.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
-        OpportunityClose_Annotation: { name: "OpportunityClose_Annotation", type: Sdk.Sample.annotation }
-    });
 
     /**
     @method activityid_activitypointerUri
@@ -1727,8 +1601,6 @@ Sdk.Sample = Sdk.Sample || {};
     this.queue.prototype.primaryKey = "queueid";
     this.queue.prototype.entitySetName = "queues";
     this.queue.prototype.properties = Object.freeze({ queueid: { name: "queueid", type: "Guid" } });
-    this.queue.prototype.lookups = Object.freeze({});
-    this.queue.prototype.collections = Object.freeze({ queue_entries: { name: "queue_entries", type: Sdk.Sample.queueitem } });
 
     /**
     @typeref {object} Sdk.Sample.queueitem
@@ -1818,14 +1690,6 @@ Sdk.Sample = Sdk.Sample || {};
     this.queueitem.prototype.primaryKey = "queueitemid";
     this.queueitem.prototype.entitySetName = "queueitems";
     this.queueitem.prototype.properties = Object.freeze({ queueitemid: { name: "queueitemid", type: "Guid" } });
-    this.queueitem.prototype.lookups = Object.freeze({
-        objectid_activitypointer: { name: "objectid_activitypointer", type: Sdk.Sample.activitypointer },
-        objectid_incident: { name: "objectid_incident", type: Sdk.Sample.incident },
-        objectid_letter: { name: "objectid_letter", type: Sdk.Sample.letter },
-        objectid_task: { name: "objectid_task", type: Sdk.Sample.task },
-        queueid: { name: "queueid", type: Sdk.Sample.queue }
-    });
-    this.queueitem.prototype.collections = Object.freeze({});
 
     /**
     @method objectid_activitypointerUri
@@ -1995,17 +1859,6 @@ Sdk.Sample = Sdk.Sample || {};
     this.annotation.prototype.primaryKey = "annotationid";
     this.annotation.prototype.entitySetName = "annotations";
     this.annotation.prototype.properties = Object.freeze({ annotationid: { name: "annotationid", type: "Guid" } });
-    this.annotation.prototype.lookups = Object.freeze({
-        objectid_account: { name: "objectid_account", type: Sdk.Sample.account },
-        objectid_competitor: { name: "objectid_competitor", type: Sdk.Sample.competitor },
-        objectid_contact: { name: "objectid_contact", type: Sdk.Sample.contact },
-        objectid_incident: { name: "objectid_incident", type: Sdk.Sample.incident },
-        objectid_letter: { name: "objectid_letter", type: Sdk.Sample.letter },
-        objectid_opportunity: { name: "objectid_opportunity", type: Sdk.Sample.opportunity },
-        objectid_opportunityclose: { name: "objectid_opportunityclose", type: Sdk.Sample.opportunityclose },
-        objectid_task: { name: "objectid_task", type: Sdk.Sample.task }
-    });
-    this.annotation.prototype.collections = Object.freeze({});
 
     /**
     @method objectid_accountUri
@@ -2235,25 +2088,6 @@ Sdk.Sample = Sdk.Sample || {};
     this.incident.prototype.primaryKey = "incidentid";
     this.incident.prototype.entitySetName = "incidents";
     this.incident.prototype.properties = Object.freeze({ incidentid: { name: "incidentid", type: "Guid" } });
-    this.incident.prototype.lookups = Object.freeze({
-        customerid_account: { name: "customerid_account", type: Sdk.Sample.account },
-        customerid_contact: { name: "customerid_contact", type: Sdk.Sample.contact },
-        existingcase: { name: "existingcase", type: Sdk.Sample.incident },
-        masterid: { name: "masterid", type: Sdk.Sample.incident },
-        parentcaseid: { name: "parentcaseid", type: Sdk.Sample.incident },
-        primarycontactid: { name: "primarycontactid", type: Sdk.Sample.contact },
-        responsiblecontactid: { name: "responsiblecontactid", type: Sdk.Sample.contact }
-    });
-    this.incident.prototype.collections = Object.freeze({
-        Incident_ActivityPointers: { name: "Incident_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Incident_Annotation: { name: "Incident_Annotation", type: Sdk.Sample.annotation },
-        incident_existingcase: { name: "incident_existingcase", type: Sdk.Sample.incident },
-        Incident_Letters: { name: "Incident_Letters", type: Sdk.Sample.letter },
-        incident_master_incident: { name: "incident_master_incident", type: Sdk.Sample.incident },
-        incident_parent_incident: { name: "incident_parent_incident", type: Sdk.Sample.incident },
-        Incident_QueueItem: { name: "Incident_QueueItem", type: Sdk.Sample.queueitem },
-        Incident_Tasks: { name: "Incident_Tasks", type: Sdk.Sample.task }
-    });
 
     /**
     @method customerid_accountUri
@@ -2324,6 +2158,172 @@ Sdk.Sample = Sdk.Sample || {};
     this.incident.prototype.responsiblecontactidUri = function (uri) {
         this["responsiblecontactid@odata.bind"] = uri;
     }
+    this.activitypointer.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: this.opportunity }
+    });
+    this.activitypointer.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: this.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: this.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: this.queueitem }
+    });
+    this.contact.prototype.lookups = Object.freeze({
+        masterid: { name: "masterid", type: this.contact },
+        parentcustomerid_account: { name: "parentcustomerid_account", type: this.account },
+        parentcustomerid_contact: { name: "parentcustomerid_contact", type: this.contact }
+    });
+    this.contact.prototype.collections = Object.freeze({
+        account_primary_contact: { name: "account_primary_contact", type: this.account },
+        Contact_ActivityPointers: { name: "Contact_ActivityPointers", type: this.activitypointer },
+        Contact_Annotation: { name: "Contact_Annotation", type: this.annotation },
+        contact_as_primary_contact: { name: "contact_as_primary_contact", type: this.incident },
+        contact_as_responsible_contact: { name: "contact_as_responsible_contact", type: this.incident },
+        contact_customer_contacts: { name: "contact_customer_contacts", type: this.contact },
+        Contact_Letters: { name: "Contact_Letters", type: this.letter },
+        contact_master_contact: { name: "contact_master_contact", type: this.contact },
+        Contact_Tasks: { name: "Contact_Tasks", type: this.task },
+        incident_customer_contacts: { name: "incident_customer_contacts", type: this.incident },
+        opportunity_customer_contacts: { name: "opportunity_customer_contacts", type: this.opportunity },
+        opportunity_parent_contact: { name: "opportunity_parent_contact", type: this.opportunity }
+    });
+    this.account.prototype.lookups = Object.freeze({
+        masterid: { name: "masterid", type: this.account },
+        parentaccountid: { name: "parentaccountid", type: this.account },
+        primarycontactid: { name: "primarycontactid", type: this.contact }
+    });
+    this.account.prototype.collections = Object.freeze({
+        Account_ActivityPointers: { name: "Account_ActivityPointers", type: this.activitypointer },
+        Account_Annotation: { name: "Account_Annotation", type: this.annotation },
+        Account_Letters: { name: "Account_Letters", type: this.letter },
+        account_master_account: { name: "account_master_account", type: this.account },
+        account_parent_account: { name: "account_parent_account", type: this.account },
+        Account_Tasks: { name: "Account_Tasks", type: this.task },
+        contact_customer_accounts: { name: "contact_customer_accounts", type: this.contact },
+        incident_customer_accounts: { name: "incident_customer_accounts", type: this.incident },
+        opportunity_customer_accounts: { name: "opportunity_customer_accounts", type: this.opportunity },
+        opportunity_parent_account: { name: "opportunity_parent_account", type: this.opportunity }
+    });
+    this.task.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: this.opportunity },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: this.activitypointer },
+        regardingobjectid_account_task: { name: "regardingobjectid_account_task", type: this.account },
+        regardingobjectid_contact_task: { name: "regardingobjectid_contact_task", type: this.contact },
+        regardingobjectid_incident_task: { name: "regardingobjectid_incident_task", type: this.incident },
+        regardingobjectid_opportunity_task: { name: "regardingobjectid_opportunity_task", type: this.opportunity }
+    });
+    this.task.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: this.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: this.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: this.queueitem },
+        Task_Annotation: { name: "Task_Annotation", type: this.annotation },
+        Task_QueueItem: { name: "Task_QueueItem", type: this.queueitem }
+    });
+    this.competitor.prototype.lookups = Object.freeze({});
+    this.competitor.prototype.collections = Object.freeze({
+        Competitor_Annotation: { name: "Competitor_Annotation", type: this.annotation },
+        competitor_opportunity_activities: { name: "competitor_opportunity_activities", type: this.opportunityclose },
+        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: this.opportunity }
+    });
+    this.opportunity.prototype.lookups = Object.freeze({
+        customerid_account: { name: "customerid_account", type: this.account },
+        customerid_contact: { name: "customerid_contact", type: this.contact },
+        parentaccountid: { name: "parentaccountid", type: this.account },
+        parentcontactid: { name: "parentcontactid", type: this.contact }
+    });
+    this.opportunity.prototype.collections = Object.freeze({
+        Opportunity_ActivityPointers: { name: "Opportunity_ActivityPointers", type: this.activitypointer },
+        Opportunity_Annotation: { name: "Opportunity_Annotation", type: this.annotation },
+        Opportunity_Letters: { name: "Opportunity_Letters", type: this.letter },
+        Opportunity_OpportunityClose: { name: "Opportunity_OpportunityClose", type: this.opportunityclose },
+        Opportunity_Tasks: { name: "Opportunity_Tasks", type: this.task },
+        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: this.competitor }
+    });
+    this.savedquery.prototype.lookups = Object.freeze({});
+    this.savedquery.prototype.collections = Object.freeze({});
+    this.userquery.prototype.lookups = Object.freeze({});
+    this.userquery.prototype.collections = Object.freeze({});
+    this.letter.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: this.opportunity },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: this.activitypointer },
+        regardingobjectid_account_letter: { name: "regardingobjectid_account_letter", type: this.account },
+        regardingobjectid_contact_letter: { name: "regardingobjectid_contact_letter", type: this.contact },
+        regardingobjectid_incident_letter: { name: "regardingobjectid_incident_letter", type: this.incident },
+        regardingobjectid_opportunity_letter: { name: "regardingobjectid_opportunity_letter", type: this.opportunity }
+    });
+    this.letter.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: this.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: this.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: this.queueitem },
+        Letter_Annotation: { name: "Letter_Annotation", type: this.annotation },
+        Letter_QueueItem: { name: "Letter_QueueItem", type: this.queueitem }
+    });
+    this.opportunityclose.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident },
+        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: this.opportunity },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: this.activitypointer },
+        competitorid: { name: "competitorid", type: this.competitor },
+        opportunityid: { name: "opportunityid", type: this.opportunity }
+    });
+    this.opportunityclose.prototype.collections = Object.freeze({
+        activity_pointer_letter: { name: "activity_pointer_letter", type: this.letter },
+        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: this.opportunityclose },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task },
+        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: this.queueitem },
+        OpportunityClose_Annotation: { name: "OpportunityClose_Annotation", type: this.annotation }
+    });
+    this.queue.prototype.lookups = Object.freeze({});
+    this.queue.prototype.collections = Object.freeze({ queue_entries: { name: "queue_entries", type: this.queueitem } });
+    this.queueitem.prototype.lookups = Object.freeze({
+        objectid_activitypointer: { name: "objectid_activitypointer", type: this.activitypointer },
+        objectid_incident: { name: "objectid_incident", type: this.incident },
+        objectid_letter: { name: "objectid_letter", type: this.letter },
+        objectid_task: { name: "objectid_task", type: this.task },
+        queueid: { name: "queueid", type: this.queue }
+    });
+    this.queueitem.prototype.collections = Object.freeze({});
+    this.annotation.prototype.lookups = Object.freeze({
+        objectid_account: { name: "objectid_account", type: this.account },
+        objectid_competitor: { name: "objectid_competitor", type: this.competitor },
+        objectid_contact: { name: "objectid_contact", type: this.contact },
+        objectid_incident: { name: "objectid_incident", type: this.incident },
+        objectid_letter: { name: "objectid_letter", type: this.letter },
+        objectid_opportunity: { name: "objectid_opportunity", type: this.opportunity },
+        objectid_opportunityclose: { name: "objectid_opportunityclose", type: this.opportunityclose },
+        objectid_task: { name: "objectid_task", type: this.task }
+    });
+    this.annotation.prototype.collections = Object.freeze({});
+    this.incident.prototype.lookups = Object.freeze({
+        customerid_account: { name: "customerid_account", type: this.account },
+        customerid_contact: { name: "customerid_contact", type: this.contact },
+        existingcase: { name: "existingcase", type: this.incident },
+        masterid: { name: "masterid", type: this.incident },
+        parentcaseid: { name: "parentcaseid", type: this.incident },
+        primarycontactid: { name: "primarycontactid", type: this.contact },
+        responsiblecontactid: { name: "responsiblecontactid", type: this.contact }
+    });
+    this.incident.prototype.collections = Object.freeze({
+        Incident_ActivityPointers: { name: "Incident_ActivityPointers", type: this.activitypointer },
+        Incident_Annotation: { name: "Incident_Annotation", type: this.annotation },
+        incident_existingcase: { name: "incident_existingcase", type: this.incident },
+        Incident_Letters: { name: "Incident_Letters", type: this.letter },
+        incident_master_incident: { name: "incident_master_incident", type: this.incident },
+        incident_parent_incident: { name: "incident_parent_incident", type: this.incident },
+        Incident_QueueItem: { name: "Incident_QueueItem", type: this.queueitem },
+        Incident_Tasks: { name: "Incident_Tasks", type: this.task }
+    });
 
     /**
     * @function Sdk.Sample.CalculateTotalTimeIncident
@@ -3606,6 +3606,18 @@ Sdk.Sample = Sdk.Sample || {};
                 if (entity) {
                     var typedEntity = new type(entity);
                     typedEntity.resetChangeTracking();
+
+                    for (var collection in typedEntity.collections) {
+                        if (Array.isArray(typedEntity[collection])) {
+                            typedEntity[collection] = typedEntity[collection].map(function (x) { return new typedEntity.collections[collection].type(x); });
+                        }
+                    }
+
+                    for (var lookup in typedEntity.lookups) {
+                        if (!isNullOrUndefined(typedEntity[lookup])) {
+                            typedEntity[lookup] = new typedEntity.lookups[lookup].type(typedEntity[lookup]);
+                        }
+                    }
                     resolve(typedEntity);
                 }
                 else {
@@ -3710,7 +3722,7 @@ Sdk.Sample = Sdk.Sample || {};
 
             //Don't send the request if there is nothing to save;
             if (entity.changedProperties.length == 0) {
-                console.log("Update request not sent because no changes applied.")
+                console.log("Update request not sent for " + entity.type + " " + entity.primaryKey + ":" + entity.getId() + " because no changes applied.");
                 resolve();
             }
             else {

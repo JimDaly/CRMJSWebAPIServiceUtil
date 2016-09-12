@@ -1,5 +1,5 @@
 ﻿/*
-TypeScript project ECMAScript version property set to ECMAScript 6 so that Promise object is recognized
+Added es6-promise.TypeScript.DefinitelyTyped NuGet package so that the Promise object is recognized
 */
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
              Enable the Access data sources accross domains setting.
              Then add the line below to use the setClientUrl function to the URL for your on-premises CRM organization.
          Make IE 11 your default browser for debugging. This way you can use F5 to debug...
-         But personally I just right click the HTML page in the Solution Explorer and choose Browse With... Internet Explorer.
+         But personally, I just right click the index.html page in the Solution Explorer and choose Browse With... Internet Explorer.
          You will probably be prompted for credentials when the page opens. Enter them and keep the browser window open while
          you edit and test your code.
  
@@ -121,7 +121,7 @@ function trackPropertyChanges() {
                     contosoAccount.name,
                     contosoAccount.getFormattedValue("customertypecode")
                 );
-                //Output: Contoso is a Supplier
+                //OUTPUT: Contoso is a Supplier
 
                 // When you set another property value like so:
                 contosoAccount.address1_city = "Seattle";
@@ -314,6 +314,7 @@ function usingEntities() {
     return new Promise(function (resolve, reject) {
         //Setting a namespace alias to reduce amount of typing is recommended.
         var ns = Demo.Tour;
+        var parentContactUri;
 
         //Ordinary simple create scenario with no value passed to the constructor;
         var jackJonesContact = new ns.contact()
@@ -321,7 +322,7 @@ function usingEntities() {
         jackJonesContact.firstname = "Jack";
         jackJonesContact.lastname = "Jones";
         /*
-        If there are properties you want to use which are not defined in the generated library,
+        But, if there are properties you want to use which are not defined in the generated library,
         You may want to re-generate the library and add them but...
         You can still set them with the set method:
         */
@@ -364,9 +365,7 @@ function usingEntities() {
         and attempt to save the entity you will get a server error:
             Cannot convert the literal '42' to the expected type 'Edm.String'.
 
-        */
-
-        /*
+        ** Creating with Deep insert **
         Only when you create a new entity, you can add new related entities
         that will be created via deep-insert. You cannot do this when updating an entity.        
 
@@ -386,17 +385,19 @@ function usingEntities() {
             new ns.phonecall({ subject: "Phone Call 2" })
         ];
 
+        //Setting the lookup property to create a new contact:
         var jillJones = new ns.contact();
         jillJones.firstname = "Jill";
         jillJones.lastname = "Jones";
 
         jackJonesContact.parentcustomerid_contact = jillJones;
+
         //You cannot set un-typed JSON data. Types are all checked in the JavaScript library.
 
         ns.create(jackJonesContact)
             .then(function (uri) {
 
-                
+
                 /*
                 If you have an existing entity instance you want
                 to keep working with, you can use the setIdFromUri method to set the ID;
@@ -409,7 +410,18 @@ function usingEntities() {
                  but this will not have the firstname and lastname property values.
                 */
                 var jjContact = new ns.contact(uri);
+                /*
+                Or, if you just have the Id value you can pass that to the constructor.
+                */
+                var jackJonesContactId = jackJonesContact.getId();
 
+                //Proving they are the same.
+                console.assert(
+                    jackJonesContactId == jackJonesContact.contactid,
+                    "The values are not the same"); //Should not display.
+                
+
+                jjContact = new ns.contact(jackJonesContactId);
                 /*
                 When retrieving entities you can leverage the getColumnSet method to
                 get the base set of properties defined in the library. You can then
@@ -445,10 +457,10 @@ function usingEntities() {
                 Items in this dictionary also have a string name property, but the type property is a reference to
                 the class function.
                 */
-                
+
                 return ns.retrieve(uri,
                     contactProperties,
-                    [   "parentcustomerid_contact($select=fullname)",
+                    ["parentcustomerid_contact($select=fullname)",
                         jjContact.collections.Contact_Phonecalls.name + "($select=subject)",
                         "Contact_Tasks($select=subject)" //Using the plain name rather than the dictionary name is just fine.
                     ],
@@ -456,17 +468,23 @@ function usingEntities() {
             })
             .then(function (response) {
                 /*
-                When you instantiate the results of a retrieve, only the main object becomes an instance of the class:
+                When you instantiate the results of a retrieve, only JSON data is returned,
+                but you can pass this to the constructor of the class.
                 */
                 jackJonesContact = new ns.contact(response);
+
+                /*
+                But the related objects are still just JSON, so you can't
+                call entity functions on them:
+                */
 
                 try {
                     //Even TypeScript will not prevent this error:
                     jackJonesContact.Contact_Phonecalls[0].getUri();
                 }
                 catch (e) {
-                    console.log("Expected Error: "+e.message);
-                    //OUTPUT: Object doesn't support property or method 'getUri'
+                    console.log("Expected Error: " + e.message);
+                    //OUTPUT: Expected Error: Object doesn't support property or method 'getUri'
                 }
                 /*
                 But you can bulk instantiate these in your code like so:
@@ -479,19 +497,23 @@ function usingEntities() {
                     jackJonesContact.Contact_Phonecalls[0].getUri());
 
                 /*
-                But if you use retrieveTypedEntity
+                But if you use retrieveTypedEntity the entity is returned as a typed instance
+                and all related entities are typed as well:
                 */
 
                 return ns.retrieveTypedEntity(jackJonesContact.getUri(),
                     jackJonesContact.getColumnSet(),
-                    [   "parentcustomerid_contact($select=fullname)",
+                    ["parentcustomerid_contact($select=fullname)",
                         "Contact_Phonecalls($select=subject)",
-                        "Contact_Tasks($select=subject)" 
+                        "Contact_Tasks($select=subject)"
                     ],
                     true);
             })
             .then(function (response) {
                 jackJonesContact = <Demo.Tour.contact>response;
+
+                //Capturing the URL of the parent contact created so it will be deleted later.
+                parentContactUri = jackJonesContact.parentcustomerid_contact.getUri();
 
                 //Now the phone call instances are typed
                 console.log("The first phone call created is here: %s",
@@ -502,20 +524,25 @@ function usingEntities() {
 
             })
             .catch(function (err) {
-                
+
                 reject(new Error("Error in usingEntities: " + err.message));
             })
-            //Make sure the created account gets deleted regardless of any errors
+            //Make sure the created contacts get deleted regardless of any errors
             .then(function () {
                 //Removing entities created in this example
-                ns.deleteEntity(jackJonesContact.getUri())
+
+                ns.deleteEntity(parentContactUri)
                     .then(function () {
-                        console.log("Jack Jones contact deleted at %s.", jackJonesContact.getUri())
+                        return ns.deleteEntity(jackJonesContact.getUri())
+                    })
+                    .then(function () {
+                        console.log("Jack Jones and Jill Jones contacts deleted.");
+                        return;
                     })
                     .catch(function (err) {
-                        console.log("Error deleteing contact in usingEntities.")
+                        console.log("Error deleteing contacts in usingEntities.")
                     })
-                    .then(function () {
+                    .then(function () {                        
                         //We are done here..
                         resolve();
                     });

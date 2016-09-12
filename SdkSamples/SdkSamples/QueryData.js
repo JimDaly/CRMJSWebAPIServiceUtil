@@ -125,43 +125,43 @@ function startQueryDataSample() {
         // 4) Set precedence using parenthesis (e.g.: ((criteria1) and (criteria2)) or (criteria3)
         // For more info, see: https://msdn.microsoft.com/en-us/library/gg334767.aspx#bkmk_filter
         console.log("-- Filter Criteria --");
-        let filter = "&$filter=contains(fullname,'(sample)')";
+        var filter = "&$filter=contains(fullname,'(sample)')";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
         output(results.value.map(function (x) { return new ns.contact(x); }), "Contacts filtered by fullname containing '(sample)':", contactProperties);
-        let filter = "&$filter=Microsoft.Dynamics.CRM.LastXHours(PropertyName='createdon',PropertyValue='1')";
+        var filter = "&$filter=Microsoft.Dynamics.CRM.LastXHours(PropertyName='createdon',PropertyValue='1')";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
         output(results.value.map(function (x) { return new ns.contact(x); }), "Contacts that were created within the last 1hr:", contactProperties);
-        let filter = "&$filter=contains(fullname,'(sample)') and annualincome gt 55000";
+        var filter = "&$filter=contains(fullname,'(sample)') and annualincome gt 55000";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
         output(results.value.map(function (x) { return new ns.contact(x); }), "Contacts filtered by fullname and annualincome (<$55,000):", contactProperties);
-        let filter = "&$filter=contains(fullname,'(sample)') " +
+        var filter = "&$filter=contains(fullname,'(sample)') " +
             "and (contains(jobtitle,'senior') or contains(jobtitle,'specialist')) and annualincome gt 55000";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
         output(results.value.map(function (x) { return new ns.contact(x); }), "Contacts filtered by fullname, annualincome and jobtitle (Senior or Specialist):", contactProperties);
         console.log("\n-- Order Results --");
-        let filter = "&$filter=contains(fullname,'(sample)') " +
+        var filter = "&$filter=contains(fullname,'(sample)') " +
             "&$orderby=jobtitle asc, annualincome desc";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
         output(results.value.map(function (x) { return new ns.contact(x); }), "Contacts ordered by job title (Ascending) and annual income (Descending)", contactProperties);
         console.log("\n-- Parameterized Aliases --");
-        let filter = "&$filter=contains(@p1,'(sample)') " +
+        var filter = "&$filter=contains(@p1,'(sample)') " +
             "&$orderby=@p2 asc, @p3 desc&@p1=fullname&@p2=jobtitle&@p3=annualincome";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
         output(results.value.map(function (x) { return new ns.contact(x); }), "Contacts list using parameterized aliases:", contactProperties);
         console.log("\n-- Top Results --");
-        let filter = "&$filter=contains(fullname,'(sample)')&$top=5";
+        var filter = "&$filter=contains(fullname,'(sample)')&$top=5";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
@@ -171,26 +171,26 @@ function startQueryDataSample() {
     })
         .then(function (results) {
         console.log("The contacts collection has %s contacts.", results.count);
-        let filter = "&$filter=contains(jobtitle,'senior') or contains(jobtitle, 'manager')&$count=true";
+        var filter = "&$filter=contains(jobtitle,'senior') or contains(jobtitle, 'manager')&$count=true";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true);
     })
         .then(function (results) {
         console.log("%s contacts have either 'Manager' or 'Senior' designation in their jobtitle.", results.count);
         output(results.value.map(function (x) { return new ns.contact(x); }), "Manager or Senior:", contactProperties);
         console.log("\n-- Pagination --");
-        let filter = "&$filter=contains(fullname,'(sample)')&$count=true";
+        var filter = "&$filter=contains(fullname,'(sample)')&$count=true";
         return ns.query(contact.entitySetName, "$select=" + contactProperties.join() + filter, true, 4);
     })
         .then(function (results) {
-        let count = results.count;
-        let maxPages = Math.ceil(count / 4);
+        var count = results.count;
+        var maxPages = Math.ceil(count / 4);
         console.log("Contacts total: %s \tContacts per page: %s.\tOutputting first 2 pages.", count, 4);
         output(results.value.map(function (x) { return new ns.contact(x); }), "Page 1 of " + maxPages + ":", contactProperties);
         return ns.getNextPage(results.nextLink, true, 4);
     })
         .then(function (results) {
-        let count = results.count;
-        let maxPages = Math.ceil(count / 4);
+        var count = results.count;
+        var maxPages = Math.ceil(count / 4);
         output(results.value.map(function (x) { return new ns.contact(x); }), "Page 2 of " + maxPages + ":", contactProperties);
         console.log("\n-- Expanding Results --");
         return ns.retrieve(account.getUri(), accountProperties, ["primarycontactid($select=" + contactProperties.join() + ")"], true);
@@ -249,8 +249,8 @@ function startQueryDataSample() {
     })
         .then(function (results) {
         output(results.value.map(function (x) { return new ns.contact(x); }), "Contacts Fetched by fullname containing '(sample)':", contactProperties);
-        let page = 3;
-        let count = 4;
+        var page = 3;
+        var count = 4;
         var fetchXML = "<fetch mapping=\"logical\" page=\"" + page + "\" count=\"" + count + "\"> \
   <entity name=\"contact\"> \
     <attribute name=\"fullname\" /> \
@@ -289,7 +289,7 @@ function startQueryDataSample() {
         userQuery.set("description", "User query to display contact info.");
         userQuery.set("querytype", 0);
         userQuery.set("returnedtypecode", "contact");
-        let fetchXml = "<fetch mapping=\"logical\" output-format=\"xml-platform\" version=\"1.0\" distinct=\"false\"> \
+        var fetchXml = "<fetch mapping=\"logical\" output-format=\"xml-platform\" version=\"1.0\" distinct=\"false\"> \
   <entity name=\"contact\"> \
     <attribute name=\"fullname\" /> \
     <attribute name=\"contactid\" /> \
@@ -309,7 +309,7 @@ function startQueryDataSample() {
     })
         .then(function (uri) {
         entitiesToDelete.push(uri);
-        let userquery = new ns.userquery(uri);
+        var userquery = new ns.userquery(uri);
         return ns.query(contact.entitySetName, "userQuery=" +
             userquery.getId(), true);
     })

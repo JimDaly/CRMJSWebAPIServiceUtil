@@ -149,7 +149,7 @@ and add your own **clientid** and **redirecturi** values to replace what you fin
 
 3. Press F5 to run the application in debug mode. You will see this:
 
-  ![Opening screen](images/open.PNG)
+  ![Opening screen](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/blob/master/images/open.PNG)
 
   Press **Login to CRM** to continue.
 

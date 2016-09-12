@@ -275,6 +275,17 @@ namespace CRMWebAPIJavaScriptWriter
 
             }
 
+            foreach (Entity entity in model.Entities)
+            {
+                if (entity.Name != "crmbaseentity")
+                {
+
+                    //Write lookup and collection
+                    sb.Append(writeEntityNavigationPropertyDictionaries(entity));
+                }
+
+            }
+
             return sb.ToString();
         }
 
@@ -453,31 +464,16 @@ namespace CRMWebAPIJavaScriptWriter
                 {
                     propertyNames.Add(string.Format("            {0}:{{ name:\"{0}\", type:\"{1}\"}}", p.Name, getJSType(p.Type)));
                 }
-                foreach (LookupProperty lp in activitypointer.Lookups)
-                {
-                    lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", lp.Name, RootNameSpace, SubNamespace, lp.Type));
-                }
-                foreach (CollectionProperty cp in activitypointer.Collections)
-                {
-                    collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", cp.Name, RootNameSpace, SubNamespace, cp.Type));
-                }
+
             }
             foreach (EntityProperty p in entity.Properties)
             {
                 propertyNames.Add(string.Format("            {0}:{{ name:\"{0}\", type:\"{1}\"}}", p.Name, getJSType(p.Type)));
             }
-            foreach (LookupProperty lp in entity.Lookups)
-            {
-                lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", lp.Name, RootNameSpace, SubNamespace, lp.Type));
-            }
-            foreach (CollectionProperty cp in entity.Collections)
-            {
-                collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:{1}.{2}.{3}}}", cp.Name, RootNameSpace, SubNamespace, cp.Type));
-            }
+
 
             sb.AppendLine(string.Format("this.{0}.prototype.properties = Object.freeze({{{1}}});", getEntityName(entity), string.Join("," + Environment.NewLine, propertyNames.ToArray())));
-            sb.AppendLine(string.Format("this.{0}.prototype.lookups = Object.freeze({{{1}}});", getEntityName(entity), string.Join("," + Environment.NewLine, lookups.ToArray())));
-            sb.AppendLine(string.Format("this.{0}.prototype.collections = Object.freeze({{{1}}});", getEntityName(entity), string.Join("," + Environment.NewLine, collections.ToArray())));
+            
 
 
             foreach (LookupProperty p in entity.Lookups)
@@ -501,6 +497,41 @@ namespace CRMWebAPIJavaScriptWriter
 
                 }
             }
+
+            return sb.ToString();
+        }
+
+        private string writeEntityNavigationPropertyDictionaries(Entity entity)
+        {
+
+            StringBuilder sb = new StringBuilder();
+            List<string> collections = new List<string>();
+            List<string> lookups = new List<string>();
+            if (entity.BaseEntity.Equals("activitypointer"))
+            {
+                Entity activitypointer = getEntityByName("activitypointer");
+
+                foreach (LookupProperty lp in activitypointer.Lookups)
+                {
+                    lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:this.{1}}}", lp.Name, lp.Type));
+                }
+
+                foreach (CollectionProperty cp in activitypointer.Collections)
+                {
+                    collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:this.{1}}}", cp.Name, cp.Type));
+                }
+            }
+            foreach (LookupProperty lp in entity.Lookups)
+            {
+                lookups.Add(string.Format("            {0}:{{ name:\"{0}\", type:this.{1}}}", lp.Name, lp.Type));
+            }
+            foreach (CollectionProperty cp in entity.Collections)
+            {
+                collections.Add(string.Format("            {0}:{{ name:\"{0}\", type:this.{1}}}", cp.Name, cp.Type));
+            }
+            sb.AppendLine(string.Format("this.{0}.prototype.lookups = Object.freeze({{{1}}});", getEntityName(entity), string.Join("," + Environment.NewLine, lookups.ToArray())));
+
+            sb.AppendLine(string.Format("this.{0}.prototype.collections = Object.freeze({{{1}}});", getEntityName(entity), string.Join("," + Environment.NewLine, collections.ToArray())));
 
             return sb.ToString();
         }

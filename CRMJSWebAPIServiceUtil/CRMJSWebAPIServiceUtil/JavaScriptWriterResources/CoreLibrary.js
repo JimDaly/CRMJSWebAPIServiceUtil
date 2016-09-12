@@ -1183,6 +1183,18 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
                 if (entity) {
                     var typedEntity = new type(entity);
                     typedEntity.resetChangeTracking();
+
+                    for (var collection in typedEntity.collections) {
+                        if (Array.isArray(typedEntity[collection])) {
+                            typedEntity[collection] = typedEntity[collection].map(function (x) { return new typedEntity.collections[collection].type(x); });
+                        }
+                    }
+
+                    for (var lookup in typedEntity.lookups) {
+                        if (!isNullOrUndefined(typedEntity[lookup])) {
+                            typedEntity[lookup] = new typedEntity.lookups[lookup].type(typedEntity[lookup]);
+                        }
+                    }
                     resolve(typedEntity);
                 }
                 else {
@@ -1287,7 +1299,7 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
 
             //Don't send the request if there is nothing to save;
             if (entity.changedProperties.length == 0) {
-                console.log("Update request not sent because no changes applied.")
+                console.log("Update request not sent for " + entity.type + " " + entity.primaryKey + ":" + entity.getId() + " because no changes applied.");
                 resolve();
             }
             else {

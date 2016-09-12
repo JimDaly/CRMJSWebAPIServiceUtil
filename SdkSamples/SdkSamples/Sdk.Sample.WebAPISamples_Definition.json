@@ -2346,7 +2346,7 @@
   "baseNamespace": "Sdk",
   "subNamespace": "Sample",
   "libraryName": "WebAPISamples",
-  "fileFolder": "A:\\Users\\Jim\\Documents\\Visual Studio 2015\\Projects\\SdkSamples\\SdkSamples",
+  "fileFolder": "A:\\Users\\Jim\\Documents\\GitHub\\CRMJSWebAPIServiceUtil\\SdkSamples\\SdkSamples",
   "enableOAuth": false,
   "writePropertyComments": false,
   "saveWebResource": true,
@@ -2354,5 +2354,5 @@
   "solutionPrefix": "new_",
   "webResourceName": "/Sdk.Sample.WebAPISamples.js",
   "overwriteWebResource": false,
-  "libraryDefinitionFolder": "A:\\Users\\Jim\\Documents\\Visual Studio 2015\\Projects\\SdkSamples\\SdkSamples"
+  "libraryDefinitionFolder": "A:\\Users\\Jim\\Documents\\GitHub\\CRMJSWebAPIServiceUtil\\SdkSamples\\SdkSamples"
 }

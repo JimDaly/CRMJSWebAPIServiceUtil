@@ -1,7 +1,7 @@
 ﻿
 
 document.addEventListener("DOMContentLoaded", function (event) {
- 
+
 
     functionsAndActionsSample();
 

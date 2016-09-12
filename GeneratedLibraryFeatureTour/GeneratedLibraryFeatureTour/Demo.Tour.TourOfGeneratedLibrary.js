@@ -35,18 +35,18 @@ SOFTWARE.
 */
 
 "use strict";
-var Sdk = window.Sdk || {};
-Sdk.Sample = Sdk.Sample || {};
+var Demo = window.Demo || {};
+Demo.Tour = Demo.Tour || {};
 (function () {
     var _clientUrl;
     var _webAPIVersion = "8.1";
 
 
 
-    var NS = "Sdk.Sample";
+    var NS = "Demo.Tour";
 
     /**
-    @abstract {Object} Sdk.Sample.crmbaseentity
+    @abstract {Object} Demo.Tour.crmbaseentity
     @description The abstract base classe from which all entity classes inherit.
     @private {Object} internal Dictionary object containing values of the object
     @private {Array} changedProperties Contains the names of properties that have been set since the object was instantiated.
@@ -133,7 +133,7 @@ Sdk.Sample = Sdk.Sample || {};
         var primaryKeyName = this.primaryKey;
         var entitySetName = this.entitySetName;
         if (this[primaryKeyName]) {
-            return Sdk.Sample.getWebAPIPath() + entitySetName + "(" + this[primaryKeyName] + ")";
+            return Demo.Tour.getWebAPIPath() + entitySetName + "(" + this[primaryKeyName] + ")";
         }
         else {
             throw new Error("Uri cannot be generated because the entity instance does not have the unique identifier value set.");
@@ -153,7 +153,7 @@ Sdk.Sample = Sdk.Sample || {};
     @param {String} uri The Uri of an entity that has been saved;
     */
     this.crmbaseentity.prototype.setIdFromUri = function (uri) {
-        this[this.primaryKey] = getIdFromUri(Sdk.Sample[this.type], uri);
+        this[this.primaryKey] = getIdFromUri(Demo.Tour[this.type], uri);
         this.resetChangeTracking(); //Any changes made before use are not tracked;
     }
 
@@ -245,7 +245,7 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /**
-    @typeref {Object} Sdk.Sample.entityCollection
+    @typeref {Object} Demo.Tour.entityCollection
     @description A class containing a collection of entities
     @param {Object} The JSON results of a collection of entities
     @readonly {Array} value  The JSON results of the collection
@@ -279,7 +279,7 @@ Sdk.Sample = Sdk.Sample || {};
 
             }
         });
-
+        //if /$count is appended to the query only a number will be returned.
         if (isNumber(collection)) {
             _value = [];
             _count = collection;
@@ -304,16 +304,16 @@ Sdk.Sample = Sdk.Sample || {};
 
 
     /**
-    @typeref {object} Sdk.Sample.activitypointer
-    @extends Sdk.Sample.crmbaseentity
+    @typeref {object} Demo.Tour.activitypointer
+    @extends Demo.Tour.crmbaseentity
     @description Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
     @param {String|Object}[activitypointerReference] A GUID, a URI, or a JSON object to set retrieved values.
     */
     this.activitypointer = function (activitypointerReference) {
-        if (!(isInstanceOf(Sdk.Sample.activitypointer, this))) {
-            return new Sdk.Sample.activitypointer(activitypointerReference);
+        if (!(isInstanceOf(Demo.Tour.activitypointer, this))) {
+            return new Demo.Tour.activitypointer(activitypointerReference);
         }
-        Sdk.Sample.crmbaseentity.call(this);
+        Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
@@ -332,9 +332,97 @@ Sdk.Sample = Sdk.Sample || {};
                 set: function (value) { setNumberOrNullProperty(this, "actualdurationminutes", value) },
                 enumerable: true
             },
+            "actualend": {
+                get: function () { return this.internal.actualend; },
+                set: function (value) { setDateTimeOffsetProperty(this, "actualend", value) },
+                enumerable: true
+            },
+            "actualstart": {
+                get: function () { return this.internal.actualstart; },
+                set: function (value) { setDateTimeOffsetProperty(this, "actualstart", value) },
+                enumerable: true
+            },
+            "community": {
+                get: function () { return this.internal.community; },
+                set: function (value) { setNumberOrNullProperty(this, "community", value) },
+                enumerable: true
+            },
+            "createdon": {
+                get: function () { return this.internal.createdon; },
+                enumerable: true
+            },
+            "deliverylastattemptedon": {
+                get: function () { return this.internal.deliverylastattemptedon; },
+                enumerable: true
+            },
+            "deliveryprioritycode": {
+                get: function () { return this.internal.deliveryprioritycode; },
+                set: function (value) { setNumberOrNullProperty(this, "deliveryprioritycode", value) },
+                enumerable: true
+            },
             "description": {
                 get: function () { return this.internal.description; },
                 set: function (value) { setStringOrNullProperty(this, "description", value) },
+                enumerable: true
+            },
+            "exchangerate": {
+                get: function () { return this.internal.exchangerate; },
+                enumerable: true
+            },
+            "isbilled": {
+                get: function () { return this.internal.isbilled; },
+                set: function (value) { setBooleanProperty(this, "isbilled", value) },
+                enumerable: true
+            },
+            "ismapiprivate": {
+                get: function () { return this.internal.ismapiprivate; },
+                set: function (value) { setBooleanProperty(this, "ismapiprivate", value) },
+                enumerable: true
+            },
+            "isregularactivity": {
+                get: function () { return this.internal.isregularactivity; },
+                enumerable: true
+            },
+            "isworkflowcreated": {
+                get: function () { return this.internal.isworkflowcreated; },
+                set: function (value) { setBooleanProperty(this, "isworkflowcreated", value) },
+                enumerable: true
+            },
+            "lastonholdtime": {
+                get: function () { return this.internal.lastonholdtime; },
+                set: function (value) { setDateTimeOffsetProperty(this, "lastonholdtime", value) },
+                enumerable: true
+            },
+            "leftvoicemail": {
+                get: function () { return this.internal.leftvoicemail; },
+                set: function (value) { setBooleanProperty(this, "leftvoicemail", value) },
+                enumerable: true
+            },
+            "modifiedon": {
+                get: function () { return this.internal.modifiedon; },
+                enumerable: true
+            },
+            "onholdtime": {
+                get: function () { return this.internal.onholdtime; },
+                enumerable: true
+            },
+            "postponeactivityprocessinguntil": {
+                get: function () { return this.internal.postponeactivityprocessinguntil; },
+                enumerable: true
+            },
+            "prioritycode": {
+                get: function () { return this.internal.prioritycode; },
+                set: function (value) { setNumberOrNullProperty(this, "prioritycode", value) },
+                enumerable: true
+            },
+            "processid": {
+                get: function () { return this.internal.processid; },
+                set: function (value) { setGuidOrNullProperty(this, "processid", value) },
+                enumerable: true
+            },
+            "scheduleddurationminutes": {
+                get: function () { return this.internal.scheduleddurationminutes; },
+                set: function (value) { setNumberOrNullProperty(this, "scheduleddurationminutes", value) },
                 enumerable: true
             },
             "scheduledend": {
@@ -347,6 +435,16 @@ Sdk.Sample = Sdk.Sample || {};
                 set: function (value) { setDateTimeOffsetProperty(this, "scheduledstart", value) },
                 enumerable: true
             },
+            "statecode": {
+                get: function () { return this.internal.statecode; },
+                set: function (value) { setNumberOrNullProperty(this, "statecode", value) },
+                enumerable: true
+            },
+            "statuscode": {
+                get: function () { return this.internal.statuscode; },
+                set: function (value) { setNumberOrNullProperty(this, "statuscode", value) },
+                enumerable: true
+            },
             "subject": {
                 get: function () { return this.internal.subject; },
                 set: function (value) { setStringOrNullProperty(this, "subject", value) },
@@ -355,63 +453,48 @@ Sdk.Sample = Sdk.Sample || {};
             //Single-valued Navigation Properties,
             "regardingobjectid_account": {
                 get: function () { return this.internal.regardingobjectid_account; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "regardingobjectid_account", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.account, "account", this, "regardingobjectid_account", value) },
                 enumerable: true
             },
             "regardingobjectid_account@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_accountUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "regardingobjectid_account", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.account, "account", this, "regardingobjectid_account", value) },
                 enumerable: true
             },
             "regardingobjectid_contact": {
                 get: function () { return this.internal.regardingobjectid_contact; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "regardingobjectid_contact", value) },
                 enumerable: true
             },
             "regardingobjectid_contact@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_contactUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "regardingobjectid_contact", value) },
                 enumerable: true
             },
             "regardingobjectid_incident": {
                 get: function () { return this.internal.regardingobjectid_incident; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.incident, "incident", this, "regardingobjectid_incident", value) },
                 enumerable: true
             },
             "regardingobjectid_incident@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_incidentUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident", value) },
-                enumerable: true
-            },
-            "regardingobjectid_opportunity": {
-                get: function () { return this.internal.regardingobjectid_opportunity; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity", value) },
-                enumerable: true
-            },
-            "regardingobjectid_opportunity@odata.bind": {
-                get: function () { return this.internal.regardingobjectid_opportunityUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.incident, "incident", this, "regardingobjectid_incident", value) },
                 enumerable: true
             },
             //Collection-Valued Navigation Properties,
-            "activity_pointer_letter": {
-                get: function () { return this.internal.activity_pointer_letter; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "activity_pointer_letter", value) },
+            "activity_pointer_incident_resolution": {
+                get: function () { return this.internal.activity_pointer_incident_resolution; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incidentresolution, "incidentresolution", this, "activity_pointer_incident_resolution", value) },
                 enumerable: true,
             },
-            "activity_pointer_opportunity_close": {
-                get: function () { return this.internal.activity_pointer_opportunity_close; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "activity_pointer_opportunity_close", value) },
+            "activity_pointer_phonecall": {
+                get: function () { return this.internal.activity_pointer_phonecall; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.phonecall, "phonecall", this, "activity_pointer_phonecall", value) },
                 enumerable: true,
             },
             "activity_pointer_task": {
                 get: function () { return this.internal.activity_pointer_task; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "activity_pointer_task", value) },
-                enumerable: true,
-            },
-            "ActivityPointer_QueueItem": {
-                get: function () { return this.internal.ActivityPointer_QueueItem; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "ActivityPointer_QueueItem", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.task, "task", this, "activity_pointer_task", value) },
                 enumerable: true,
             }
         });
@@ -429,29 +512,38 @@ Sdk.Sample = Sdk.Sample || {};
     this.activitypointer.prototype.properties = Object.freeze({
         activityid: { name: "activityid", type: "Guid" },
         actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        actualend: { name: "actualend", type: "Date" },
+        actualstart: { name: "actualstart", type: "Date" },
+        community: { name: "community", type: "Number" },
+        createdon: { name: "createdon", type: "Date" },
+        deliverylastattemptedon: { name: "deliverylastattemptedon", type: "Date" },
+        deliveryprioritycode: { name: "deliveryprioritycode", type: "Number" },
         description: { name: "description", type: "String" },
+        exchangerate: { name: "exchangerate", type: "Number" },
+        isbilled: { name: "isbilled", type: "Boolean" },
+        ismapiprivate: { name: "ismapiprivate", type: "Boolean" },
+        isregularactivity: { name: "isregularactivity", type: "Boolean" },
+        isworkflowcreated: { name: "isworkflowcreated", type: "Boolean" },
+        lastonholdtime: { name: "lastonholdtime", type: "Date" },
+        leftvoicemail: { name: "leftvoicemail", type: "Boolean" },
+        modifiedon: { name: "modifiedon", type: "Date" },
+        onholdtime: { name: "onholdtime", type: "Number" },
+        postponeactivityprocessinguntil: { name: "postponeactivityprocessinguntil", type: "Date" },
+        prioritycode: { name: "prioritycode", type: "Number" },
+        processid: { name: "processid", type: "Guid" },
+        scheduleddurationminutes: { name: "scheduleddurationminutes", type: "Number" },
         scheduledend: { name: "scheduledend", type: "Date" },
         scheduledstart: { name: "scheduledstart", type: "Date" },
+        statecode: { name: "statecode", type: "Number" },
+        statuscode: { name: "statuscode", type: "Number" },
         subject: { name: "subject", type: "String" }
-    });
-    this.activitypointer.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity }
-    });
-    this.activitypointer.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem }
     });
 
     /**
     @method regardingobjectid_accountUri
-    @memberof Sdk.Sample.activitypointer
+    @memberof Demo.Tour.activitypointer
     @description  Unique identifier of the object with which the activity is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
+    @param {String} uri A URI to an existing Demo.Tour.account.
     */
     this.activitypointer.prototype.regardingobjectid_accountUri = function (uri) {
         this["regardingobjectid_account@odata.bind"] = uri;
@@ -459,9 +551,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method regardingobjectid_contactUri
-    @memberof Sdk.Sample.activitypointer
+    @memberof Demo.Tour.activitypointer
     @description  Unique identifier of the object with which the activity is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
     */
     this.activitypointer.prototype.regardingobjectid_contactUri = function (uri) {
         this["regardingobjectid_contact@odata.bind"] = uri;
@@ -469,245 +561,25 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method regardingobjectid_incidentUri
-    @memberof Sdk.Sample.activitypointer
+    @memberof Demo.Tour.activitypointer
     @description  Unique identifier of the object with which the activity is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
+    @param {String} uri A URI to an existing Demo.Tour.incident.
     */
     this.activitypointer.prototype.regardingobjectid_incidentUri = function (uri) {
         this["regardingobjectid_incident@odata.bind"] = uri;
     }
 
     /**
-    @method regardingobjectid_opportunityUri
-    @memberof Sdk.Sample.activitypointer
-    @description  Unique identifier of the object with which the activity is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.opportunity.
-    */
-    this.activitypointer.prototype.regardingobjectid_opportunityUri = function (uri) {
-        this["regardingobjectid_opportunity@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.contact
-    @extends Sdk.Sample.crmbaseentity
-    @description Person with whom a business unit has a relationship, such as customer, supplier, and colleague.
-    @param {String|Object}[contactReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.contact = function (contactReference) {
-        if (!(isInstanceOf(Sdk.Sample.contact, this))) {
-            return new Sdk.Sample.contact(contactReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            "annualincome": {
-                get: function () { return this.internal.annualincome; },
-                set: function (value) { setNumberOrNullProperty(this, "annualincome", value) },
-                enumerable: true
-            },
-            "contactid": {
-                get: function () { return this.internal.contactid; },
-                set: function (value) { setGuidOrNullProperty(this, "contactid", value) },
-                enumerable: true
-            },
-            "createdon": {
-                get: function () { return this.internal.createdon; },
-                enumerable: true
-            },
-            "description": {
-                get: function () { return this.internal.description; },
-                set: function (value) { setStringOrNullProperty(this, "description", value) },
-                enumerable: true
-            },
-            "firstname": {
-                get: function () { return this.internal.firstname; },
-                set: function (value) { setStringOrNullProperty(this, "firstname", value) },
-                enumerable: true
-            },
-            "fullname": {
-                get: function () { return this.internal.fullname; },
-                enumerable: true
-            },
-            "jobtitle": {
-                get: function () { return this.internal.jobtitle; },
-                set: function (value) { setStringOrNullProperty(this, "jobtitle", value) },
-                enumerable: true
-            },
-            "lastname": {
-                get: function () { return this.internal.lastname; },
-                set: function (value) { setStringOrNullProperty(this, "lastname", value) },
-                enumerable: true
-            },
-            "telephone1": {
-                get: function () { return this.internal.telephone1; },
-                set: function (value) { setStringOrNullProperty(this, "telephone1", value) },
-                enumerable: true
-            },
-            //Single-valued Navigation Properties,
-            "masterid": {
-                get: function () { return this.internal.masterid; },
-                enumerable: true
-            },
-            "parentcustomerid_account": {
-                get: function () { return this.internal.parentcustomerid_account; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "parentcustomerid_account", value) },
-                enumerable: true
-            },
-            "parentcustomerid_account@odata.bind": {
-                get: function () { return this.internal.parentcustomerid_accountUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "parentcustomerid_account", value) },
-                enumerable: true
-            },
-            "parentcustomerid_contact": {
-                get: function () { return this.internal.parentcustomerid_contact; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "parentcustomerid_contact", value) },
-                enumerable: true
-            },
-            "parentcustomerid_contact@odata.bind": {
-                get: function () { return this.internal.parentcustomerid_contactUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "parentcustomerid_contact", value) },
-                enumerable: true
-            },
-            //Collection-Valued Navigation Properties,
-            "account_primary_contact": {
-                get: function () { return this.internal.account_primary_contact; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.account, "account", this, "account_primary_contact", value) },
-                enumerable: true,
-            },
-            "Contact_ActivityPointers": {
-                get: function () { return this.internal.Contact_ActivityPointers; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Contact_ActivityPointers", value) },
-                enumerable: true,
-            },
-            "Contact_Annotation": {
-                get: function () { return this.internal.Contact_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Contact_Annotation", value) },
-                enumerable: true,
-            },
-            "contact_as_primary_contact": {
-                get: function () { return this.internal.contact_as_primary_contact; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "contact_as_primary_contact", value) },
-                enumerable: true,
-            },
-            "contact_as_responsible_contact": {
-                get: function () { return this.internal.contact_as_responsible_contact; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "contact_as_responsible_contact", value) },
-                enumerable: true,
-            },
-            "contact_customer_contacts": {
-                get: function () { return this.internal.contact_customer_contacts; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.contact, "contact", this, "contact_customer_contacts", value) },
-                enumerable: true,
-            },
-            "Contact_Letters": {
-                get: function () { return this.internal.Contact_Letters; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Contact_Letters", value) },
-                enumerable: true,
-            },
-            "contact_master_contact": {
-                get: function () { return this.internal.contact_master_contact; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.contact, "contact", this, "contact_master_contact", value) },
-                enumerable: true,
-            },
-            "Contact_Tasks": {
-                get: function () { return this.internal.Contact_Tasks; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Contact_Tasks", value) },
-                enumerable: true,
-            },
-            "incident_customer_contacts": {
-                get: function () { return this.internal.incident_customer_contacts; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_customer_contacts", value) },
-                enumerable: true,
-            },
-            "opportunity_customer_contacts": {
-                get: function () { return this.internal.opportunity_customer_contacts; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_customer_contacts", value) },
-                enumerable: true,
-            },
-            "opportunity_parent_contact": {
-                get: function () { return this.internal.opportunity_parent_contact; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_parent_contact", value) },
-                enumerable: true,
-            }
-        });
-
-        if (contactReference) {
-            init(this.internal, contactReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.contact.prototype = Object.create(this.crmbaseentity.prototype);
-    this.contact.isEntityClass = true;
-    this.contact.prototype.type = "contact";
-    this.contact.prototype.primaryKey = "contactid";
-    this.contact.prototype.entitySetName = "contacts";
-    this.contact.prototype.properties = Object.freeze({
-        annualincome: { name: "annualincome", type: "Number" },
-        contactid: { name: "contactid", type: "Guid" },
-        createdon: { name: "createdon", type: "Date" },
-        description: { name: "description", type: "String" },
-        firstname: { name: "firstname", type: "String" },
-        fullname: { name: "fullname", type: "String" },
-        jobtitle: { name: "jobtitle", type: "String" },
-        lastname: { name: "lastname", type: "String" },
-        telephone1: { name: "telephone1", type: "String" }
-    });
-    this.contact.prototype.lookups = Object.freeze({
-        masterid: { name: "masterid", type: Sdk.Sample.contact },
-        parentcustomerid_account: { name: "parentcustomerid_account", type: Sdk.Sample.account },
-        parentcustomerid_contact: { name: "parentcustomerid_contact", type: Sdk.Sample.contact }
-    });
-    this.contact.prototype.collections = Object.freeze({
-        account_primary_contact: { name: "account_primary_contact", type: Sdk.Sample.account },
-        Contact_ActivityPointers: { name: "Contact_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Contact_Annotation: { name: "Contact_Annotation", type: Sdk.Sample.annotation },
-        contact_as_primary_contact: { name: "contact_as_primary_contact", type: Sdk.Sample.incident },
-        contact_as_responsible_contact: { name: "contact_as_responsible_contact", type: Sdk.Sample.incident },
-        contact_customer_contacts: { name: "contact_customer_contacts", type: Sdk.Sample.contact },
-        Contact_Letters: { name: "Contact_Letters", type: Sdk.Sample.letter },
-        contact_master_contact: { name: "contact_master_contact", type: Sdk.Sample.contact },
-        Contact_Tasks: { name: "Contact_Tasks", type: Sdk.Sample.task },
-        incident_customer_contacts: { name: "incident_customer_contacts", type: Sdk.Sample.incident },
-        opportunity_customer_contacts: { name: "opportunity_customer_contacts", type: Sdk.Sample.opportunity },
-        opportunity_parent_contact: { name: "opportunity_parent_contact", type: Sdk.Sample.opportunity }
-    });
-
-    /**
-    @method parentcustomerid_accountUri
-    @memberof Sdk.Sample.contact
-    @description  Select the parent account or parent contact for the contact to provide a quick link to additional details, such as financial information, activities, and opportunities.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
-    */
-    this.contact.prototype.parentcustomerid_accountUri = function (uri) {
-        this["parentcustomerid_account@odata.bind"] = uri;
-    }
-
-    /**
-    @method parentcustomerid_contactUri
-    @memberof Sdk.Sample.contact
-    @description  Select the parent account or parent contact for the contact to provide a quick link to additional details, such as financial information, activities, and opportunities.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
-    */
-    this.contact.prototype.parentcustomerid_contactUri = function (uri) {
-        this["parentcustomerid_contact@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.account
-    @extends Sdk.Sample.crmbaseentity
+    @typeref {object} Demo.Tour.account
+    @extends Demo.Tour.crmbaseentity
     @description Business that represents a customer or potential customer. The company that is billed in business transactions.
     @param {String|Object}[accountReference] A GUID, a URI, or a JSON object to set retrieved values.
     */
     this.account = function (accountReference) {
-        if (!(isInstanceOf(Sdk.Sample.account, this))) {
-            return new Sdk.Sample.account(accountReference);
+        if (!(isInstanceOf(Demo.Tour.account, this))) {
+            return new Demo.Tour.account(accountReference);
         }
-        Sdk.Sample.crmbaseentity.call(this);
+        Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
@@ -715,14 +587,153 @@ Sdk.Sample = Sdk.Sample || {};
                 enumerable: true
             },
             //Properties,
+            "accountcategorycode": {
+                get: function () { return this.internal.accountcategorycode; },
+                set: function (value) { setNumberOrNullProperty(this, "accountcategorycode", value) },
+                enumerable: true
+            },
             "accountid": {
                 get: function () { return this.internal.accountid; },
                 set: function (value) { setGuidOrNullProperty(this, "accountid", value) },
                 enumerable: true
             },
+            "accountnumber": {
+                get: function () { return this.internal.accountnumber; },
+                set: function (value) { setStringOrNullProperty(this, "accountnumber", value) },
+                enumerable: true
+            },
+            "address1_addresstypecode": {
+                get: function () { return this.internal.address1_addresstypecode; },
+                set: function (value) { setNumberOrNullProperty(this, "address1_addresstypecode", value) },
+                enumerable: true
+            },
+            "address1_city": {
+                get: function () { return this.internal.address1_city; },
+                set: function (value) { setStringOrNullProperty(this, "address1_city", value) },
+                enumerable: true
+            },
+            "address1_composite": {
+                get: function () { return this.internal.address1_composite; },
+                enumerable: true
+            },
+            "address1_country": {
+                get: function () { return this.internal.address1_country; },
+                set: function (value) { setStringOrNullProperty(this, "address1_country", value) },
+                enumerable: true
+            },
+            "address1_freighttermscode": {
+                get: function () { return this.internal.address1_freighttermscode; },
+                set: function (value) { setNumberOrNullProperty(this, "address1_freighttermscode", value) },
+                enumerable: true
+            },
+            "address1_line1": {
+                get: function () { return this.internal.address1_line1; },
+                set: function (value) { setStringOrNullProperty(this, "address1_line1", value) },
+                enumerable: true
+            },
+            "address1_line2": {
+                get: function () { return this.internal.address1_line2; },
+                set: function (value) { setStringOrNullProperty(this, "address1_line2", value) },
+                enumerable: true
+            },
+            "address1_line3": {
+                get: function () { return this.internal.address1_line3; },
+                set: function (value) { setStringOrNullProperty(this, "address1_line3", value) },
+                enumerable: true
+            },
+            "address1_name": {
+                get: function () { return this.internal.address1_name; },
+                set: function (value) { setStringOrNullProperty(this, "address1_name", value) },
+                enumerable: true
+            },
+            "address1_postalcode": {
+                get: function () { return this.internal.address1_postalcode; },
+                set: function (value) { setStringOrNullProperty(this, "address1_postalcode", value) },
+                enumerable: true
+            },
+            "address1_shippingmethodcode": {
+                get: function () { return this.internal.address1_shippingmethodcode; },
+                set: function (value) { setNumberOrNullProperty(this, "address1_shippingmethodcode", value) },
+                enumerable: true
+            },
+            "address1_stateorprovince": {
+                get: function () { return this.internal.address1_stateorprovince; },
+                set: function (value) { setStringOrNullProperty(this, "address1_stateorprovince", value) },
+                enumerable: true
+            },
+            "address1_telephone1": {
+                get: function () { return this.internal.address1_telephone1; },
+                set: function (value) { setStringOrNullProperty(this, "address1_telephone1", value) },
+                enumerable: true
+            },
+            "creditlimit": {
+                get: function () { return this.internal.creditlimit; },
+                set: function (value) { setNumberOrNullProperty(this, "creditlimit", value) },
+                enumerable: true
+            },
+            "creditonhold": {
+                get: function () { return this.internal.creditonhold; },
+                set: function (value) { setBooleanProperty(this, "creditonhold", value) },
+                enumerable: true
+            },
+            "customertypecode": {
+                get: function () { return this.internal.customertypecode; },
+                set: function (value) { setNumberOrNullProperty(this, "customertypecode", value) },
+                enumerable: true
+            },
             "description": {
                 get: function () { return this.internal.description; },
                 set: function (value) { setStringOrNullProperty(this, "description", value) },
+                enumerable: true
+            },
+            "donotbulkemail": {
+                get: function () { return this.internal.donotbulkemail; },
+                set: function (value) { setBooleanProperty(this, "donotbulkemail", value) },
+                enumerable: true
+            },
+            "donotemail": {
+                get: function () { return this.internal.donotemail; },
+                set: function (value) { setBooleanProperty(this, "donotemail", value) },
+                enumerable: true
+            },
+            "donotfax": {
+                get: function () { return this.internal.donotfax; },
+                set: function (value) { setBooleanProperty(this, "donotfax", value) },
+                enumerable: true
+            },
+            "donotphone": {
+                get: function () { return this.internal.donotphone; },
+                set: function (value) { setBooleanProperty(this, "donotphone", value) },
+                enumerable: true
+            },
+            "donotpostalmail": {
+                get: function () { return this.internal.donotpostalmail; },
+                set: function (value) { setBooleanProperty(this, "donotpostalmail", value) },
+                enumerable: true
+            },
+            "donotsendmm": {
+                get: function () { return this.internal.donotsendmm; },
+                set: function (value) { setBooleanProperty(this, "donotsendmm", value) },
+                enumerable: true
+            },
+            "emailaddress1": {
+                get: function () { return this.internal.emailaddress1; },
+                set: function (value) { setStringOrNullProperty(this, "emailaddress1", value) },
+                enumerable: true
+            },
+            "fax": {
+                get: function () { return this.internal.fax; },
+                set: function (value) { setStringOrNullProperty(this, "fax", value) },
+                enumerable: true
+            },
+            "industrycode": {
+                get: function () { return this.internal.industrycode; },
+                set: function (value) { setNumberOrNullProperty(this, "industrycode", value) },
+                enumerable: true
+            },
+            "lastusedincampaign": {
+                get: function () { return this.internal.lastusedincampaign; },
+                set: function (value) { setDateTimeOffsetProperty(this, "lastusedincampaign", value) },
                 enumerable: true
             },
             "name": {
@@ -730,14 +741,77 @@ Sdk.Sample = Sdk.Sample || {};
                 set: function (value) { setStringOrNullProperty(this, "name", value) },
                 enumerable: true
             },
+            "numberofemployees": {
+                get: function () { return this.internal.numberofemployees; },
+                set: function (value) { setNumberOrNullProperty(this, "numberofemployees", value) },
+                enumerable: true
+            },
+            "opendeals": {
+                get: function () { return this.internal.opendeals; },
+                enumerable: true
+            },
+            "openrevenue": {
+                get: function () { return this.internal.openrevenue; },
+                enumerable: true
+            },
+            "ownershipcode": {
+                get: function () { return this.internal.ownershipcode; },
+                set: function (value) { setNumberOrNullProperty(this, "ownershipcode", value) },
+                enumerable: true
+            },
+            "paymenttermscode": {
+                get: function () { return this.internal.paymenttermscode; },
+                set: function (value) { setNumberOrNullProperty(this, "paymenttermscode", value) },
+                enumerable: true
+            },
+            "preferredappointmentdaycode": {
+                get: function () { return this.internal.preferredappointmentdaycode; },
+                set: function (value) { setNumberOrNullProperty(this, "preferredappointmentdaycode", value) },
+                enumerable: true
+            },
+            "preferredappointmenttimecode": {
+                get: function () { return this.internal.preferredappointmenttimecode; },
+                set: function (value) { setNumberOrNullProperty(this, "preferredappointmenttimecode", value) },
+                enumerable: true
+            },
+            "preferredcontactmethodcode": {
+                get: function () { return this.internal.preferredcontactmethodcode; },
+                set: function (value) { setNumberOrNullProperty(this, "preferredcontactmethodcode", value) },
+                enumerable: true
+            },
             "revenue": {
                 get: function () { return this.internal.revenue; },
                 set: function (value) { setNumberOrNullProperty(this, "revenue", value) },
                 enumerable: true
             },
+            "sic": {
+                get: function () { return this.internal.sic; },
+                set: function (value) { setStringOrNullProperty(this, "sic", value) },
+                enumerable: true
+            },
+            "statecode": {
+                get: function () { return this.internal.statecode; },
+                set: function (value) { setNumberOrNullProperty(this, "statecode", value) },
+                enumerable: true
+            },
             "telephone1": {
                 get: function () { return this.internal.telephone1; },
                 set: function (value) { setStringOrNullProperty(this, "telephone1", value) },
+                enumerable: true
+            },
+            "telephone2": {
+                get: function () { return this.internal.telephone2; },
+                set: function (value) { setStringOrNullProperty(this, "telephone2", value) },
+                enumerable: true
+            },
+            "tickersymbol": {
+                get: function () { return this.internal.tickersymbol; },
+                set: function (value) { setStringOrNullProperty(this, "tickersymbol", value) },
+                enumerable: true
+            },
+            "websiteurl": {
+                get: function () { return this.internal.websiteurl; },
+                set: function (value) { setStringOrNullProperty(this, "websiteurl", value) },
                 enumerable: true
             },
             //Single-valued Navigation Properties,
@@ -747,73 +821,58 @@ Sdk.Sample = Sdk.Sample || {};
             },
             "parentaccountid": {
                 get: function () { return this.internal.parentaccountid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "parentaccountid", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.account, "account", this, "parentaccountid", value) },
                 enumerable: true
             },
             "parentaccountid@odata.bind": {
                 get: function () { return this.internal.parentaccountidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "parentaccountid", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.account, "account", this, "parentaccountid", value) },
                 enumerable: true
             },
             "primarycontactid": {
                 get: function () { return this.internal.primarycontactid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
             "primarycontactid@odata.bind": {
                 get: function () { return this.internal.primarycontactidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
             //Collection-Valued Navigation Properties,
             "Account_ActivityPointers": {
                 get: function () { return this.internal.Account_ActivityPointers; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Account_ActivityPointers", value) },
-                enumerable: true,
-            },
-            "Account_Annotation": {
-                get: function () { return this.internal.Account_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Account_Annotation", value) },
-                enumerable: true,
-            },
-            "Account_Letters": {
-                get: function () { return this.internal.Account_Letters; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Account_Letters", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.activitypointer, "activitypointer", this, "Account_ActivityPointers", value) },
                 enumerable: true,
             },
             "account_master_account": {
                 get: function () { return this.internal.account_master_account; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.account, "account", this, "account_master_account", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.account, "account", this, "account_master_account", value) },
                 enumerable: true,
             },
             "account_parent_account": {
                 get: function () { return this.internal.account_parent_account; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.account, "account", this, "account_parent_account", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.account, "account", this, "account_parent_account", value) },
+                enumerable: true,
+            },
+            "Account_Phonecalls": {
+                get: function () { return this.internal.Account_Phonecalls; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.phonecall, "phonecall", this, "Account_Phonecalls", value) },
                 enumerable: true,
             },
             "Account_Tasks": {
                 get: function () { return this.internal.Account_Tasks; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Account_Tasks", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.task, "task", this, "Account_Tasks", value) },
                 enumerable: true,
             },
             "contact_customer_accounts": {
                 get: function () { return this.internal.contact_customer_accounts; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.contact, "contact", this, "contact_customer_accounts", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.contact, "contact", this, "contact_customer_accounts", value) },
                 enumerable: true,
             },
             "incident_customer_accounts": {
                 get: function () { return this.internal.incident_customer_accounts; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_customer_accounts", value) },
-                enumerable: true,
-            },
-            "opportunity_customer_accounts": {
-                get: function () { return this.internal.opportunity_customer_accounts; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_customer_accounts", value) },
-                enumerable: true,
-            },
-            "opportunity_parent_account": {
-                get: function () { return this.internal.opportunity_parent_account; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunity_parent_account", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incident, "incident", this, "incident_customer_accounts", value) },
                 enumerable: true,
             }
         });
@@ -829,35 +888,59 @@ Sdk.Sample = Sdk.Sample || {};
     this.account.prototype.primaryKey = "accountid";
     this.account.prototype.entitySetName = "accounts";
     this.account.prototype.properties = Object.freeze({
+        accountcategorycode: { name: "accountcategorycode", type: "Number" },
         accountid: { name: "accountid", type: "Guid" },
+        accountnumber: { name: "accountnumber", type: "String" },
+        address1_addresstypecode: { name: "address1_addresstypecode", type: "Number" },
+        address1_city: { name: "address1_city", type: "String" },
+        address1_composite: { name: "address1_composite", type: "String" },
+        address1_country: { name: "address1_country", type: "String" },
+        address1_freighttermscode: { name: "address1_freighttermscode", type: "Number" },
+        address1_line1: { name: "address1_line1", type: "String" },
+        address1_line2: { name: "address1_line2", type: "String" },
+        address1_line3: { name: "address1_line3", type: "String" },
+        address1_name: { name: "address1_name", type: "String" },
+        address1_postalcode: { name: "address1_postalcode", type: "String" },
+        address1_shippingmethodcode: { name: "address1_shippingmethodcode", type: "Number" },
+        address1_stateorprovince: { name: "address1_stateorprovince", type: "String" },
+        address1_telephone1: { name: "address1_telephone1", type: "String" },
+        creditlimit: { name: "creditlimit", type: "Number" },
+        creditonhold: { name: "creditonhold", type: "Boolean" },
+        customertypecode: { name: "customertypecode", type: "Number" },
         description: { name: "description", type: "String" },
+        donotbulkemail: { name: "donotbulkemail", type: "Boolean" },
+        donotemail: { name: "donotemail", type: "Boolean" },
+        donotfax: { name: "donotfax", type: "Boolean" },
+        donotphone: { name: "donotphone", type: "Boolean" },
+        donotpostalmail: { name: "donotpostalmail", type: "Boolean" },
+        donotsendmm: { name: "donotsendmm", type: "Boolean" },
+        emailaddress1: { name: "emailaddress1", type: "String" },
+        fax: { name: "fax", type: "String" },
+        industrycode: { name: "industrycode", type: "Number" },
+        lastusedincampaign: { name: "lastusedincampaign", type: "Date" },
         name: { name: "name", type: "String" },
+        numberofemployees: { name: "numberofemployees", type: "Number" },
+        opendeals: { name: "opendeals", type: "Number" },
+        openrevenue: { name: "openrevenue", type: "Number" },
+        ownershipcode: { name: "ownershipcode", type: "Number" },
+        paymenttermscode: { name: "paymenttermscode", type: "Number" },
+        preferredappointmentdaycode: { name: "preferredappointmentdaycode", type: "Number" },
+        preferredappointmenttimecode: { name: "preferredappointmenttimecode", type: "Number" },
+        preferredcontactmethodcode: { name: "preferredcontactmethodcode", type: "Number" },
         revenue: { name: "revenue", type: "Number" },
-        telephone1: { name: "telephone1", type: "String" }
-    });
-    this.account.prototype.lookups = Object.freeze({
-        masterid: { name: "masterid", type: Sdk.Sample.account },
-        parentaccountid: { name: "parentaccountid", type: Sdk.Sample.account },
-        primarycontactid: { name: "primarycontactid", type: Sdk.Sample.contact }
-    });
-    this.account.prototype.collections = Object.freeze({
-        Account_ActivityPointers: { name: "Account_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Account_Annotation: { name: "Account_Annotation", type: Sdk.Sample.annotation },
-        Account_Letters: { name: "Account_Letters", type: Sdk.Sample.letter },
-        account_master_account: { name: "account_master_account", type: Sdk.Sample.account },
-        account_parent_account: { name: "account_parent_account", type: Sdk.Sample.account },
-        Account_Tasks: { name: "Account_Tasks", type: Sdk.Sample.task },
-        contact_customer_accounts: { name: "contact_customer_accounts", type: Sdk.Sample.contact },
-        incident_customer_accounts: { name: "incident_customer_accounts", type: Sdk.Sample.incident },
-        opportunity_customer_accounts: { name: "opportunity_customer_accounts", type: Sdk.Sample.opportunity },
-        opportunity_parent_account: { name: "opportunity_parent_account", type: Sdk.Sample.opportunity }
+        sic: { name: "sic", type: "String" },
+        statecode: { name: "statecode", type: "Number" },
+        telephone1: { name: "telephone1", type: "String" },
+        telephone2: { name: "telephone2", type: "String" },
+        tickersymbol: { name: "tickersymbol", type: "String" },
+        websiteurl: { name: "websiteurl", type: "String" }
     });
 
     /**
     @method parentaccountidUri
-    @memberof Sdk.Sample.account
+    @memberof Demo.Tour.account
     @description  Choose the parent account associated with this account to show parent and child businesses in reporting and analytics.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
+    @param {String} uri A URI to an existing Demo.Tour.account.
     */
     this.account.prototype.parentaccountidUri = function (uri) {
         this["parentaccountid@odata.bind"] = uri;
@@ -865,25 +948,25 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method primarycontactidUri
-    @memberof Sdk.Sample.account
+    @memberof Demo.Tour.account
     @description  Choose the primary contact for the account to provide quick access to contact details.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
     */
     this.account.prototype.primarycontactidUri = function (uri) {
         this["primarycontactid@odata.bind"] = uri;
     }
 
     /**
-    @typeref {object} Sdk.Sample.task
-    @extends Sdk.Sample.activitypointer
-    @description Generic activity representing work needed to be done.
-    @param {String|Object}[taskReference] A GUID, a URI, or a JSON object to set retrieved values.
+    @typeref {object} Demo.Tour.contact
+    @extends Demo.Tour.crmbaseentity
+    @description Person with whom a business unit has a relationship, such as customer, supplier, and colleague.
+    @param {String|Object}[contactReference] A GUID, a URI, or a JSON object to set retrieved values.
     */
-    this.task = function (taskReference) {
-        if (!(isInstanceOf(Sdk.Sample.task, this))) {
-            return new Sdk.Sample.task(taskReference);
+    this.contact = function (contactReference) {
+        if (!(isInstanceOf(Demo.Tour.contact, this))) {
+            return new Demo.Tour.contact(contactReference);
         }
-        Sdk.Sample.activitypointer.call(this);
+        Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
@@ -891,68 +974,497 @@ Sdk.Sample = Sdk.Sample || {};
                 enumerable: true
             },
             //Properties,
+            "accountrolecode": {
+                get: function () { return this.internal.accountrolecode; },
+                set: function (value) { setNumberOrNullProperty(this, "accountrolecode", value) },
+                enumerable: true
+            },
+            "address1_addresstypecode": {
+                get: function () { return this.internal.address1_addresstypecode; },
+                set: function (value) { setNumberOrNullProperty(this, "address1_addresstypecode", value) },
+                enumerable: true
+            },
+            "address1_city": {
+                get: function () { return this.internal.address1_city; },
+                set: function (value) { setStringOrNullProperty(this, "address1_city", value) },
+                enumerable: true
+            },
+            "address1_composite": {
+                get: function () { return this.internal.address1_composite; },
+                enumerable: true
+            },
+            "address1_country": {
+                get: function () { return this.internal.address1_country; },
+                set: function (value) { setStringOrNullProperty(this, "address1_country", value) },
+                enumerable: true
+            },
+            "address1_freighttermscode": {
+                get: function () { return this.internal.address1_freighttermscode; },
+                set: function (value) { setNumberOrNullProperty(this, "address1_freighttermscode", value) },
+                enumerable: true
+            },
+            "address1_line1": {
+                get: function () { return this.internal.address1_line1; },
+                set: function (value) { setStringOrNullProperty(this, "address1_line1", value) },
+                enumerable: true
+            },
+            "address1_line2": {
+                get: function () { return this.internal.address1_line2; },
+                set: function (value) { setStringOrNullProperty(this, "address1_line2", value) },
+                enumerable: true
+            },
+            "address1_line3": {
+                get: function () { return this.internal.address1_line3; },
+                set: function (value) { setStringOrNullProperty(this, "address1_line3", value) },
+                enumerable: true
+            },
+            "address1_name": {
+                get: function () { return this.internal.address1_name; },
+                set: function (value) { setStringOrNullProperty(this, "address1_name", value) },
+                enumerable: true
+            },
+            "address1_postalcode": {
+                get: function () { return this.internal.address1_postalcode; },
+                set: function (value) { setStringOrNullProperty(this, "address1_postalcode", value) },
+                enumerable: true
+            },
+            "address1_shippingmethodcode": {
+                get: function () { return this.internal.address1_shippingmethodcode; },
+                set: function (value) { setNumberOrNullProperty(this, "address1_shippingmethodcode", value) },
+                enumerable: true
+            },
+            "address1_stateorprovince": {
+                get: function () { return this.internal.address1_stateorprovince; },
+                set: function (value) { setStringOrNullProperty(this, "address1_stateorprovince", value) },
+                enumerable: true
+            },
+            "address1_telephone1": {
+                get: function () { return this.internal.address1_telephone1; },
+                set: function (value) { setStringOrNullProperty(this, "address1_telephone1", value) },
+                enumerable: true
+            },
+            "anniversary": {
+                get: function () { return this.internal.anniversary; },
+                set: function (value) { setDateOnlyProperty(this, "anniversary", value) },
+                enumerable: true
+            },
+            "assistantname": {
+                get: function () { return this.internal.assistantname; },
+                set: function (value) { setStringOrNullProperty(this, "assistantname", value) },
+                enumerable: true
+            },
+            "assistantphone": {
+                get: function () { return this.internal.assistantphone; },
+                set: function (value) { setStringOrNullProperty(this, "assistantphone", value) },
+                enumerable: true
+            },
+            "birthdate": {
+                get: function () { return this.internal.birthdate; },
+                set: function (value) { setDateOnlyProperty(this, "birthdate", value) },
+                enumerable: true
+            },
+            "contactid": {
+                get: function () { return this.internal.contactid; },
+                set: function (value) { setGuidOrNullProperty(this, "contactid", value) },
+                enumerable: true
+            },
+            "creditlimit": {
+                get: function () { return this.internal.creditlimit; },
+                set: function (value) { setNumberOrNullProperty(this, "creditlimit", value) },
+                enumerable: true
+            },
+            "creditonhold": {
+                get: function () { return this.internal.creditonhold; },
+                set: function (value) { setBooleanProperty(this, "creditonhold", value) },
+                enumerable: true
+            },
+            "department": {
+                get: function () { return this.internal.department; },
+                set: function (value) { setStringOrNullProperty(this, "department", value) },
+                enumerable: true
+            },
+            "description": {
+                get: function () { return this.internal.description; },
+                set: function (value) { setStringOrNullProperty(this, "description", value) },
+                enumerable: true
+            },
+            "donotbulkemail": {
+                get: function () { return this.internal.donotbulkemail; },
+                set: function (value) { setBooleanProperty(this, "donotbulkemail", value) },
+                enumerable: true
+            },
+            "donotemail": {
+                get: function () { return this.internal.donotemail; },
+                set: function (value) { setBooleanProperty(this, "donotemail", value) },
+                enumerable: true
+            },
+            "donotfax": {
+                get: function () { return this.internal.donotfax; },
+                set: function (value) { setBooleanProperty(this, "donotfax", value) },
+                enumerable: true
+            },
+            "donotphone": {
+                get: function () { return this.internal.donotphone; },
+                set: function (value) { setBooleanProperty(this, "donotphone", value) },
+                enumerable: true
+            },
+            "donotpostalmail": {
+                get: function () { return this.internal.donotpostalmail; },
+                set: function (value) { setBooleanProperty(this, "donotpostalmail", value) },
+                enumerable: true
+            },
+            "donotsendmm": {
+                get: function () { return this.internal.donotsendmm; },
+                set: function (value) { setBooleanProperty(this, "donotsendmm", value) },
+                enumerable: true
+            },
+            "emailaddress1": {
+                get: function () { return this.internal.emailaddress1; },
+                set: function (value) { setStringOrNullProperty(this, "emailaddress1", value) },
+                enumerable: true
+            },
+            "familystatuscode": {
+                get: function () { return this.internal.familystatuscode; },
+                set: function (value) { setNumberOrNullProperty(this, "familystatuscode", value) },
+                enumerable: true
+            },
+            "fax": {
+                get: function () { return this.internal.fax; },
+                set: function (value) { setStringOrNullProperty(this, "fax", value) },
+                enumerable: true
+            },
+            "firstname": {
+                get: function () { return this.internal.firstname; },
+                set: function (value) { setStringOrNullProperty(this, "firstname", value) },
+                enumerable: true
+            },
+            "fullname": {
+                get: function () { return this.internal.fullname; },
+                enumerable: true
+            },
+            "gendercode": {
+                get: function () { return this.internal.gendercode; },
+                set: function (value) { setNumberOrNullProperty(this, "gendercode", value) },
+                enumerable: true
+            },
+            "jobtitle": {
+                get: function () { return this.internal.jobtitle; },
+                set: function (value) { setStringOrNullProperty(this, "jobtitle", value) },
+                enumerable: true
+            },
+            "lastname": {
+                get: function () { return this.internal.lastname; },
+                set: function (value) { setStringOrNullProperty(this, "lastname", value) },
+                enumerable: true
+            },
+            "lastusedincampaign": {
+                get: function () { return this.internal.lastusedincampaign; },
+                set: function (value) { setDateTimeOffsetProperty(this, "lastusedincampaign", value) },
+                enumerable: true
+            },
+            "managername": {
+                get: function () { return this.internal.managername; },
+                set: function (value) { setStringOrNullProperty(this, "managername", value) },
+                enumerable: true
+            },
+            "managerphone": {
+                get: function () { return this.internal.managerphone; },
+                set: function (value) { setStringOrNullProperty(this, "managerphone", value) },
+                enumerable: true
+            },
+            "middlename": {
+                get: function () { return this.internal.middlename; },
+                set: function (value) { setStringOrNullProperty(this, "middlename", value) },
+                enumerable: true
+            },
+            "mobilephone": {
+                get: function () { return this.internal.mobilephone; },
+                set: function (value) { setStringOrNullProperty(this, "mobilephone", value) },
+                enumerable: true
+            },
+            "paymenttermscode": {
+                get: function () { return this.internal.paymenttermscode; },
+                set: function (value) { setNumberOrNullProperty(this, "paymenttermscode", value) },
+                enumerable: true
+            },
+            "preferredappointmentdaycode": {
+                get: function () { return this.internal.preferredappointmentdaycode; },
+                set: function (value) { setNumberOrNullProperty(this, "preferredappointmentdaycode", value) },
+                enumerable: true
+            },
+            "preferredappointmenttimecode": {
+                get: function () { return this.internal.preferredappointmenttimecode; },
+                set: function (value) { setNumberOrNullProperty(this, "preferredappointmenttimecode", value) },
+                enumerable: true
+            },
+            "preferredcontactmethodcode": {
+                get: function () { return this.internal.preferredcontactmethodcode; },
+                set: function (value) { setNumberOrNullProperty(this, "preferredcontactmethodcode", value) },
+                enumerable: true
+            },
+            "salutation": {
+                get: function () { return this.internal.salutation; },
+                set: function (value) { setStringOrNullProperty(this, "salutation", value) },
+                enumerable: true
+            },
+            "spousesname": {
+                get: function () { return this.internal.spousesname; },
+                set: function (value) { setStringOrNullProperty(this, "spousesname", value) },
+                enumerable: true
+            },
+            "statecode": {
+                get: function () { return this.internal.statecode; },
+                set: function (value) { setNumberOrNullProperty(this, "statecode", value) },
+                enumerable: true
+            },
+            "telephone1": {
+                get: function () { return this.internal.telephone1; },
+                set: function (value) { setStringOrNullProperty(this, "telephone1", value) },
+                enumerable: true
+            },
+            "telephone2": {
+                get: function () { return this.internal.telephone2; },
+                set: function (value) { setStringOrNullProperty(this, "telephone2", value) },
+                enumerable: true
+            },
+            "websiteurl": {
+                get: function () { return this.internal.websiteurl; },
+                set: function (value) { setStringOrNullProperty(this, "websiteurl", value) },
+                enumerable: true
+            },
+            //Single-valued Navigation Properties,
+            "masterid": {
+                get: function () { return this.internal.masterid; },
+                enumerable: true
+            },
+            "parentcustomerid_account": {
+                get: function () { return this.internal.parentcustomerid_account; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.account, "account", this, "parentcustomerid_account", value) },
+                enumerable: true
+            },
+            "parentcustomerid_account@odata.bind": {
+                get: function () { return this.internal.parentcustomerid_accountUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.account, "account", this, "parentcustomerid_account", value) },
+                enumerable: true
+            },
+            "parentcustomerid_contact": {
+                get: function () { return this.internal.parentcustomerid_contact; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "parentcustomerid_contact", value) },
+                enumerable: true
+            },
+            "parentcustomerid_contact@odata.bind": {
+                get: function () { return this.internal.parentcustomerid_contactUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "parentcustomerid_contact", value) },
+                enumerable: true
+            },
+            //Collection-Valued Navigation Properties,
+            "account_primary_contact": {
+                get: function () { return this.internal.account_primary_contact; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.account, "account", this, "account_primary_contact", value) },
+                enumerable: true,
+            },
+            "Contact_ActivityPointers": {
+                get: function () { return this.internal.Contact_ActivityPointers; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.activitypointer, "activitypointer", this, "Contact_ActivityPointers", value) },
+                enumerable: true,
+            },
+            "contact_as_primary_contact": {
+                get: function () { return this.internal.contact_as_primary_contact; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incident, "incident", this, "contact_as_primary_contact", value) },
+                enumerable: true,
+            },
+            "contact_as_responsible_contact": {
+                get: function () { return this.internal.contact_as_responsible_contact; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incident, "incident", this, "contact_as_responsible_contact", value) },
+                enumerable: true,
+            },
+            "contact_customer_contacts": {
+                get: function () { return this.internal.contact_customer_contacts; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.contact, "contact", this, "contact_customer_contacts", value) },
+                enumerable: true,
+            },
+            "contact_master_contact": {
+                get: function () { return this.internal.contact_master_contact; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.contact, "contact", this, "contact_master_contact", value) },
+                enumerable: true,
+            },
+            "Contact_Phonecalls": {
+                get: function () { return this.internal.Contact_Phonecalls; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.phonecall, "phonecall", this, "Contact_Phonecalls", value) },
+                enumerable: true,
+            },
+            "Contact_Tasks": {
+                get: function () { return this.internal.Contact_Tasks; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.task, "task", this, "Contact_Tasks", value) },
+                enumerable: true,
+            },
+            "incident_customer_contacts": {
+                get: function () { return this.internal.incident_customer_contacts; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incident, "incident", this, "incident_customer_contacts", value) },
+                enumerable: true,
+            }
+        });
+
+        if (contactReference) {
+            init(this.internal, contactReference, this.primaryKey, this.type, this.changedProperties);
+        }
+        return Object.seal(this);
+    }
+    this.contact.prototype = Object.create(this.crmbaseentity.prototype);
+    this.contact.isEntityClass = true;
+    this.contact.prototype.type = "contact";
+    this.contact.prototype.primaryKey = "contactid";
+    this.contact.prototype.entitySetName = "contacts";
+    this.contact.prototype.properties = Object.freeze({
+        accountrolecode: { name: "accountrolecode", type: "Number" },
+        address1_addresstypecode: { name: "address1_addresstypecode", type: "Number" },
+        address1_city: { name: "address1_city", type: "String" },
+        address1_composite: { name: "address1_composite", type: "String" },
+        address1_country: { name: "address1_country", type: "String" },
+        address1_freighttermscode: { name: "address1_freighttermscode", type: "Number" },
+        address1_line1: { name: "address1_line1", type: "String" },
+        address1_line2: { name: "address1_line2", type: "String" },
+        address1_line3: { name: "address1_line3", type: "String" },
+        address1_name: { name: "address1_name", type: "String" },
+        address1_postalcode: { name: "address1_postalcode", type: "String" },
+        address1_shippingmethodcode: { name: "address1_shippingmethodcode", type: "Number" },
+        address1_stateorprovince: { name: "address1_stateorprovince", type: "String" },
+        address1_telephone1: { name: "address1_telephone1", type: "String" },
+        anniversary: { name: "anniversary", type: "Date" },
+        assistantname: { name: "assistantname", type: "String" },
+        assistantphone: { name: "assistantphone", type: "String" },
+        birthdate: { name: "birthdate", type: "Date" },
+        contactid: { name: "contactid", type: "Guid" },
+        creditlimit: { name: "creditlimit", type: "Number" },
+        creditonhold: { name: "creditonhold", type: "Boolean" },
+        department: { name: "department", type: "String" },
+        description: { name: "description", type: "String" },
+        donotbulkemail: { name: "donotbulkemail", type: "Boolean" },
+        donotemail: { name: "donotemail", type: "Boolean" },
+        donotfax: { name: "donotfax", type: "Boolean" },
+        donotphone: { name: "donotphone", type: "Boolean" },
+        donotpostalmail: { name: "donotpostalmail", type: "Boolean" },
+        donotsendmm: { name: "donotsendmm", type: "Boolean" },
+        emailaddress1: { name: "emailaddress1", type: "String" },
+        familystatuscode: { name: "familystatuscode", type: "Number" },
+        fax: { name: "fax", type: "String" },
+        firstname: { name: "firstname", type: "String" },
+        fullname: { name: "fullname", type: "String" },
+        gendercode: { name: "gendercode", type: "Number" },
+        jobtitle: { name: "jobtitle", type: "String" },
+        lastname: { name: "lastname", type: "String" },
+        lastusedincampaign: { name: "lastusedincampaign", type: "Date" },
+        managername: { name: "managername", type: "String" },
+        managerphone: { name: "managerphone", type: "String" },
+        middlename: { name: "middlename", type: "String" },
+        mobilephone: { name: "mobilephone", type: "String" },
+        paymenttermscode: { name: "paymenttermscode", type: "Number" },
+        preferredappointmentdaycode: { name: "preferredappointmentdaycode", type: "Number" },
+        preferredappointmenttimecode: { name: "preferredappointmenttimecode", type: "Number" },
+        preferredcontactmethodcode: { name: "preferredcontactmethodcode", type: "Number" },
+        salutation: { name: "salutation", type: "String" },
+        spousesname: { name: "spousesname", type: "String" },
+        statecode: { name: "statecode", type: "Number" },
+        telephone1: { name: "telephone1", type: "String" },
+        telephone2: { name: "telephone2", type: "String" },
+        websiteurl: { name: "websiteurl", type: "String" }
+    });
+
+    /**
+    @method parentcustomerid_accountUri
+    @memberof Demo.Tour.contact
+    @description  Select the parent account or parent contact for the contact to provide a quick link to additional details, such as financial information, activities, and opportunities.
+    @param {String} uri A URI to an existing Demo.Tour.account.
+    */
+    this.contact.prototype.parentcustomerid_accountUri = function (uri) {
+        this["parentcustomerid_account@odata.bind"] = uri;
+    }
+
+    /**
+    @method parentcustomerid_contactUri
+    @memberof Demo.Tour.contact
+    @description  Select the parent account or parent contact for the contact to provide a quick link to additional details, such as financial information, activities, and opportunities.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
+    */
+    this.contact.prototype.parentcustomerid_contactUri = function (uri) {
+        this["parentcustomerid_contact@odata.bind"] = uri;
+    }
+
+    /**
+    @typeref {object} Demo.Tour.task
+    @extends Demo.Tour.activitypointer
+    @description Generic activity representing work needed to be done.
+    @param {String|Object}[taskReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.task = function (taskReference) {
+        if (!(isInstanceOf(Demo.Tour.task, this))) {
+            return new Demo.Tour.task(taskReference);
+        }
+        Demo.Tour.activitypointer.call(this);
+        Object.defineProperties(this,
+        {
+            "@odata.type": {
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
+                enumerable: true
+            },
+            //Properties,
+            "category": {
+                get: function () { return this.internal.category; },
+                set: function (value) { setStringOrNullProperty(this, "category", value) },
+                enumerable: true
+            },
+            "percentcomplete": {
+                get: function () { return this.internal.percentcomplete; },
+                set: function (value) { setNumberOrNullProperty(this, "percentcomplete", value) },
+                enumerable: true
+            },
+            "subcategory": {
+                get: function () { return this.internal.subcategory; },
+                set: function (value) { setStringOrNullProperty(this, "subcategory", value) },
+                enumerable: true
+            },
             //Single-valued Navigation Properties,
             "activityid_activitypointer": {
                 get: function () { return this.internal.activityid_activitypointer; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "activityid_activitypointer@odata.bind": {
                 get: function () { return this.internal.activityid_activitypointerUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
                 enumerable: true
             },
             "regardingobjectid_account_task": {
                 get: function () { return this.internal.regardingobjectid_account_task; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "regardingobjectid_account_task", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.account, "account", this, "regardingobjectid_account_task", value) },
                 enumerable: true
             },
             "regardingobjectid_account_task@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_account_taskUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "regardingobjectid_account_task", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.account, "account", this, "regardingobjectid_account_task", value) },
                 enumerable: true
             },
             "regardingobjectid_contact_task": {
                 get: function () { return this.internal.regardingobjectid_contact_task; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_task", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "regardingobjectid_contact_task", value) },
                 enumerable: true
             },
             "regardingobjectid_contact_task@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_contact_taskUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_task", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "regardingobjectid_contact_task", value) },
                 enumerable: true
             },
             "regardingobjectid_incident_task": {
                 get: function () { return this.internal.regardingobjectid_incident_task; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_task", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.incident, "incident", this, "regardingobjectid_incident_task", value) },
                 enumerable: true
             },
             "regardingobjectid_incident_task@odata.bind": {
                 get: function () { return this.internal.regardingobjectid_incident_taskUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_task", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.incident, "incident", this, "regardingobjectid_incident_task", value) },
                 enumerable: true
             },
-            "regardingobjectid_opportunity_task": {
-                get: function () { return this.internal.regardingobjectid_opportunity_task; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_task", value) },
-                enumerable: true
-            },
-            "regardingobjectid_opportunity_task@odata.bind": {
-                get: function () { return this.internal.regardingobjectid_opportunity_taskUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_task", value) },
-                enumerable: true
-            },
-            //Collection-Valued Navigation Properties,
-            "Task_Annotation": {
-                get: function () { return this.internal.Task_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Task_Annotation", value) },
-                enumerable: true,
-            },
-            "Task_QueueItem": {
-                get: function () { return this.internal.Task_QueueItem; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "Task_QueueItem", value) },
-                enumerable: true,
-            }
+            //Collection-Valued Navigation Properties
         });
 
         if (taskReference) {
@@ -968,36 +1480,41 @@ Sdk.Sample = Sdk.Sample || {};
     this.task.prototype.properties = Object.freeze({
         activityid: { name: "activityid", type: "Guid" },
         actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        actualend: { name: "actualend", type: "Date" },
+        actualstart: { name: "actualstart", type: "Date" },
+        community: { name: "community", type: "Number" },
+        createdon: { name: "createdon", type: "Date" },
+        deliverylastattemptedon: { name: "deliverylastattemptedon", type: "Date" },
+        deliveryprioritycode: { name: "deliveryprioritycode", type: "Number" },
         description: { name: "description", type: "String" },
+        exchangerate: { name: "exchangerate", type: "Number" },
+        isbilled: { name: "isbilled", type: "Boolean" },
+        ismapiprivate: { name: "ismapiprivate", type: "Boolean" },
+        isregularactivity: { name: "isregularactivity", type: "Boolean" },
+        isworkflowcreated: { name: "isworkflowcreated", type: "Boolean" },
+        lastonholdtime: { name: "lastonholdtime", type: "Date" },
+        leftvoicemail: { name: "leftvoicemail", type: "Boolean" },
+        modifiedon: { name: "modifiedon", type: "Date" },
+        onholdtime: { name: "onholdtime", type: "Number" },
+        postponeactivityprocessinguntil: { name: "postponeactivityprocessinguntil", type: "Date" },
+        prioritycode: { name: "prioritycode", type: "Number" },
+        processid: { name: "processid", type: "Guid" },
+        scheduleddurationminutes: { name: "scheduleddurationminutes", type: "Number" },
         scheduledend: { name: "scheduledend", type: "Date" },
         scheduledstart: { name: "scheduledstart", type: "Date" },
-        subject: { name: "subject", type: "String" }
-    });
-    this.task.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
-        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
-        regardingobjectid_account_task: { name: "regardingobjectid_account_task", type: Sdk.Sample.account },
-        regardingobjectid_contact_task: { name: "regardingobjectid_contact_task", type: Sdk.Sample.contact },
-        regardingobjectid_incident_task: { name: "regardingobjectid_incident_task", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity_task: { name: "regardingobjectid_opportunity_task", type: Sdk.Sample.opportunity }
-    });
-    this.task.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
-        Task_Annotation: { name: "Task_Annotation", type: Sdk.Sample.annotation },
-        Task_QueueItem: { name: "Task_QueueItem", type: Sdk.Sample.queueitem }
+        statecode: { name: "statecode", type: "Number" },
+        statuscode: { name: "statuscode", type: "Number" },
+        subject: { name: "subject", type: "String" },
+        category: { name: "category", type: "String" },
+        percentcomplete: { name: "percentcomplete", type: "Number" },
+        subcategory: { name: "subcategory", type: "String" }
     });
 
     /**
     @method activityid_activitypointerUri
-    @memberof Sdk.Sample.task
+    @memberof Demo.Tour.task
     @description  Unique identifier of the task.
-    @param {String} uri A URI to an existing Sdk.Sample.activitypointer.
+    @param {String} uri A URI to an existing Demo.Tour.activitypointer.
     */
     this.task.prototype.activityid_activitypointerUri = function (uri) {
         this["activityid_activitypointer@odata.bind"] = uri;
@@ -1005,9 +1522,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method regardingobjectid_account_taskUri
-    @memberof Sdk.Sample.task
+    @memberof Demo.Tour.task
     @description  Choose the record that the task relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
+    @param {String} uri A URI to an existing Demo.Tour.account.
     */
     this.task.prototype.regardingobjectid_account_taskUri = function (uri) {
         this["regardingobjectid_account_task@odata.bind"] = uri;
@@ -1015,9 +1532,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method regardingobjectid_contact_taskUri
-    @memberof Sdk.Sample.task
+    @memberof Demo.Tour.task
     @description  Choose the record that the task relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
     */
     this.task.prototype.regardingobjectid_contact_taskUri = function (uri) {
         this["regardingobjectid_contact_task@odata.bind"] = uri;
@@ -1025,35 +1542,25 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method regardingobjectid_incident_taskUri
-    @memberof Sdk.Sample.task
+    @memberof Demo.Tour.task
     @description  Choose the record that the task relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
+    @param {String} uri A URI to an existing Demo.Tour.incident.
     */
     this.task.prototype.regardingobjectid_incident_taskUri = function (uri) {
         this["regardingobjectid_incident_task@odata.bind"] = uri;
     }
 
     /**
-    @method regardingobjectid_opportunity_taskUri
-    @memberof Sdk.Sample.task
-    @description  Choose the record that the task relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.opportunity.
+    @typeref {object} Demo.Tour.incident
+    @extends Demo.Tour.crmbaseentity
+    @description Service request case associated with a contract.
+    @param {String|Object}[incidentReference] A GUID, a URI, or a JSON object to set retrieved values.
     */
-    this.task.prototype.regardingobjectid_opportunity_taskUri = function (uri) {
-        this["regardingobjectid_opportunity_task@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.competitor
-    @extends Sdk.Sample.crmbaseentity
-    @description Business competing for the sale represented by a lead or opportunity.
-    @param {String|Object}[competitorReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.competitor = function (competitorReference) {
-        if (!(isInstanceOf(Sdk.Sample.competitor, this))) {
-            return new Sdk.Sample.competitor(competitorReference);
+    this.incident = function (incidentReference) {
+        if (!(isInstanceOf(Demo.Tour.incident, this))) {
+            return new Demo.Tour.incident(incidentReference);
         }
-        Sdk.Sample.crmbaseentity.call(this);
+        Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
             "@odata.type": {
@@ -1061,1165 +1568,224 @@ Sdk.Sample = Sdk.Sample || {};
                 enumerable: true
             },
             //Properties,
-            "competitorid": {
-                get: function () { return this.internal.competitorid; },
-                set: function (value) { setGuidOrNullProperty(this, "competitorid", value) },
+            "blockedprofile": {
+                get: function () { return this.internal.blockedprofile; },
+                set: function (value) { setBooleanProperty(this, "blockedprofile", value) },
                 enumerable: true
             },
-            "name": {
-                get: function () { return this.internal.name; },
-                set: function (value) { setStringOrNullProperty(this, "name", value) },
+            "caseorigincode": {
+                get: function () { return this.internal.caseorigincode; },
+                set: function (value) { setNumberOrNullProperty(this, "caseorigincode", value) },
                 enumerable: true
             },
-            "strengths": {
-                get: function () { return this.internal.strengths; },
-                set: function (value) { setStringOrNullProperty(this, "strengths", value) },
+            "casetypecode": {
+                get: function () { return this.internal.casetypecode; },
+                set: function (value) { setNumberOrNullProperty(this, "casetypecode", value) },
                 enumerable: true
             },
-            //Single-valued Navigation Properties,
-            //Collection-Valued Navigation Properties,
-            "Competitor_Annotation": {
-                get: function () { return this.internal.Competitor_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Competitor_Annotation", value) },
-                enumerable: true,
-            },
-            "competitor_opportunity_activities": {
-                get: function () { return this.internal.competitor_opportunity_activities; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "competitor_opportunity_activities", value) },
-                enumerable: true,
-            },
-            "opportunitycompetitors_association": {
-                get: function () { return this.internal.opportunitycompetitors_association; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunitycompetitors_association", value) },
-                enumerable: true,
-            }
-        });
-
-        if (competitorReference) {
-            init(this.internal, competitorReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.competitor.prototype = Object.create(this.crmbaseentity.prototype);
-    this.competitor.isEntityClass = true;
-    this.competitor.prototype.type = "competitor";
-    this.competitor.prototype.primaryKey = "competitorid";
-    this.competitor.prototype.entitySetName = "competitors";
-    this.competitor.prototype.properties = Object.freeze({
-        competitorid: { name: "competitorid", type: "Guid" },
-        name: { name: "name", type: "String" },
-        strengths: { name: "strengths", type: "String" }
-    });
-    this.competitor.prototype.lookups = Object.freeze({});
-    this.competitor.prototype.collections = Object.freeze({
-        Competitor_Annotation: { name: "Competitor_Annotation", type: Sdk.Sample.annotation },
-        competitor_opportunity_activities: { name: "competitor_opportunity_activities", type: Sdk.Sample.opportunityclose },
-        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: Sdk.Sample.opportunity }
-    });
-
-    /**
-    @typeref {object} Sdk.Sample.opportunity
-    @extends Sdk.Sample.crmbaseentity
-    @description Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
-    @param {String|Object}[opportunityReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.opportunity = function (opportunityReference) {
-        if (!(isInstanceOf(Sdk.Sample.opportunity, this))) {
-            return new Sdk.Sample.opportunity(opportunityReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
+            "contractservicelevelcode": {
+                get: function () { return this.internal.contractservicelevelcode; },
+                set: function (value) { setNumberOrNullProperty(this, "contractservicelevelcode", value) },
                 enumerable: true
             },
-            //Properties,
+            "createdon": {
+                get: function () { return this.internal.createdon; },
+                enumerable: true
+            },
+            "customersatisfactioncode": {
+                get: function () { return this.internal.customersatisfactioncode; },
+                set: function (value) { setNumberOrNullProperty(this, "customersatisfactioncode", value) },
+                enumerable: true
+            },
             "description": {
                 get: function () { return this.internal.description; },
                 set: function (value) { setStringOrNullProperty(this, "description", value) },
                 enumerable: true
             },
-            "name": {
-                get: function () { return this.internal.name; },
-                set: function (value) { setStringOrNullProperty(this, "name", value) },
+            "escalatedon": {
+                get: function () { return this.internal.escalatedon; },
                 enumerable: true
             },
-            "opportunityid": {
-                get: function () { return this.internal.opportunityid; },
-                set: function (value) { setGuidOrNullProperty(this, "opportunityid", value) },
+            "firstresponsesent": {
+                get: function () { return this.internal.firstresponsesent; },
+                set: function (value) { setBooleanProperty(this, "firstresponsesent", value) },
                 enumerable: true
             },
-            //Single-valued Navigation Properties,
-            "customerid_account": {
-                get: function () { return this.internal.customerid_account; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "customerid_account", value) },
+            "followupby": {
+                get: function () { return this.internal.followupby; },
+                set: function (value) { setDateTimeOffsetProperty(this, "followupby", value) },
                 enumerable: true
             },
-            "customerid_account@odata.bind": {
-                get: function () { return this.internal.customerid_accountUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "customerid_account", value) },
-                enumerable: true
-            },
-            "customerid_contact": {
-                get: function () { return this.internal.customerid_contact; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
-                enumerable: true
-            },
-            "customerid_contact@odata.bind": {
-                get: function () { return this.internal.customerid_contactUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
-                enumerable: true
-            },
-            "parentaccountid": {
-                get: function () { return this.internal.parentaccountid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "parentaccountid", value) },
-                enumerable: true
-            },
-            "parentaccountid@odata.bind": {
-                get: function () { return this.internal.parentaccountidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "parentaccountid", value) },
-                enumerable: true
-            },
-            "parentcontactid": {
-                get: function () { return this.internal.parentcontactid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "parentcontactid", value) },
-                enumerable: true
-            },
-            "parentcontactid@odata.bind": {
-                get: function () { return this.internal.parentcontactidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "parentcontactid", value) },
-                enumerable: true
-            },
-            //Collection-Valued Navigation Properties,
-            "Opportunity_ActivityPointers": {
-                get: function () { return this.internal.Opportunity_ActivityPointers; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Opportunity_ActivityPointers", value) },
-                enumerable: true,
-            },
-            "Opportunity_Annotation": {
-                get: function () { return this.internal.Opportunity_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Opportunity_Annotation", value) },
-                enumerable: true,
-            },
-            "Opportunity_Letters": {
-                get: function () { return this.internal.Opportunity_Letters; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Opportunity_Letters", value) },
-                enumerable: true,
-            },
-            "Opportunity_OpportunityClose": {
-                get: function () { return this.internal.Opportunity_OpportunityClose; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "Opportunity_OpportunityClose", value) },
-                enumerable: true,
-            },
-            "Opportunity_Tasks": {
-                get: function () { return this.internal.Opportunity_Tasks; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Opportunity_Tasks", value) },
-                enumerable: true,
-            },
-            "opportunitycompetitors_association": {
-                get: function () { return this.internal.opportunitycompetitors_association; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.competitor, "competitor", this, "opportunitycompetitors_association", value) },
-                enumerable: true,
-            }
-        });
-
-        if (opportunityReference) {
-            init(this.internal, opportunityReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.opportunity.prototype = Object.create(this.crmbaseentity.prototype);
-    this.opportunity.isEntityClass = true;
-    this.opportunity.prototype.type = "opportunity";
-    this.opportunity.prototype.primaryKey = "opportunityid";
-    this.opportunity.prototype.entitySetName = "opportunities";
-    this.opportunity.prototype.properties = Object.freeze({
-        description: { name: "description", type: "String" },
-        name: { name: "name", type: "String" },
-        opportunityid: { name: "opportunityid", type: "Guid" }
-    });
-    this.opportunity.prototype.lookups = Object.freeze({
-        customerid_account: { name: "customerid_account", type: Sdk.Sample.account },
-        customerid_contact: { name: "customerid_contact", type: Sdk.Sample.contact },
-        parentaccountid: { name: "parentaccountid", type: Sdk.Sample.account },
-        parentcontactid: { name: "parentcontactid", type: Sdk.Sample.contact }
-    });
-    this.opportunity.prototype.collections = Object.freeze({
-        Opportunity_ActivityPointers: { name: "Opportunity_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Opportunity_Annotation: { name: "Opportunity_Annotation", type: Sdk.Sample.annotation },
-        Opportunity_Letters: { name: "Opportunity_Letters", type: Sdk.Sample.letter },
-        Opportunity_OpportunityClose: { name: "Opportunity_OpportunityClose", type: Sdk.Sample.opportunityclose },
-        Opportunity_Tasks: { name: "Opportunity_Tasks", type: Sdk.Sample.task },
-        opportunitycompetitors_association: { name: "opportunitycompetitors_association", type: Sdk.Sample.competitor }
-    });
-
-    /**
-    @method customerid_accountUri
-    @memberof Sdk.Sample.opportunity
-    @description  Select the customer account or contact to provide a quick link to additional customer details, such as address, phone number, activities, and orders.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
-    */
-    this.opportunity.prototype.customerid_accountUri = function (uri) {
-        this["customerid_account@odata.bind"] = uri;
-    }
-
-    /**
-    @method customerid_contactUri
-    @memberof Sdk.Sample.opportunity
-    @description  Select the customer account or contact to provide a quick link to additional customer details, such as address, phone number, activities, and orders.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
-    */
-    this.opportunity.prototype.customerid_contactUri = function (uri) {
-        this["customerid_contact@odata.bind"] = uri;
-    }
-
-    /**
-    @method parentaccountidUri
-    @memberof Sdk.Sample.opportunity
-    @description  Choose an account to connect this opportunity to, so that the relationship is visible in reports and analytics, and to provide a quick link to additional details, such as financial information and activities.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
-    */
-    this.opportunity.prototype.parentaccountidUri = function (uri) {
-        this["parentaccountid@odata.bind"] = uri;
-    }
-
-    /**
-    @method parentcontactidUri
-    @memberof Sdk.Sample.opportunity
-    @description  Choose a contact to connect this opportunity to, so that the relationship is visible in reports and analytics.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
-    */
-    this.opportunity.prototype.parentcontactidUri = function (uri) {
-        this["parentcontactid@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.savedquery
-    @extends Sdk.Sample.crmbaseentity
-    @description Saved query against the database.
-    @param {String|Object}[savedqueryReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.savedquery = function (savedqueryReference) {
-        if (!(isInstanceOf(Sdk.Sample.savedquery, this))) {
-            return new Sdk.Sample.savedquery(savedqueryReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            "name": {
-                get: function () { return this.internal.name; },
-                set: function (value) { setStringOrNullProperty(this, "name", value) },
-                enumerable: true
-            },
-            "savedqueryid": {
-                get: function () { return this.internal.savedqueryid; },
-                set: function (value) { setGuidOrNullProperty(this, "savedqueryid", value) },
-                enumerable: true
-            },
-            //Single-valued Navigation Properties,
-            //Collection-Valued Navigation Properties
-        });
-
-        if (savedqueryReference) {
-            init(this.internal, savedqueryReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.savedquery.prototype = Object.create(this.crmbaseentity.prototype);
-    this.savedquery.isEntityClass = true;
-    this.savedquery.prototype.type = "savedquery";
-    this.savedquery.prototype.primaryKey = "savedqueryid";
-    this.savedquery.prototype.entitySetName = "savedqueries";
-    this.savedquery.prototype.properties = Object.freeze({
-        name: { name: "name", type: "String" },
-        savedqueryid: { name: "savedqueryid", type: "Guid" }
-    });
-    this.savedquery.prototype.lookups = Object.freeze({});
-    this.savedquery.prototype.collections = Object.freeze({});
-
-    /**
-    @typeref {object} Sdk.Sample.userquery
-    @extends Sdk.Sample.crmbaseentity
-    @description Saved database query that is owned by a user.
-    @param {String|Object}[userqueryReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.userquery = function (userqueryReference) {
-        if (!(isInstanceOf(Sdk.Sample.userquery, this))) {
-            return new Sdk.Sample.userquery(userqueryReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            "name": {
-                get: function () { return this.internal.name; },
-                set: function (value) { setStringOrNullProperty(this, "name", value) },
-                enumerable: true
-            },
-            "userqueryid": {
-                get: function () { return this.internal.userqueryid; },
-                set: function (value) { setGuidOrNullProperty(this, "userqueryid", value) },
-                enumerable: true
-            },
-            //Single-valued Navigation Properties,
-            //Collection-Valued Navigation Properties
-        });
-
-        if (userqueryReference) {
-            init(this.internal, userqueryReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.userquery.prototype = Object.create(this.crmbaseentity.prototype);
-    this.userquery.isEntityClass = true;
-    this.userquery.prototype.type = "userquery";
-    this.userquery.prototype.primaryKey = "userqueryid";
-    this.userquery.prototype.entitySetName = "userqueries";
-    this.userquery.prototype.properties = Object.freeze({
-        name: { name: "name", type: "String" },
-        userqueryid: { name: "userqueryid", type: "Guid" }
-    });
-    this.userquery.prototype.lookups = Object.freeze({});
-    this.userquery.prototype.collections = Object.freeze({});
-
-    /**
-    @typeref {object} Sdk.Sample.letter
-    @extends Sdk.Sample.activitypointer
-    @description Activity that tracks the delivery of a letter. The activity can contain the electronic copy of the letter.
-    @param {String|Object}[letterReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.letter = function (letterReference) {
-        if (!(isInstanceOf(Sdk.Sample.letter, this))) {
-            return new Sdk.Sample.letter(letterReference);
-        }
-        Sdk.Sample.activitypointer.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            //Single-valued Navigation Properties,
-            "activityid_activitypointer": {
-                get: function () { return this.internal.activityid_activitypointer; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
-                enumerable: true
-            },
-            "activityid_activitypointer@odata.bind": {
-                get: function () { return this.internal.activityid_activitypointerUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
-                enumerable: true
-            },
-            "regardingobjectid_account_letter": {
-                get: function () { return this.internal.regardingobjectid_account_letter; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "regardingobjectid_account_letter", value) },
-                enumerable: true
-            },
-            "regardingobjectid_account_letter@odata.bind": {
-                get: function () { return this.internal.regardingobjectid_account_letterUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "regardingobjectid_account_letter", value) },
-                enumerable: true
-            },
-            "regardingobjectid_contact_letter": {
-                get: function () { return this.internal.regardingobjectid_contact_letter; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_letter", value) },
-                enumerable: true
-            },
-            "regardingobjectid_contact_letter@odata.bind": {
-                get: function () { return this.internal.regardingobjectid_contact_letterUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "regardingobjectid_contact_letter", value) },
-                enumerable: true
-            },
-            "regardingobjectid_incident_letter": {
-                get: function () { return this.internal.regardingobjectid_incident_letter; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_letter", value) },
-                enumerable: true
-            },
-            "regardingobjectid_incident_letter@odata.bind": {
-                get: function () { return this.internal.regardingobjectid_incident_letterUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "regardingobjectid_incident_letter", value) },
-                enumerable: true
-            },
-            "regardingobjectid_opportunity_letter": {
-                get: function () { return this.internal.regardingobjectid_opportunity_letter; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_letter", value) },
-                enumerable: true
-            },
-            "regardingobjectid_opportunity_letter@odata.bind": {
-                get: function () { return this.internal.regardingobjectid_opportunity_letterUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "regardingobjectid_opportunity_letter", value) },
-                enumerable: true
-            },
-            //Collection-Valued Navigation Properties,
-            "Letter_Annotation": {
-                get: function () { return this.internal.Letter_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Letter_Annotation", value) },
-                enumerable: true,
-            },
-            "Letter_QueueItem": {
-                get: function () { return this.internal.Letter_QueueItem; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "Letter_QueueItem", value) },
-                enumerable: true,
-            }
-        });
-
-        if (letterReference) {
-            init(this.internal, letterReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.letter.prototype = Object.create(this.activitypointer.prototype);
-    this.letter.isEntityClass = true;
-    this.letter.prototype.type = "letter";
-    this.letter.prototype.primaryKey = "activityid";
-    this.letter.prototype.entitySetName = "letters";
-    this.letter.prototype.properties = Object.freeze({
-        activityid: { name: "activityid", type: "Guid" },
-        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
-        description: { name: "description", type: "String" },
-        scheduledend: { name: "scheduledend", type: "Date" },
-        scheduledstart: { name: "scheduledstart", type: "Date" },
-        subject: { name: "subject", type: "String" }
-    });
-    this.letter.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
-        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
-        regardingobjectid_account_letter: { name: "regardingobjectid_account_letter", type: Sdk.Sample.account },
-        regardingobjectid_contact_letter: { name: "regardingobjectid_contact_letter", type: Sdk.Sample.contact },
-        regardingobjectid_incident_letter: { name: "regardingobjectid_incident_letter", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity_letter: { name: "regardingobjectid_opportunity_letter", type: Sdk.Sample.opportunity }
-    });
-    this.letter.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
-        Letter_Annotation: { name: "Letter_Annotation", type: Sdk.Sample.annotation },
-        Letter_QueueItem: { name: "Letter_QueueItem", type: Sdk.Sample.queueitem }
-    });
-
-    /**
-    @method activityid_activitypointerUri
-    @memberof Sdk.Sample.letter
-    @description  Unique identifier of the letter activity.
-    @param {String} uri A URI to an existing Sdk.Sample.activitypointer.
-    */
-    this.letter.prototype.activityid_activitypointerUri = function (uri) {
-        this["activityid_activitypointer@odata.bind"] = uri;
-    }
-
-    /**
-    @method regardingobjectid_account_letterUri
-    @memberof Sdk.Sample.letter
-    @description  Choose the record that the letter relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
-    */
-    this.letter.prototype.regardingobjectid_account_letterUri = function (uri) {
-        this["regardingobjectid_account_letter@odata.bind"] = uri;
-    }
-
-    /**
-    @method regardingobjectid_contact_letterUri
-    @memberof Sdk.Sample.letter
-    @description  Choose the record that the letter relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
-    */
-    this.letter.prototype.regardingobjectid_contact_letterUri = function (uri) {
-        this["regardingobjectid_contact_letter@odata.bind"] = uri;
-    }
-
-    /**
-    @method regardingobjectid_incident_letterUri
-    @memberof Sdk.Sample.letter
-    @description  Choose the record that the letter relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
-    */
-    this.letter.prototype.regardingobjectid_incident_letterUri = function (uri) {
-        this["regardingobjectid_incident_letter@odata.bind"] = uri;
-    }
-
-    /**
-    @method regardingobjectid_opportunity_letterUri
-    @memberof Sdk.Sample.letter
-    @description  Choose the record that the letter relates to.
-    @param {String} uri A URI to an existing Sdk.Sample.opportunity.
-    */
-    this.letter.prototype.regardingobjectid_opportunity_letterUri = function (uri) {
-        this["regardingobjectid_opportunity_letter@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.opportunityclose
-    @extends Sdk.Sample.activitypointer
-    @description Activity that is created automatically when an opportunity is closed, containing information such as the description of the closing and actual revenue.
-    @param {String|Object}[opportunitycloseReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.opportunityclose = function (opportunitycloseReference) {
-        if (!(isInstanceOf(Sdk.Sample.opportunityclose, this))) {
-            return new Sdk.Sample.opportunityclose(opportunitycloseReference);
-        }
-        Sdk.Sample.activitypointer.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            //Single-valued Navigation Properties,
-            "activityid_activitypointer": {
-                get: function () { return this.internal.activityid_activitypointer; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
-                enumerable: true
-            },
-            "activityid_activitypointer@odata.bind": {
-                get: function () { return this.internal.activityid_activitypointerUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
-                enumerable: true
-            },
-            "competitorid": {
-                get: function () { return this.internal.competitorid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.competitor, "competitor", this, "competitorid", value) },
-                enumerable: true
-            },
-            "competitorid@odata.bind": {
-                get: function () { return this.internal.competitoridUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.competitor, "competitor", this, "competitorid", value) },
-                enumerable: true
-            },
-            "opportunityid": {
-                get: function () { return this.internal.opportunityid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "opportunityid", value) },
-                enumerable: true
-            },
-            "opportunityid@odata.bind": {
-                get: function () { return this.internal.opportunityidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "opportunityid", value) },
-                enumerable: true
-            },
-            //Collection-Valued Navigation Properties,
-            "OpportunityClose_Annotation": {
-                get: function () { return this.internal.OpportunityClose_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "OpportunityClose_Annotation", value) },
-                enumerable: true,
-            }
-        });
-
-        if (opportunitycloseReference) {
-            init(this.internal, opportunitycloseReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.opportunityclose.prototype = Object.create(this.activitypointer.prototype);
-    this.opportunityclose.isEntityClass = true;
-    this.opportunityclose.prototype.type = "opportunityclose";
-    this.opportunityclose.prototype.primaryKey = "activityid";
-    this.opportunityclose.prototype.entitySetName = "opportunitycloses";
-    this.opportunityclose.prototype.properties = Object.freeze({
-        activityid: { name: "activityid", type: "Guid" },
-        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
-        description: { name: "description", type: "String" },
-        scheduledend: { name: "scheduledend", type: "Date" },
-        scheduledstart: { name: "scheduledstart", type: "Date" },
-        subject: { name: "subject", type: "String" }
-    });
-    this.opportunityclose.prototype.lookups = Object.freeze({
-        regardingobjectid_account: { name: "regardingobjectid_account", type: Sdk.Sample.account },
-        regardingobjectid_contact: { name: "regardingobjectid_contact", type: Sdk.Sample.contact },
-        regardingobjectid_incident: { name: "regardingobjectid_incident", type: Sdk.Sample.incident },
-        regardingobjectid_opportunity: { name: "regardingobjectid_opportunity", type: Sdk.Sample.opportunity },
-        activityid_activitypointer: { name: "activityid_activitypointer", type: Sdk.Sample.activitypointer },
-        competitorid: { name: "competitorid", type: Sdk.Sample.competitor },
-        opportunityid: { name: "opportunityid", type: Sdk.Sample.opportunity }
-    });
-    this.opportunityclose.prototype.collections = Object.freeze({
-        activity_pointer_letter: { name: "activity_pointer_letter", type: Sdk.Sample.letter },
-        activity_pointer_opportunity_close: { name: "activity_pointer_opportunity_close", type: Sdk.Sample.opportunityclose },
-        activity_pointer_task: { name: "activity_pointer_task", type: Sdk.Sample.task },
-        ActivityPointer_QueueItem: { name: "ActivityPointer_QueueItem", type: Sdk.Sample.queueitem },
-        OpportunityClose_Annotation: { name: "OpportunityClose_Annotation", type: Sdk.Sample.annotation }
-    });
-
-    /**
-    @method activityid_activitypointerUri
-    @memberof Sdk.Sample.opportunityclose
-    @description  Unique identifier of the opportunity close activity.
-    @param {String} uri A URI to an existing Sdk.Sample.activitypointer.
-    */
-    this.opportunityclose.prototype.activityid_activitypointerUri = function (uri) {
-        this["activityid_activitypointer@odata.bind"] = uri;
-    }
-
-    /**
-    @method competitoridUri
-    @memberof Sdk.Sample.opportunityclose
-    @description  Unique identifier of the competitor with which the opportunity close activity is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.competitor.
-    */
-    this.opportunityclose.prototype.competitoridUri = function (uri) {
-        this["competitorid@odata.bind"] = uri;
-    }
-
-    /**
-    @method opportunityidUri
-    @memberof Sdk.Sample.opportunityclose
-    @description  Unique identifier of the opportunity closed.
-    @param {String} uri A URI to an existing Sdk.Sample.opportunity.
-    */
-    this.opportunityclose.prototype.opportunityidUri = function (uri) {
-        this["opportunityid@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.queue
-    @extends Sdk.Sample.crmbaseentity
-    @description A list of records that require action, such as accounts, activities, and cases.
-    @param {String|Object}[queueReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.queue = function (queueReference) {
-        if (!(isInstanceOf(Sdk.Sample.queue, this))) {
-            return new Sdk.Sample.queue(queueReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            "queueid": {
-                get: function () { return this.internal.queueid; },
-                set: function (value) { setGuidOrNullProperty(this, "queueid", value) },
-                enumerable: true
-            },
-            //Single-valued Navigation Properties,
-            //Collection-Valued Navigation Properties,
-            "queue_entries": {
-                get: function () { return this.internal.queue_entries; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "queue_entries", value) },
-                enumerable: true,
-            }
-        });
-
-        if (queueReference) {
-            init(this.internal, queueReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.queue.prototype = Object.create(this.crmbaseentity.prototype);
-    this.queue.isEntityClass = true;
-    this.queue.prototype.type = "queue";
-    this.queue.prototype.primaryKey = "queueid";
-    this.queue.prototype.entitySetName = "queues";
-    this.queue.prototype.properties = Object.freeze({ queueid: { name: "queueid", type: "Guid" } });
-    this.queue.prototype.lookups = Object.freeze({});
-    this.queue.prototype.collections = Object.freeze({ queue_entries: { name: "queue_entries", type: Sdk.Sample.queueitem } });
-
-    /**
-    @typeref {object} Sdk.Sample.queueitem
-    @extends Sdk.Sample.crmbaseentity
-    @description A specific item in a queue, such as a case record or an activity record.
-    @param {String|Object}[queueitemReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.queueitem = function (queueitemReference) {
-        if (!(isInstanceOf(Sdk.Sample.queueitem, this))) {
-            return new Sdk.Sample.queueitem(queueitemReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            "queueitemid": {
-                get: function () { return this.internal.queueitemid; },
-                set: function (value) { setGuidOrNullProperty(this, "queueitemid", value) },
-                enumerable: true
-            },
-            //Single-valued Navigation Properties,
-            "objectid_activitypointer": {
-                get: function () { return this.internal.objectid_activitypointer; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "objectid_activitypointer", value) },
-                enumerable: true
-            },
-            "objectid_activitypointer@odata.bind": {
-                get: function () { return this.internal.objectid_activitypointerUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.activitypointer, "activitypointer", this, "objectid_activitypointer", value) },
-                enumerable: true
-            },
-            "objectid_incident": {
-                get: function () { return this.internal.objectid_incident; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
-                enumerable: true
-            },
-            "objectid_incident@odata.bind": {
-                get: function () { return this.internal.objectid_incidentUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
-                enumerable: true
-            },
-            "objectid_letter": {
-                get: function () { return this.internal.objectid_letter; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
-                enumerable: true
-            },
-            "objectid_letter@odata.bind": {
-                get: function () { return this.internal.objectid_letterUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
-                enumerable: true
-            },
-            "objectid_task": {
-                get: function () { return this.internal.objectid_task; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.task, "task", this, "objectid_task", value) },
-                enumerable: true
-            },
-            "objectid_task@odata.bind": {
-                get: function () { return this.internal.objectid_taskUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.task, "task", this, "objectid_task", value) },
-                enumerable: true
-            },
-            "queueid": {
-                get: function () { return this.internal.queueid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.queue, "queue", this, "queueid", value) },
-                enumerable: true
-            },
-            "queueid@odata.bind": {
-                get: function () { return this.internal.queueidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.queue, "queue", this, "queueid", value) },
-                enumerable: true
-            },
-            //Collection-Valued Navigation Properties
-        });
-
-        if (queueitemReference) {
-            init(this.internal, queueitemReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.queueitem.prototype = Object.create(this.crmbaseentity.prototype);
-    this.queueitem.isEntityClass = true;
-    this.queueitem.prototype.type = "queueitem";
-    this.queueitem.prototype.primaryKey = "queueitemid";
-    this.queueitem.prototype.entitySetName = "queueitems";
-    this.queueitem.prototype.properties = Object.freeze({ queueitemid: { name: "queueitemid", type: "Guid" } });
-    this.queueitem.prototype.lookups = Object.freeze({
-        objectid_activitypointer: { name: "objectid_activitypointer", type: Sdk.Sample.activitypointer },
-        objectid_incident: { name: "objectid_incident", type: Sdk.Sample.incident },
-        objectid_letter: { name: "objectid_letter", type: Sdk.Sample.letter },
-        objectid_task: { name: "objectid_task", type: Sdk.Sample.task },
-        queueid: { name: "queueid", type: Sdk.Sample.queue }
-    });
-    this.queueitem.prototype.collections = Object.freeze({});
-
-    /**
-    @method objectid_activitypointerUri
-    @memberof Sdk.Sample.queueitem
-    @description  Choose the activity, case, or article assigned to the queue.
-    @param {String} uri A URI to an existing Sdk.Sample.activitypointer.
-    */
-    this.queueitem.prototype.objectid_activitypointerUri = function (uri) {
-        this["objectid_activitypointer@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_incidentUri
-    @memberof Sdk.Sample.queueitem
-    @description  Choose the activity, case, or article assigned to the queue.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
-    */
-    this.queueitem.prototype.objectid_incidentUri = function (uri) {
-        this["objectid_incident@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_letterUri
-    @memberof Sdk.Sample.queueitem
-    @description  Choose the activity, case, or article assigned to the queue.
-    @param {String} uri A URI to an existing Sdk.Sample.letter.
-    */
-    this.queueitem.prototype.objectid_letterUri = function (uri) {
-        this["objectid_letter@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_taskUri
-    @memberof Sdk.Sample.queueitem
-    @description  Choose the activity, case, or article assigned to the queue.
-    @param {String} uri A URI to an existing Sdk.Sample.task.
-    */
-    this.queueitem.prototype.objectid_taskUri = function (uri) {
-        this["objectid_task@odata.bind"] = uri;
-    }
-
-    /**
-    @method queueidUri
-    @memberof Sdk.Sample.queueitem
-    @description  Choose the queue that the item is assigned to.
-    @param {String} uri A URI to an existing Sdk.Sample.queue.
-    */
-    this.queueitem.prototype.queueidUri = function (uri) {
-        this["queueid@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.annotation
-    @extends Sdk.Sample.crmbaseentity
-    @description Note that is attached to one or more objects, including other notes.
-    @param {String|Object}[annotationReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.annotation = function (annotationReference) {
-        if (!(isInstanceOf(Sdk.Sample.annotation, this))) {
-            return new Sdk.Sample.annotation(annotationReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
-            "annotationid": {
-                get: function () { return this.internal.annotationid; },
-                set: function (value) { setGuidOrNullProperty(this, "annotationid", value) },
-                enumerable: true
-            },
-            //Single-valued Navigation Properties,
-            "objectid_account": {
-                get: function () { return this.internal.objectid_account; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "objectid_account", value) },
-                enumerable: true
-            },
-            "objectid_account@odata.bind": {
-                get: function () { return this.internal.objectid_accountUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "objectid_account", value) },
-                enumerable: true
-            },
-            "objectid_competitor": {
-                get: function () { return this.internal.objectid_competitor; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.competitor, "competitor", this, "objectid_competitor", value) },
-                enumerable: true
-            },
-            "objectid_competitor@odata.bind": {
-                get: function () { return this.internal.objectid_competitorUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.competitor, "competitor", this, "objectid_competitor", value) },
-                enumerable: true
-            },
-            "objectid_contact": {
-                get: function () { return this.internal.objectid_contact; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "objectid_contact", value) },
-                enumerable: true
-            },
-            "objectid_contact@odata.bind": {
-                get: function () { return this.internal.objectid_contactUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "objectid_contact", value) },
-                enumerable: true
-            },
-            "objectid_incident": {
-                get: function () { return this.internal.objectid_incident; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
-                enumerable: true
-            },
-            "objectid_incident@odata.bind": {
-                get: function () { return this.internal.objectid_incidentUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "objectid_incident", value) },
-                enumerable: true
-            },
-            "objectid_letter": {
-                get: function () { return this.internal.objectid_letter; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
-                enumerable: true
-            },
-            "objectid_letter@odata.bind": {
-                get: function () { return this.internal.objectid_letterUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.letter, "letter", this, "objectid_letter", value) },
-                enumerable: true
-            },
-            "objectid_opportunity": {
-                get: function () { return this.internal.objectid_opportunity; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunity, "opportunity", this, "objectid_opportunity", value) },
-                enumerable: true
-            },
-            "objectid_opportunity@odata.bind": {
-                get: function () { return this.internal.objectid_opportunityUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunity, "opportunity", this, "objectid_opportunity", value) },
-                enumerable: true
-            },
-            "objectid_opportunityclose": {
-                get: function () { return this.internal.objectid_opportunityclose; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.opportunityclose, "opportunityclose", this, "objectid_opportunityclose", value) },
-                enumerable: true
-            },
-            "objectid_opportunityclose@odata.bind": {
-                get: function () { return this.internal.objectid_opportunitycloseUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.opportunityclose, "opportunityclose", this, "objectid_opportunityclose", value) },
-                enumerable: true
-            },
-            "objectid_task": {
-                get: function () { return this.internal.objectid_task; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.task, "task", this, "objectid_task", value) },
-                enumerable: true
-            },
-            "objectid_task@odata.bind": {
-                get: function () { return this.internal.objectid_taskUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.task, "task", this, "objectid_task", value) },
-                enumerable: true
-            },
-            //Collection-Valued Navigation Properties
-        });
-
-        if (annotationReference) {
-            init(this.internal, annotationReference, this.primaryKey, this.type, this.changedProperties);
-        }
-        return Object.seal(this);
-    }
-    this.annotation.prototype = Object.create(this.crmbaseentity.prototype);
-    this.annotation.isEntityClass = true;
-    this.annotation.prototype.type = "annotation";
-    this.annotation.prototype.primaryKey = "annotationid";
-    this.annotation.prototype.entitySetName = "annotations";
-    this.annotation.prototype.properties = Object.freeze({ annotationid: { name: "annotationid", type: "Guid" } });
-    this.annotation.prototype.lookups = Object.freeze({
-        objectid_account: { name: "objectid_account", type: Sdk.Sample.account },
-        objectid_competitor: { name: "objectid_competitor", type: Sdk.Sample.competitor },
-        objectid_contact: { name: "objectid_contact", type: Sdk.Sample.contact },
-        objectid_incident: { name: "objectid_incident", type: Sdk.Sample.incident },
-        objectid_letter: { name: "objectid_letter", type: Sdk.Sample.letter },
-        objectid_opportunity: { name: "objectid_opportunity", type: Sdk.Sample.opportunity },
-        objectid_opportunityclose: { name: "objectid_opportunityclose", type: Sdk.Sample.opportunityclose },
-        objectid_task: { name: "objectid_task", type: Sdk.Sample.task }
-    });
-    this.annotation.prototype.collections = Object.freeze({});
-
-    /**
-    @method objectid_accountUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
-    */
-    this.annotation.prototype.objectid_accountUri = function (uri) {
-        this["objectid_account@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_competitorUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.competitor.
-    */
-    this.annotation.prototype.objectid_competitorUri = function (uri) {
-        this["objectid_competitor@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_contactUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
-    */
-    this.annotation.prototype.objectid_contactUri = function (uri) {
-        this["objectid_contact@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_incidentUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
-    */
-    this.annotation.prototype.objectid_incidentUri = function (uri) {
-        this["objectid_incident@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_letterUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.letter.
-    */
-    this.annotation.prototype.objectid_letterUri = function (uri) {
-        this["objectid_letter@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_opportunityUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.opportunity.
-    */
-    this.annotation.prototype.objectid_opportunityUri = function (uri) {
-        this["objectid_opportunity@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_opportunitycloseUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.opportunityclose.
-    */
-    this.annotation.prototype.objectid_opportunitycloseUri = function (uri) {
-        this["objectid_opportunityclose@odata.bind"] = uri;
-    }
-
-    /**
-    @method objectid_taskUri
-    @memberof Sdk.Sample.annotation
-    @description  Unique identifier of the object with which the note is associated.
-    @param {String} uri A URI to an existing Sdk.Sample.task.
-    */
-    this.annotation.prototype.objectid_taskUri = function (uri) {
-        this["objectid_task@odata.bind"] = uri;
-    }
-
-    /**
-    @typeref {object} Sdk.Sample.incident
-    @extends Sdk.Sample.crmbaseentity
-    @description Service request case associated with a contract.
-    @param {String|Object}[incidentReference] A GUID, a URI, or a JSON object to set retrieved values.
-    */
-    this.incident = function (incidentReference) {
-        if (!(isInstanceOf(Sdk.Sample.incident, this))) {
-            return new Sdk.Sample.incident(incidentReference);
-        }
-        Sdk.Sample.crmbaseentity.call(this);
-        Object.defineProperties(this,
-        {
-            "@odata.type": {
-                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
-                enumerable: true
-            },
-            //Properties,
             "incidentid": {
                 get: function () { return this.internal.incidentid; },
                 set: function (value) { setGuidOrNullProperty(this, "incidentid", value) },
                 enumerable: true
             },
+            "influencescore": {
+                get: function () { return this.internal.influencescore; },
+                set: function (value) { setNumberOrNullProperty(this, "influencescore", value) },
+                enumerable: true
+            },
+            "isescalated": {
+                get: function () { return this.internal.isescalated; },
+                set: function (value) { setBooleanProperty(this, "isescalated", value) },
+                enumerable: true
+            },
+            "messagetypecode": {
+                get: function () { return this.internal.messagetypecode; },
+                set: function (value) { setNumberOrNullProperty(this, "messagetypecode", value) },
+                enumerable: true
+            },
+            "prioritycode": {
+                get: function () { return this.internal.prioritycode; },
+                set: function (value) { setNumberOrNullProperty(this, "prioritycode", value) },
+                enumerable: true
+            },
+            "productserialnumber": {
+                get: function () { return this.internal.productserialnumber; },
+                set: function (value) { setStringOrNullProperty(this, "productserialnumber", value) },
+                enumerable: true
+            },
+            "resolveby": {
+                get: function () { return this.internal.resolveby; },
+                set: function (value) { setDateTimeOffsetProperty(this, "resolveby", value) },
+                enumerable: true
+            },
+            "responseby": {
+                get: function () { return this.internal.responseby; },
+                set: function (value) { setDateTimeOffsetProperty(this, "responseby", value) },
+                enumerable: true
+            },
+            "sentimentvalue": {
+                get: function () { return this.internal.sentimentvalue; },
+                set: function (value) { setNumberOrNullProperty(this, "sentimentvalue", value) },
+                enumerable: true
+            },
+            "statecode": {
+                get: function () { return this.internal.statecode; },
+                set: function (value) { setNumberOrNullProperty(this, "statecode", value) },
+                enumerable: true
+            },
+            "statuscode": {
+                get: function () { return this.internal.statuscode; },
+                set: function (value) { setNumberOrNullProperty(this, "statuscode", value) },
+                enumerable: true
+            },
+            "ticketnumber": {
+                get: function () { return this.internal.ticketnumber; },
+                set: function (value) { setStringOrNullProperty(this, "ticketnumber", value) },
+                enumerable: true
+            },
+            "title": {
+                get: function () { return this.internal.title; },
+                set: function (value) { setStringOrNullProperty(this, "title", value) },
+                enumerable: true
+            },
             //Single-valued Navigation Properties,
             "customerid_account": {
                 get: function () { return this.internal.customerid_account; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.account, "account", this, "customerid_account", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.account, "account", this, "customerid_account", value) },
                 enumerable: true
             },
             "customerid_account@odata.bind": {
                 get: function () { return this.internal.customerid_accountUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.account, "account", this, "customerid_account", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.account, "account", this, "customerid_account", value) },
                 enumerable: true
             },
             "customerid_contact": {
                 get: function () { return this.internal.customerid_contact; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "customerid_contact", value) },
                 enumerable: true
             },
             "customerid_contact@odata.bind": {
                 get: function () { return this.internal.customerid_contactUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "customerid_contact", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "customerid_contact", value) },
                 enumerable: true
             },
             "existingcase": {
                 get: function () { return this.internal.existingcase; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "existingcase", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.incident, "incident", this, "existingcase", value) },
                 enumerable: true
             },
             "existingcase@odata.bind": {
                 get: function () { return this.internal.existingcaseUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "existingcase", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.incident, "incident", this, "existingcase", value) },
                 enumerable: true
             },
             "masterid": {
                 get: function () { return this.internal.masterid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "masterid", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.incident, "incident", this, "masterid", value) },
                 enumerable: true
             },
             "masterid@odata.bind": {
                 get: function () { return this.internal.masteridUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "masterid", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.incident, "incident", this, "masterid", value) },
                 enumerable: true
             },
             "parentcaseid": {
                 get: function () { return this.internal.parentcaseid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.incident, "incident", this, "parentcaseid", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.incident, "incident", this, "parentcaseid", value) },
                 enumerable: true
             },
             "parentcaseid@odata.bind": {
                 get: function () { return this.internal.parentcaseidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.incident, "incident", this, "parentcaseid", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.incident, "incident", this, "parentcaseid", value) },
                 enumerable: true
             },
             "primarycontactid": {
                 get: function () { return this.internal.primarycontactid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
             "primarycontactid@odata.bind": {
                 get: function () { return this.internal.primarycontactidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "primarycontactid", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "primarycontactid", value) },
                 enumerable: true
             },
             "responsiblecontactid": {
                 get: function () { return this.internal.responsiblecontactid; },
-                set: function (value) { lookupPropertySetter(Sdk.Sample.contact, "contact", this, "responsiblecontactid", value) },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "responsiblecontactid", value) },
                 enumerable: true
             },
             "responsiblecontactid@odata.bind": {
                 get: function () { return this.internal.responsiblecontactidUri; },
-                set: function (value) { lookupPropertyBinder(Sdk.Sample.contact, "contact", this, "responsiblecontactid", value) },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "responsiblecontactid", value) },
                 enumerable: true
             },
             //Collection-Valued Navigation Properties,
             "Incident_ActivityPointers": {
                 get: function () { return this.internal.Incident_ActivityPointers; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.activitypointer, "activitypointer", this, "Incident_ActivityPointers", value) },
-                enumerable: true,
-            },
-            "Incident_Annotation": {
-                get: function () { return this.internal.Incident_Annotation; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.annotation, "annotation", this, "Incident_Annotation", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.activitypointer, "activitypointer", this, "Incident_ActivityPointers", value) },
                 enumerable: true,
             },
             "incident_existingcase": {
                 get: function () { return this.internal.incident_existingcase; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_existingcase", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incident, "incident", this, "incident_existingcase", value) },
                 enumerable: true,
             },
-            "Incident_Letters": {
-                get: function () { return this.internal.Incident_Letters; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.letter, "letter", this, "Incident_Letters", value) },
+            "Incident_IncidentResolutions": {
+                get: function () { return this.internal.Incident_IncidentResolutions; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incidentresolution, "incidentresolution", this, "Incident_IncidentResolutions", value) },
                 enumerable: true,
             },
             "incident_master_incident": {
                 get: function () { return this.internal.incident_master_incident; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_master_incident", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incident, "incident", this, "incident_master_incident", value) },
                 enumerable: true,
             },
             "incident_parent_incident": {
                 get: function () { return this.internal.incident_parent_incident; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.incident, "incident", this, "incident_parent_incident", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.incident, "incident", this, "incident_parent_incident", value) },
                 enumerable: true,
             },
-            "Incident_QueueItem": {
-                get: function () { return this.internal.Incident_QueueItem; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.queueitem, "queueitem", this, "Incident_QueueItem", value) },
+            "Incident_Phonecalls": {
+                get: function () { return this.internal.Incident_Phonecalls; },
+                set: function (value) { collectionPropertySetter(Demo.Tour.phonecall, "phonecall", this, "Incident_Phonecalls", value) },
                 enumerable: true,
             },
             "Incident_Tasks": {
                 get: function () { return this.internal.Incident_Tasks; },
-                set: function (value) { collectionPropertySetter(Sdk.Sample.task, "task", this, "Incident_Tasks", value) },
+                set: function (value) { collectionPropertySetter(Demo.Tour.task, "task", this, "Incident_Tasks", value) },
                 enumerable: true,
             }
         });
@@ -2234,32 +1800,37 @@ Sdk.Sample = Sdk.Sample || {};
     this.incident.prototype.type = "incident";
     this.incident.prototype.primaryKey = "incidentid";
     this.incident.prototype.entitySetName = "incidents";
-    this.incident.prototype.properties = Object.freeze({ incidentid: { name: "incidentid", type: "Guid" } });
-    this.incident.prototype.lookups = Object.freeze({
-        customerid_account: { name: "customerid_account", type: Sdk.Sample.account },
-        customerid_contact: { name: "customerid_contact", type: Sdk.Sample.contact },
-        existingcase: { name: "existingcase", type: Sdk.Sample.incident },
-        masterid: { name: "masterid", type: Sdk.Sample.incident },
-        parentcaseid: { name: "parentcaseid", type: Sdk.Sample.incident },
-        primarycontactid: { name: "primarycontactid", type: Sdk.Sample.contact },
-        responsiblecontactid: { name: "responsiblecontactid", type: Sdk.Sample.contact }
-    });
-    this.incident.prototype.collections = Object.freeze({
-        Incident_ActivityPointers: { name: "Incident_ActivityPointers", type: Sdk.Sample.activitypointer },
-        Incident_Annotation: { name: "Incident_Annotation", type: Sdk.Sample.annotation },
-        incident_existingcase: { name: "incident_existingcase", type: Sdk.Sample.incident },
-        Incident_Letters: { name: "Incident_Letters", type: Sdk.Sample.letter },
-        incident_master_incident: { name: "incident_master_incident", type: Sdk.Sample.incident },
-        incident_parent_incident: { name: "incident_parent_incident", type: Sdk.Sample.incident },
-        Incident_QueueItem: { name: "Incident_QueueItem", type: Sdk.Sample.queueitem },
-        Incident_Tasks: { name: "Incident_Tasks", type: Sdk.Sample.task }
+    this.incident.prototype.properties = Object.freeze({
+        blockedprofile: { name: "blockedprofile", type: "Boolean" },
+        caseorigincode: { name: "caseorigincode", type: "Number" },
+        casetypecode: { name: "casetypecode", type: "Number" },
+        contractservicelevelcode: { name: "contractservicelevelcode", type: "Number" },
+        createdon: { name: "createdon", type: "Date" },
+        customersatisfactioncode: { name: "customersatisfactioncode", type: "Number" },
+        description: { name: "description", type: "String" },
+        escalatedon: { name: "escalatedon", type: "Date" },
+        firstresponsesent: { name: "firstresponsesent", type: "Boolean" },
+        followupby: { name: "followupby", type: "Date" },
+        incidentid: { name: "incidentid", type: "Guid" },
+        influencescore: { name: "influencescore", type: "Number" },
+        isescalated: { name: "isescalated", type: "Boolean" },
+        messagetypecode: { name: "messagetypecode", type: "Number" },
+        prioritycode: { name: "prioritycode", type: "Number" },
+        productserialnumber: { name: "productserialnumber", type: "String" },
+        resolveby: { name: "resolveby", type: "Date" },
+        responseby: { name: "responseby", type: "Date" },
+        sentimentvalue: { name: "sentimentvalue", type: "Number" },
+        statecode: { name: "statecode", type: "Number" },
+        statuscode: { name: "statuscode", type: "Number" },
+        ticketnumber: { name: "ticketnumber", type: "String" },
+        title: { name: "title", type: "String" }
     });
 
     /**
     @method customerid_accountUri
-    @memberof Sdk.Sample.incident
+    @memberof Demo.Tour.incident
     @description  Select the customer account or contact to provide a quick link to additional customer details, such as account information, activities, and opportunities.
-    @param {String} uri A URI to an existing Sdk.Sample.account.
+    @param {String} uri A URI to an existing Demo.Tour.account.
     */
     this.incident.prototype.customerid_accountUri = function (uri) {
         this["customerid_account@odata.bind"] = uri;
@@ -2267,9 +1838,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method customerid_contactUri
-    @memberof Sdk.Sample.incident
+    @memberof Demo.Tour.incident
     @description  Select the customer account or contact to provide a quick link to additional customer details, such as account information, activities, and opportunities.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
     */
     this.incident.prototype.customerid_contactUri = function (uri) {
         this["customerid_contact@odata.bind"] = uri;
@@ -2277,9 +1848,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method existingcaseUri
-    @memberof Sdk.Sample.incident
+    @memberof Demo.Tour.incident
     @description  Select an existing case for the customer that has been populated. For internal use only.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
+    @param {String} uri A URI to an existing Demo.Tour.incident.
     */
     this.incident.prototype.existingcaseUri = function (uri) {
         this["existingcase@odata.bind"] = uri;
@@ -2287,9 +1858,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method masteridUri
-    @memberof Sdk.Sample.incident
+    @memberof Demo.Tour.incident
     @description  Choose the primary case the current case was merged into.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
+    @param {String} uri A URI to an existing Demo.Tour.incident.
     */
     this.incident.prototype.masteridUri = function (uri) {
         this["masterid@odata.bind"] = uri;
@@ -2297,9 +1868,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method parentcaseidUri
-    @memberof Sdk.Sample.incident
+    @memberof Demo.Tour.incident
     @description  Choose the parent case for a case.
-    @param {String} uri A URI to an existing Sdk.Sample.incident.
+    @param {String} uri A URI to an existing Demo.Tour.incident.
     */
     this.incident.prototype.parentcaseidUri = function (uri) {
         this["parentcaseid@odata.bind"] = uri;
@@ -2307,9 +1878,9 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method primarycontactidUri
-    @memberof Sdk.Sample.incident
+    @memberof Demo.Tour.incident
     @description  Select a primary contact for this case.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
     */
     this.incident.prototype.primarycontactidUri = function (uri) {
         this["primarycontactid@odata.bind"] = uri;
@@ -2317,21 +1888,405 @@ Sdk.Sample = Sdk.Sample || {};
 
     /**
     @method responsiblecontactidUri
-    @memberof Sdk.Sample.incident
+    @memberof Demo.Tour.incident
     @description  Choose an additional customer contact who can also help resolve the case.
-    @param {String} uri A URI to an existing Sdk.Sample.contact.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
     */
     this.incident.prototype.responsiblecontactidUri = function (uri) {
         this["responsiblecontactid@odata.bind"] = uri;
     }
 
     /**
-    * @function Sdk.Sample.CalculateTotalTimeIncident
-    * @memberOf Sdk.Sample
+    @typeref {object} Demo.Tour.incidentresolution
+    @extends Demo.Tour.activitypointer
+    @description Special type of activity that includes description of the resolution, billing status, and the duration of the case.
+    @param {String|Object}[incidentresolutionReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.incidentresolution = function (incidentresolutionReference) {
+        if (!(isInstanceOf(Demo.Tour.incidentresolution, this))) {
+            return new Demo.Tour.incidentresolution(incidentresolutionReference);
+        }
+        Demo.Tour.activitypointer.call(this);
+        Object.defineProperties(this,
+        {
+            "@odata.type": {
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
+                enumerable: true
+            },
+            //Properties,
+            "category": {
+                get: function () { return this.internal.category; },
+                set: function (value) { setStringOrNullProperty(this, "category", value) },
+                enumerable: true
+            },
+            "subcategory": {
+                get: function () { return this.internal.subcategory; },
+                set: function (value) { setStringOrNullProperty(this, "subcategory", value) },
+                enumerable: true
+            },
+            "timespent": {
+                get: function () { return this.internal.timespent; },
+                set: function (value) { setNumberOrNullProperty(this, "timespent", value) },
+                enumerable: true
+            },
+            //Single-valued Navigation Properties,
+            "activityid_activitypointer": {
+                get: function () { return this.internal.activityid_activitypointer; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
+                enumerable: true
+            },
+            "activityid_activitypointer@odata.bind": {
+                get: function () { return this.internal.activityid_activitypointerUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
+                enumerable: true
+            },
+            "incidentid": {
+                get: function () { return this.internal.incidentid; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.incident, "incident", this, "incidentid", value) },
+                enumerable: true
+            },
+            "incidentid@odata.bind": {
+                get: function () { return this.internal.incidentidUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.incident, "incident", this, "incidentid", value) },
+                enumerable: true
+            },
+            //Collection-Valued Navigation Properties
+        });
+
+        if (incidentresolutionReference) {
+            init(this.internal, incidentresolutionReference, this.primaryKey, this.type, this.changedProperties);
+        }
+        return Object.seal(this);
+    }
+    this.incidentresolution.prototype = Object.create(this.activitypointer.prototype);
+    this.incidentresolution.isEntityClass = true;
+    this.incidentresolution.prototype.type = "incidentresolution";
+    this.incidentresolution.prototype.primaryKey = "activityid";
+    this.incidentresolution.prototype.entitySetName = "incidentresolutions";
+    this.incidentresolution.prototype.properties = Object.freeze({
+        activityid: { name: "activityid", type: "Guid" },
+        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        actualend: { name: "actualend", type: "Date" },
+        actualstart: { name: "actualstart", type: "Date" },
+        community: { name: "community", type: "Number" },
+        createdon: { name: "createdon", type: "Date" },
+        deliverylastattemptedon: { name: "deliverylastattemptedon", type: "Date" },
+        deliveryprioritycode: { name: "deliveryprioritycode", type: "Number" },
+        description: { name: "description", type: "String" },
+        exchangerate: { name: "exchangerate", type: "Number" },
+        isbilled: { name: "isbilled", type: "Boolean" },
+        ismapiprivate: { name: "ismapiprivate", type: "Boolean" },
+        isregularactivity: { name: "isregularactivity", type: "Boolean" },
+        isworkflowcreated: { name: "isworkflowcreated", type: "Boolean" },
+        lastonholdtime: { name: "lastonholdtime", type: "Date" },
+        leftvoicemail: { name: "leftvoicemail", type: "Boolean" },
+        modifiedon: { name: "modifiedon", type: "Date" },
+        onholdtime: { name: "onholdtime", type: "Number" },
+        postponeactivityprocessinguntil: { name: "postponeactivityprocessinguntil", type: "Date" },
+        prioritycode: { name: "prioritycode", type: "Number" },
+        processid: { name: "processid", type: "Guid" },
+        scheduleddurationminutes: { name: "scheduleddurationminutes", type: "Number" },
+        scheduledend: { name: "scheduledend", type: "Date" },
+        scheduledstart: { name: "scheduledstart", type: "Date" },
+        statecode: { name: "statecode", type: "Number" },
+        statuscode: { name: "statuscode", type: "Number" },
+        subject: { name: "subject", type: "String" },
+        category: { name: "category", type: "String" },
+        subcategory: { name: "subcategory", type: "String" },
+        timespent: { name: "timespent", type: "Number" }
+    });
+
+    /**
+    @method activityid_activitypointerUri
+    @memberof Demo.Tour.incidentresolution
+    @description  Unique identifier of the case resolution activity.
+    @param {String} uri A URI to an existing Demo.Tour.activitypointer.
+    */
+    this.incidentresolution.prototype.activityid_activitypointerUri = function (uri) {
+        this["activityid_activitypointer@odata.bind"] = uri;
+    }
+
+    /**
+    @method incidentidUri
+    @memberof Demo.Tour.incidentresolution
+    @description  Unique identifier of the case.
+    @param {String} uri A URI to an existing Demo.Tour.incident.
+    */
+    this.incidentresolution.prototype.incidentidUri = function (uri) {
+        this["incidentid@odata.bind"] = uri;
+    }
+
+    /**
+    @typeref {object} Demo.Tour.phonecall
+    @extends Demo.Tour.activitypointer
+    @description Activity to track a telephone call.
+    @param {String|Object}[phonecallReference] A GUID, a URI, or a JSON object to set retrieved values.
+    */
+    this.phonecall = function (phonecallReference) {
+        if (!(isInstanceOf(Demo.Tour.phonecall, this))) {
+            return new Demo.Tour.phonecall(phonecallReference);
+        }
+        Demo.Tour.activitypointer.call(this);
+        Object.defineProperties(this,
+        {
+            "@odata.type": {
+                get: function () { return "Microsoft.Dynamics.CRM." + this.type; },
+                enumerable: true
+            },
+            //Properties,
+            "category": {
+                get: function () { return this.internal.category; },
+                set: function (value) { setStringOrNullProperty(this, "category", value) },
+                enumerable: true
+            },
+            "directioncode": {
+                get: function () { return this.internal.directioncode; },
+                set: function (value) { setBooleanProperty(this, "directioncode", value) },
+                enumerable: true
+            },
+            "phonenumber": {
+                get: function () { return this.internal.phonenumber; },
+                set: function (value) { setStringOrNullProperty(this, "phonenumber", value) },
+                enumerable: true
+            },
+            "subcategory": {
+                get: function () { return this.internal.subcategory; },
+                set: function (value) { setStringOrNullProperty(this, "subcategory", value) },
+                enumerable: true
+            },
+            //Single-valued Navigation Properties,
+            "activityid_activitypointer": {
+                get: function () { return this.internal.activityid_activitypointer; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
+                enumerable: true
+            },
+            "activityid_activitypointer@odata.bind": {
+                get: function () { return this.internal.activityid_activitypointerUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.activitypointer, "activitypointer", this, "activityid_activitypointer", value) },
+                enumerable: true
+            },
+            "regardingobjectid_account_phonecall": {
+                get: function () { return this.internal.regardingobjectid_account_phonecall; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.account, "account", this, "regardingobjectid_account_phonecall", value) },
+                enumerable: true
+            },
+            "regardingobjectid_account_phonecall@odata.bind": {
+                get: function () { return this.internal.regardingobjectid_account_phonecallUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.account, "account", this, "regardingobjectid_account_phonecall", value) },
+                enumerable: true
+            },
+            "regardingobjectid_contact_phonecall": {
+                get: function () { return this.internal.regardingobjectid_contact_phonecall; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.contact, "contact", this, "regardingobjectid_contact_phonecall", value) },
+                enumerable: true
+            },
+            "regardingobjectid_contact_phonecall@odata.bind": {
+                get: function () { return this.internal.regardingobjectid_contact_phonecallUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.contact, "contact", this, "regardingobjectid_contact_phonecall", value) },
+                enumerable: true
+            },
+            "regardingobjectid_incident_phonecall": {
+                get: function () { return this.internal.regardingobjectid_incident_phonecall; },
+                set: function (value) { lookupPropertySetter(Demo.Tour.incident, "incident", this, "regardingobjectid_incident_phonecall", value) },
+                enumerable: true
+            },
+            "regardingobjectid_incident_phonecall@odata.bind": {
+                get: function () { return this.internal.regardingobjectid_incident_phonecallUri; },
+                set: function (value) { lookupPropertyBinder(Demo.Tour.incident, "incident", this, "regardingobjectid_incident_phonecall", value) },
+                enumerable: true
+            },
+            //Collection-Valued Navigation Properties
+        });
+
+        if (phonecallReference) {
+            init(this.internal, phonecallReference, this.primaryKey, this.type, this.changedProperties);
+        }
+        return Object.seal(this);
+    }
+    this.phonecall.prototype = Object.create(this.activitypointer.prototype);
+    this.phonecall.isEntityClass = true;
+    this.phonecall.prototype.type = "phonecall";
+    this.phonecall.prototype.primaryKey = "activityid";
+    this.phonecall.prototype.entitySetName = "phonecalls";
+    this.phonecall.prototype.properties = Object.freeze({
+        activityid: { name: "activityid", type: "Guid" },
+        actualdurationminutes: { name: "actualdurationminutes", type: "Number" },
+        actualend: { name: "actualend", type: "Date" },
+        actualstart: { name: "actualstart", type: "Date" },
+        community: { name: "community", type: "Number" },
+        createdon: { name: "createdon", type: "Date" },
+        deliverylastattemptedon: { name: "deliverylastattemptedon", type: "Date" },
+        deliveryprioritycode: { name: "deliveryprioritycode", type: "Number" },
+        description: { name: "description", type: "String" },
+        exchangerate: { name: "exchangerate", type: "Number" },
+        isbilled: { name: "isbilled", type: "Boolean" },
+        ismapiprivate: { name: "ismapiprivate", type: "Boolean" },
+        isregularactivity: { name: "isregularactivity", type: "Boolean" },
+        isworkflowcreated: { name: "isworkflowcreated", type: "Boolean" },
+        lastonholdtime: { name: "lastonholdtime", type: "Date" },
+        leftvoicemail: { name: "leftvoicemail", type: "Boolean" },
+        modifiedon: { name: "modifiedon", type: "Date" },
+        onholdtime: { name: "onholdtime", type: "Number" },
+        postponeactivityprocessinguntil: { name: "postponeactivityprocessinguntil", type: "Date" },
+        prioritycode: { name: "prioritycode", type: "Number" },
+        processid: { name: "processid", type: "Guid" },
+        scheduleddurationminutes: { name: "scheduleddurationminutes", type: "Number" },
+        scheduledend: { name: "scheduledend", type: "Date" },
+        scheduledstart: { name: "scheduledstart", type: "Date" },
+        statecode: { name: "statecode", type: "Number" },
+        statuscode: { name: "statuscode", type: "Number" },
+        subject: { name: "subject", type: "String" },
+        category: { name: "category", type: "String" },
+        directioncode: { name: "directioncode", type: "Boolean" },
+        phonenumber: { name: "phonenumber", type: "String" },
+        subcategory: { name: "subcategory", type: "String" }
+    });
+
+    /**
+    @method activityid_activitypointerUri
+    @memberof Demo.Tour.phonecall
+    @description  Unique identifier of the phone call activity.
+    @param {String} uri A URI to an existing Demo.Tour.activitypointer.
+    */
+    this.phonecall.prototype.activityid_activitypointerUri = function (uri) {
+        this["activityid_activitypointer@odata.bind"] = uri;
+    }
+
+    /**
+    @method regardingobjectid_account_phonecallUri
+    @memberof Demo.Tour.phonecall
+    @description  Choose the record that the phone call relates to.
+    @param {String} uri A URI to an existing Demo.Tour.account.
+    */
+    this.phonecall.prototype.regardingobjectid_account_phonecallUri = function (uri) {
+        this["regardingobjectid_account_phonecall@odata.bind"] = uri;
+    }
+
+    /**
+    @method regardingobjectid_contact_phonecallUri
+    @memberof Demo.Tour.phonecall
+    @description  Choose the record that the phone call relates to.
+    @param {String} uri A URI to an existing Demo.Tour.contact.
+    */
+    this.phonecall.prototype.regardingobjectid_contact_phonecallUri = function (uri) {
+        this["regardingobjectid_contact_phonecall@odata.bind"] = uri;
+    }
+
+    /**
+    @method regardingobjectid_incident_phonecallUri
+    @memberof Demo.Tour.phonecall
+    @description  Choose the record that the phone call relates to.
+    @param {String} uri A URI to an existing Demo.Tour.incident.
+    */
+    this.phonecall.prototype.regardingobjectid_incident_phonecallUri = function (uri) {
+        this["regardingobjectid_incident_phonecall@odata.bind"] = uri;
+    }
+    this.activitypointer.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident }
+    });
+    this.activitypointer.prototype.collections = Object.freeze({
+        activity_pointer_incident_resolution: { name: "activity_pointer_incident_resolution", type: this.incidentresolution },
+        activity_pointer_phonecall: { name: "activity_pointer_phonecall", type: this.phonecall },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task }
+    });
+    this.account.prototype.lookups = Object.freeze({
+        masterid: { name: "masterid", type: this.account },
+        parentaccountid: { name: "parentaccountid", type: this.account },
+        primarycontactid: { name: "primarycontactid", type: this.contact }
+    });
+    this.account.prototype.collections = Object.freeze({
+        Account_ActivityPointers: { name: "Account_ActivityPointers", type: this.activitypointer },
+        account_master_account: { name: "account_master_account", type: this.account },
+        account_parent_account: { name: "account_parent_account", type: this.account },
+        Account_Phonecalls: { name: "Account_Phonecalls", type: this.phonecall },
+        Account_Tasks: { name: "Account_Tasks", type: this.task },
+        contact_customer_accounts: { name: "contact_customer_accounts", type: this.contact },
+        incident_customer_accounts: { name: "incident_customer_accounts", type: this.incident }
+    });
+    this.contact.prototype.lookups = Object.freeze({
+        masterid: { name: "masterid", type: this.contact },
+        parentcustomerid_account: { name: "parentcustomerid_account", type: this.account },
+        parentcustomerid_contact: { name: "parentcustomerid_contact", type: this.contact }
+    });
+    this.contact.prototype.collections = Object.freeze({
+        account_primary_contact: { name: "account_primary_contact", type: this.account },
+        Contact_ActivityPointers: { name: "Contact_ActivityPointers", type: this.activitypointer },
+        contact_as_primary_contact: { name: "contact_as_primary_contact", type: this.incident },
+        contact_as_responsible_contact: { name: "contact_as_responsible_contact", type: this.incident },
+        contact_customer_contacts: { name: "contact_customer_contacts", type: this.contact },
+        contact_master_contact: { name: "contact_master_contact", type: this.contact },
+        Contact_Phonecalls: { name: "Contact_Phonecalls", type: this.phonecall },
+        Contact_Tasks: { name: "Contact_Tasks", type: this.task },
+        incident_customer_contacts: { name: "incident_customer_contacts", type: this.incident }
+    });
+    this.task.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: this.activitypointer },
+        regardingobjectid_account_task: { name: "regardingobjectid_account_task", type: this.account },
+        regardingobjectid_contact_task: { name: "regardingobjectid_contact_task", type: this.contact },
+        regardingobjectid_incident_task: { name: "regardingobjectid_incident_task", type: this.incident }
+    });
+    this.task.prototype.collections = Object.freeze({
+        activity_pointer_incident_resolution: { name: "activity_pointer_incident_resolution", type: this.incidentresolution },
+        activity_pointer_phonecall: { name: "activity_pointer_phonecall", type: this.phonecall },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task }
+    });
+    this.incident.prototype.lookups = Object.freeze({
+        customerid_account: { name: "customerid_account", type: this.account },
+        customerid_contact: { name: "customerid_contact", type: this.contact },
+        existingcase: { name: "existingcase", type: this.incident },
+        masterid: { name: "masterid", type: this.incident },
+        parentcaseid: { name: "parentcaseid", type: this.incident },
+        primarycontactid: { name: "primarycontactid", type: this.contact },
+        responsiblecontactid: { name: "responsiblecontactid", type: this.contact }
+    });
+    this.incident.prototype.collections = Object.freeze({
+        Incident_ActivityPointers: { name: "Incident_ActivityPointers", type: this.activitypointer },
+        incident_existingcase: { name: "incident_existingcase", type: this.incident },
+        Incident_IncidentResolutions: { name: "Incident_IncidentResolutions", type: this.incidentresolution },
+        incident_master_incident: { name: "incident_master_incident", type: this.incident },
+        incident_parent_incident: { name: "incident_parent_incident", type: this.incident },
+        Incident_Phonecalls: { name: "Incident_Phonecalls", type: this.phonecall },
+        Incident_Tasks: { name: "Incident_Tasks", type: this.task }
+    });
+    this.incidentresolution.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: this.activitypointer },
+        incidentid: { name: "incidentid", type: this.incident }
+    });
+    this.incidentresolution.prototype.collections = Object.freeze({
+        activity_pointer_incident_resolution: { name: "activity_pointer_incident_resolution", type: this.incidentresolution },
+        activity_pointer_phonecall: { name: "activity_pointer_phonecall", type: this.phonecall },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task }
+    });
+    this.phonecall.prototype.lookups = Object.freeze({
+        regardingobjectid_account: { name: "regardingobjectid_account", type: this.account },
+        regardingobjectid_contact: { name: "regardingobjectid_contact", type: this.contact },
+        regardingobjectid_incident: { name: "regardingobjectid_incident", type: this.incident },
+        activityid_activitypointer: { name: "activityid_activitypointer", type: this.activitypointer },
+        regardingobjectid_account_phonecall: { name: "regardingobjectid_account_phonecall", type: this.account },
+        regardingobjectid_contact_phonecall: { name: "regardingobjectid_contact_phonecall", type: this.contact },
+        regardingobjectid_incident_phonecall: { name: "regardingobjectid_incident_phonecall", type: this.incident }
+    });
+    this.phonecall.prototype.collections = Object.freeze({
+        activity_pointer_incident_resolution: { name: "activity_pointer_incident_resolution", type: this.incidentresolution },
+        activity_pointer_phonecall: { name: "activity_pointer_phonecall", type: this.phonecall },
+        activity_pointer_task: { name: "activity_pointer_task", type: this.task }
+    });
+
+    /**
+    * @function Demo.Tour.CalculateTotalTimeIncident
+    * @memberOf Demo.Tour
     * @description Calculates the total time, in minutes, that you used while you worked on an incident (case).
     * @param {String} uri A url for a incident to apply the function to.
     * @param {String} [callerId] A string representation of the GUID value for the user to impersonate.
-    * @returns {Promise} A Sdk.Sample.CalculateTotalTimeIncidentResponse instance when resolved or an Error if rejected. 
+    * @returns {Promise} A Demo.Tour.CalculateTotalTimeIncidentResponse instance when resolved or an Error if rejected. 
     */
     this.CalculateTotalTimeIncident = function (
         uri,
@@ -2343,230 +2298,98 @@ Sdk.Sample = Sdk.Sample || {};
         if (!isOptionalGuid(callerId)) {
             throw new Error(NS + ".CalculateTotalTimeIncident callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
-        return invokeFunction("CalculateTotalTimeIncident", null, uri, null, null, callerId, Sdk.Sample.CalculateTotalTimeIncidentResponse);
+        return invokeFunction("CalculateTotalTimeIncident", null, uri, null, null, callerId, Demo.Tour.CalculateTotalTimeIncidentResponse);
     }
     /**
-    * @function Sdk.Sample.GetTimeZoneCodeByLocalizedName
-    * @memberOf Sdk.Sample
-    * @description Retrieves the time zone code for the specified localized time zone name.
-    * @param {String} localizedStandardName The localized name to search for.
-    * @param {Number} localeId The locale ID.
+    * @function Demo.Tour.InitializeFrom
+    * @memberOf Demo.Tour
+    * @description Initializes a Written record from an existing record.
+    * @param {Demo.Tour.crmbaseentity} entityMoniker The record that is the source for initializing.
+    * @param {String} targetEntityName The logical name of the target entity.
+    * @param {Demo.Tour.TargetFieldType} targetFieldType Attributes that are to be initialized in the initialized instance.
     * @param {String} [callerId] A string representation of the GUID value for the user to impersonate.
-    * @returns {Promise} A Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse instance when resolved or an Error if rejected. 
+    * @returns {Promise} A Demo.Tour.crmbaseentity instance when resolved or an Error if rejected. 
     */
-    this.GetTimeZoneCodeByLocalizedName = function (
-        localizedStandardName,
-        localeId,
+    this.InitializeFrom = function (
+        entityMoniker,
+        targetEntityName,
+        targetFieldType,
         callerId
         ) {
-        if (!isString(localizedStandardName)) {
-            throw new Error(NS + ".GetTimeZoneCodeByLocalizedName localizedStandardName parameter must be a String value.");
+        if (!isInstanceOf(Demo.Tour.crmbaseentity, entityMoniker)) {
+            throw new Error(NS + ".InitializeFrom entityMoniker parameter must be a Demo.Tour.crmbaseentity value.");
         }
-        if (!isNumber(localeId)) {
-            throw new Error(NS + ".GetTimeZoneCodeByLocalizedName localeId parameter must be a Number value.");
+        if (!isString(targetEntityName)) {
+            throw new Error(NS + ".InitializeFrom targetEntityName parameter must be a String value.");
+        }
+        if (!isEnumMember(Demo.Tour.TargetFieldType, targetFieldType)) {
+            throw new Error(NS + ".InitializeFrom targetFieldType parameter must be a Demo.Tour.TargetFieldType value.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS + ".GetTimeZoneCodeByLocalizedName callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".InitializeFrom callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
         var parameters = [];
-        if (localizedStandardName) {
-            parameters.push({ "LocalizedStandardName": localizedStandardName });
+        if (entityMoniker) {
+            parameters.push({ "EntityMoniker": entityMoniker, isEntity: true });
         }
-        if (localeId) {
-            parameters.push({ "LocaleId": localeId });
+        if (targetEntityName) {
+            parameters.push({ "TargetEntityName": targetEntityName });
         }
-        return invokeFunction("GetTimeZoneCodeByLocalizedName", parameters, null, null, null, callerId, Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse);
+        if (targetFieldType) {
+            parameters.push({ "TargetFieldType": "Microsoft.Dynamics.CRM.TargetFieldType'" + targetFieldType + "'", isEnum: true });
+        }
+        return invokeFunction("InitializeFrom", parameters, null, null, null, callerId, null);
     }
     /**
-    * @function Sdk.Sample.WhoAmI
-    * @memberOf Sdk.Sample
+    * @function Demo.Tour.WhoAmI
+    * @memberOf Demo.Tour
     * @description Retrieves system information for the currently logged on user.
-    * @returns {Promise} A Sdk.Sample.WhoAmIResponse instance when resolved or an Error if rejected. 
+    * @returns {Promise} A Demo.Tour.WhoAmIResponse instance when resolved or an Error if rejected. 
     */
     this.WhoAmI = function () {
-        return invokeFunction("WhoAmI", null, null, null, null, null, Sdk.Sample.WhoAmIResponse);
+        return invokeFunction("WhoAmI", null, null, null, null, null, Demo.Tour.WhoAmIResponse);
     }
 
     /**
-    * @function Sdk.Sample.AddToQueue
-    * @memberOf Sdk.Sample
-    * @description Moves an entity record from a source queue to a destination queue.
-    * @param {String} uri A url for a queue to apply the action to.
-    * @param {Sdk.Sample.crmbaseentity} target The destination queue.
-    * @param {Sdk.Sample.queue} [sourceQueue] The source queue.
-    * @param {Sdk.Sample.queueitem} [queueItemProperties] Properties required to create a queue item in the destination queue.
-    * @param {String} [callerId] A string representation of the GUID value for the user to impersonate.
-    * @returns {Promise} A Sdk.Sample.AddToQueueResponse instance when resolved or an Error if rejected. 
-    */
-    this.AddToQueue = function (
-        uri,
-        target,
-        sourceQueue,
-        queueItemProperties,
-        callerId
-        ) {
-        if (!isString(uri)) {
-            throw new Error(NS + ".AddToQueue uri parameter must be a string.");
-        }
-        if (!isInstanceOf(Sdk.Sample.crmbaseentity, target)) {
-            throw new Error(NS + ".AddToQueue target parameter must be a Sdk.Sample.crmbaseentity value.");
-        }
-        if (!isOptionalInstanceOfOrNull(Sdk.Sample.queue, sourceQueue)) {
-            throw new Error(NS + ".AddToQueue sourceQueue parameter must be a Sdk.Sample.queue value or null.");
-        }
-        if (!isOptionalInstanceOfOrNull(Sdk.Sample.queueitem, queueItemProperties)) {
-            throw new Error(NS + ".AddToQueue queueItemProperties parameter must be a Sdk.Sample.queueitem value or null.");
-        }
-        if (!isOptionalGuid(callerId)) {
-            throw new Error(NS + ".AddToQueue callerId parameter must be a string representation of a GUID value, null or undefined.");
-        }
-        var parameterObj = {};
-        parameterObj.Target = target;
-        (!isNullOrUndefined(sourceQueue) ? parameterObj.SourceQueue = sourceQueue : null);
-        (!isNullOrUndefined(queueItemProperties) ? parameterObj.QueueItemProperties = queueItemProperties : null);
-        return invokeAction("AddToQueue", parameterObj, uri, callerId, Sdk.Sample.AddToQueueResponse);
-    }
-    /**
-    * @function Sdk.Sample.sample_AddNoteToContact
-    * @memberOf Sdk.Sample
-    * @description 
-    * @param {String} uri A url for a contact to apply the action to.
-    * @param {String} noteTitle 
-    * @param {String} noteText 
-    * @param {String} [callerId] A string representation of the GUID value for the user to impersonate.
-    * @returns {Promise} A Sdk.Sample.annotation instance when resolved or an Error if rejected. 
-    */
-    this.sample_AddNoteToContact = function (
-        uri,
-        noteTitle,
-        noteText,
-        callerId
-        ) {
-        if (!isString(uri)) {
-            throw new Error(NS + ".sample_AddNoteToContact uri parameter must be a string.");
-        }
-        if (!isString(noteTitle)) {
-            throw new Error(NS + ".sample_AddNoteToContact noteTitle parameter must be a String value.");
-        }
-        if (!isString(noteText)) {
-            throw new Error(NS + ".sample_AddNoteToContact noteText parameter must be a String value.");
-        }
-        if (!isOptionalGuid(callerId)) {
-            throw new Error(NS + ".sample_AddNoteToContact callerId parameter must be a string representation of a GUID value, null or undefined.");
-        }
-        var parameterObj = {};
-        parameterObj.NoteTitle = noteTitle;
-        parameterObj.NoteText = noteText;
-        return invokeAction("sample_AddNoteToContact", parameterObj, uri, callerId, Sdk.Sample.annotation);
-    }
-    /**
-    * @function Sdk.Sample.sample_CreateCustomer
-    * @memberOf Sdk.Sample
-    * @description 
-    * @param {String} customerType 
-    * @param {String} [accountName] 
-    * @param {String} [contactFirstName] 
-    * @param {String} [contactLastName] 
+    * @function Demo.Tour.CloseIncident
+    * @memberOf Demo.Tour
+    * @description Closes an incident (case).
+    * @param {Demo.Tour.incidentresolution} incidentResolution Incident resolution (case resolution) that is associated with the incident (case) to be closed.
+    * @param {Number} status Status of the incident.
     * @param {String} [callerId] A string representation of the GUID value for the user to impersonate.
     * @returns {Promise} null when resolved or an Error if rejected.
     */
-    this.sample_CreateCustomer = function (
-        customerType,
-        accountName,
-        contactFirstName,
-        contactLastName,
-        callerId
-        ) {
-        if (!isString(customerType)) {
-            throw new Error(NS + ".sample_CreateCustomer customerType parameter must be a String value.");
-        }
-        if (!isOptionalString(accountName)) {
-            throw new Error(NS + ".sample_CreateCustomer accountName parameter must be a String value or null.");
-        }
-        if (!isOptionalString(contactFirstName)) {
-            throw new Error(NS + ".sample_CreateCustomer contactFirstName parameter must be a String value or null.");
-        }
-        if (!isOptionalString(contactLastName)) {
-            throw new Error(NS + ".sample_CreateCustomer contactLastName parameter must be a String value or null.");
-        }
-        if (!isOptionalGuid(callerId)) {
-            throw new Error(NS + ".sample_CreateCustomer callerId parameter must be a string representation of a GUID value, null or undefined.");
-        }
-        var parameterObj = {};
-        parameterObj.CustomerType = customerType;
-        (!isNullOrUndefined(accountName) ? parameterObj.AccountName = accountName : null);
-        (!isNullOrUndefined(contactFirstName) ? parameterObj.ContactFirstName = contactFirstName : null);
-        (!isNullOrUndefined(contactLastName) ? parameterObj.ContactLastName = contactLastName : null);
-        return invokeAction("sample_CreateCustomer", parameterObj, null, callerId);
-    }
-    /**
-    * @function Sdk.Sample.WinOpportunity
-    * @memberOf Sdk.Sample
-    * @description Sets the state of an opportunity to Won.
-    * @param {Sdk.Sample.opportunityclose} opportunityClose The opportunity close activity associated with this state change.
-    * @param {Number} status Status of the opportunity.
-    * @param {String} [callerId] A string representation of the GUID value for the user to impersonate.
-    * @returns {Promise} null when resolved or an Error if rejected.
-    */
-    this.WinOpportunity = function (
-        opportunityClose,
+    this.CloseIncident = function (
+        incidentResolution,
         status,
         callerId
         ) {
-        if (!isInstanceOf(Sdk.Sample.opportunityclose, opportunityClose)) {
-            throw new Error(NS + ".WinOpportunity opportunityClose parameter must be a Sdk.Sample.opportunityclose value.");
+        if (!isInstanceOf(Demo.Tour.incidentresolution, incidentResolution)) {
+            throw new Error(NS + ".CloseIncident incidentResolution parameter must be a Demo.Tour.incidentresolution value.");
         }
         if (!isNumber(status)) {
-            throw new Error(NS + ".WinOpportunity status parameter must be a Number value.");
+            throw new Error(NS + ".CloseIncident status parameter must be a Number value.");
         }
         if (!isOptionalGuid(callerId)) {
-            throw new Error(NS + ".WinOpportunity callerId parameter must be a string representation of a GUID value, null or undefined.");
+            throw new Error(NS + ".CloseIncident callerId parameter must be a string representation of a GUID value, null or undefined.");
         }
         var parameterObj = {};
-        parameterObj.OpportunityClose = opportunityClose;
+        parameterObj.IncidentResolution = incidentResolution;
         parameterObj.Status = status;
-        return invokeAction("WinOpportunity", parameterObj, null, callerId);
+        return invokeAction("CloseIncident", parameterObj, null, callerId);
     }
 
     /**
-    @typeref {object} Sdk.Sample.AddToQueueResponse
-    @memberOf Sdk.Sample
-    @description Contains the response from the AddToQueue action.
-    @property {Guid} QueueItemId The ID of the queue item that is created in the destination queue.
-    */
-    this.AddToQueueResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.AddToQueueResponse, this)) {
-            return new Sdk.Sample.AddToQueueResponse(JSONData);
-        }
-        var data = {};
-        if (JSONData) {
-            data = JSONData;
-        }
-        Object.defineProperties(this,
-    {
-        "QueueItemId": {
-            get: function () { return data.QueueItemId; },
-            set: function (value) {
-                if (!isGuid(value)) {
-                    throw new Error(NS + ".QueueItemId must be a Guid.")
-                }
-                data["QueueItemId"] = value;
-            },
-            enumerable: true
-        }
-    });
-    }
-    /**
-    @typeref {object} Sdk.Sample.BooleanManagedProperty
-    @memberOf Sdk.Sample
+    @typeref {object} Demo.Tour.BooleanManagedProperty
+    @memberOf Demo.Tour
     @description Defines a managed property that stores a Boolean value.
     @property {Boolean} Value The value of the managed property.
     @property {Boolean} CanBeChanged Whether the managed property value can be changed.
     @property {String} ManagedPropertyLogicalName The logical name for the managed property.
     */
     this.BooleanManagedProperty = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.BooleanManagedProperty, this)) {
-            return new Sdk.Sample.BooleanManagedProperty(JSONData);
+        if (!isInstanceOf(Demo.Tour.BooleanManagedProperty, this)) {
+            return new Demo.Tour.BooleanManagedProperty(JSONData);
         }
         var data = {};
         if (JSONData) {
@@ -2607,14 +2430,14 @@ Sdk.Sample = Sdk.Sample || {};
     });
     }
     /**
-    @typeref {object} Sdk.Sample.CalculateTotalTimeIncidentResponse
-    @memberOf Sdk.Sample
+    @typeref {object} Demo.Tour.CalculateTotalTimeIncidentResponse
+    @memberOf Demo.Tour
     @description Contains the response from the CalculateTotalTimeIncident function.
     @property {Number} TotalTime The total time in minutes that it takes to work on an incident (case).
     */
     this.CalculateTotalTimeIncidentResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.CalculateTotalTimeIncidentResponse, this)) {
-            return new Sdk.Sample.CalculateTotalTimeIncidentResponse(JSONData);
+        if (!isInstanceOf(Demo.Tour.CalculateTotalTimeIncidentResponse, this)) {
+            return new Demo.Tour.CalculateTotalTimeIncidentResponse(JSONData);
         }
         var data = {};
         if (JSONData) {
@@ -2635,44 +2458,16 @@ Sdk.Sample = Sdk.Sample || {};
     });
     }
     /**
-    @typeref {object} Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse
-    @memberOf Sdk.Sample
-    @description Contains the response from the GetTimeZoneCodeByLocalizedName function.
-    @property {Number} TimeZoneCode The time zone code that has the requested localized name.
-    */
-    this.GetTimeZoneCodeByLocalizedNameResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse, this)) {
-            return new Sdk.Sample.GetTimeZoneCodeByLocalizedNameResponse(JSONData);
-        }
-        var data = {};
-        if (JSONData) {
-            data = JSONData;
-        }
-        Object.defineProperties(this,
-    {
-        "TimeZoneCode": {
-            get: function () { return data.TimeZoneCode; },
-            set: function (value) {
-                if (!isNumber(value)) {
-                    throw new Error(NS + ".TimeZoneCode must be a Number.")
-                }
-                data["TimeZoneCode"] = value;
-            },
-            enumerable: true
-        }
-    });
-    }
-    /**
-    @typeref {object} Sdk.Sample.WhoAmIResponse
-    @memberOf Sdk.Sample
+    @typeref {object} Demo.Tour.WhoAmIResponse
+    @memberOf Demo.Tour
     @description Contains the response from WhoAmI function.
     @property {Guid} BusinessUnitId ID of the business to which the logged on user belongs.
     @property {Guid} UserId ID of the user who is logged on.
     @property {Guid} OrganizationId ID of the organization that the user belongs to.
     */
     this.WhoAmIResponse = function (JSONData) {
-        if (!isInstanceOf(Sdk.Sample.WhoAmIResponse, this)) {
-            return new Sdk.Sample.WhoAmIResponse(JSONData);
+        if (!isInstanceOf(Demo.Tour.WhoAmIResponse, this)) {
+            return new Demo.Tour.WhoAmIResponse(JSONData);
         }
         var data = {};
         if (JSONData) {
@@ -2713,6 +2508,21 @@ Sdk.Sample = Sdk.Sample || {};
     });
     }
 
+    /**
+    @enum Demo.Tour.TargetFieldType
+    @memberOf Demo.Tour
+    @description Indicates the attribute type for the target of the InitializeFromRequest message.
+    @property {String} All Read only. Initialize all possible attribute values.
+    @property {String} ValidForCreate Read only. Initialize the attribute values that are valid for create.
+    @property {String} ValidForUpdate Read only. Initialize the attribute values that are valid for update.
+    @property {String} ValidForRead Read only. Initialize the attribute values that are valid for read.
+    */
+    this.TargetFieldType = Object.freeze({
+        All: "All",
+        ValidForCreate: "ValidForCreate",
+        ValidForUpdate: "ValidForUpdate",
+        ValidForRead: "ValidForRead"
+    });
 
 
     //#region Core functions  
@@ -2807,7 +2617,7 @@ Sdk.Sample = Sdk.Sample || {};
 
             if (isString(entityReference)) {
                 try {
-                    internal[primarykey] = getIdFromUri(Sdk.Sample[type], entityReference);
+                    internal[primarykey] = getIdFromUri(Demo.Tour[type], entityReference);
                 } catch (e) {
                     throw e;
                 }
@@ -2816,7 +2626,7 @@ Sdk.Sample = Sdk.Sample || {};
             else {
                 if (entityReference["@odata.id"]) {
                     try {
-                        internal[primarykey] = getIdFromUri(Sdk.Sample[type], entityReference["@odata.id"]);
+                        internal[primarykey] = getIdFromUri(Demo.Tour[type], entityReference["@odata.id"]);
                     } catch (e) {
                         throw e;
                     }
@@ -2985,7 +2795,7 @@ Sdk.Sample = Sdk.Sample || {};
 
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -3160,9 +2970,9 @@ Sdk.Sample = Sdk.Sample || {};
     function isOptionalArray(obj) {
         return (isNullOrUndefined(obj) || Array.isArray(obj))
     }
-    //Whether an object is an instance of a class that inherits from Sdk.Sample.crmbaseentity
+    //Whether an object is an instance of a class that inherits from Demo.Tour.crmbaseentity
     function isCrmBaseEntity(obj) {
-        return (obj instanceof Sdk.Sample.crmbaseentity)
+        return (obj instanceof Demo.Tour.crmbaseentity)
     }
     //Boolean validation
     function isBoolean(obj) {
@@ -3319,7 +3129,7 @@ Sdk.Sample = Sdk.Sample || {};
         return (isUndefined(obj) || isStringArrayOrNull(obj));
     }
     function isBooleanManagedProperty(obj) {
-        return isInstanceOf(Sdk.Sample.BooleanManagedProperty, obj);
+        return isInstanceOf(Demo.Tour.BooleanManagedProperty, obj);
     }
 
     function isTypedUri(type, uri) {
@@ -3377,12 +3187,12 @@ Sdk.Sample = Sdk.Sample || {};
     }
     //Returns the appropriate 'class' function for entities defined in the library.
     function getTypeFromUri(uri) {
-        for (var property in Sdk.Sample) {
-            if (Sdk.Sample.hasOwnProperty(property)) {
-                if (typeof Sdk.Sample[property] == "function") {
-                    if (Sdk.Sample[property].isEntityClass) {
-                        if (isTypedUri(Sdk.Sample[property], uri)) {
-                            return Sdk.Sample[property];
+        for (var property in Demo.Tour) {
+            if (Demo.Tour.hasOwnProperty(property)) {
+                if (typeof Demo.Tour[property] == "function") {
+                    if (Demo.Tour[property].isEntityClass) {
+                        if (isTypedUri(Demo.Tour[property], uri)) {
+                            return Demo.Tour[property];
                         }
                     }
                 }
@@ -3393,17 +3203,17 @@ Sdk.Sample = Sdk.Sample || {};
 
     //Public functions
     /** 
-     * @function Sdk.Sample.create
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.create
+     * @memberOf! Demo.Tour
      * @description Create a new entity
-     * @param {Sdk.Sample.crmbaseentity} entity An Sdk.Sample.crmbaseentity with the properties for the entity you want to create.
+     * @param {Demo.Tour.crmbaseentity} entity An Demo.Tour.crmbaseentity with the properties for the entity you want to create.
      * @param {GUID} [callerId] A string representation of the GUID value for the user to impersonate.
      * @returns {Promise} A promise that returns the URI to the created record if resolved or an Error if rejected
      */
     this.create = function (entity, callerId) {
         return new Promise(function (resolve, reject) {
             if (!isCrmBaseEntity(entity)) {
-                throw new Error(NS + ".create entity parameter must inherit from Sdk.Sample.crmbaseentity.");
+                throw new Error(NS + ".create entity parameter must inherit from Demo.Tour.crmbaseentity.");
             }
             if (!isOptionalGuid(callerId)) {
                 throw new Error(NS + ".create callerId parameter must be a string representation of a GUID value, null or undefined.");
@@ -3424,7 +3234,7 @@ Sdk.Sample = Sdk.Sample || {};
                         resolve(this.getResponseHeader("OData-EntityId"));
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -3437,10 +3247,10 @@ Sdk.Sample = Sdk.Sample || {};
     };
 
     /** 
-     * @function Sdk.Sample.createAndRetrieve
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.createAndRetrieve
+     * @memberOf! Demo.Tour
      * @description Create a new entity and retrieve it
-     * @param {Sdk.Sample.crmbaseentity} entity An Sdk.Sample.crmbaseentity with the properties for the entity you want to create.
+     * @param {Demo.Tour.crmbaseentity} entity An Demo.Tour.crmbaseentity with the properties for the entity you want to create.
      * @param {Array} [properties] The properties of the entity to return using $select
      * @param {Array} [navProperties] An array of expressions for the navigation properties you want return using $expand
      * @param {Boolean} [includeFormattedValues] Whether you want to return formatted values
@@ -3449,9 +3259,9 @@ Sdk.Sample = Sdk.Sample || {};
      */
     this.createAndRetrieve = function (entity, properties, navProperties, includeFormattedValues, callerId) {
         return new Promise(function (resolve, reject) {
-            Sdk.Sample.create(entity, callerId)
+            Demo.Tour.create(entity, callerId)
             .then(function (uri) {
-                return Sdk.Sample.retrieve(uri, properties, navProperties, includeFormattedValues, callerId)
+                return Demo.Tour.retrieve(uri, properties, navProperties, includeFormattedValues, callerId)
             })
             .then(function (entity) {
                 resolve(entity);
@@ -3461,10 +3271,10 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-     * @function Sdk.Sample.createAndRetrieveTypedEntity
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.createAndRetrieveTypedEntity
+     * @memberOf! Demo.Tour
      * @description Create a new entity and retrieve a typed entity
-     * @param {Sdk.Sample.crmbaseentity} entity An Sdk.Sample.crmbaseentity with the properties for the entity you want to create.
+     * @param {Demo.Tour.crmbaseentity} entity An Demo.Tour.crmbaseentity with the properties for the entity you want to create.
      * @param {Array} [properties] The properties of the entity to return using $select
      * @param {Array} [navProperties] An array of expressions for the navigation properties you want return using $expand
      * @param {Boolean} [includeFormattedValues] Whether you want to return formatted values
@@ -3473,9 +3283,9 @@ Sdk.Sample = Sdk.Sample || {};
      */
     this.createAndRetrieveTypedEntity = function (entity, properties, navProperties, includeFormattedValues, callerId) {
         return new Promise(function (resolve, reject) {
-            Sdk.Sample.create(entity, callerId)
+            Demo.Tour.create(entity, callerId)
             .then(function (uri) {
-                return Sdk.Sample.retrieveTypedEntity(uri, properties, navProperties, includeFormattedValues, callerId)
+                return Demo.Tour.retrieveTypedEntity(uri, properties, navProperties, includeFormattedValues, callerId)
             })
             .then(function (entity) {
                 resolve(entity);
@@ -3485,8 +3295,8 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-     * @function Sdk.Sample.retrieve
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.retrieve
+     * @memberOf! Demo.Tour
      * @description Retrieve an entity
      * @param {String} uri The URI to the entity you want to retrieve
      * @param {Array} [properties] The properties of the entity to return using $select
@@ -3560,7 +3370,7 @@ Sdk.Sample = Sdk.Sample || {};
                             resolve(null);
                             break;
                         default:
-                            reject(Sdk.Sample.errorHandler(this.response));
+                            reject(Demo.Tour.errorHandler(this.response));
                             break;
                     }
                 }
@@ -3573,8 +3383,8 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-     * @function Sdk.Sample.retrieveTypedEntity
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.retrieveTypedEntity
+     * @memberOf! Demo.Tour
      * @description Retrieve a typed entity
      * @param {String} uri The URI to the entity you want to retrieve
      * @param {Array} [properties] The properties of the entity to return using $select
@@ -3601,11 +3411,23 @@ Sdk.Sample = Sdk.Sample || {};
                 reject(e);
             }
 
-            Sdk.Sample.retrieve(uri, properties, navProperties, includeFormattedValues, version, callerId)
+            Demo.Tour.retrieve(uri, properties, navProperties, includeFormattedValues, version, callerId)
             .then(function (entity) {
                 if (entity) {
                     var typedEntity = new type(entity);
                     typedEntity.resetChangeTracking();
+
+                    for (var collection in typedEntity.collections) {
+                        if (Array.isArray(typedEntity[collection])) {
+                            typedEntity[collection] = typedEntity[collection].map(function (x) { return new typedEntity.collections[collection].type(x); });
+                        }
+                    }
+
+                    for (var lookup in typedEntity.lookups) {
+                        if (!isNullOrUndefined(typedEntity[lookup])) {
+                            typedEntity[lookup] = new typedEntity.lookups[lookup].type(typedEntity[lookup]);
+                        }
+                    }
                     resolve(typedEntity);
                 }
                 else {
@@ -3617,8 +3439,8 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-     * @function Sdk.Sample.retrieveProperty
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.retrieveProperty
+     * @memberOf! Demo.Tour
      * @description Retrieve the value of a single entity property
      * @param {String} uri The URI to the entity with the property you want to retrieve
      * @param {String} propertyName The name of the property.
@@ -3675,7 +3497,7 @@ Sdk.Sample = Sdk.Sample || {};
                             resolve(null);
                             break;
                         default:
-                            reject(Sdk.Sample.errorHandler(this.response));
+                            reject(Demo.Tour.errorHandler(this.response));
                             break;
                     }
                 }
@@ -3688,18 +3510,18 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-     * @function Sdk.Sample.update
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.update
+     * @memberOf! Demo.Tour
      * @description Update an existing entity
-     * @param {Sdk.Sample.crmbaseentity} entity A Sdk.Sample.crmbaseentity that contains only the properties of the entity you want to update
+     * @param {Demo.Tour.crmbaseentity} entity A Demo.Tour.crmbaseentity that contains only the properties of the entity you want to update
      * @param {Boolean} [cancelWhenOlder] Whether to cancel update when the server version is newer. Default is false;
      * @param {GUID} [callerId] A string representation of the GUID value for the user to impersonate.
      * @returns {Promise} A promise that returns nothing if resolved or an Error if rejected
      */
     this.update = function (entity, cancelWhenOlder, callerId) {
         return new Promise(function (resolve, reject) {
-            if (!entity instanceof Sdk.Sample.crmbaseentity) {
-                throw new Error(NS + ".update entity parameter must inherit from Sdk.Sample.crmbaseentity.");
+            if (!entity instanceof Demo.Tour.crmbaseentity) {
+                throw new Error(NS + ".update entity parameter must inherit from Demo.Tour.crmbaseentity.");
             }
             if (!isOptionalBoolean(cancelWhenOlder)) {
                 throw new Error(NS + ".update cancelWhenOlder parameter must be a boolean value, null or undefined.");
@@ -3710,7 +3532,7 @@ Sdk.Sample = Sdk.Sample || {};
 
             //Don't send the request if there is nothing to save;
             if (entity.changedProperties.length == 0) {
-                console.log("Update request not sent because no changes applied.")
+                console.log("Update request not sent for " + entity.type + " " + entity.primaryKey + ":" + entity.getId() + " because no changes applied.");
                 resolve();
             }
             else {
@@ -3739,7 +3561,7 @@ Sdk.Sample = Sdk.Sample || {};
                             resolve();
                         }
                         else {
-                            reject(Sdk.Sample.errorHandler(this.response));
+                            reject(Demo.Tour.errorHandler(this.response));
                         }
                     }
                 };
@@ -3751,18 +3573,18 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-     * @function Sdk.Sample.upsert
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.upsert
+     * @memberOf! Demo.Tour
      * @description Create an entity if it doesn't exist, otherwise update existing entity
-     * @param {Sdk.Sample.crmbaseentity} entity A Sdk.Sample.crmbaseentity that contains the properties of the entity you want to upsert
+     * @param {Demo.Tour.crmbaseentity} entity A Demo.Tour.crmbaseentity that contains the properties of the entity you want to upsert
      * @param {GUID} [callerId] A string representation of the GUID value for the user to impersonate.
      * @param {Boolean} [preventUpdate] Whether to allow the upsert operation to update existing records. Default is false
      * @returns {Promise} A promise that returns nothing if resolved or an Error if rejected
      */
     this.upsert = function (entity, preventUpdate, callerId) {
         return new Promise(function (resolve, reject) {
-            if (!entity instanceof Sdk.Sample.crmbaseentity) {
-                throw new Error(NS + ".upsert entity parameter must inherit from Sdk.Sample.crmbaseentity.");
+            if (!entity instanceof Demo.Tour.crmbaseentity) {
+                throw new Error(NS + ".upsert entity parameter must inherit from Demo.Tour.crmbaseentity.");
             }
             if (!isOptionalBoolean(preventUpdate)) {
                 throw new Error(NS + ".upsert preventUpdate parameter must be a boolean value, null or undefined.");
@@ -3789,7 +3611,7 @@ Sdk.Sample = Sdk.Sample || {};
                         resolve();
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -3803,8 +3625,8 @@ Sdk.Sample = Sdk.Sample || {};
 
 
     /** 
-     * @function Sdk.Sample.delete
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.delete
+     * @memberOf! Demo.Tour
      * @description Delete an entity
      * @param {String} uri The URI for the entity to delete
      * @param {string} [version] The version of the entity to delete. Delete cancelled if server version is different.
@@ -3844,7 +3666,7 @@ Sdk.Sample = Sdk.Sample || {};
                         resolve();
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -3858,8 +3680,8 @@ Sdk.Sample = Sdk.Sample || {};
     //Note: deleteEntity provided b/c TypeScript Type defininitions won't support use of 'delete' keyword as a method name.
 
     /** 
-     * @function Sdk.Sample.deleteEntity
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.deleteEntity
+     * @memberOf! Demo.Tour
      * @description Delete an entity
      * @param {String} uri The URI for the entity to delete
      * @param {string} [version] The version of the entity to delete. Delete cancelled if server version is different.
@@ -3870,8 +3692,8 @@ Sdk.Sample = Sdk.Sample || {};
 
 
     /** 
-     * @function Sdk.Sample.addToCollection
-     * @memberOf! Sdk.Sample
+     * @function Demo.Tour.addToCollection
+     * @memberOf! Demo.Tour
      * @description Adds an entity to an entity collection
      * @param {String} uri1 A URI for an entity that has the collection-valued navigation property named by the collectionName parameter.
      * @param {String} collectionName The name of the collection-valued navigation property to use
@@ -3919,7 +3741,7 @@ Sdk.Sample = Sdk.Sample || {};
                         resolve();
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -3930,8 +3752,8 @@ Sdk.Sample = Sdk.Sample || {};
         });
     }
     /** 
-      * @function Sdk.Sample.disassociate
-      * @memberOf! Sdk.Sample
+      * @function Demo.Tour.disassociate
+      * @memberOf! Demo.Tour
       * @description Disassociate entities with a specific relationship
       * @param {String} uri1 A URI for an entity that has a navigation property with a name that matches the relationshipName parameter
       * @param {String} relationshipName The name of the navigation property that identifies the relationship to use
@@ -3987,7 +3809,7 @@ Sdk.Sample = Sdk.Sample || {};
                         resolve();
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -3999,8 +3821,8 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-    * @function Sdk.Sample.query
-    * @memberOf! Sdk.Sample
+    * @function Demo.Tour.query
+    * @memberOf! Demo.Tour
     * @description Retrieve multiple entities matching the criteria you define
     * @param {String} entitySetName The entity Set name for the type of entity you want to retrieve.
     * @param {String} [query] The system query parameters you want to apply.
@@ -4058,7 +3880,7 @@ Sdk.Sample = Sdk.Sample || {};
                     if (this.status == 200) {
                         var results = JSON.parse(this.response, dateReviver);
                         try {
-                            resolve(new Sdk.Sample.entityCollection(results));
+                            resolve(new Demo.Tour.entityCollection(results));
                         }
                         catch (e) {
                             //a $count option can return only a number
@@ -4066,7 +3888,7 @@ Sdk.Sample = Sdk.Sample || {};
                         }
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -4079,9 +3901,9 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-    * @function Sdk.Sample.getNextPage
-    * @memberOf! Sdk.Sample
-    * @description Return the next page from the results of an Sdk.Sample.query when there are more pages
+    * @function Demo.Tour.getNextPage
+    * @memberOf! Demo.Tour
+    * @description Return the next page from the results of an Demo.Tour.query when there are more pages
     * @param {String} nextLink The value of the @odata.nextLink property for the results of a query query when there are more pages.
     * @param {Boolean} [includeFormattedValues] Whether you want to have formatted values included in the results
     * @param {Number} [maxPageSize] A number that limits the number of entities to be retrieved in the query and allows for paging
@@ -4131,7 +3953,7 @@ Sdk.Sample = Sdk.Sample || {};
                     if (this.status == 200) {
                         var results = JSON.parse(this.response, dateReviver);
                         try {
-                            resolve(new Sdk.Sample.entityCollection(results));
+                            resolve(new Demo.Tour.entityCollection(results));
                         }
                         catch (e) {
                             //a $count option can return only a number
@@ -4139,7 +3961,7 @@ Sdk.Sample = Sdk.Sample || {};
                         }
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -4151,8 +3973,8 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-    * @function Sdk.Sample.executeFetch
-    * @memberOf! Sdk.Sample
+    * @function Demo.Tour.executeFetch
+    * @memberOf! Demo.Tour
     * @description Return the results of a FetchXML query
     * @param {String} entitySetName The entity set name for the type of entity indicated in the FetchXml entity element name attribute.
     * @param {String} fetchXml The FetchXML. You do not need to URLEncode this string.
@@ -4216,7 +4038,7 @@ Sdk.Sample = Sdk.Sample || {};
                     if (this.status == 200) {
                         var results = JSON.parse(this.response, dateReviver);
                         try {
-                            resolve(new Sdk.Sample.entityCollection(results));
+                            resolve(new Demo.Tour.entityCollection(results));
                         }
                         catch (e) {
                             //a $count option can return only a number
@@ -4224,7 +4046,7 @@ Sdk.Sample = Sdk.Sample || {};
                         }
                     }
                     else {
-                        reject(Sdk.Sample.errorHandler(this.response));
+                        reject(Demo.Tour.errorHandler(this.response));
                     }
                 }
             };
@@ -4236,10 +4058,10 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-    * @function Sdk.Sample.formatted
-    * @memberOf! Sdk.Sample
+    * @function Demo.Tour.formatted
+    * @memberOf! Demo.Tour
     * @description Returns the formatted value of a property
-    * @param {Object} JSONentity The retrieved JSON entity that is not an instance of Sdk.Sample.crmbaseentity
+    * @param {Object} JSONentity The retrieved JSON entity that is not an instance of Demo.Tour.crmbaseentity
     * @param {String} propertyName The name of the property
     * @param {String} [whenNullText] Text to return if the formatted value is null or undefined
     * @returns {String} The formatted value
@@ -4258,8 +4080,8 @@ Sdk.Sample = Sdk.Sample || {};
         return (formattedValue) ? formattedValue : ((whenNullText) ? whenNullText : "");
     }
     /** 
-   * @function Sdk.Sample.getWebAPIPath
-   * @memberOf! Sdk.Sample
+   * @function Demo.Tour.getWebAPIPath
+   * @memberOf! Demo.Tour
    * @description Returns the base URI for the WebAPI{
    * @returns {String} the base URI for the WebAPI
    */
@@ -4268,8 +4090,8 @@ Sdk.Sample = Sdk.Sample || {};
     }
 
     /** 
-    * @function Sdk.Sample.setClientUrl
-    * @memberOf! Sdk.Sample
+    * @function Demo.Tour.setClientUrl
+    * @memberOf! Demo.Tour
     * @description Sets the base client URI rather than deriving it from web resource context
     * @param {String} uri The base client URI referring to the Organization (Not the Web API!)
     */
@@ -4280,7 +4102,7 @@ Sdk.Sample = Sdk.Sample || {};
         _clientUrl = uri;
     }
     /** 
-    * @function Sdk.Sample.errorHandler
+    * @function Demo.Tour.errorHandler
     * @private
     * @description For Internal Use Only. Called when an error callback parses the JSON response within the XMLHttpRequest onreadystatechange event handler
     * @param {XMLHttpRequest.response} resp The error response
@@ -4296,4 +4118,4 @@ Sdk.Sample = Sdk.Sample || {};
 
 
     //#endregion
-}).call(Sdk.Sample);
+}).call(Demo.Tour);

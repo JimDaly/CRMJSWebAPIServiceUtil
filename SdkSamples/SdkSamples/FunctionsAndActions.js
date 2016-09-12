@@ -17,7 +17,7 @@ function functionsAndActionsSample() {
     var myQueue = new ns.queue(); // The contact's queue uri.
     var contact = new ns.contact(); // Add a note to this contact.
     var annotation = new ns.annotation(); //Note added to contact
-    const CUSTOMERACCOUNTNAME = "Account Customer Created in WebAPIFunctionsAndActions sample"; // For custom action.
+    var CUSTOMERACCOUNTNAME = "Account Customer Created in WebAPIFunctionsAndActions sample"; // For custom action.
     console.log("-- Sample started --");
     createRequiredRecords()
         .then(function () {

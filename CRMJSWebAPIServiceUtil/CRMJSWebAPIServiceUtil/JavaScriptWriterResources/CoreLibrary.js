@@ -267,24 +267,112 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
 
             }
         });
-
-        if (collection.value && Array.isArray(collection.value)) {
-            _value = collection.value;
+        //if /$count is appended to the query only a number will be returned.
+        if (isNumber(collection)) {
+            _value = [];
+            _count = collection;
         }
         else {
-            throw new Error(NS + ".entityCollection collection parameter must have a value property that is an Array.");
+            if (collection.value && Array.isArray(collection.value)) {
+                _value = collection.value;
+            }
+            else {
+
+                throw new Error(NS + ".entityCollection collection parameter must have a value property that is an Array.");
+            }
+            if (collection["@odata.nextLink"]) {
+                _nextLink = collection["@odata.nextLink"];
+            }
+            if (collection["@odata.count"]) {
+                _count = parseInt(collection["@odata.count"]);
+            }
         }
-        if (collection["@odata.nextLink"]) {
-            _nextLink = collection["@odata.nextLink"];
-        }
-        if (collection["@odata.count"]) {
-            _count = parseInt(collection["@odata.count"]);
-        }
+
     }
 
     MODELDEFINITIONS
 
     //#region Core functions  
+    //Property Setters
+
+    function setBooleanManagedProperty(entity, propertyName, value) {
+        propertySetter(isBooleanManagedProperty, NS+".BooleanManagedProperty value or null", entity, propertyName, value);
+    }
+
+    function setGuidOrNullProperty(entity, propertyName, value) {
+        propertySetter(isGuidOrNull, "String representation of a GUID value or null", entity, propertyName, value);
+    }
+
+    function setDateTimeOffsetOrNullProperty(entity, propertyName, value) {
+        propertySetter(isDateOrNull, "Date value or null", entity, propertyName, value);
+    }
+
+    function setBooleanProperty(entity, propertyName, value) {
+        propertySetter(isBoolean, "Boolean value", entity, propertyName, value);
+    }
+
+    function setNumberOrNullProperty(entity, propertyName, value) {
+        propertySetter(isNumberOrNull, "Number value or null", entity, propertyName, value);
+    }
+
+    function setStringOrNullProperty(entity, propertyName, value) {
+        propertySetter(isStringOrNull, "String value or null", entity, propertyName, value);
+    }
+
+    function propertySetter(validationFunction, requirement, entity, propertyName, value) {
+        if (!validationFunction(value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be a " + requirement + ".");
+        }
+        if (entity.internal[propertyName] != value) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = value;
+        }
+    }
+
+    //Special because it requires convertToEdmDateString to be called on the value.
+    function setDateOnlyProperty(entity, propertyName, value) {
+        if (!isDateOrNull(value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be a Date value or null.");
+        }
+        if (entity.internal[propertyName] != convertToEdmDateString(value)) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = convertToEdmDateString(value);
+        }
+    }
+
+    //Lookup Property Setter
+    function lookupPropertySetter(type, typeName, entity, propertyName, value) {
+        if (!isInstanceOf(type, value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be a " + NS + "." + typeName + " value.");
+        }
+        if (entity.internal[propertyName] != value) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = value;
+        }
+    }
+
+    //Lookup Property Binder
+    function lookupPropertyBinder(type, typeName, entity, propertyName, value) {
+        if (!isTypedUri(type, value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + "@odata.bind must be a URI for an " + NS + "." + typeName + ".");
+        }
+        if (entity.internal[propertyName + "Uri"] != value) {
+            entity.addChangedProperty(propertyName + "@odata.bind");
+            entity.internal[propertyName + "Uri"] = value;
+        }
+    }
+
+    //Collection Property Setter
+    function collectionPropertySetter(type, typeName, entity, propertyName, value) {
+        if (!isArrayOf(type, value)) {
+            throw new Error(NS + "." + entity.type + " " + propertyName + " property must be an Array of " + NS + "." + typeName + ".");
+        }
+        if (entity.internal[propertyName] != value) {
+            entity.addChangedProperty(propertyName);
+            entity.internal[propertyName] = value;
+        }
+    }
+
     //Internal Helper functions
 
     //Used in constructors to set initial property values
@@ -852,10 +940,7 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
     function isUndefined(obj) {
         return (typeof obj === "undefined");
     }
-    //Used within entity property setters when no conversion is required
-    function noChange(value) {
-        return value;
-    }
+
     //Applys standard OData headers to an XMLHTTPRequest object
     function setStandardHeaders(req, callerId) {
         req.setRequestHeader("Accept", "application/json");
@@ -1098,6 +1183,18 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
                 if (entity) {
                     var typedEntity = new type(entity);
                     typedEntity.resetChangeTracking();
+
+                    for (var collection in typedEntity.collections) {
+                        if (Array.isArray(typedEntity[collection])) {
+                            typedEntity[collection] = typedEntity[collection].map(function (x) { return new typedEntity.collections[collection].type(x); });
+                        }
+                    }
+
+                    for (var lookup in typedEntity.lookups) {
+                        if (!isNullOrUndefined(typedEntity[lookup])) {
+                            typedEntity[lookup] = new typedEntity.lookups[lookup].type(typedEntity[lookup]);
+                        }
+                    }
                     resolve(typedEntity);
                 }
                 else {
@@ -1202,7 +1299,7 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
 
             //Don't send the request if there is nothing to save;
             if (entity.changedProperties.length == 0) {
-                console.log("Update request not sent because no changes applied.")
+                console.log("Update request not sent for " + entity.type + " " + entity.primaryKey + ":" + entity.getId() + " because no changes applied.");
                 resolve();
             }
             else {

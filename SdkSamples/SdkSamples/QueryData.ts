@@ -1,5 +1,5 @@
 ﻿document.addEventListener("DOMContentLoaded", function (event) {
-    
+ 
 
     startQueryDataSample();
 
@@ -258,7 +258,7 @@ function startQueryDataSample() {
 
         })
         .then(function (results) {
-            console.log("The contacts collection has %s contacts.", results);
+            console.log("The contacts collection has %s contacts.", results.count);
 
             let filter = "&$filter=contains(jobtitle,'senior') or contains(jobtitle, 'manager')&$count=true";
             return ns.query(contact.entitySetName,

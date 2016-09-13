@@ -628,7 +628,7 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
                 UriPath = UriPath + "?" + query
             }
 
-
+            ADALSUPPORTPART1
 
             var req = new XMLHttpRequest();
             req.open("GET", encodeURI(UriPath), true);
@@ -638,7 +638,7 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
                 req.setRequestHeader("Prefer", "odata.include-annotations=\"OData.Community.Display.V1.FormattedValue\"");
             }
 
-
+            ADALSUPPORTPART2
 
             req.onreadystatechange = function () {
                 if (this.readyState == 4 /* complete */) {
@@ -659,13 +659,13 @@ ROOTNAMESPACE.SUBNAMESPACE = ROOTNAMESPACE.SUBNAMESPACE || {};
 
                     }
                     else {
-                        reject(TS.TEST.errorHandler(req.response));
+                        reject(ROOTNAMESPACE.SUBNAMESPACE.errorHandler(req.response));
                     }
                 }
             };
             req.send();
 
-
+            ADALSUPPORTPART3
 
         });
     }

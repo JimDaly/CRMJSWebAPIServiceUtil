@@ -209,8 +209,17 @@ namespace CRMWebAPIJavaScriptWriter
         constructor({0}Reference?: string | Object)
          isEntityClass: boolean;
         // crmbaseentity implementation START
+        /**
+        Name of the the {0} entity.
+        */
          type: string;
+        /**
+        Primary key for the {0} entity: '{1}'
+        */
          primaryKey: string;
+        /**
+        Web API entity set name for the {0} entity: '{2}'
+        */
          entitySetName: string;
         
         /**
@@ -266,7 +275,7 @@ namespace CRMWebAPIJavaScriptWriter
         resetChangeTracking();
 
         // crmbaseentity implementation END
-", getEntityName(entity));
+", getEntityName(entity),entity.PrimaryKey,entity.EntitySetName);
 
             Entity baseEntity = getEntityByName(entity.BaseEntity);
 

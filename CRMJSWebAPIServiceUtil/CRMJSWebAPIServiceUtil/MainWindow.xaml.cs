@@ -105,19 +105,19 @@ namespace CRMJSWebAPIServiceUtil
 
             //For testing on-premises
 
-            config.OServiceUrl = "http://yourCRMServer/yourOrg/";
-            config.OUsername = "administrator";
-            SecureString ss = new SecureString();
-            "yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
-            config.ODomain = "~";
+            //config.OServiceUrl = "http://yourCRMServer/yourOrg/";
+            //config.OUsername = "administrator";
+            //SecureString ss = new SecureString();
+            //"yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
+            //config.ODomain = "~";
 
             //For testing online
 
-            //config.OServiceUrl = "https://yourOrg.crm.dynamics.com/";
-            //config.OUsername = "you@yourOrg.onmicrosoft.com";
-            //SecureString ss = new SecureString();
-            //"yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
-           
+            config.OServiceUrl = "https://yourOrg.crm.dynamics.com/";
+            config.OUsername = "you@yourOrg.onmicrosoft.com";
+            SecureString ss = new SecureString();
+            "yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
+
 
             config.Password = ss;
 

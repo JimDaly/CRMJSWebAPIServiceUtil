@@ -30,13 +30,13 @@ declare namespace ROOTNAMESPACE.SUBNAMESPACE {
     //ADAL Support END
 
     interface propertyType {
-        readonly name: string;
-        readonly type: string;
+         name: string;
+         type: string;
     }
 
     interface navigationPropertyType {
-        readonly name: string;
-        readonly type: Function;
+         name: string;
+         type: Function;
     }
 
     interface entityCollection {
@@ -54,9 +54,9 @@ declare namespace ROOTNAMESPACE.SUBNAMESPACE {
     //Metadata property interfaces END
 
     interface crmbaseentity {
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+         type: string;
+         primaryKey: string;
+         entitySetName: string;
         getFormattedValue(propertyName: string, whenNullText?: string): string;
         getUri(): string;
         getId(): string;

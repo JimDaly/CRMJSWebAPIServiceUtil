@@ -75,7 +75,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Properties {{", getEntityName(e)));
                         foreach (Property p in e.Properties)
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: propertyType;", p.Name));
+                            sb.AppendLine(string.Format("     {0}: propertyType;", p.Name));
                         }
 
 
@@ -88,7 +88,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Lookups {{", getEntityName(e)));
                         foreach (Property l in e.Lookups)
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", l.Name));
+                            sb.AppendLine(string.Format("     {0}: navigationPropertyType;", l.Name));
                         }
                         sb.AppendLine("}");
                     }
@@ -99,7 +99,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Collections {{", getEntityName(e)));
                         foreach (Property c in e.Collections)
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", c.Name));
+                            sb.AppendLine(string.Format("     {0}: navigationPropertyType;", c.Name));
                         }
                         sb.AppendLine("}");
                     }
@@ -114,7 +114,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Properties {{", getEntityName(e)));
                         foreach (Property p in e.Properties.Union(baseEntity.Properties))
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: propertyType;", p.Name));
+                            sb.AppendLine(string.Format("     {0}: propertyType;", p.Name));
                         }
 
                         sb.AppendLine("}");
@@ -126,7 +126,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Lookups {{", getEntityName(e)));
                         foreach (Property l in e.Lookups.Union(baseEntity.Lookups))
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", l.Name));
+                            sb.AppendLine(string.Format("     {0}: navigationPropertyType;", l.Name));
                         }
                         sb.AppendLine("}");
                     }
@@ -137,7 +137,7 @@ namespace CRMWebAPIJavaScriptWriter
                         sb.AppendLine(string.Format("interface {0}Collections {{", getEntityName(e)));
                         foreach (Property c in e.Collections.Union(baseEntity.Collections))
                         {
-                            sb.AppendLine(string.Format("    readonly {0}: navigationPropertyType;", c.Name));
+                            sb.AppendLine(string.Format("     {0}: navigationPropertyType;", c.Name));
                         }
                         sb.AppendLine("}");
                     }
@@ -207,11 +207,20 @@ namespace CRMWebAPIJavaScriptWriter
          * @param {0}Reference
          */
         constructor({0}Reference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the {0} entity.
+        */
+         type: string;
+        /**
+        Primary key for the {0} entity: '{1}'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the {0} entity: '{2}'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -266,7 +275,7 @@ namespace CRMWebAPIJavaScriptWriter
         resetChangeTracking();
 
         // crmbaseentity implementation END
-", getEntityName(entity));
+", getEntityName(entity),entity.PrimaryKey,entity.EntitySetName);
 
             Entity baseEntity = getEntityByName(entity.BaseEntity);
 
@@ -274,27 +283,27 @@ namespace CRMWebAPIJavaScriptWriter
             {
                 if (entity.Properties.Count > 0)
                 {
-                    sb.AppendLine(string.Format("        readonly properties: {0}Properties;", getEntityName(entity)));
+                    sb.AppendLine(string.Format("         properties: {0}Properties;", getEntityName(entity)));
                 }
                 else
                 {
-                    sb.AppendLine("        readonly properties: {};");
+                    sb.AppendLine("         properties: {};");
                 }
                 if (entity.Lookups.Count > 0)
                 {
-                    sb.AppendLine(string.Format("        readonly lookups: {0}Lookups;", getEntityName(entity)));
+                    sb.AppendLine(string.Format("         lookups: {0}Lookups;", getEntityName(entity)));
                 }
                 else
                 {
-                    sb.AppendLine("        readonly lookups: {};");
+                    sb.AppendLine("         lookups: {};");
                 }
                 if (entity.Collections.Count > 0)
                 {
-                    sb.AppendLine(string.Format("        readonly collections: {0}Collections;", getEntityName(entity)));
+                    sb.AppendLine(string.Format("         collections: {0}Collections;", getEntityName(entity)));
                 }
                 else
                 {
-                    sb.AppendLine("        readonly collections: {};");
+                    sb.AppendLine("         collections: {};");
                 }
             }
             else
@@ -302,27 +311,27 @@ namespace CRMWebAPIJavaScriptWriter
 
                 if (entity.Properties.Count > 0 || baseEntity.Properties.Count > 0)
                 {
-                    sb.AppendLine(string.Format("        readonly properties: {0}Properties;", getEntityName(entity)));
+                    sb.AppendLine(string.Format("         properties: {0}Properties;", getEntityName(entity)));
                 }
                 else
                 {
-                    sb.AppendLine("        readonly properties: {};");
+                    sb.AppendLine("         properties: {};");
                 }
                 if (entity.Lookups.Count > 0 || baseEntity.Lookups.Count > 0)
                 {
-                    sb.AppendLine(string.Format("        readonly lookups: {0}Lookups;", getEntityName(entity)));
+                    sb.AppendLine(string.Format("         lookups: {0}Lookups;", getEntityName(entity)));
                 }
                 else
                 {
-                    sb.AppendLine("        readonly lookups: {};");
+                    sb.AppendLine("         lookups: {};");
                 }
                 if (entity.Collections.Count > 0 || baseEntity.Collections.Count > 0)
                 {
-                    sb.AppendLine(string.Format("        readonly collections: {0}Collections;", getEntityName(entity)));
+                    sb.AppendLine(string.Format("         collections: {0}Collections;", getEntityName(entity)));
                 }
                 else
                 {
-                    sb.AppendLine("        readonly collections: {};");
+                    sb.AppendLine("         collections: {};");
                 }
 
             }
@@ -368,7 +377,7 @@ namespace CRMWebAPIJavaScriptWriter
 
                 if (p.IsReadOnly)
                 {
-                    sb.AppendLine(string.Format("        readonly {0}: {1};", p.Name, getJSType(p.Type)));
+                    sb.AppendLine(string.Format("         {0}: {1};", p.Name, getJSType(p.Type)));
                 }
                 else
                 {
@@ -384,7 +393,7 @@ namespace CRMWebAPIJavaScriptWriter
                     sb.AppendLine("        /**");
                     sb.AppendLine("        Read only: " + l.Description);
                     sb.AppendLine("        */");
-                    sb.AppendLine(string.Format("        readonly {0}: {1};", l.Name, (l.Type == "import") ? "Import" : l.Type));
+                    sb.AppendLine(string.Format("         {0}: {1};", l.Name, (l.Type == "import") ? "Import" : l.Type));
                 }
                 else
                 {

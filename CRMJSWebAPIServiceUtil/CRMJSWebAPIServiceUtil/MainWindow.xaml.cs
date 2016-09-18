@@ -179,39 +179,44 @@ namespace CRMJSWebAPIServiceUtil
                 try
                 {
                     authority = await Authentication.DiscoverAuthorityAsync(config.ServiceUrl);
-                }
-                catch (NullReferenceException ex)
-                {
 
-                    throw new Exception("Not able to connect to the server.");
-                }
+                    auth = new Authentication(config, authority);
+                    //You are connected..
 
-                auth = new Authentication(config, authority);
-                //You are connected..
+                    Dispatcher.Invoke(DispatcherPriority.Normal,
+                      new System.Action(() =>
+                      {
+                          loginMessage.Text = "Downloading metadata...";
+                      }
+                          ));
 
-                Dispatcher.Invoke(DispatcherPriority.Normal,
+
+
+                    await downloadCSDL();
+
+                    await retrieveSolutions();
+
+                    Dispatcher.Invoke(DispatcherPriority.Normal,
                   new System.Action(() =>
                   {
-                      loginMessage.Text = "Downloading metadata...";
+                      loginMessage.Text = "Use the tabs above to select the items your library will use or press Open to select a previously generated library.";
+                      ((Button)sender).IsEnabled = false;
+
                   }
                       ));
 
+                }
+                catch (SystemException ex)
+                {
 
-
-                await downloadCSDL();
-
-                await retrieveSolutions();
-
-                Dispatcher.Invoke(DispatcherPriority.Normal,
-              new System.Action(() =>
-              {
-                  loginMessage.Text = "Use the tabs above to select the items your library will use or press Open to select a previously generated library.";
-                  ((Button)sender).IsEnabled = false;
-
-              }
-                  ));
-
-
+                    Dispatcher.Invoke(DispatcherPriority.Normal,
+  new System.Action(() =>
+  {
+      loginMessage.Text = "Unable to connect to the server. Check your login information.";
+      ((Button)sender).IsEnabled = true;
+  }
+      ));
+                }
 
             }
             else
@@ -226,7 +231,7 @@ namespace CRMJSWebAPIServiceUtil
                                       ));
             }
 
-          
+
 
 
             #endregion
@@ -277,7 +282,7 @@ namespace CRMJSWebAPIServiceUtil
                 throw;
             }
         }
-        
+
 
         private async Task downloadCSDL()
         {
@@ -286,7 +291,7 @@ namespace CRMJSWebAPIServiceUtil
             {
                 using (HttpClient client = getHttpClient())
                 {
-                    
+
                     //Using base v8.0 to get the current version number
                     HttpResponseMessage resp = await client.GetAsync("v8.0/RetrieveVersion()");
                     if (resp.StatusCode != HttpStatusCode.OK)
@@ -314,7 +319,7 @@ namespace CRMJSWebAPIServiceUtil
             }
 
 
-         
+
             string metadataUri = string.Format("v{0}/$metadata", version);
 
 
@@ -324,7 +329,7 @@ namespace CRMJSWebAPIServiceUtil
                 {
 
                     client.DefaultRequestHeaders.Accept.Clear();
-                
+
                     HttpResponseMessage resp = await client.GetAsync(metadataUri);
                     if (resp.StatusCode != HttpStatusCode.OK)
                     {
@@ -850,8 +855,8 @@ namespace CRMJSWebAPIServiceUtil
             }
         }
 
-        private  void buildButton_Click(object sender, RoutedEventArgs e)
-        {            
+        private void buildButton_Click(object sender, RoutedEventArgs e)
+        {
 
             if (baseNamespaceValue.ToLower().Equals("xrm") || baseNamespaceValue.ToLower().Equals("mscrm"))
             {
@@ -861,7 +866,7 @@ namespace CRMJSWebAPIServiceUtil
             {
                 buildButton.IsEnabled = false;
                 buildMessageLabel.Text = "Starting build. Please wait.";
-                
+
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.WorkerReportsProgress = true;
                 worker.ProgressChanged += Worker_ProgressChanged;
@@ -871,9 +876,9 @@ namespace CRMJSWebAPIServiceUtil
 
             }
 
- 
-            
-            
+
+
+
 
         }
 
@@ -965,7 +970,7 @@ namespace CRMJSWebAPIServiceUtil
             {
                 MessageBox.Show(string.Format("Error building library: {0}", ex.Message), "Error");
             }
-            
+
             writer.WriteJavaScriptFile(outputFolderValue, builtLibrary);
 
             (sender as BackgroundWorker).ReportProgress(2);
@@ -981,7 +986,7 @@ namespace CRMJSWebAPIServiceUtil
             tswriter.WriteTSFile(outputFolderValue);
         }
 
-       
+
 
         private void openFolderButton_Click(object sender, RoutedEventArgs e)
         {
@@ -1230,7 +1235,7 @@ namespace CRMJSWebAPIServiceUtil
             {
                 using (HttpClient client = getHttpClient())
                 {
-                    string formQuery = string.Format("v{0}/systemforms?$select=formxml&$filter=objecttypecode%20eq%20'{1}'",  version, entityLogicalName);
+                    string formQuery = string.Format("v{0}/systemforms?$select=formxml&$filter=objecttypecode%20eq%20'{1}'", version, entityLogicalName);
                     HttpResponseMessage resp = await client.GetAsync(formQuery);
                     if (resp.StatusCode != HttpStatusCode.OK)
                     {

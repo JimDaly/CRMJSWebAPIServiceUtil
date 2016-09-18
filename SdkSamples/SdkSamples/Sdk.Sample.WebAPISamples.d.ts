@@ -30,13 +30,13 @@ declare namespace Sdk.Sample {
     //ADAL Support END
 
     interface propertyType {
-        readonly name: string;
-        readonly type: string;
+         name: string;
+         type: string;
     }
 
     interface navigationPropertyType {
-        readonly name: string;
-        readonly type: Function;
+         name: string;
+         type: Function;
     }
 
     interface entityCollection {
@@ -51,252 +51,252 @@ declare namespace Sdk.Sample {
 
     //Metadata property interfaces START
     interface activitypointerProperties {
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly description: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly subject: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     description: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     subject: propertyType;
 }
 interface activitypointerLookups {
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
-    readonly regardingobjectid_opportunity: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
+     regardingobjectid_opportunity: navigationPropertyType;
 }
 interface activitypointerCollections {
-    readonly activity_pointer_letter: navigationPropertyType;
-    readonly activity_pointer_opportunity_close: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
-    readonly ActivityPointer_QueueItem: navigationPropertyType;
+     activity_pointer_letter: navigationPropertyType;
+     activity_pointer_opportunity_close: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
+     ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface contactProperties {
-    readonly annualincome: propertyType;
-    readonly contactid: propertyType;
-    readonly createdon: propertyType;
-    readonly description: propertyType;
-    readonly firstname: propertyType;
-    readonly fullname: propertyType;
-    readonly jobtitle: propertyType;
-    readonly lastname: propertyType;
-    readonly telephone1: propertyType;
+     annualincome: propertyType;
+     contactid: propertyType;
+     createdon: propertyType;
+     description: propertyType;
+     firstname: propertyType;
+     fullname: propertyType;
+     jobtitle: propertyType;
+     lastname: propertyType;
+     telephone1: propertyType;
 }
 interface contactLookups {
-    readonly masterid: navigationPropertyType;
-    readonly parentcustomerid_account: navigationPropertyType;
-    readonly parentcustomerid_contact: navigationPropertyType;
+     masterid: navigationPropertyType;
+     parentcustomerid_account: navigationPropertyType;
+     parentcustomerid_contact: navigationPropertyType;
 }
 interface contactCollections {
-    readonly account_primary_contact: navigationPropertyType;
-    readonly Contact_ActivityPointers: navigationPropertyType;
-    readonly Contact_Annotation: navigationPropertyType;
-    readonly contact_as_primary_contact: navigationPropertyType;
-    readonly contact_as_responsible_contact: navigationPropertyType;
-    readonly contact_customer_contacts: navigationPropertyType;
-    readonly Contact_Letters: navigationPropertyType;
-    readonly contact_master_contact: navigationPropertyType;
-    readonly Contact_Tasks: navigationPropertyType;
-    readonly incident_customer_contacts: navigationPropertyType;
-    readonly opportunity_customer_contacts: navigationPropertyType;
-    readonly opportunity_parent_contact: navigationPropertyType;
+     account_primary_contact: navigationPropertyType;
+     Contact_ActivityPointers: navigationPropertyType;
+     Contact_Annotation: navigationPropertyType;
+     contact_as_primary_contact: navigationPropertyType;
+     contact_as_responsible_contact: navigationPropertyType;
+     contact_customer_contacts: navigationPropertyType;
+     Contact_Letters: navigationPropertyType;
+     contact_master_contact: navigationPropertyType;
+     Contact_Tasks: navigationPropertyType;
+     incident_customer_contacts: navigationPropertyType;
+     opportunity_customer_contacts: navigationPropertyType;
+     opportunity_parent_contact: navigationPropertyType;
 }
 interface accountProperties {
-    readonly accountid: propertyType;
-    readonly description: propertyType;
-    readonly name: propertyType;
-    readonly revenue: propertyType;
-    readonly telephone1: propertyType;
+     accountid: propertyType;
+     description: propertyType;
+     name: propertyType;
+     revenue: propertyType;
+     telephone1: propertyType;
 }
 interface accountLookups {
-    readonly masterid: navigationPropertyType;
-    readonly parentaccountid: navigationPropertyType;
-    readonly primarycontactid: navigationPropertyType;
+     masterid: navigationPropertyType;
+     parentaccountid: navigationPropertyType;
+     primarycontactid: navigationPropertyType;
 }
 interface accountCollections {
-    readonly Account_ActivityPointers: navigationPropertyType;
-    readonly Account_Annotation: navigationPropertyType;
-    readonly Account_Letters: navigationPropertyType;
-    readonly account_master_account: navigationPropertyType;
-    readonly account_parent_account: navigationPropertyType;
-    readonly Account_Tasks: navigationPropertyType;
-    readonly contact_customer_accounts: navigationPropertyType;
-    readonly incident_customer_accounts: navigationPropertyType;
-    readonly opportunity_customer_accounts: navigationPropertyType;
-    readonly opportunity_parent_account: navigationPropertyType;
+     Account_ActivityPointers: navigationPropertyType;
+     Account_Annotation: navigationPropertyType;
+     Account_Letters: navigationPropertyType;
+     account_master_account: navigationPropertyType;
+     account_parent_account: navigationPropertyType;
+     Account_Tasks: navigationPropertyType;
+     contact_customer_accounts: navigationPropertyType;
+     incident_customer_accounts: navigationPropertyType;
+     opportunity_customer_accounts: navigationPropertyType;
+     opportunity_parent_account: navigationPropertyType;
 }
 interface taskProperties {
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly description: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly subject: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     description: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     subject: propertyType;
 }
 interface taskLookups {
-    readonly activityid_activitypointer: navigationPropertyType;
-    readonly regardingobjectid_account_task: navigationPropertyType;
-    readonly regardingobjectid_contact_task: navigationPropertyType;
-    readonly regardingobjectid_incident_task: navigationPropertyType;
-    readonly regardingobjectid_opportunity_task: navigationPropertyType;
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
-    readonly regardingobjectid_opportunity: navigationPropertyType;
+     activityid_activitypointer: navigationPropertyType;
+     regardingobjectid_account_task: navigationPropertyType;
+     regardingobjectid_contact_task: navigationPropertyType;
+     regardingobjectid_incident_task: navigationPropertyType;
+     regardingobjectid_opportunity_task: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
+     regardingobjectid_opportunity: navigationPropertyType;
 }
 interface taskCollections {
-    readonly Task_Annotation: navigationPropertyType;
-    readonly Task_QueueItem: navigationPropertyType;
-    readonly activity_pointer_letter: navigationPropertyType;
-    readonly activity_pointer_opportunity_close: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
-    readonly ActivityPointer_QueueItem: navigationPropertyType;
+     Task_Annotation: navigationPropertyType;
+     Task_QueueItem: navigationPropertyType;
+     activity_pointer_letter: navigationPropertyType;
+     activity_pointer_opportunity_close: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
+     ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface competitorProperties {
-    readonly competitorid: propertyType;
-    readonly name: propertyType;
-    readonly strengths: propertyType;
+     competitorid: propertyType;
+     name: propertyType;
+     strengths: propertyType;
 }
 interface competitorCollections {
-    readonly Competitor_Annotation: navigationPropertyType;
-    readonly competitor_opportunity_activities: navigationPropertyType;
-    readonly opportunitycompetitors_association: navigationPropertyType;
+     Competitor_Annotation: navigationPropertyType;
+     competitor_opportunity_activities: navigationPropertyType;
+     opportunitycompetitors_association: navigationPropertyType;
 }
 interface opportunityProperties {
-    readonly description: propertyType;
-    readonly name: propertyType;
-    readonly opportunityid: propertyType;
+     description: propertyType;
+     name: propertyType;
+     opportunityid: propertyType;
 }
 interface opportunityLookups {
-    readonly customerid_account: navigationPropertyType;
-    readonly customerid_contact: navigationPropertyType;
-    readonly parentaccountid: navigationPropertyType;
-    readonly parentcontactid: navigationPropertyType;
+     customerid_account: navigationPropertyType;
+     customerid_contact: navigationPropertyType;
+     parentaccountid: navigationPropertyType;
+     parentcontactid: navigationPropertyType;
 }
 interface opportunityCollections {
-    readonly Opportunity_ActivityPointers: navigationPropertyType;
-    readonly Opportunity_Annotation: navigationPropertyType;
-    readonly Opportunity_Letters: navigationPropertyType;
-    readonly Opportunity_OpportunityClose: navigationPropertyType;
-    readonly Opportunity_Tasks: navigationPropertyType;
-    readonly opportunitycompetitors_association: navigationPropertyType;
+     Opportunity_ActivityPointers: navigationPropertyType;
+     Opportunity_Annotation: navigationPropertyType;
+     Opportunity_Letters: navigationPropertyType;
+     Opportunity_OpportunityClose: navigationPropertyType;
+     Opportunity_Tasks: navigationPropertyType;
+     opportunitycompetitors_association: navigationPropertyType;
 }
 interface savedqueryProperties {
-    readonly name: propertyType;
-    readonly savedqueryid: propertyType;
+     name: propertyType;
+     savedqueryid: propertyType;
 }
 interface userqueryProperties {
-    readonly name: propertyType;
-    readonly userqueryid: propertyType;
+     name: propertyType;
+     userqueryid: propertyType;
 }
 interface letterProperties {
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly description: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly subject: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     description: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     subject: propertyType;
 }
 interface letterLookups {
-    readonly activityid_activitypointer: navigationPropertyType;
-    readonly regardingobjectid_account_letter: navigationPropertyType;
-    readonly regardingobjectid_contact_letter: navigationPropertyType;
-    readonly regardingobjectid_incident_letter: navigationPropertyType;
-    readonly regardingobjectid_opportunity_letter: navigationPropertyType;
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
-    readonly regardingobjectid_opportunity: navigationPropertyType;
+     activityid_activitypointer: navigationPropertyType;
+     regardingobjectid_account_letter: navigationPropertyType;
+     regardingobjectid_contact_letter: navigationPropertyType;
+     regardingobjectid_incident_letter: navigationPropertyType;
+     regardingobjectid_opportunity_letter: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
+     regardingobjectid_opportunity: navigationPropertyType;
 }
 interface letterCollections {
-    readonly Letter_Annotation: navigationPropertyType;
-    readonly Letter_QueueItem: navigationPropertyType;
-    readonly activity_pointer_letter: navigationPropertyType;
-    readonly activity_pointer_opportunity_close: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
-    readonly ActivityPointer_QueueItem: navigationPropertyType;
+     Letter_Annotation: navigationPropertyType;
+     Letter_QueueItem: navigationPropertyType;
+     activity_pointer_letter: navigationPropertyType;
+     activity_pointer_opportunity_close: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
+     ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface opportunitycloseProperties {
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly description: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly subject: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     description: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     subject: propertyType;
 }
 interface opportunitycloseLookups {
-    readonly activityid_activitypointer: navigationPropertyType;
-    readonly competitorid: navigationPropertyType;
-    readonly opportunityid: navigationPropertyType;
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
-    readonly regardingobjectid_opportunity: navigationPropertyType;
+     activityid_activitypointer: navigationPropertyType;
+     competitorid: navigationPropertyType;
+     opportunityid: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
+     regardingobjectid_opportunity: navigationPropertyType;
 }
 interface opportunitycloseCollections {
-    readonly OpportunityClose_Annotation: navigationPropertyType;
-    readonly activity_pointer_letter: navigationPropertyType;
-    readonly activity_pointer_opportunity_close: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
-    readonly ActivityPointer_QueueItem: navigationPropertyType;
+     OpportunityClose_Annotation: navigationPropertyType;
+     activity_pointer_letter: navigationPropertyType;
+     activity_pointer_opportunity_close: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
+     ActivityPointer_QueueItem: navigationPropertyType;
 }
 interface queueProperties {
-    readonly queueid: propertyType;
+     queueid: propertyType;
 }
 interface queueCollections {
-    readonly queue_entries: navigationPropertyType;
+     queue_entries: navigationPropertyType;
 }
 interface queueitemProperties {
-    readonly queueitemid: propertyType;
+     queueitemid: propertyType;
 }
 interface queueitemLookups {
-    readonly objectid_activitypointer: navigationPropertyType;
-    readonly objectid_incident: navigationPropertyType;
-    readonly objectid_letter: navigationPropertyType;
-    readonly objectid_task: navigationPropertyType;
-    readonly queueid: navigationPropertyType;
+     objectid_activitypointer: navigationPropertyType;
+     objectid_incident: navigationPropertyType;
+     objectid_letter: navigationPropertyType;
+     objectid_task: navigationPropertyType;
+     queueid: navigationPropertyType;
 }
 interface annotationProperties {
-    readonly annotationid: propertyType;
+     annotationid: propertyType;
 }
 interface annotationLookups {
-    readonly objectid_account: navigationPropertyType;
-    readonly objectid_competitor: navigationPropertyType;
-    readonly objectid_contact: navigationPropertyType;
-    readonly objectid_incident: navigationPropertyType;
-    readonly objectid_letter: navigationPropertyType;
-    readonly objectid_opportunity: navigationPropertyType;
-    readonly objectid_opportunityclose: navigationPropertyType;
-    readonly objectid_task: navigationPropertyType;
+     objectid_account: navigationPropertyType;
+     objectid_competitor: navigationPropertyType;
+     objectid_contact: navigationPropertyType;
+     objectid_incident: navigationPropertyType;
+     objectid_letter: navigationPropertyType;
+     objectid_opportunity: navigationPropertyType;
+     objectid_opportunityclose: navigationPropertyType;
+     objectid_task: navigationPropertyType;
 }
 interface incidentProperties {
-    readonly incidentid: propertyType;
+     incidentid: propertyType;
 }
 interface incidentLookups {
-    readonly customerid_account: navigationPropertyType;
-    readonly customerid_contact: navigationPropertyType;
-    readonly existingcase: navigationPropertyType;
-    readonly masterid: navigationPropertyType;
-    readonly parentcaseid: navigationPropertyType;
-    readonly primarycontactid: navigationPropertyType;
-    readonly responsiblecontactid: navigationPropertyType;
+     customerid_account: navigationPropertyType;
+     customerid_contact: navigationPropertyType;
+     existingcase: navigationPropertyType;
+     masterid: navigationPropertyType;
+     parentcaseid: navigationPropertyType;
+     primarycontactid: navigationPropertyType;
+     responsiblecontactid: navigationPropertyType;
 }
 interface incidentCollections {
-    readonly Incident_ActivityPointers: navigationPropertyType;
-    readonly Incident_Annotation: navigationPropertyType;
-    readonly incident_existingcase: navigationPropertyType;
-    readonly Incident_Letters: navigationPropertyType;
-    readonly incident_master_incident: navigationPropertyType;
-    readonly incident_parent_incident: navigationPropertyType;
-    readonly Incident_QueueItem: navigationPropertyType;
-    readonly Incident_Tasks: navigationPropertyType;
+     Incident_ActivityPointers: navigationPropertyType;
+     Incident_Annotation: navigationPropertyType;
+     incident_existingcase: navigationPropertyType;
+     Incident_Letters: navigationPropertyType;
+     incident_master_incident: navigationPropertyType;
+     incident_parent_incident: navigationPropertyType;
+     Incident_QueueItem: navigationPropertyType;
+     Incident_Tasks: navigationPropertyType;
 }
 
     //Metadata property interfaces END
 
     interface crmbaseentity {
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+         type: string;
+         primaryKey: string;
+         entitySetName: string;
         getFormattedValue(propertyName: string, whenNullText?: string): string;
         getUri(): string;
         getId(): string;
@@ -318,11 +318,20 @@ Task performed, or to be performed, by a user. An activity is any action for whi
          * @param activitypointerReference
          */
         constructor(activitypointerReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the activitypointer entity.
+        */
+         type: string;
+        /**
+        Primary key for the activitypointer entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the activitypointer entity: 'activitypointers'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -377,9 +386,9 @@ Task performed, or to be performed, by a user. An activity is any action for whi
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: activitypointerProperties;
-        readonly lookups: activitypointerLookups;
-        readonly collections: activitypointerCollections;
+         properties: activitypointerProperties;
+         lookups: activitypointerLookups;
+         collections: activitypointerCollections;
         /**
         Unique identifier of the activity.
         */
@@ -491,11 +500,20 @@ Person with whom a business unit has a relationship, such as customer, supplier,
          * @param contactReference
          */
         constructor(contactReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the contact entity.
+        */
+         type: string;
+        /**
+        Primary key for the contact entity: 'contactid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the contact entity: 'contacts'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -550,9 +568,9 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: contactProperties;
-        readonly lookups: contactLookups;
-        readonly collections: contactCollections;
+         properties: contactProperties;
+         lookups: contactLookups;
+         collections: contactCollections;
         /**
         Type the contact's annual income for use in profiling and financial analysis.
         */
@@ -564,7 +582,7 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         /**
         Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
         */
-        readonly createdon: Date;
+         createdon: Date;
         /**
         Type additional information to describe the contact, such as an excerpt from the company's website.
         */
@@ -576,7 +594,7 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         /**
         Combines and shows the contact's first and last names so that the full name can be displayed in views and reports.
         */
-        readonly fullname: string;
+         fullname: string;
         /**
         Type the job title of the contact to make sure the contact is addressed correctly in sales calls, email, and marketing campaigns.
         */
@@ -592,7 +610,7 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         /**
         Read only: Unique identifier of the master contact for merge.
         */
-        readonly masterid: contact;
+         masterid: contact;
         /**
         Select the parent account or parent contact for the contact to provide a quick link to additional details, such as financial information, activities, and opportunities.
         This property can only be set on create to create a new related Sdk.Sample.account
@@ -682,11 +700,20 @@ Business that represents a customer or potential customer. The company that is b
          * @param accountReference
          */
         constructor(accountReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the account entity.
+        */
+         type: string;
+        /**
+        Primary key for the account entity: 'accountid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the account entity: 'accounts'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -741,9 +768,9 @@ Business that represents a customer or potential customer. The company that is b
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: accountProperties;
-        readonly lookups: accountLookups;
-        readonly collections: accountCollections;
+         properties: accountProperties;
+         lookups: accountLookups;
+         collections: accountCollections;
         /**
         Unique identifier of the account.
         */
@@ -767,7 +794,7 @@ Business that represents a customer or potential customer. The company that is b
         /**
         Read only: Shows the master account that the account was merged with.
         */
-        readonly masterid: account;
+         masterid: account;
         /**
         Choose the parent account associated with this account to show parent and child businesses in reporting and analytics.
         This property can only be set on create to create a new related Sdk.Sample.account
@@ -849,11 +876,20 @@ Generic activity representing work needed to be done.
          * @param taskReference
          */
         constructor(taskReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the task entity.
+        */
+         type: string;
+        /**
+        Primary key for the task entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the task entity: 'tasks'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -908,9 +944,9 @@ Generic activity representing work needed to be done.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: taskProperties;
-        readonly lookups: taskLookups;
-        readonly collections: taskCollections;
+         properties: taskProperties;
+         lookups: taskLookups;
+         collections: taskCollections;
         /**
         Unique identifier of the task.
         This property can only be set on create to create a new related Sdk.Sample.activitypointer
@@ -1105,11 +1141,20 @@ Business competing for the sale represented by a lead or opportunity.
          * @param competitorReference
          */
         constructor(competitorReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the competitor entity.
+        */
+         type: string;
+        /**
+        Primary key for the competitor entity: 'competitorid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the competitor entity: 'competitors'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1164,9 +1209,9 @@ Business competing for the sale represented by a lead or opportunity.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: competitorProperties;
-        readonly lookups: {};
-        readonly collections: competitorCollections;
+         properties: competitorProperties;
+         lookups: {};
+         collections: competitorCollections;
         /**
         Unique identifier of the competitor.
         */
@@ -1202,11 +1247,20 @@ Potential revenue-generating event, or sale to an account, which needs to be tra
          * @param opportunityReference
          */
         constructor(opportunityReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the opportunity entity.
+        */
+         type: string;
+        /**
+        Primary key for the opportunity entity: 'opportunityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the opportunity entity: 'opportunities'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1261,9 +1315,9 @@ Potential revenue-generating event, or sale to an account, which needs to be tra
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: opportunityProperties;
-        readonly lookups: opportunityLookups;
-        readonly collections: opportunityCollections;
+         properties: opportunityProperties;
+         lookups: opportunityLookups;
+         collections: opportunityCollections;
         /**
         Type additional information to describe the opportunity, such as possible products to sell or past purchases from the customer.
         */
@@ -1371,11 +1425,20 @@ Saved query against the database.
          * @param savedqueryReference
          */
         constructor(savedqueryReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the savedquery entity.
+        */
+         type: string;
+        /**
+        Primary key for the savedquery entity: 'savedqueryid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the savedquery entity: 'savedqueries'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1430,9 +1493,9 @@ Saved query against the database.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: savedqueryProperties;
-        readonly lookups: {};
-        readonly collections: {};
+         properties: savedqueryProperties;
+         lookups: {};
+         collections: {};
         /**
         Type a name for the view to describe what results the view will contain. This name is visible to users in the View list.
         */
@@ -1452,11 +1515,20 @@ Saved database query that is owned by a user.
          * @param userqueryReference
          */
         constructor(userqueryReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the userquery entity.
+        */
+         type: string;
+        /**
+        Primary key for the userquery entity: 'userqueryid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the userquery entity: 'userqueries'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1511,9 +1583,9 @@ Saved database query that is owned by a user.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: userqueryProperties;
-        readonly lookups: {};
-        readonly collections: {};
+         properties: userqueryProperties;
+         lookups: {};
+         collections: {};
         /**
         Type a descriptive name for the saved view.
         */
@@ -1533,11 +1605,20 @@ Activity that tracks the delivery of a letter. The activity can contain the elec
          * @param letterReference
          */
         constructor(letterReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the letter entity.
+        */
+         type: string;
+        /**
+        Primary key for the letter entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the letter entity: 'letters'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1592,9 +1673,9 @@ Activity that tracks the delivery of a letter. The activity can contain the elec
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: letterProperties;
-        readonly lookups: letterLookups;
-        readonly collections: letterCollections;
+         properties: letterProperties;
+         lookups: letterLookups;
+         collections: letterCollections;
         /**
         Unique identifier of the letter activity.
         This property can only be set on create to create a new related Sdk.Sample.activitypointer
@@ -1789,11 +1870,20 @@ Activity that is created automatically when an opportunity is closed, containing
          * @param opportunitycloseReference
          */
         constructor(opportunitycloseReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the opportunityclose entity.
+        */
+         type: string;
+        /**
+        Primary key for the opportunityclose entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the opportunityclose entity: 'opportunitycloses'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1848,9 +1938,9 @@ Activity that is created automatically when an opportunity is closed, containing
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: opportunitycloseProperties;
-        readonly lookups: opportunitycloseLookups;
-        readonly collections: opportunitycloseCollections;
+         properties: opportunitycloseProperties;
+         lookups: opportunitycloseLookups;
+         collections: opportunitycloseCollections;
         /**
         Unique identifier of the opportunity close activity.
         This property can only be set on create to create a new related Sdk.Sample.activitypointer
@@ -2011,11 +2101,20 @@ A list of records that require action, such as accounts, activities, and cases.
          * @param queueReference
          */
         constructor(queueReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the queue entity.
+        */
+         type: string;
+        /**
+        Primary key for the queue entity: 'queueid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the queue entity: 'queues'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -2070,9 +2169,9 @@ A list of records that require action, such as accounts, activities, and cases.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: queueProperties;
-        readonly lookups: {};
-        readonly collections: queueCollections;
+         properties: queueProperties;
+         lookups: {};
+         collections: queueCollections;
         /**
         Unique identifier of the queue.
         */
@@ -2092,11 +2191,20 @@ A specific item in a queue, such as a case record or an activity record.
          * @param queueitemReference
          */
         constructor(queueitemReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the queueitem entity.
+        */
+         type: string;
+        /**
+        Primary key for the queueitem entity: 'queueitemid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the queueitem entity: 'queueitems'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -2151,9 +2259,9 @@ A specific item in a queue, such as a case record or an activity record.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: queueitemProperties;
-        readonly lookups: queueitemLookups;
-        readonly collections: {};
+         properties: queueitemProperties;
+         lookups: queueitemLookups;
+         collections: {};
         /**
         Unique identifier of the queue item.
         */
@@ -2244,11 +2352,20 @@ Note that is attached to one or more objects, including other notes.
          * @param annotationReference
          */
         constructor(annotationReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the annotation entity.
+        */
+         type: string;
+        /**
+        Primary key for the annotation entity: 'annotationid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the annotation entity: 'annotations'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -2303,9 +2420,9 @@ Note that is attached to one or more objects, including other notes.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: annotationProperties;
-        readonly lookups: annotationLookups;
-        readonly collections: {};
+         properties: annotationProperties;
+         lookups: annotationLookups;
+         collections: {};
         /**
         Unique identifier of the note.
         */
@@ -2441,11 +2558,20 @@ Service request case associated with a contract.
          * @param incidentReference
          */
         constructor(incidentReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the incident entity.
+        */
+         type: string;
+        /**
+        Primary key for the incident entity: 'incidentid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the incident entity: 'incidents'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -2500,9 +2626,9 @@ Service request case associated with a contract.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: incidentProperties;
-        readonly lookups: incidentLookups;
-        readonly collections: incidentCollections;
+         properties: incidentProperties;
+         lookups: incidentLookups;
+         collections: incidentCollections;
         /**
         Unique identifier of the case.
         */

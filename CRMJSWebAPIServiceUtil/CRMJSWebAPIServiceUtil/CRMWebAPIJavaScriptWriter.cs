@@ -374,9 +374,25 @@ namespace CRMWebAPIJavaScriptWriter
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(string.Format("this.{0} = function ({0}Reference) {{", getEntityName(entity)));
-            sb.Append(string.Format(@"if (!(isInstanceOf({0}.{1}.{2}, this))) {{
+
+            if (getEntityName(entity) != "activitypointer" && getEntityName(entity) != "principal")
+            {
+
+                sb.Append(string.Format(@"if (!(isInstanceOf({0}.{1}.{2}, this))) {{
     return new {0}.{1}.{2}({2}Reference);
 }}" + Environment.NewLine, RootNameSpace, SubNamespace, getEntityName(entity)));
+
+                //If a typed instance is passed to the constructor, just return it.
+                sb.Append(string.Format(@"if (isInstanceOf({0}.{1}.{2}, {2}Reference))
+        {{
+            {2}Reference.resetChangeTracking();            
+            return {2}Reference;
+        }}" + Environment.NewLine, RootNameSpace, SubNamespace, getEntityName(entity)));
+
+            }
+
+
+
             sb.AppendLine(string.Format("{0}.{1}.{2}.call(this);", RootNameSpace, SubNamespace, entity.BaseEntity));
 
 

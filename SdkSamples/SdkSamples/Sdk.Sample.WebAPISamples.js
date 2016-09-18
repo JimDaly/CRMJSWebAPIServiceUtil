@@ -267,6 +267,12 @@ Sdk.Sample = Sdk.Sample || {};
         Object.defineProperties(this, {
             "value": {
                 get: function () { return _value; },
+                set: function (value) {
+                    if (!isArrayOf(Sdk.Sample.crmbaseentity, value)) {
+                        throw new Error(NS + ".entityCollection value property must be an array of " + NS + ".crmbaseentity");
+                    }
+                    _value = value;
+                },
                 enumerable: false
             },
             "nextLink": {
@@ -3082,7 +3088,7 @@ Sdk.Sample = Sdk.Sample || {};
 
                     }
                     else {
-                        reject(TS.TEST.errorHandler(req.response));
+                        reject(Sdk.Sample.errorHandler(req.response));
                     }
                 }
             };
@@ -3382,6 +3388,21 @@ Sdk.Sample = Sdk.Sample || {};
                 if (typeof Sdk.Sample[property] == "function") {
                     if (Sdk.Sample[property].isEntityClass) {
                         if (isTypedUri(Sdk.Sample[property], uri)) {
+                            return Sdk.Sample[property];
+                        }
+                    }
+                }
+            }
+        }
+        throw new Error("Type not defined in library.");
+    }
+    //Returns the appropriate 'class' function for entities defined in the library from entitysetname
+    function getTypeFromEntitySetName(entitySetName) {
+        for (var property in Sdk.Sample) {
+            if (Sdk.Sample.hasOwnProperty(property)) {
+                if (typeof Sdk.Sample[property] == "function") {
+                    if (Sdk.Sample[property].isEntityClass) {
+                        if (Sdk.Sample[property]().entitySetName == entitySetName) {
                             return Sdk.Sample[property];
                         }
                     }
@@ -4090,6 +4111,101 @@ Sdk.Sample = Sdk.Sample || {};
 
     }
 
+    /** 
+ * @function Sdk.Sample.queryTypedEntity
+ * @memberOf! Sdk.Sample
+ * @description Retrieve multiple typed entities matching the criteria you define
+ * @param {String} entitySetName The entity Set name for the type of entity you want to retrieve.
+ * @param {String} [query] The system query parameters you want to apply.
+ * @param {Boolean} [includeFormattedValues] Whether you want to have formatted values included in the results
+ * @param {Number} [maxPageSize] A number that limits the number of entities to be retrieved in the query and allows for paging
+ * @param {Boolean} [retrieveExpandedCollections] Whether you want to recursively retrieve typed entities for collections returned.
+ * @param {GUID} [callerId] A string representation of the GUID value for the user to impersonate.
+ * @returns {Promise} A promise that returns the entities when resolved or an Error if rejected
+ */
+    this.queryTypedEntity = function (entitySetName, query, includeFormattedValues, maxPageSize, retrieveExpandedCollections, callerId) {
+        return new Promise(function (resolve, reject) {
+            if (!isString(entitySetName)) {
+                throw new Error(NS + ".queryTypedEntity entitySetName parameter must be a string.");
+            }
+            if (!isOptionalString(query)) {
+                throw new Error(NS + ".queryTypedEntity query parameter must be a string or null.");
+            }
+            if (!isOptionalBoolean(includeFormattedValues)) {
+                throw new Error(NS + ".queryTypedEntity includeFormattedValues parameter must be a boolean or null.");
+            }
+            if (!isOptionalNumber(maxPageSize)) {
+                throw new Error(NS + ".queryTypedEntity maxPageSize parameter must be a number or null.");
+            }
+            if (!isOptionalBoolean(retrieveExpandedCollections)) {
+                throw new Error(NS + ".queryTypedEntity retrieveExpandedCollections parameter must be a boolean or null.");
+            }
+            if (!isOptionalGuid(callerId)) {
+                throw new Error(NS + ".queryTypedEntity callerId parameter must be a string representation of a GUID value, null or undefined.");
+            }
+            var url = getWebAPIPath() + entitySetName;
+            if (!isNullOrUndefined(query)) {
+                url = url + "?" + query;
+            }
+
+            var type = getTypeFromEntitySetName(entitySetName);
+
+            Sdk.Sample.query(entitySetName, query, includeFormattedValues, maxPageSize, callerId)
+            .then(function (results) {
+                results.value = results.value.map(function (x) {
+                    var e = new type(x);
+                    e.resetChangeTracking();
+                    return e;
+
+                });
+                if (retrieveExpandedCollections) {
+                    var retrieves = [];
+                    results.value.forEach(function (e, i) {
+
+                        for (var collection in e.collections) {
+                            if (Array.isArray(e[collection])) {
+                                retrieves.push(getChildEntities(e, collection, includeFormattedValues, callerId));
+                            }
+                        }
+
+                        for (var lookup in e.lookups) {
+                            if (!isNullOrUndefined(e[lookup])) {
+                                var lu = new e.lookups[lookup].type(e[lookup]);
+                                lu.resetChangeTracking();
+                                e[lookup] = lu;
+                            }
+                        }
+                    });
+                    Promise.all(retrieves)
+                    .then(function () {
+                        resolve(results);
+                    })
+                    .catch(function (error) { reject(error) })
+                }
+                else {
+                    resolve(results);
+                }
+
+            })
+            .catch(function (error) { reject(error) })
+        });
+
+    }
+    // Used by queryTypedEntity to retrieve requested collection-valued navigation properties when retrieveExpandedCollections is true.
+    function getChildEntities(e, collection, includeFormattedValues, callerId) {
+        return new Promise(function (resolve, reject) {
+            Sdk.Sample.retrieve(e.internal[collection + "@odata.nextLink"], null, null, includeFormattedValues, null, callerId)
+             .then(function (retrievedResults) {
+                 retrievedResults.value.forEach(function (r) {
+                     var child = new e.collections[collection].type(r);
+                     child.resetChangeTracking();
+                     e[collection].push(child);
+                 });
+                 resolve();
+             })
+             .catch(function (err) { reject(err) });
+        });
+    }
     /** 
     * @function Sdk.Sample.getNextPage
     * @memberOf! Sdk.Sample

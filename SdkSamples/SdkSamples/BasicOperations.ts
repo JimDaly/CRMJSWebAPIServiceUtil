@@ -175,7 +175,7 @@ function basicOperationsSample() {
         .then(function (entity) {
             account2 = <Sdk.Sample.account>entity;
             entitiesToDelete.push(account2.getUri());
-            contact2 = new ns.contact(account2.primarycontactid);
+            contact2 = new ns.contact(account2.primarycontactid);            
             entitiesToDelete.push(contact2.getUri());
 
             console.log("Account '%s' has primary contact '%s':\n"

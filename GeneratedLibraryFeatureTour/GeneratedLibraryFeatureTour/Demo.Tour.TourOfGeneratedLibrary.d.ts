@@ -30,13 +30,13 @@ declare namespace Demo.Tour {
     //ADAL Support END
 
     interface propertyType {
-        readonly name: string;
-        readonly type: string;
+         name: string;
+         type: string;
     }
 
     interface navigationPropertyType {
-        readonly name: string;
-        readonly type: Function;
+         name: string;
+         type: Function;
     }
 
     interface entityCollection {
@@ -51,363 +51,363 @@ declare namespace Demo.Tour {
 
     //Metadata property interfaces START
     interface activitypointerProperties {
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly actualend: propertyType;
-    readonly actualstart: propertyType;
-    readonly community: propertyType;
-    readonly createdon: propertyType;
-    readonly deliverylastattemptedon: propertyType;
-    readonly deliveryprioritycode: propertyType;
-    readonly description: propertyType;
-    readonly exchangerate: propertyType;
-    readonly isbilled: propertyType;
-    readonly ismapiprivate: propertyType;
-    readonly isregularactivity: propertyType;
-    readonly isworkflowcreated: propertyType;
-    readonly lastonholdtime: propertyType;
-    readonly leftvoicemail: propertyType;
-    readonly modifiedon: propertyType;
-    readonly onholdtime: propertyType;
-    readonly postponeactivityprocessinguntil: propertyType;
-    readonly prioritycode: propertyType;
-    readonly processid: propertyType;
-    readonly scheduleddurationminutes: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly statecode: propertyType;
-    readonly statuscode: propertyType;
-    readonly subject: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     actualend: propertyType;
+     actualstart: propertyType;
+     community: propertyType;
+     createdon: propertyType;
+     deliverylastattemptedon: propertyType;
+     deliveryprioritycode: propertyType;
+     description: propertyType;
+     exchangerate: propertyType;
+     isbilled: propertyType;
+     ismapiprivate: propertyType;
+     isregularactivity: propertyType;
+     isworkflowcreated: propertyType;
+     lastonholdtime: propertyType;
+     leftvoicemail: propertyType;
+     modifiedon: propertyType;
+     onholdtime: propertyType;
+     postponeactivityprocessinguntil: propertyType;
+     prioritycode: propertyType;
+     processid: propertyType;
+     scheduleddurationminutes: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     statecode: propertyType;
+     statuscode: propertyType;
+     subject: propertyType;
 }
 interface activitypointerLookups {
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
 }
 interface activitypointerCollections {
-    readonly activity_pointer_incident_resolution: navigationPropertyType;
-    readonly activity_pointer_phonecall: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
+     activity_pointer_incident_resolution: navigationPropertyType;
+     activity_pointer_phonecall: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
 }
 interface accountProperties {
-    readonly accountcategorycode: propertyType;
-    readonly accountid: propertyType;
-    readonly accountnumber: propertyType;
-    readonly address1_addresstypecode: propertyType;
-    readonly address1_city: propertyType;
-    readonly address1_composite: propertyType;
-    readonly address1_country: propertyType;
-    readonly address1_freighttermscode: propertyType;
-    readonly address1_line1: propertyType;
-    readonly address1_line2: propertyType;
-    readonly address1_line3: propertyType;
-    readonly address1_name: propertyType;
-    readonly address1_postalcode: propertyType;
-    readonly address1_shippingmethodcode: propertyType;
-    readonly address1_stateorprovince: propertyType;
-    readonly address1_telephone1: propertyType;
-    readonly creditlimit: propertyType;
-    readonly creditonhold: propertyType;
-    readonly customertypecode: propertyType;
-    readonly description: propertyType;
-    readonly donotbulkemail: propertyType;
-    readonly donotemail: propertyType;
-    readonly donotfax: propertyType;
-    readonly donotphone: propertyType;
-    readonly donotpostalmail: propertyType;
-    readonly donotsendmm: propertyType;
-    readonly emailaddress1: propertyType;
-    readonly fax: propertyType;
-    readonly industrycode: propertyType;
-    readonly lastusedincampaign: propertyType;
-    readonly name: propertyType;
-    readonly numberofemployees: propertyType;
-    readonly opendeals: propertyType;
-    readonly openrevenue: propertyType;
-    readonly ownershipcode: propertyType;
-    readonly paymenttermscode: propertyType;
-    readonly preferredappointmentdaycode: propertyType;
-    readonly preferredappointmenttimecode: propertyType;
-    readonly preferredcontactmethodcode: propertyType;
-    readonly revenue: propertyType;
-    readonly sic: propertyType;
-    readonly statecode: propertyType;
-    readonly telephone1: propertyType;
-    readonly telephone2: propertyType;
-    readonly tickersymbol: propertyType;
-    readonly websiteurl: propertyType;
+     accountcategorycode: propertyType;
+     accountid: propertyType;
+     accountnumber: propertyType;
+     address1_addresstypecode: propertyType;
+     address1_city: propertyType;
+     address1_composite: propertyType;
+     address1_country: propertyType;
+     address1_freighttermscode: propertyType;
+     address1_line1: propertyType;
+     address1_line2: propertyType;
+     address1_line3: propertyType;
+     address1_name: propertyType;
+     address1_postalcode: propertyType;
+     address1_shippingmethodcode: propertyType;
+     address1_stateorprovince: propertyType;
+     address1_telephone1: propertyType;
+     creditlimit: propertyType;
+     creditonhold: propertyType;
+     customertypecode: propertyType;
+     description: propertyType;
+     donotbulkemail: propertyType;
+     donotemail: propertyType;
+     donotfax: propertyType;
+     donotphone: propertyType;
+     donotpostalmail: propertyType;
+     donotsendmm: propertyType;
+     emailaddress1: propertyType;
+     fax: propertyType;
+     industrycode: propertyType;
+     lastusedincampaign: propertyType;
+     name: propertyType;
+     numberofemployees: propertyType;
+     opendeals: propertyType;
+     openrevenue: propertyType;
+     ownershipcode: propertyType;
+     paymenttermscode: propertyType;
+     preferredappointmentdaycode: propertyType;
+     preferredappointmenttimecode: propertyType;
+     preferredcontactmethodcode: propertyType;
+     revenue: propertyType;
+     sic: propertyType;
+     statecode: propertyType;
+     telephone1: propertyType;
+     telephone2: propertyType;
+     tickersymbol: propertyType;
+     websiteurl: propertyType;
 }
 interface accountLookups {
-    readonly masterid: navigationPropertyType;
-    readonly parentaccountid: navigationPropertyType;
-    readonly primarycontactid: navigationPropertyType;
+     masterid: navigationPropertyType;
+     parentaccountid: navigationPropertyType;
+     primarycontactid: navigationPropertyType;
 }
 interface accountCollections {
-    readonly Account_ActivityPointers: navigationPropertyType;
-    readonly account_master_account: navigationPropertyType;
-    readonly account_parent_account: navigationPropertyType;
-    readonly Account_Phonecalls: navigationPropertyType;
-    readonly Account_Tasks: navigationPropertyType;
-    readonly contact_customer_accounts: navigationPropertyType;
-    readonly incident_customer_accounts: navigationPropertyType;
+     Account_ActivityPointers: navigationPropertyType;
+     account_master_account: navigationPropertyType;
+     account_parent_account: navigationPropertyType;
+     Account_Phonecalls: navigationPropertyType;
+     Account_Tasks: navigationPropertyType;
+     contact_customer_accounts: navigationPropertyType;
+     incident_customer_accounts: navigationPropertyType;
 }
 interface contactProperties {
-    readonly accountrolecode: propertyType;
-    readonly address1_addresstypecode: propertyType;
-    readonly address1_city: propertyType;
-    readonly address1_composite: propertyType;
-    readonly address1_country: propertyType;
-    readonly address1_freighttermscode: propertyType;
-    readonly address1_line1: propertyType;
-    readonly address1_line2: propertyType;
-    readonly address1_line3: propertyType;
-    readonly address1_name: propertyType;
-    readonly address1_postalcode: propertyType;
-    readonly address1_shippingmethodcode: propertyType;
-    readonly address1_stateorprovince: propertyType;
-    readonly address1_telephone1: propertyType;
-    readonly anniversary: propertyType;
-    readonly assistantname: propertyType;
-    readonly assistantphone: propertyType;
-    readonly birthdate: propertyType;
-    readonly contactid: propertyType;
-    readonly creditlimit: propertyType;
-    readonly creditonhold: propertyType;
-    readonly department: propertyType;
-    readonly description: propertyType;
-    readonly donotbulkemail: propertyType;
-    readonly donotemail: propertyType;
-    readonly donotfax: propertyType;
-    readonly donotphone: propertyType;
-    readonly donotpostalmail: propertyType;
-    readonly donotsendmm: propertyType;
-    readonly emailaddress1: propertyType;
-    readonly familystatuscode: propertyType;
-    readonly fax: propertyType;
-    readonly firstname: propertyType;
-    readonly fullname: propertyType;
-    readonly gendercode: propertyType;
-    readonly jobtitle: propertyType;
-    readonly lastname: propertyType;
-    readonly lastusedincampaign: propertyType;
-    readonly managername: propertyType;
-    readonly managerphone: propertyType;
-    readonly middlename: propertyType;
-    readonly mobilephone: propertyType;
-    readonly paymenttermscode: propertyType;
-    readonly preferredappointmentdaycode: propertyType;
-    readonly preferredappointmenttimecode: propertyType;
-    readonly preferredcontactmethodcode: propertyType;
-    readonly salutation: propertyType;
-    readonly spousesname: propertyType;
-    readonly statecode: propertyType;
-    readonly telephone1: propertyType;
-    readonly telephone2: propertyType;
-    readonly websiteurl: propertyType;
+     accountrolecode: propertyType;
+     address1_addresstypecode: propertyType;
+     address1_city: propertyType;
+     address1_composite: propertyType;
+     address1_country: propertyType;
+     address1_freighttermscode: propertyType;
+     address1_line1: propertyType;
+     address1_line2: propertyType;
+     address1_line3: propertyType;
+     address1_name: propertyType;
+     address1_postalcode: propertyType;
+     address1_shippingmethodcode: propertyType;
+     address1_stateorprovince: propertyType;
+     address1_telephone1: propertyType;
+     anniversary: propertyType;
+     assistantname: propertyType;
+     assistantphone: propertyType;
+     birthdate: propertyType;
+     contactid: propertyType;
+     creditlimit: propertyType;
+     creditonhold: propertyType;
+     department: propertyType;
+     description: propertyType;
+     donotbulkemail: propertyType;
+     donotemail: propertyType;
+     donotfax: propertyType;
+     donotphone: propertyType;
+     donotpostalmail: propertyType;
+     donotsendmm: propertyType;
+     emailaddress1: propertyType;
+     familystatuscode: propertyType;
+     fax: propertyType;
+     firstname: propertyType;
+     fullname: propertyType;
+     gendercode: propertyType;
+     jobtitle: propertyType;
+     lastname: propertyType;
+     lastusedincampaign: propertyType;
+     managername: propertyType;
+     managerphone: propertyType;
+     middlename: propertyType;
+     mobilephone: propertyType;
+     paymenttermscode: propertyType;
+     preferredappointmentdaycode: propertyType;
+     preferredappointmenttimecode: propertyType;
+     preferredcontactmethodcode: propertyType;
+     salutation: propertyType;
+     spousesname: propertyType;
+     statecode: propertyType;
+     telephone1: propertyType;
+     telephone2: propertyType;
+     websiteurl: propertyType;
 }
 interface contactLookups {
-    readonly masterid: navigationPropertyType;
-    readonly parentcustomerid_account: navigationPropertyType;
-    readonly parentcustomerid_contact: navigationPropertyType;
+     masterid: navigationPropertyType;
+     parentcustomerid_account: navigationPropertyType;
+     parentcustomerid_contact: navigationPropertyType;
 }
 interface contactCollections {
-    readonly account_primary_contact: navigationPropertyType;
-    readonly Contact_ActivityPointers: navigationPropertyType;
-    readonly contact_as_primary_contact: navigationPropertyType;
-    readonly contact_as_responsible_contact: navigationPropertyType;
-    readonly contact_customer_contacts: navigationPropertyType;
-    readonly contact_master_contact: navigationPropertyType;
-    readonly Contact_Phonecalls: navigationPropertyType;
-    readonly Contact_Tasks: navigationPropertyType;
-    readonly incident_customer_contacts: navigationPropertyType;
+     account_primary_contact: navigationPropertyType;
+     Contact_ActivityPointers: navigationPropertyType;
+     contact_as_primary_contact: navigationPropertyType;
+     contact_as_responsible_contact: navigationPropertyType;
+     contact_customer_contacts: navigationPropertyType;
+     contact_master_contact: navigationPropertyType;
+     Contact_Phonecalls: navigationPropertyType;
+     Contact_Tasks: navigationPropertyType;
+     incident_customer_contacts: navigationPropertyType;
 }
 interface taskProperties {
-    readonly category: propertyType;
-    readonly percentcomplete: propertyType;
-    readonly subcategory: propertyType;
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly actualend: propertyType;
-    readonly actualstart: propertyType;
-    readonly community: propertyType;
-    readonly createdon: propertyType;
-    readonly deliverylastattemptedon: propertyType;
-    readonly deliveryprioritycode: propertyType;
-    readonly description: propertyType;
-    readonly exchangerate: propertyType;
-    readonly isbilled: propertyType;
-    readonly ismapiprivate: propertyType;
-    readonly isregularactivity: propertyType;
-    readonly isworkflowcreated: propertyType;
-    readonly lastonholdtime: propertyType;
-    readonly leftvoicemail: propertyType;
-    readonly modifiedon: propertyType;
-    readonly onholdtime: propertyType;
-    readonly postponeactivityprocessinguntil: propertyType;
-    readonly prioritycode: propertyType;
-    readonly processid: propertyType;
-    readonly scheduleddurationminutes: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly statecode: propertyType;
-    readonly statuscode: propertyType;
-    readonly subject: propertyType;
+     category: propertyType;
+     percentcomplete: propertyType;
+     subcategory: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     actualend: propertyType;
+     actualstart: propertyType;
+     community: propertyType;
+     createdon: propertyType;
+     deliverylastattemptedon: propertyType;
+     deliveryprioritycode: propertyType;
+     description: propertyType;
+     exchangerate: propertyType;
+     isbilled: propertyType;
+     ismapiprivate: propertyType;
+     isregularactivity: propertyType;
+     isworkflowcreated: propertyType;
+     lastonholdtime: propertyType;
+     leftvoicemail: propertyType;
+     modifiedon: propertyType;
+     onholdtime: propertyType;
+     postponeactivityprocessinguntil: propertyType;
+     prioritycode: propertyType;
+     processid: propertyType;
+     scheduleddurationminutes: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     statecode: propertyType;
+     statuscode: propertyType;
+     subject: propertyType;
 }
 interface taskLookups {
-    readonly activityid_activitypointer: navigationPropertyType;
-    readonly regardingobjectid_account_task: navigationPropertyType;
-    readonly regardingobjectid_contact_task: navigationPropertyType;
-    readonly regardingobjectid_incident_task: navigationPropertyType;
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
+     activityid_activitypointer: navigationPropertyType;
+     regardingobjectid_account_task: navigationPropertyType;
+     regardingobjectid_contact_task: navigationPropertyType;
+     regardingobjectid_incident_task: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
 }
 interface taskCollections {
-    readonly activity_pointer_incident_resolution: navigationPropertyType;
-    readonly activity_pointer_phonecall: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
+     activity_pointer_incident_resolution: navigationPropertyType;
+     activity_pointer_phonecall: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
 }
 interface incidentProperties {
-    readonly blockedprofile: propertyType;
-    readonly caseorigincode: propertyType;
-    readonly casetypecode: propertyType;
-    readonly contractservicelevelcode: propertyType;
-    readonly createdon: propertyType;
-    readonly customersatisfactioncode: propertyType;
-    readonly description: propertyType;
-    readonly escalatedon: propertyType;
-    readonly firstresponsesent: propertyType;
-    readonly followupby: propertyType;
-    readonly incidentid: propertyType;
-    readonly influencescore: propertyType;
-    readonly isescalated: propertyType;
-    readonly messagetypecode: propertyType;
-    readonly prioritycode: propertyType;
-    readonly productserialnumber: propertyType;
-    readonly resolveby: propertyType;
-    readonly responseby: propertyType;
-    readonly sentimentvalue: propertyType;
-    readonly statecode: propertyType;
-    readonly statuscode: propertyType;
-    readonly ticketnumber: propertyType;
-    readonly title: propertyType;
+     blockedprofile: propertyType;
+     caseorigincode: propertyType;
+     casetypecode: propertyType;
+     contractservicelevelcode: propertyType;
+     createdon: propertyType;
+     customersatisfactioncode: propertyType;
+     description: propertyType;
+     escalatedon: propertyType;
+     firstresponsesent: propertyType;
+     followupby: propertyType;
+     incidentid: propertyType;
+     influencescore: propertyType;
+     isescalated: propertyType;
+     messagetypecode: propertyType;
+     prioritycode: propertyType;
+     productserialnumber: propertyType;
+     resolveby: propertyType;
+     responseby: propertyType;
+     sentimentvalue: propertyType;
+     statecode: propertyType;
+     statuscode: propertyType;
+     ticketnumber: propertyType;
+     title: propertyType;
 }
 interface incidentLookups {
-    readonly customerid_account: navigationPropertyType;
-    readonly customerid_contact: navigationPropertyType;
-    readonly existingcase: navigationPropertyType;
-    readonly masterid: navigationPropertyType;
-    readonly parentcaseid: navigationPropertyType;
-    readonly primarycontactid: navigationPropertyType;
-    readonly responsiblecontactid: navigationPropertyType;
+     customerid_account: navigationPropertyType;
+     customerid_contact: navigationPropertyType;
+     existingcase: navigationPropertyType;
+     masterid: navigationPropertyType;
+     parentcaseid: navigationPropertyType;
+     primarycontactid: navigationPropertyType;
+     responsiblecontactid: navigationPropertyType;
 }
 interface incidentCollections {
-    readonly Incident_ActivityPointers: navigationPropertyType;
-    readonly incident_existingcase: navigationPropertyType;
-    readonly Incident_IncidentResolutions: navigationPropertyType;
-    readonly incident_master_incident: navigationPropertyType;
-    readonly incident_parent_incident: navigationPropertyType;
-    readonly Incident_Phonecalls: navigationPropertyType;
-    readonly Incident_Tasks: navigationPropertyType;
+     Incident_ActivityPointers: navigationPropertyType;
+     incident_existingcase: navigationPropertyType;
+     Incident_IncidentResolutions: navigationPropertyType;
+     incident_master_incident: navigationPropertyType;
+     incident_parent_incident: navigationPropertyType;
+     Incident_Phonecalls: navigationPropertyType;
+     Incident_Tasks: navigationPropertyType;
 }
 interface incidentresolutionProperties {
-    readonly category: propertyType;
-    readonly subcategory: propertyType;
-    readonly timespent: propertyType;
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly actualend: propertyType;
-    readonly actualstart: propertyType;
-    readonly community: propertyType;
-    readonly createdon: propertyType;
-    readonly deliverylastattemptedon: propertyType;
-    readonly deliveryprioritycode: propertyType;
-    readonly description: propertyType;
-    readonly exchangerate: propertyType;
-    readonly isbilled: propertyType;
-    readonly ismapiprivate: propertyType;
-    readonly isregularactivity: propertyType;
-    readonly isworkflowcreated: propertyType;
-    readonly lastonholdtime: propertyType;
-    readonly leftvoicemail: propertyType;
-    readonly modifiedon: propertyType;
-    readonly onholdtime: propertyType;
-    readonly postponeactivityprocessinguntil: propertyType;
-    readonly prioritycode: propertyType;
-    readonly processid: propertyType;
-    readonly scheduleddurationminutes: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly statecode: propertyType;
-    readonly statuscode: propertyType;
-    readonly subject: propertyType;
+     category: propertyType;
+     subcategory: propertyType;
+     timespent: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     actualend: propertyType;
+     actualstart: propertyType;
+     community: propertyType;
+     createdon: propertyType;
+     deliverylastattemptedon: propertyType;
+     deliveryprioritycode: propertyType;
+     description: propertyType;
+     exchangerate: propertyType;
+     isbilled: propertyType;
+     ismapiprivate: propertyType;
+     isregularactivity: propertyType;
+     isworkflowcreated: propertyType;
+     lastonholdtime: propertyType;
+     leftvoicemail: propertyType;
+     modifiedon: propertyType;
+     onholdtime: propertyType;
+     postponeactivityprocessinguntil: propertyType;
+     prioritycode: propertyType;
+     processid: propertyType;
+     scheduleddurationminutes: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     statecode: propertyType;
+     statuscode: propertyType;
+     subject: propertyType;
 }
 interface incidentresolutionLookups {
-    readonly activityid_activitypointer: navigationPropertyType;
-    readonly incidentid: navigationPropertyType;
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
+     activityid_activitypointer: navigationPropertyType;
+     incidentid: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
 }
 interface incidentresolutionCollections {
-    readonly activity_pointer_incident_resolution: navigationPropertyType;
-    readonly activity_pointer_phonecall: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
+     activity_pointer_incident_resolution: navigationPropertyType;
+     activity_pointer_phonecall: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
 }
 interface phonecallProperties {
-    readonly category: propertyType;
-    readonly directioncode: propertyType;
-    readonly phonenumber: propertyType;
-    readonly subcategory: propertyType;
-    readonly activityid: propertyType;
-    readonly actualdurationminutes: propertyType;
-    readonly actualend: propertyType;
-    readonly actualstart: propertyType;
-    readonly community: propertyType;
-    readonly createdon: propertyType;
-    readonly deliverylastattemptedon: propertyType;
-    readonly deliveryprioritycode: propertyType;
-    readonly description: propertyType;
-    readonly exchangerate: propertyType;
-    readonly isbilled: propertyType;
-    readonly ismapiprivate: propertyType;
-    readonly isregularactivity: propertyType;
-    readonly isworkflowcreated: propertyType;
-    readonly lastonholdtime: propertyType;
-    readonly leftvoicemail: propertyType;
-    readonly modifiedon: propertyType;
-    readonly onholdtime: propertyType;
-    readonly postponeactivityprocessinguntil: propertyType;
-    readonly prioritycode: propertyType;
-    readonly processid: propertyType;
-    readonly scheduleddurationminutes: propertyType;
-    readonly scheduledend: propertyType;
-    readonly scheduledstart: propertyType;
-    readonly statecode: propertyType;
-    readonly statuscode: propertyType;
-    readonly subject: propertyType;
+     category: propertyType;
+     directioncode: propertyType;
+     phonenumber: propertyType;
+     subcategory: propertyType;
+     activityid: propertyType;
+     actualdurationminutes: propertyType;
+     actualend: propertyType;
+     actualstart: propertyType;
+     community: propertyType;
+     createdon: propertyType;
+     deliverylastattemptedon: propertyType;
+     deliveryprioritycode: propertyType;
+     description: propertyType;
+     exchangerate: propertyType;
+     isbilled: propertyType;
+     ismapiprivate: propertyType;
+     isregularactivity: propertyType;
+     isworkflowcreated: propertyType;
+     lastonholdtime: propertyType;
+     leftvoicemail: propertyType;
+     modifiedon: propertyType;
+     onholdtime: propertyType;
+     postponeactivityprocessinguntil: propertyType;
+     prioritycode: propertyType;
+     processid: propertyType;
+     scheduleddurationminutes: propertyType;
+     scheduledend: propertyType;
+     scheduledstart: propertyType;
+     statecode: propertyType;
+     statuscode: propertyType;
+     subject: propertyType;
 }
 interface phonecallLookups {
-    readonly activityid_activitypointer: navigationPropertyType;
-    readonly regardingobjectid_account_phonecall: navigationPropertyType;
-    readonly regardingobjectid_contact_phonecall: navigationPropertyType;
-    readonly regardingobjectid_incident_phonecall: navigationPropertyType;
-    readonly regardingobjectid_account: navigationPropertyType;
-    readonly regardingobjectid_contact: navigationPropertyType;
-    readonly regardingobjectid_incident: navigationPropertyType;
+     activityid_activitypointer: navigationPropertyType;
+     regardingobjectid_account_phonecall: navigationPropertyType;
+     regardingobjectid_contact_phonecall: navigationPropertyType;
+     regardingobjectid_incident_phonecall: navigationPropertyType;
+     regardingobjectid_account: navigationPropertyType;
+     regardingobjectid_contact: navigationPropertyType;
+     regardingobjectid_incident: navigationPropertyType;
 }
 interface phonecallCollections {
-    readonly activity_pointer_incident_resolution: navigationPropertyType;
-    readonly activity_pointer_phonecall: navigationPropertyType;
-    readonly activity_pointer_task: navigationPropertyType;
+     activity_pointer_incident_resolution: navigationPropertyType;
+     activity_pointer_phonecall: navigationPropertyType;
+     activity_pointer_task: navigationPropertyType;
 }
 
     //Metadata property interfaces END
 
     interface crmbaseentity {
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+         type: string;
+         primaryKey: string;
+         entitySetName: string;
         getFormattedValue(propertyName: string, whenNullText?: string): string;
         getUri(): string;
         getId(): string;
@@ -429,11 +429,20 @@ Task performed, or to be performed, by a user. An activity is any action for whi
          * @param activitypointerReference
          */
         constructor(activitypointerReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the activitypointer entity.
+        */
+         type: string;
+        /**
+        Primary key for the activitypointer entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the activitypointer entity: 'activitypointers'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -488,9 +497,9 @@ Task performed, or to be performed, by a user. An activity is any action for whi
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: activitypointerProperties;
-        readonly lookups: activitypointerLookups;
-        readonly collections: activitypointerCollections;
+         properties: activitypointerProperties;
+         lookups: activitypointerLookups;
+         collections: activitypointerCollections;
         /**
         Unique identifier of the activity.
         */
@@ -518,11 +527,11 @@ Task performed, or to be performed, by a user. An activity is any action for whi
         /**
         Date and time when the activity was created.
         */
-        readonly createdon: Date;
+         createdon: Date;
         /**
         Date and time when the delivery of the activity was last attempted.
         */
-        readonly deliverylastattemptedon: Date;
+         deliverylastattemptedon: Date;
         /**
         Priority of delivery of the activity to the email server.
         Valid values are:
@@ -538,7 +547,7 @@ Task performed, or to be performed, by a user. An activity is any action for whi
         /**
         Exchange rate for the currency associated with the activitypointer with respect to the base currency.
         */
-        readonly exchangerate: number;
+         exchangerate: number;
         /**
         Information regarding whether the activity was billed as part of resolving a case.
         Valid values are:
@@ -559,7 +568,7 @@ Task performed, or to be performed, by a user. An activity is any action for whi
         1 : Yes
         0 : No
         */
-        readonly isregularactivity: boolean;
+         isregularactivity: boolean;
         /**
         Information regarding whether the activity was created from a workflow rule.
         Valid values are:
@@ -581,15 +590,15 @@ Task performed, or to be performed, by a user. An activity is any action for whi
         /**
         Date and time when activity was last modified.
         */
-        readonly modifiedon: Date;
+         modifiedon: Date;
         /**
         Shows how long, in minutes, that the record was on hold.
         */
-        readonly onholdtime: number;
+         onholdtime: number;
         /**
         For internal use only.
         */
-        readonly postponeactivityprocessinguntil: Date;
+         postponeactivityprocessinguntil: Date;
         /**
         Priority of the activity.
         Valid values are:
@@ -704,11 +713,20 @@ Business that represents a customer or potential customer. The company that is b
          * @param accountReference
          */
         constructor(accountReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the account entity.
+        */
+         type: string;
+        /**
+        Primary key for the account entity: 'accountid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the account entity: 'accounts'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -763,9 +781,9 @@ Business that represents a customer or potential customer. The company that is b
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: accountProperties;
-        readonly lookups: accountLookups;
-        readonly collections: accountCollections;
+         properties: accountProperties;
+         lookups: accountLookups;
+         collections: accountCollections;
         /**
         Select a category to indicate whether the customer account is standard or preferred.
         Valid values are:
@@ -797,7 +815,7 @@ Business that represents a customer or potential customer. The company that is b
         /**
         Shows the complete primary address.
         */
-        readonly address1_composite: string;
+         address1_composite: string;
         /**
         Type the country or region for the primary address.
         */
@@ -984,11 +1002,11 @@ Business that represents a customer or potential customer. The company that is b
         /**
         Number of open opportunities against an account and its child accounts.
         */
-        readonly opendeals: number;
+         opendeals: number;
         /**
         Sum of open revenue against an account and its child accounts.
         */
-        readonly openrevenue: number;
+         openrevenue: number;
         /**
         Select the account's ownership structure, such as public or private.
         Valid values are:
@@ -1071,7 +1089,7 @@ Business that represents a customer or potential customer. The company that is b
         /**
         Read only: Shows the master account that the account was merged with.
         */
-        readonly masterid: account;
+         masterid: account;
         /**
         Choose the parent account associated with this account to show parent and child businesses in reporting and analytics.
         This property can only be set on create to create a new related Demo.Tour.account
@@ -1141,11 +1159,20 @@ Person with whom a business unit has a relationship, such as customer, supplier,
          * @param contactReference
          */
         constructor(contactReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the contact entity.
+        */
+         type: string;
+        /**
+        Primary key for the contact entity: 'contactid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the contact entity: 'contacts'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1200,9 +1227,9 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: contactProperties;
-        readonly lookups: contactLookups;
-        readonly collections: contactCollections;
+         properties: contactProperties;
+         lookups: contactLookups;
+         collections: contactCollections;
         /**
         Select the contact's role within the company or sales process, such as decision maker, employee, or influencer.
         Valid values are:
@@ -1227,7 +1254,7 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         /**
         Shows the complete primary address.
         */
-        readonly address1_composite: string;
+         address1_composite: string;
         /**
         Type the country or region for the primary address.
         */
@@ -1384,7 +1411,7 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         /**
         Combines and shows the contact's first and last names so that the full name can be displayed in views and reports.
         */
-        readonly fullname: string;
+         fullname: string;
         /**
         Select the contact's gender to make sure the contact is addressed correctly in sales calls, email, and marketing campaigns.
         Valid values are:
@@ -1489,7 +1516,7 @@ Person with whom a business unit has a relationship, such as customer, supplier,
         /**
         Read only: Unique identifier of the master contact for merge.
         */
-        readonly masterid: contact;
+         masterid: contact;
         /**
         Select the parent account or parent contact for the contact to provide a quick link to additional details, such as financial information, activities, and opportunities.
         This property can only be set on create to create a new related Demo.Tour.account
@@ -1567,11 +1594,20 @@ Generic activity representing work needed to be done.
          * @param taskReference
          */
         constructor(taskReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the task entity.
+        */
+         type: string;
+        /**
+        Primary key for the task entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the task entity: 'tasks'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1626,9 +1662,9 @@ Generic activity representing work needed to be done.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: taskProperties;
-        readonly lookups: taskLookups;
-        readonly collections: taskCollections;
+         properties: taskProperties;
+         lookups: taskLookups;
+         collections: taskCollections;
         /**
         Type a category to identify the task type, such as lead gathering or customer follow up, to tie the task to a business group or function.
         */
@@ -1728,11 +1764,11 @@ Generic activity representing work needed to be done.
         /**
         Date and time when the activity was created.
         */
-        readonly createdon: Date;
+         createdon: Date;
         /**
         Date and time when the delivery of the activity was last attempted.
         */
-        readonly deliverylastattemptedon: Date;
+         deliverylastattemptedon: Date;
         /**
         Priority of delivery of the activity to the email server.
         Valid values are:
@@ -1748,7 +1784,7 @@ Generic activity representing work needed to be done.
         /**
         Exchange rate for the currency associated with the activitypointer with respect to the base currency.
         */
-        readonly exchangerate: number;
+         exchangerate: number;
         /**
         Information regarding whether the activity was billed as part of resolving a case.
         Valid values are:
@@ -1769,7 +1805,7 @@ Generic activity representing work needed to be done.
         1 : Yes
         0 : No
         */
-        readonly isregularactivity: boolean;
+         isregularactivity: boolean;
         /**
         Information regarding whether the activity was created from a workflow rule.
         Valid values are:
@@ -1791,15 +1827,15 @@ Generic activity representing work needed to be done.
         /**
         Date and time when activity was last modified.
         */
-        readonly modifiedon: Date;
+         modifiedon: Date;
         /**
         Shows how long, in minutes, that the record was on hold.
         */
-        readonly onholdtime: number;
+         onholdtime: number;
         /**
         For internal use only.
         */
-        readonly postponeactivityprocessinguntil: Date;
+         postponeactivityprocessinguntil: Date;
         /**
         Priority of the activity.
         Valid values are:
@@ -1914,11 +1950,20 @@ Service request case associated with a contract.
          * @param incidentReference
          */
         constructor(incidentReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the incident entity.
+        */
+         type: string;
+        /**
+        Primary key for the incident entity: 'incidentid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the incident entity: 'incidents'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -1973,9 +2018,9 @@ Service request case associated with a contract.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: incidentProperties;
-        readonly lookups: incidentLookups;
-        readonly collections: incidentCollections;
+         properties: incidentProperties;
+         lookups: incidentLookups;
+         collections: incidentCollections;
         /**
         Details whether the profile is blocked or not.
         Valid values are:
@@ -2012,7 +2057,7 @@ Service request case associated with a contract.
         /**
         Shows the date and time when the record was created. The date and time are displayed in the time zone selected in Microsoft Dynamics CRM options.
         */
-        readonly createdon: Date;
+         createdon: Date;
         /**
         Select the customer's level of satisfaction with the handling and resolution of the case.
         Valid values are:
@@ -2030,7 +2075,7 @@ Service request case associated with a contract.
         /**
         Indicates the date and time when the case was escalated.
         */
-        readonly escalatedon: Date;
+         escalatedon: Date;
         /**
         Indicates if the first response has been sent.
         Valid values are:
@@ -2261,11 +2306,20 @@ Special type of activity that includes description of the resolution, billing st
          * @param incidentresolutionReference
          */
         constructor(incidentresolutionReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the incidentresolution entity.
+        */
+         type: string;
+        /**
+        Primary key for the incidentresolution entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the incidentresolution entity: 'incidentresolutions'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -2320,9 +2374,9 @@ Special type of activity that includes description of the resolution, billing st
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: incidentresolutionProperties;
-        readonly lookups: incidentresolutionLookups;
-        readonly collections: incidentresolutionCollections;
+         properties: incidentresolutionProperties;
+         lookups: incidentresolutionLookups;
+         collections: incidentresolutionCollections;
         /**
         Category for the case resolution activity.
         */
@@ -2392,11 +2446,11 @@ Special type of activity that includes description of the resolution, billing st
         /**
         Date and time when the activity was created.
         */
-        readonly createdon: Date;
+         createdon: Date;
         /**
         Date and time when the delivery of the activity was last attempted.
         */
-        readonly deliverylastattemptedon: Date;
+         deliverylastattemptedon: Date;
         /**
         Priority of delivery of the activity to the email server.
         Valid values are:
@@ -2412,7 +2466,7 @@ Special type of activity that includes description of the resolution, billing st
         /**
         Exchange rate for the currency associated with the activitypointer with respect to the base currency.
         */
-        readonly exchangerate: number;
+         exchangerate: number;
         /**
         Information regarding whether the activity was billed as part of resolving a case.
         Valid values are:
@@ -2433,7 +2487,7 @@ Special type of activity that includes description of the resolution, billing st
         1 : Yes
         0 : No
         */
-        readonly isregularactivity: boolean;
+         isregularactivity: boolean;
         /**
         Information regarding whether the activity was created from a workflow rule.
         Valid values are:
@@ -2455,15 +2509,15 @@ Special type of activity that includes description of the resolution, billing st
         /**
         Date and time when activity was last modified.
         */
-        readonly modifiedon: Date;
+         modifiedon: Date;
         /**
         Shows how long, in minutes, that the record was on hold.
         */
-        readonly onholdtime: number;
+         onholdtime: number;
         /**
         For internal use only.
         */
-        readonly postponeactivityprocessinguntil: Date;
+         postponeactivityprocessinguntil: Date;
         /**
         Priority of the activity.
         Valid values are:
@@ -2578,11 +2632,20 @@ Activity to track a telephone call.
          * @param phonecallReference
          */
         constructor(phonecallReference?: string | Object)
-        readonly isEntityClass: boolean;
+         isEntityClass: boolean;
         // crmbaseentity implementation START
-        readonly type: string;
-        readonly primaryKey: string;
-        readonly entitySetName: string;
+        /**
+        Name of the the phonecall entity.
+        */
+         type: string;
+        /**
+        Primary key for the phonecall entity: 'activityid'
+        */
+         primaryKey: string;
+        /**
+        Web API entity set name for the phonecall entity: 'phonecalls'
+        */
+         entitySetName: string;
         
         /**
         * Returns the URI for an object that has been saved.
@@ -2637,9 +2700,9 @@ Activity to track a telephone call.
         resetChangeTracking();
 
         // crmbaseentity implementation END
-        readonly properties: phonecallProperties;
-        readonly lookups: phonecallLookups;
-        readonly collections: phonecallCollections;
+         properties: phonecallProperties;
+         lookups: phonecallLookups;
+         collections: phonecallCollections;
         /**
         Type a category to identify the phone call type, such as lead gathering or customer follow-up, to tie the phone call to a business group or function.
         */
@@ -2746,11 +2809,11 @@ Activity to track a telephone call.
         /**
         Date and time when the activity was created.
         */
-        readonly createdon: Date;
+         createdon: Date;
         /**
         Date and time when the delivery of the activity was last attempted.
         */
-        readonly deliverylastattemptedon: Date;
+         deliverylastattemptedon: Date;
         /**
         Priority of delivery of the activity to the email server.
         Valid values are:
@@ -2766,7 +2829,7 @@ Activity to track a telephone call.
         /**
         Exchange rate for the currency associated with the activitypointer with respect to the base currency.
         */
-        readonly exchangerate: number;
+         exchangerate: number;
         /**
         Information regarding whether the activity was billed as part of resolving a case.
         Valid values are:
@@ -2787,7 +2850,7 @@ Activity to track a telephone call.
         1 : Yes
         0 : No
         */
-        readonly isregularactivity: boolean;
+         isregularactivity: boolean;
         /**
         Information regarding whether the activity was created from a workflow rule.
         Valid values are:
@@ -2809,15 +2872,15 @@ Activity to track a telephone call.
         /**
         Date and time when activity was last modified.
         */
-        readonly modifiedon: Date;
+         modifiedon: Date;
         /**
         Shows how long, in minutes, that the record was on hold.
         */
-        readonly onholdtime: number;
+         onholdtime: number;
         /**
         For internal use only.
         */
-        readonly postponeactivityprocessinguntil: Date;
+         postponeactivityprocessinguntil: Date;
         /**
         Priority of the activity.
         Valid values are:

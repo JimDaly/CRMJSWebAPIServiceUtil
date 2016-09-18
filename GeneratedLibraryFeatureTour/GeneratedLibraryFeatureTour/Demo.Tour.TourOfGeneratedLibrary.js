@@ -267,6 +267,12 @@ Demo.Tour = Demo.Tour || {};
         Object.defineProperties(this, {
             "value": {
                 get: function () { return _value; },
+                set: function (value) {
+                    if (!isArrayOf(Demo.Tour.crmbaseentity, value)) {
+                        throw new Error(NS + ".entityCollection value property must be an array of " + NS + ".crmbaseentity");
+                    }
+                    _value = value;
+                },
                 enumerable: false
             },
             "nextLink": {
@@ -310,9 +316,6 @@ Demo.Tour = Demo.Tour || {};
     @param {String|Object}[activitypointerReference] A GUID, a URI, or a JSON object to set retrieved values.
     */
     this.activitypointer = function (activitypointerReference) {
-        if (!(isInstanceOf(Demo.Tour.activitypointer, this))) {
-            return new Demo.Tour.activitypointer(activitypointerReference);
-        }
         Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
@@ -578,6 +581,10 @@ Demo.Tour = Demo.Tour || {};
     this.account = function (accountReference) {
         if (!(isInstanceOf(Demo.Tour.account, this))) {
             return new Demo.Tour.account(accountReference);
+        }
+        if (isInstanceOf(Demo.Tour.account, accountReference)) {
+            accountReference.resetChangeTracking();
+            return accountReference;
         }
         Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
@@ -965,6 +972,10 @@ Demo.Tour = Demo.Tour || {};
     this.contact = function (contactReference) {
         if (!(isInstanceOf(Demo.Tour.contact, this))) {
             return new Demo.Tour.contact(contactReference);
+        }
+        if (isInstanceOf(Demo.Tour.contact, contactReference)) {
+            contactReference.resetChangeTracking();
+            return contactReference;
         }
         Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
@@ -1400,6 +1411,10 @@ Demo.Tour = Demo.Tour || {};
         if (!(isInstanceOf(Demo.Tour.task, this))) {
             return new Demo.Tour.task(taskReference);
         }
+        if (isInstanceOf(Demo.Tour.task, taskReference)) {
+            taskReference.resetChangeTracking();
+            return taskReference;
+        }
         Demo.Tour.activitypointer.call(this);
         Object.defineProperties(this,
         {
@@ -1559,6 +1574,10 @@ Demo.Tour = Demo.Tour || {};
     this.incident = function (incidentReference) {
         if (!(isInstanceOf(Demo.Tour.incident, this))) {
             return new Demo.Tour.incident(incidentReference);
+        }
+        if (isInstanceOf(Demo.Tour.incident, incidentReference)) {
+            incidentReference.resetChangeTracking();
+            return incidentReference;
         }
         Demo.Tour.crmbaseentity.call(this);
         Object.defineProperties(this,
@@ -1906,6 +1925,10 @@ Demo.Tour = Demo.Tour || {};
         if (!(isInstanceOf(Demo.Tour.incidentresolution, this))) {
             return new Demo.Tour.incidentresolution(incidentresolutionReference);
         }
+        if (isInstanceOf(Demo.Tour.incidentresolution, incidentresolutionReference)) {
+            incidentresolutionReference.resetChangeTracking();
+            return incidentresolutionReference;
+        }
         Demo.Tour.activitypointer.call(this);
         Object.defineProperties(this,
         {
@@ -2025,6 +2048,10 @@ Demo.Tour = Demo.Tour || {};
     this.phonecall = function (phonecallReference) {
         if (!(isInstanceOf(Demo.Tour.phonecall, this))) {
             return new Demo.Tour.phonecall(phonecallReference);
+        }
+        if (isInstanceOf(Demo.Tour.phonecall, phonecallReference)) {
+            phonecallReference.resetChangeTracking();
+            return phonecallReference;
         }
         Demo.Tour.activitypointer.call(this);
         Object.defineProperties(this,
@@ -2892,7 +2919,7 @@ Demo.Tour = Demo.Tour || {};
 
                     }
                     else {
-                        reject(TS.TEST.errorHandler(req.response));
+                        reject(Demo.Tour.errorHandler(req.response));
                     }
                 }
             };
@@ -3192,6 +3219,21 @@ Demo.Tour = Demo.Tour || {};
                 if (typeof Demo.Tour[property] == "function") {
                     if (Demo.Tour[property].isEntityClass) {
                         if (isTypedUri(Demo.Tour[property], uri)) {
+                            return Demo.Tour[property];
+                        }
+                    }
+                }
+            }
+        }
+        throw new Error("Type not defined in library.");
+    }
+    //Returns the appropriate 'class' function for entities defined in the library from entitysetname
+    function getTypeFromEntitySetName(entitySetName) {
+        for (var property in Demo.Tour) {
+            if (Demo.Tour.hasOwnProperty(property)) {
+                if (typeof Demo.Tour[property] == "function") {
+                    if (Demo.Tour[property].isEntityClass) {
+                        if (Demo.Tour[property]().entitySetName == entitySetName) {
                             return Demo.Tour[property];
                         }
                     }
@@ -3900,6 +3942,101 @@ Demo.Tour = Demo.Tour || {};
 
     }
 
+    /** 
+ * @function Demo.Tour.queryTypedEntity
+ * @memberOf! Demo.Tour
+ * @description Retrieve multiple typed entities matching the criteria you define
+ * @param {String} entitySetName The entity Set name for the type of entity you want to retrieve.
+ * @param {String} [query] The system query parameters you want to apply.
+ * @param {Boolean} [includeFormattedValues] Whether you want to have formatted values included in the results
+ * @param {Number} [maxPageSize] A number that limits the number of entities to be retrieved in the query and allows for paging
+ * @param {Boolean} [retrieveExpandedCollections] Whether you want to recursively retrieve typed entities for collections returned.
+ * @param {GUID} [callerId] A string representation of the GUID value for the user to impersonate.
+ * @returns {Promise} A promise that returns the entities when resolved or an Error if rejected
+ */
+    this.queryTypedEntity = function (entitySetName, query, includeFormattedValues, maxPageSize, retrieveExpandedCollections, callerId) {
+        return new Promise(function (resolve, reject) {
+            if (!isString(entitySetName)) {
+                throw new Error(NS + ".queryTypedEntity entitySetName parameter must be a string.");
+            }
+            if (!isOptionalString(query)) {
+                throw new Error(NS + ".queryTypedEntity query parameter must be a string or null.");
+            }
+            if (!isOptionalBoolean(includeFormattedValues)) {
+                throw new Error(NS + ".queryTypedEntity includeFormattedValues parameter must be a boolean or null.");
+            }
+            if (!isOptionalNumber(maxPageSize)) {
+                throw new Error(NS + ".queryTypedEntity maxPageSize parameter must be a number or null.");
+            }
+            if (!isOptionalBoolean(retrieveExpandedCollections)) {
+                throw new Error(NS + ".queryTypedEntity retrieveExpandedCollections parameter must be a boolean or null.");
+            }
+            if (!isOptionalGuid(callerId)) {
+                throw new Error(NS + ".queryTypedEntity callerId parameter must be a string representation of a GUID value, null or undefined.");
+            }
+            var url = getWebAPIPath() + entitySetName;
+            if (!isNullOrUndefined(query)) {
+                url = url + "?" + query;
+            }
+
+            var type = getTypeFromEntitySetName(entitySetName);
+
+            Demo.Tour.query(entitySetName, query, includeFormattedValues, maxPageSize, callerId)
+            .then(function (results) {
+                results.value = results.value.map(function (x) {
+                    var e = new type(x);
+                    e.resetChangeTracking();
+                    return e;
+
+                });
+                if (retrieveExpandedCollections) {
+                    var retrieves = [];
+                    results.value.forEach(function (e, i) {
+
+                        for (var collection in e.collections) {
+                            if (Array.isArray(e[collection])) {
+                                retrieves.push(getChildEntities(e, collection, includeFormattedValues, callerId));
+                            }
+                        }
+
+                        for (var lookup in e.lookups) {
+                            if (!isNullOrUndefined(e[lookup])) {
+                                var lu = new e.lookups[lookup].type(e[lookup]);
+                                lu.resetChangeTracking();
+                                e[lookup] = lu;
+                            }
+                        }
+                    });
+                    Promise.all(retrieves)
+                    .then(function () {
+                        resolve(results);
+                    })
+                    .catch(function (error) { reject(error) })
+                }
+                else {
+                    resolve(results);
+                }
+
+            })
+            .catch(function (error) { reject(error) })
+        });
+
+    }
+    // Used by queryTypedEntity to retrieve requested collection-valued navigation properties when retrieveExpandedCollections is true.
+    function getChildEntities(e, collection, includeFormattedValues, callerId) {
+        return new Promise(function (resolve, reject) {
+            Demo.Tour.retrieve(e.internal[collection + "@odata.nextLink"], null, null, includeFormattedValues, null, callerId)
+             .then(function (retrievedResults) {
+                 retrievedResults.value.forEach(function (r) {
+                     var child = new e.collections[collection].type(r);
+                     child.resetChangeTracking();
+                     e[collection].push(child);
+                 });
+                 resolve();
+             })
+             .catch(function (err) { reject(err) });
+        });
+    }
     /** 
     * @function Demo.Tour.getNextPage
     * @memberOf! Demo.Tour

@@ -316,9 +316,6 @@ Sdk.Sample = Sdk.Sample || {};
     @param {String|Object}[activitypointerReference] A GUID, a URI, or a JSON object to set retrieved values.
     */
     this.activitypointer = function (activitypointerReference) {
-        if (!(isInstanceOf(Sdk.Sample.activitypointer, this))) {
-            return new Sdk.Sample.activitypointer(activitypointerReference);
-        }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
@@ -490,6 +487,10 @@ Sdk.Sample = Sdk.Sample || {};
     this.contact = function (contactReference) {
         if (!(isInstanceOf(Sdk.Sample.contact, this))) {
             return new Sdk.Sample.contact(contactReference);
+        }
+        if (isInstanceOf(Sdk.Sample.contact, contactReference)) {
+            contactReference.resetChangeTracking();
+            return contactReference;
         }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
@@ -682,6 +683,10 @@ Sdk.Sample = Sdk.Sample || {};
         if (!(isInstanceOf(Sdk.Sample.account, this))) {
             return new Sdk.Sample.account(accountReference);
         }
+        if (isInstanceOf(Sdk.Sample.account, accountReference)) {
+            accountReference.resetChangeTracking();
+            return accountReference;
+        }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
@@ -841,6 +846,10 @@ Sdk.Sample = Sdk.Sample || {};
         if (!(isInstanceOf(Sdk.Sample.task, this))) {
             return new Sdk.Sample.task(taskReference);
         }
+        if (isInstanceOf(Sdk.Sample.task, taskReference)) {
+            taskReference.resetChangeTracking();
+            return taskReference;
+        }
         Sdk.Sample.activitypointer.call(this);
         Object.defineProperties(this,
         {
@@ -992,6 +1001,10 @@ Sdk.Sample = Sdk.Sample || {};
         if (!(isInstanceOf(Sdk.Sample.competitor, this))) {
             return new Sdk.Sample.competitor(competitorReference);
         }
+        if (isInstanceOf(Sdk.Sample.competitor, competitorReference)) {
+            competitorReference.resetChangeTracking();
+            return competitorReference;
+        }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
@@ -1059,6 +1072,10 @@ Sdk.Sample = Sdk.Sample || {};
     this.opportunity = function (opportunityReference) {
         if (!(isInstanceOf(Sdk.Sample.opportunity, this))) {
             return new Sdk.Sample.opportunity(opportunityReference);
+        }
+        if (isInstanceOf(Sdk.Sample.opportunity, opportunityReference)) {
+            opportunityReference.resetChangeTracking();
+            return opportunityReference;
         }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
@@ -1223,6 +1240,10 @@ Sdk.Sample = Sdk.Sample || {};
         if (!(isInstanceOf(Sdk.Sample.savedquery, this))) {
             return new Sdk.Sample.savedquery(savedqueryReference);
         }
+        if (isInstanceOf(Sdk.Sample.savedquery, savedqueryReference)) {
+            savedqueryReference.resetChangeTracking();
+            return savedqueryReference;
+        }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
@@ -1270,6 +1291,10 @@ Sdk.Sample = Sdk.Sample || {};
         if (!(isInstanceOf(Sdk.Sample.userquery, this))) {
             return new Sdk.Sample.userquery(userqueryReference);
         }
+        if (isInstanceOf(Sdk.Sample.userquery, userqueryReference)) {
+            userqueryReference.resetChangeTracking();
+            return userqueryReference;
+        }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
@@ -1316,6 +1341,10 @@ Sdk.Sample = Sdk.Sample || {};
     this.letter = function (letterReference) {
         if (!(isInstanceOf(Sdk.Sample.letter, this))) {
             return new Sdk.Sample.letter(letterReference);
+        }
+        if (isInstanceOf(Sdk.Sample.letter, letterReference)) {
+            letterReference.resetChangeTracking();
+            return letterReference;
         }
         Sdk.Sample.activitypointer.call(this);
         Object.defineProperties(this,
@@ -1468,6 +1497,10 @@ Sdk.Sample = Sdk.Sample || {};
         if (!(isInstanceOf(Sdk.Sample.opportunityclose, this))) {
             return new Sdk.Sample.opportunityclose(opportunitycloseReference);
         }
+        if (isInstanceOf(Sdk.Sample.opportunityclose, opportunitycloseReference)) {
+            opportunitycloseReference.resetChangeTracking();
+            return opportunitycloseReference;
+        }
         Sdk.Sample.activitypointer.call(this);
         Object.defineProperties(this,
         {
@@ -1574,6 +1607,10 @@ Sdk.Sample = Sdk.Sample || {};
         if (!(isInstanceOf(Sdk.Sample.queue, this))) {
             return new Sdk.Sample.queue(queueReference);
         }
+        if (isInstanceOf(Sdk.Sample.queue, queueReference)) {
+            queueReference.resetChangeTracking();
+            return queueReference;
+        }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
         {
@@ -1617,6 +1654,10 @@ Sdk.Sample = Sdk.Sample || {};
     this.queueitem = function (queueitemReference) {
         if (!(isInstanceOf(Sdk.Sample.queueitem, this))) {
             return new Sdk.Sample.queueitem(queueitemReference);
+        }
+        if (isInstanceOf(Sdk.Sample.queueitem, queueitemReference)) {
+            queueitemReference.resetChangeTracking();
+            return queueitemReference;
         }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
@@ -1756,6 +1797,10 @@ Sdk.Sample = Sdk.Sample || {};
     this.annotation = function (annotationReference) {
         if (!(isInstanceOf(Sdk.Sample.annotation, this))) {
             return new Sdk.Sample.annotation(annotationReference);
+        }
+        if (isInstanceOf(Sdk.Sample.annotation, annotationReference)) {
+            annotationReference.resetChangeTracking();
+            return annotationReference;
         }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,
@@ -1955,6 +2000,10 @@ Sdk.Sample = Sdk.Sample || {};
     this.incident = function (incidentReference) {
         if (!(isInstanceOf(Sdk.Sample.incident, this))) {
             return new Sdk.Sample.incident(incidentReference);
+        }
+        if (isInstanceOf(Sdk.Sample.incident, incidentReference)) {
+            incidentReference.resetChangeTracking();
+            return incidentReference;
         }
         Sdk.Sample.crmbaseentity.call(this);
         Object.defineProperties(this,

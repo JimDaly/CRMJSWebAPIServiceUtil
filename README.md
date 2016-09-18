@@ -470,21 +470,16 @@ turn it into something else altogether.
 
 [Go to Top](#in-this-readme)
 ## Release Notes
-Initial release 9/5/2016 Happy Labor day!
+### Initial release 9/5/2016 Happy Labor day!
 
-Updates 9/18/2016
- * Fixed issues:
-    
-    #14 Remove readonly property modifier so that TypeScript 2.0 is not required. 
-    
-    #13 fixed invokeFunction in CoreLibrary.js 
+### Updates 9/18/2016
+
+**Fixed issues:**
+* [#14 Remove readonly property modifier so that TypeScript 2.0 is not required.](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/14) 
+* [#13 fixed invokeFunction in CoreLibrary.js](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/13)  
   
-* Enhancements
-  
-    #15 Add comments for crmbaseentity interface read-only properties on all entity instances 
-    
-    #6 Simplify generated code
-
-    #10 Provide option for query method to return typed values 
-
-    #7 Add a release of the built tool
+**Enhancements**
+* [#15 Add comments for crmbaseentity interface read-only properties on all entity instances](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/15)  
+* [#6 Simplify generated code](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/6) 
+* [#10 Provide option for query method to return typed values](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/10)  
+* [#7 Add a release of the built tool](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/7) 

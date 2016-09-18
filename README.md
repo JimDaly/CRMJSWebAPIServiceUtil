@@ -322,7 +322,7 @@ as much of that feedback as I could and they have influenced the key design goal
 * Allow for selection of a sub-set of the entire CRM data model
 * Include documentation at design time
 * Generate a language neutral model and then create a Writer class to output the file
-* Leverage authentication helper classes shipped in the CRM SDK
+* Leverage new OAuth authentication helper classes shipped in the CRM SDK for use with the Web API.
 
 ### Allow for selection of a sub-set of the entire CRM data model
 CRM has a lot of entities and special operations. All of the libraries I looked at to generate libraries for OData v4 seemed to expect that
@@ -436,7 +436,7 @@ private void Worker_DoWork(object sender, DoWorkEventArgs e)
 If anyone else wants to generate a library for a different language, or even a different style of JavaScript library,
 I hope that they could leverage what is in this project.
 
-### Leverage authentication helper classes shipped in the CRM SDK
+### Leverage new OAuth authentication helper classes shipped in the CRM SDK
 The SDK team recently published our first set of C# and JavaScript samples using the Web API.
 See [CRM Web API sample code published](https://blogs.msdn.microsoft.com/crm/2016/09/01/crm-web-api-sample-code-published/)
 and part of that effort was to include a set of helper libraries which help simplify creating an application which can
@@ -471,3 +471,20 @@ turn it into something else altogether.
 [Go to Top](#in-this-readme)
 ## Release Notes
 Initial release 9/5/2016 Happy Labor day!
+
+Updates 9/18/2016
+ * Fixed issues:
+    
+    #14 Remove readonly property modifier so that TypeScript 2.0 is not required. 
+    
+    #13 fixed invokeFunction in CoreLibrary.js 
+  
+* Enhancements
+  
+    #15 Add comments for crmbaseentity interface read-only properties on all entity instances 
+    
+    #6 Simplify generated code
+
+    #10 Provide option for query method to return typed values 
+
+    #7 Add a release of the built tool

@@ -76,6 +76,7 @@ or use the wrong data type and you will get an error. This is a good thing.
     * **addToCollection**: Adds an entity to a collection-valued navigation property (N:N or N:1). There are helper methods to set single-valued navigation properties (AKA Lookups).
     * **disassociate**: Disassociates any kind of relationship (N:N,N:1,or 1:N)
     * **query**: Provides ability to query and retrieve multiple entities and set page size.
+    * **queryTypedEntity**: Provides the same functionality as **query** except it will return typed objects and also provides an **retrieveExpandedCollections** boolean parameter to recursively retrieve expanded collection-valued navigation properties in this single method.
     * **getNextPage**: Provides ability to retrieve the next page from a query operation when paging is set.
     * **executeFetch**: Executes a FetchXml query.
 * All core operations or generated functions are asynchronous and return es6 promises. An es6 promise polyfill is downloaded and included in
@@ -134,6 +135,11 @@ Including these comments in the generated JavaScript library is not enabled by d
 
 [Go to Top](#in-this-readme)
 ## How to use this utility
+
+  > **Note:** If you just want to use this tool and don't care to run it in debug mode, you can follow the instructions under 
+[Using the release](Release/README.md) and go straight to step 3 below.
+
+
 1. Clone or download this repo and open the CRMJSWebAPIServiceUtil Visual Studio solution.
     * This is a Visual Studio 2015 solution, I haven't tried any previous version.
 2. If you need to connect to Microsoft Dynamics CRM Online, you must edit the MainWindow.xaml.cs line 88
@@ -145,9 +151,13 @@ and add your own **clientid** and **redirecturi** values to replace what you fin
   ```
   See [Walkthrough: Register a CRM app with Azure Active Directory](https://msdn.microsoft.com/en-us/library/mt622431.aspx).
 
-  > **Note**: This is not required to connect to a CRM on-premise server.
+  > **Note:** This is not required to connect to a CRM on-premise server.
 
-3. Press F5 to run the application in debug mode. You will see this:
+3. If you are running the application in Visual Studio, press F5 to run the application in debug mode. 
+  
+  If you are running the application using the **CRMJSWebAPIServiceUtil.exe** from the Release folder, just click the executable.
+  
+  You will see this:
 
   ![Opening screen](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/open.PNG)
 
@@ -312,7 +322,7 @@ as much of that feedback as I could and they have influenced the key design goal
 * Allow for selection of a sub-set of the entire CRM data model
 * Include documentation at design time
 * Generate a language neutral model and then create a Writer class to output the file
-* Leverage authentication helper classes shipped in the CRM SDK
+* Leverage new OAuth authentication helper classes shipped in the CRM SDK for use with the Web API.
 
 ### Allow for selection of a sub-set of the entire CRM data model
 CRM has a lot of entities and special operations. All of the libraries I looked at to generate libraries for OData v4 seemed to expect that
@@ -426,7 +436,7 @@ private void Worker_DoWork(object sender, DoWorkEventArgs e)
 If anyone else wants to generate a library for a different language, or even a different style of JavaScript library,
 I hope that they could leverage what is in this project.
 
-### Leverage authentication helper classes shipped in the CRM SDK
+### Leverage new OAuth authentication helper classes shipped in the CRM SDK
 The SDK team recently published our first set of C# and JavaScript samples using the Web API.
 See [CRM Web API sample code published](https://blogs.msdn.microsoft.com/crm/2016/09/01/crm-web-api-sample-code-published/)
 and part of that effort was to include a set of helper libraries which help simplify creating an application which can
@@ -460,4 +470,16 @@ turn it into something else altogether.
 
 [Go to Top](#in-this-readme)
 ## Release Notes
-Initial release 9/5/2016 Happy Labor day!
+### Initial release 9/5/2016 Happy Labor day!
+
+### Updates 9/18/2016
+
+**Fixed issues:**
+* [#14 Remove readonly property modifier so that TypeScript 2.0 is not required.](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/14) 
+* [#13 fixed invokeFunction in CoreLibrary.js](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/13)  
+  
+**Enhancements**
+* [#15 Add comments for crmbaseentity interface read-only properties on all entity instances](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/15)  
+* [#6 Simplify generated code](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/6) 
+* [#10 Provide option for query method to return typed values](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/10)  
+* [#7 Add a release of the built tool](https://github.com/JimDaly/CRMJSWebAPIServiceUtil/issues/7) 

@@ -1,0 +1,1223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2016 Jim Daly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<ComplexTypes>
+  <ComplexType Name="AddItemCampaignActivityResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the AddItemCampaignActivity action.</Description>
+    <Properties>
+      <Property Name="CampaignActivityItemId">The ID of the resulting campaign activity item. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AddMemberListResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the AddMemberList action.</Description>
+    <Properties>
+      <Property Name="Id">The ID of the resulting list member.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AddSolutionComponentResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the AddSolutionComponent action.</Description>
+    <Properties>
+      <Property Name="id">The ID of the new solution component record. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AddToQueueResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the AddToQueue action.</Description>
+    <Properties>
+      <Property Name="QueueItemId">The ID of the queue item that is created in the destination queue. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AddUserToRecordTeamResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the AddUserToRecordTeam action.</Description>
+    <Properties>
+      <Property Name="AccessTeamId">The ID of the auto created access team. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AppointmentProposal"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Represents a proposed appointment time and date as a result of the Search action.</Description>
+    <Properties>
+      <Property Name="End">The proposed appointment end date and time. </Property>
+      <Property Name="ProposalParties">An array of parties needed for the proposed appointment.</Property>
+      <Property Name="SiteId">The ID of the site for the proposed appointment.</Property>
+      <Property Name="SiteName">The name of the site for the proposed appointment. </Property>
+      <Property Name="Start">The proposed appointment start date and time </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AppointmentRequest"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Provides the details of an appointment request for the Search action.</Description>
+    <Properties>
+      <Property Name="AnchorOffset">The time offset in minutes, from midnight, when the first occurrence of the appointment can take place.</Property>
+      <Property Name="AppointmentsToIgnore">The appointments to ignore in the search for possible appointments.</Property>
+      <Property Name="Constraints">Any additional constraints. </Property>
+      <Property Name="Direction">The direction of the search. </Property>
+      <Property Name="Duration">The appointment duration, in minutes. </Property>
+      <Property Name="NumberOfResults">The number of results to be returned from the search request. </Property>
+      <Property Name="Objectives">The scheduling strategy that overrides the default constraints.</Property>
+      <Property Name="RecurrenceDuration">The time, in minutes, for which the appointment recurrence is valid. </Property>
+      <Property Name="RecurrenceTimeZoneCode">A value to override the time zone that is specified by the UserTimeZoneCode property. </Property>
+      <Property Name="RequiredResources">The resources that are needed for this appointment.</Property>
+      <Property Name="SearchRecurrenceRule">The recurrence rule for appointment recurrence. </Property>
+      <Property Name="SearchRecurrenceStart">The date and time for the first possible instance of the appointment.</Property>
+      <Property Name="SearchWindowEnd"> The date and time to end the search. </Property>
+      <Property Name="SearchWindowStart">The date and time to begin the search. </Property>
+      <Property Name="ServiceId">The ID of the service to search for.</Property>
+      <Property Name="Sites">The sites where the requested appointment can take place. </Property>
+      <Property Name="UserTimeZoneCode">The time zone code of the user who is requesting the appointment.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AppointmentsToIgnore"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies the appointments to ignore in an appointment request from the Search action.</Description>
+    <Properties>
+      <Property Name="Appointments">An array of IDs of appointments to ignore.</Property>
+      <Property Name="ResourceId">The resource for which appointments are to be ignored. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AssociatedMenuConfiguration"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Defines how the associated records are displayed for an entity relationship.</Description>
+    <Properties>
+      <Property Name="Behavior">The behavior of the associated menu for an entity relationship. </Property>
+      <Property Name="Group">The structure that contains extra data.</Property>
+      <Property Name="Label">The labelfor the associated menu.</Property>
+      <Property Name="Order">The order for the associated menu.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AttributeMapping"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Properties>
+      <Property Name="AllowedSyncDirection">For internal use only.</Property>
+      <Property Name="AttributeCrmDisplayName">For internal use only.</Property>
+      <Property Name="AttributeCrmName">For internal use only.</Property>
+      <Property Name="AttributeExchangeDisplayName">For internal use only.</Property>
+      <Property Name="AttributeExchangeName">For internal use only.</Property>
+      <Property Name="AttributeMappingId">For internal use only.</Property>
+      <Property Name="ComputedProperties">For internal use only.</Property>
+      <Property Name="DefaultSyncDirection">For internal use only.</Property>
+      <Property Name="EntityTypeCode">For internal use only.</Property>
+      <Property Name="IsComputed">For internal use only. </Property>
+      <Property Name="MappingName">For internal use only.</Property>
+      <Property Name="SyncDirection">For internal use only.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AttributePrivilege"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies the field level security privileges allowed for an attribute.</Description>
+    <Properties>
+      <Property Name="AttributeId">The ID of the attribute. </Property>
+      <Property Name="CanCreate">Whether create of the attribute value is allowed. </Property>
+      <Property Name="CanRead">Whether read of the attribute value is allowed. </Property>
+      <Property Name="CanUpdate">Whether update of the attribute value is allowed. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AttributeRequiredLevelManagedProperty"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Represents the data to define a RequiredLevel property for an attribute.</Description>
+    <Properties>
+      <Property Name="CanBeChanged">Whether the managed property value can be changed. </Property>
+      <Property Name="ManagedPropertyLogicalName"> Logical name for the managed property. </Property>
+      <Property Name="Value">The value of the managed property.  </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AttributeTypeDisplayName"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Provides a list of types of attributes used by AttributeMetadata.AttributeTypeName</Description>
+    <Properties>
+      <Property Name="Value">A string value representing the type of attribute. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="AuditPartitionDetail"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Identifies a Microsoft SQL Server partition that is used to store changes to entity data records.</Description>
+    <Properties>
+      <Property Name="EndDate">The end date and time for the last audit record in the partition. </Property>
+      <Property Name="PartitionNumber"> The sequence (serial) number of the partition. </Property>
+      <Property Name="Size">The size, in bytes, of the partition.</Property>
+      <Property Name="StartDate"> The creation date and time of the first audit record in the partition. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="BookResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description> Contains the response from the Book action.</Description>
+    <Properties>
+      <Property Name="Notifications">For internal use only. </Property>
+      <Property Name="ValidationResult">the appointment validation results. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="BooleanManagedProperty"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Defines a managed property that stores a Boolean value.</Description>
+    <Properties>
+      <Property Name="CanBeChanged">Whether the managed property value can be changed. </Property>
+      <Property Name="ManagedPropertyLogicalName">The logical name for the managed property. </Property>
+      <Property Name="Value">The value of the managed property.  </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="BusinessNotification"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>For internal use only</Description>
+    <Properties>
+      <Property Name="Message">For internal use only </Property>
+      <Property Name="Parameters">For internal use only</Property>
+      <Property Name="Severity">For internal use only</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="BusinessNotificationParameter"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>For internal use only.</Description>
+    <Properties>
+      <Property Name="Data">For internal use only. </Property>
+      <Property Name="ParameterType">For internal use only.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CalculateActualValueOpportunityResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>
+      Contains the response from the CalculateActualValueOpportunity action.
+    </Description>
+    <Properties>
+      <Property Name="Value">The actual value of an opportunity.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CalculateTotalTimeIncidentResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CalculateTotalTimeIncident function.</Description>
+    <Properties>
+      <Property Name="TotalTime">The total time in minutes that it takes to work on an incident (case).</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CanBeReferencedResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CanBeReferenced action. </Description>
+    <Properties>
+      <Property Name="CanBeReferenced">Whether the entity can be the primary entity (one) in a one-to-many relationship. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CanBeReferencingResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CanBeReferencing action</Description>
+    <Properties>
+      <Property Name="CanBeReferencing">Whether the entity can be the referencing entity (many) in a one-to-many relationship. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CanManyToManyResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CanManyToMany action.</Description>
+    <Properties>
+      <Property Name="CanManyToMany">The result of the request to see whether the entity can participate in a many-to-many relationship.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CascadeConfiguration"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains properties representing actions that may be performed on the referenced entity in a one-to-many entity relationship.</Description>
+    <Properties>
+      <Property Name="Assign">The referenced entity record owner is changed. </Property>
+      <Property Name="Delete">The referenced entity record is deleted.</Property>
+      <Property Name="Merge">The record is merged with another record.</Property>
+      <Property Name="Reparent">The referencing attribute in a parental relationship changes </Property>
+      <Property Name="Share">The referenced entity record is shared with another user. </Property>
+      <Property Name="Unshare">Sharing is removed for the referenced entity record. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ChannelAccessProfilePrivilege"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains an entity privilege for a channel access profile. </Description>
+    <Properties>
+      <Property Name="ChannelAccessProfilePrivilegeId">The unique identifier of the channel access profile privilege. </Property>
+      <Property Name="PrivilegeDepth">The privilege depth (scope).</Property>
+      <Property Name="PrivilegeName">The name of the privilege.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ChannelAccessProfileWithPrivileges"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains a channel acces profile with entity privileges. </Description>
+    <Properties>
+      <Property Name="ChannelAccessProfilePrivilegeList">A list of channel access profile privileges.</Property>
+      <Property Name="EmailAccess">True if the channel allows email access; otherwise false. </Property>
+      <Property Name="FacebookAccess">True if the channel allows FaceBook access; otherwise false. </Property>
+      <Property Name="PhoneAccess">True if the channel allows telephone access; otherwise false.</Property>
+      <Property Name="RateKnowledgeArticles">True if the channel allows rating of knowledgebase articles; otherwise false. </Property>
+      <Property Name="SubmitFeedback">True if the channel allows user submitted feedback; otherwise false.</Property>
+      <Property Name="TwitterAccess">True if the channel allows Twitter access; otherwise false.</Property>
+      <Property Name="ViewArticleRating">True if the channel allows viewing of knowledgebase article ratings; otherwise false. </Property>
+      <Property Name="ViewKnowledgeArticles">True if the channel allows viewing of knowledgebase articles; otherwise false. </Property>
+      <Property Name="WebAccess">True if the channel allows web access; otherwise false. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CheckIncomingEmailResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CheckIncomingEmail action</Description>
+    <Properties>
+      <Property Name="ReasonCode">The reason for the result in the ShouldDeliver property. </Property>
+      <Property Name="ShouldDeliver">Whether the message should be delivered to Microsoft Dynamics CRM. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CheckPromoteEmailResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CheckPromoteEmail function.</Description>
+    <Properties>
+      <Property Name="ReasonCode">The reason for the result in the ShouldDeliver property.</Property>
+      <Property Name="ShouldPromote">Whether the message should be promoted to Microsoft Dynamics CRM. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CloneAsPatchResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CloneAsPatch action.</Description>
+    <Properties>
+      <Property Name="SolutionId">The unique identifier of the solution patch.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CloneAsSolutionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CloneAsSolution action.</Description>
+    <Properties>
+      <Property Name="SolutionId">The unique identifier of the cloned solution.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ColumnSet"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies the attributes for which non-null values are returned from a query. </Description>
+    <Properties>
+      <Property Name="AllColumns">Whether to retrieve all the attributes of a record. </Property>
+      <Property Name="Columns">The collection of Strings containing the names of the attributes to be retrieved from a query.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ComponentDetail"
+               Status="Written"
+               Writer="crmSDK">
+    <Description> Provides additional information about the solution components that are related to a missing component.</Description>
+    <Properties>
+      <Property Name="DisplayName">The display name of the solution component. </Property>
+      <Property Name="Id">The ID of the solution component</Property>
+      <Property Name="ParentDisplayName">The display name of the parent solution component. </Property>
+      <Property Name="ParentId">The ID of the parent solution component. </Property>
+      <Property Name="ParentSchemaName">The schema name of the parent solution component. </Property>
+      <Property Name="SchemaName">The schema name of the solution component. </Property>
+      <Property Name="Solution">The name of the solution. </Property>
+      <Property Name="Type">The component type of the solution component.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ConstraintRelation"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies additional constraints to be applied when you select resources for appointments.</Description>
+    <Properties>
+      <Property Name="Constraints">The set of additional constraints. </Property>
+      <Property Name="ConstraintType">The type of constraints. </Property>
+      <Property Name="ObjectId">The ID of the calendar rule to which the constraint is applied. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CreateActivitiesListResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CreateActivitiesList action.</Description>
+    <Properties>
+      <Property Name="BulkOperationId">The ID of the bulk operation created to distribute the campaign activity. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CreateExceptionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CreateException action.</Description>
+    <Properties>
+      <Property Name="id">The ID of the exception appointment. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="CreateInstanceResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the CreateInstance action. </Description>
+    <Properties>
+      <Property Name="SeriesCanBeExpanded">Whether the series can be expanded.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="DateTimeBehavior"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies the behavior of a DateTimeAttributeMetadata attribute using the DateTimeBehavior property.</Description>
+    <Properties>
+      <Property Name="Value">The value can be UserLocal, DateOnly, or TimeZoneIndependent</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="DeleteAndPromoteResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the DeleteAndPromote action. </Description>
+    <Properties>
+      <Property Name="SolutionId">The unique identifier of the promoted solution.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="DeleteAuditDataResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the DeleteAuditData action.</Description>
+    <Properties>
+      <Property Name="PartitionsDeleted">The number of deleted audit partitions or the number of deleted Audit records. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="DownloadReportDefinitionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the DownloadReportDefinition function.</Description>
+    <Properties>
+      <Property Name="BodyText">The report definition.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="EndpointCollection"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>A collection of service endpoints.</Description>
+    <Properties>
+      <Property Name="Count">The number of elements in the collection.  </Property>
+      <Property Name="IsReadOnly">Whether the DataCollection is read-only </Property>
+      <Property Name="Keys">Collection containing the keys in the DataCollection. </Property>
+      <Property Name="Values">Collection containing the values in the DataCollection. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="EntityReference"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Identifies a record. </Description>
+    <Properties>
+      <Property Name="Id"> The ID of the record. </Property>
+      <Property Name="LogicalName">The logical name of the entity.</Property>
+      <Property Name="Name">The value of the primary attribute of the entity. </Property>
+      <Property Name="RowVersion">The row version. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ErrorInfo"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies the results of a scheduling operation using the ValidateRequest, BookRequest, or Reschedule action.</Description>
+    <Properties>
+      <Property Name="ErrorCode">The reason for a scheduling failure. </Property>
+      <Property Name="ResourceList">The array of information about a resource that has a scheduling problem for an appointment. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ExecuteFetchResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Deprecated</Description>
+    <Properties>
+      <Property Name="FetchXmlResult">Deprecated </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ExpandCalendarResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the ExpandCalendar function.</Description>
+    <Properties>
+      <Property Name="result">A set of time blocks with appointment information </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ExportFieldTranslationResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the ExportFieldTranslation function.</Description>
+    <Properties>
+      <Property Name="ExportTranslationFile">The compressed file that represents the exported translation file. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ExportMappingsImportMapResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>The response from the ExportMappingsImportMap action. </Description>
+    <Properties>
+      <Property Name="MappingsXml">The XML representation of the exported data map.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ExportSolutionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the ExportSolution action. </Description>
+    <Properties>
+      <Property Name="ExportSolutionFile">The compressed file that represents the exported solution. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ExportTranslationResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the ExportTranslation action.</Description>
+    <Properties>
+      <Property Name="ExportTranslationFile">The file that represents the data that is exported for translation. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetDistinctValuesImportFileResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>The response from the GetDistinctValuesImportFile function. </Description>
+    <Properties>
+      <Property Name="Values">The distinct values for a column in the source file. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetHeaderColumnsImportFileResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>The response from the GetHeaderColumnsImportFile function. </Description>
+    <Properties>
+      <Property Name="Columns">The source file header columns. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="FindParentResourceGroupResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description> Contains the response from the FindParentResourceGroup action.</Description>
+    <Properties>
+      <Property Name="result">A value that indicates whether the parent resource group was found. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetQuantityDecimalResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the GetQuantityDecimal action. </Description>
+    <Properties>
+      <Property Name="Quantity">The quantity decimal value for a product. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetReportHistoryLimitResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the GetReportHistoryLimit function.</Description>
+    <Properties>
+      <Property Name="HistoryLimit">The history limit for a report. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetTimeZoneCodeByLocalizedNameResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the GetTimeZoneCodeByLocalizedName function. </Description>
+    <Properties>
+      <Property Name="TimeZoneCode">The time zone code that has the requested localized name.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetTrackingTokenEmailResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the GetTrackingTokenEmail action.</Description>
+    <Properties>
+      <Property Name="TrackingToken">The requested tracking token. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetValidManyToManyResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the GetValidManyToMany function.</Description>
+    <Properties>
+      <Property Name="EntityNames"> An array of logical entity names that can have many-to-many entity relationships. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetValidReferencedEntitiesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the GetValidReferencingEntities function.</Description>
+    <Properties>
+      <Property Name="EntityNames">The array of valid entity names that can be the related entity in a many-to-many relationship.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="GetValidReferencingEntitiesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the GetValidReferencingEntities function. </Description>
+    <Properties>
+      <Property Name="EntityNames">The array of valid entity names that can be the related entity in a many-to-many relationship.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="InsertOptionValueResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the InsertOptionValue action. </Description>
+    <Properties>
+      <Property Name="NewOptionValue">The option value for the new option. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="InsertStatusValueResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the InsertStatusValue action.</Description>
+    <Properties>
+      <Property Name="NewOptionValue">The option value for the new option.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="IsBackOfficeInstalledResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Deprecated</Description>
+    <Properties>
+      <Property Name="IsInstalled">Deprecated. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="IsComponentCustomizableResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the IsComponentCustomizable function.</Description>
+    <Properties>
+      <Property Name="IsComponentCustomizable">Whether a solution component is customizable.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="IsDataEncryptionActiveResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the IsDataEncryptionActive function.</Description>
+    <Properties>
+      <Property Name="IsActive">Whether data encryption is active or not. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="IsValidStateTransitionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the IsValidStateTransition action. </Description>
+    <Properties>
+      <Property Name="IsValid">Whether the state transition is valid</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="Label"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains a collection of translations for a label. </Description>
+    <Properties>
+      <Property Name="LocalizedLabels">The collection of localized labels.</Property>
+      <Property Name="UserLocalizedLabel">The label for the language of the current user. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="LocalizedLabel"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains a localized label, including the label string and the language code. </Description>
+    <Properties>
+      <Property Name="HasChanged">Whether the item of metadata has changed. </Property>
+      <Property Name="IsManaged"> Whether the label is managed. </Property>
+      <Property Name="Label">The localized label string. </Property>
+      <Property Name="LanguageCode">The language code for the label. </Property>
+      <Property Name="MetadataId">A unique identifier for the metadata item.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="MailboxTrackingFolderMapping"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Represents an individual folder-level tracking rule item in the MailboxTrackingFolderMappingCollection. </Description>
+    <Properties>
+      <Property Name="ExchangeFolderId">The ID of the Exchange folder in the folder-level tracking rule. </Property>
+      <Property Name="ExchangeFolderName">The name of the Exchange folder in the folder-level tracking rule. </Property>
+      <Property Name="IsFolderOnboarded">Whether the tracking rule for the folder has run.</Property>
+      <Property Name="RegardingObjectId">The ID of the entity record with which the Exchange folder is mapped. </Property>
+      <Property Name="RegardingObjectName">The name of the entity represented by the RegardingObjectId property. </Property>
+      <Property Name="RegardingObjectTypeCode">The entity type code of the entity represented by the RegardingObjectId property.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="MissingComponent"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the data to describe a solution component that is required by a solution but not found in the system. </Description>
+    <Properties>
+      <Property Name="DependentComponent">Information about the solution component in the solution file that is dependent on a missing solution component</Property>
+      <Property Name="RequiredComponent">Information about the required solution component that is missing. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ObjectiveRelation"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the data that describes the scheduling strategy for an AppointmentRequest and that overrides the default constraints. </Description>
+    <Properties>
+      <Property Name="ObjectiveExpression">The search strategy to use in the appointment request for the SearchRequest message. </Property>
+      <Property Name="ResourceSpecId">The ID of the resource specification. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="OptionMetadata"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains metadata representing an option within an Option set.</Description>
+    <Properties>
+      <Property Name="Color">The Hex color assigned to the option</Property>
+      <Property Name="Description">The label containing the description for the option. </Property>
+      <Property Name="HasChanged">Gets whether the item of metadata has changed. </Property>
+      <Property Name="IsManaged">Whether the option is part of a managed solution.</Property>
+      <Property Name="Label">The label containing the text for the option. </Property>
+      <Property Name="MetadataId">A unique identifier for the metadata item </Property>
+      <Property Name="Value">The value of the option. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="OrganizationDetail"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Provides detailed information on an organization. </Description>
+    <Properties>
+      <Property Name="Endpoints">Collection that identifies the service type and address for each endpoint of the organization. </Property>
+      <Property Name="FriendlyName">The friendly name of the organization. </Property>
+      <Property Name="OrganizationId"> The global unique identifier of the organization.</Property>
+      <Property Name="OrganizationVersion">The version of the organization.</Property>
+      <Property Name="State">The state of the organization. </Property>
+      <Property Name="UniqueName">The unique name of the organization. </Property>
+      <Property Name="UrlName">The organization name used in the URL for the organization web service. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="OrganizationResources"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains data regarding the resources used by an organization. </Description>
+    <Properties>
+      <Property Name="CurrentNumberOfActiveUsers">The current number of active users. </Property>
+      <Property Name="CurrentNumberOfCustomEntities">The current number of custom entities. </Property>
+      <Property Name="CurrentNumberOfNonInteractiveUsers">The current number of interactive users </Property>
+      <Property Name="CurrentNumberOfPublishedWorkflows">The current number of published workflows</Property>
+      <Property Name="CurrentStorage">The current storage used by the organization</Property>
+      <Property Name="MaxNumberOfActiveUsers">The maximum number of active users. </Property>
+      <Property Name="MaxNumberOfCustomEntities">The maximum number of custom entities. </Property>
+      <Property Name="MaxNumberOfNonInteractiveUsers">The maximum number of interactive users. </Property>
+      <Property Name="MaxNumberOfPublishedWorkflows">The maximum number of published workflows</Property>
+      <Property Name="MaxStorage"> The maximum storage allowed for the organization </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="PagingInfo"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies a number of pages and a number of entity instances per page to return from the query. </Description>
+    <Properties>
+      <Property Name="Count">The number of entity instances returned per page. </Property>
+      <Property Name="PageNumber"> The number of pages returned from the query. </Property>
+      <Property Name="PagingCookie">The info used to page large result sets.</Property>
+      <Property Name="ReturnTotalRecordCount">The total number of records should be returned from the query.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ProposalParty"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Represents a party (user, team, or resource) that is needed for the proposed appointment. </Description>
+    <Properties>
+      <Property Name="DisplayName">The display name for the party. </Property>
+      <Property Name="EffortRequired">The percentage of time that is required to perform the service. </Property>
+      <Property Name="EntityName">The logical name of the type of entity that is represented by this party. </Property>
+      <Property Name="ResourceId">The ID of the resource that is represented by this party.</Property>
+      <Property Name="ResourceSpecId">The ID of the resource specification that is represented by this party. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="QueryMultipleSchedulesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the QueryMultipleSchedules action.</Description>
+    <Properties>
+      <Property Name="TimeInfos">A set of possible time block for each resource.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="QueryScheduleResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains response from QuerySchedule function.</Description>
+    <Properties>
+      <Property Name="TimeInfos">A set of possible time slots for the resource. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RemoveSolutionComponentResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RemoveSolutionComponent action.</Description>
+    <Properties>
+      <Property Name="id">The ID value of the solution component that was removed.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RemoveUserFromRecordTeamResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RemoveUserFromRecordTeam action.</Description>
+    <Properties>
+      <Property Name="AccessTeamId">The ID of the auto created access team.  </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RequiredResource"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies a resource that is required for a scheduling operation. </Description>
+    <Properties>
+      <Property Name="ResourceId">The ID of the required resource.</Property>
+      <Property Name="ResourceSpecId"> The ID of the required resource specification</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RescheduleResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the Reschedule action.</Description>
+    <Properties>
+      <Property Name="Notifications">For internal use only. </Property>
+      <Property Name="ValidationResult">The validation results for the appointment, recurring appointment master, or service appointment (service activity).</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ResourceInfo"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains information about a resource that has a scheduling problem for an appointment. </Description>
+    <Properties>
+      <Property Name="DisplayName">The display name for the resource. </Property>
+      <Property Name="EntityName">The logical name of the entity. </Property>
+      <Property Name="Id"> The ID of the record that has a scheduling problem.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveAbsoluteAndSiteCollectionUrlResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>The response from the RetrieveAbsoluteAndSiteCollectionUrl function. </Description>
+    <Properties>
+      <Property Name="AbsoluteUrl">The absolute URL of the object that is specified in the request. </Property>
+      <Property Name="SiteCollectionUrl">The SharePoint site collection URL of the object that is specified in the request. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveApplicationRibbonResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveApplicationRibbon function.</Description>
+    <Properties>
+      <Property Name="CompressedApplicationRibbonXml"> Contains the data representing the requested ribbon definition.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveAuditPartitionListResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveAuditPartitionList function.</Description>
+    <Properties>
+      <Property Name="AuditPartitionDetailCollection"> The collection of audit partition details. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveAvailableLanguagesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveAvailableLanguages function.</Description>
+    <Properties>
+      <Property Name="LocaleIds"> An array of locale ID values representing the language packs that are installed on the server. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveChannelAccessProfilePrivilegesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from processing RetrieveChannelAccessProfilePrivileges action</Description>
+    <Properties>
+      <Property Name="ChannelAccessProfile">The channel access profile privileges. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveCurrentOrganizationResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from processing RetrieveCurrentOrganization function.</Description>
+    <Properties>
+      <Property Name="Detail">Detailed information about the current organization. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveDataEncryptionKeyResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveDataEncryptionKey function.</Description>
+    <Properties>
+      <Property Name="EncryptionKey">The encryption key. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveDeploymentLicenseTypeResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveDeploymentLicenseType function.</Description>
+    <Properties>
+      <Property Name="licenseType">The license type.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveDeprovisionedLanguagesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveDeprovisionedLanguages function. </Description>
+    <Properties>
+      <Property Name="RetrieveDeprovisionedLanguages"> An array of locale ID values representing disabled language packs that are installed on the server.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveEntityRibbonResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveEntityRibbon function.</Description>
+    <Properties>
+      <Property Name="CompressedEntityXml">A compressed file that contains the ribbon definitions. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveExchangeRateResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveExchangeRate function.</Description>
+    <Properties>
+      <Property Name="ExchangeRate">The exchange rate for the currency. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveFormattedImportJobResultsResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveFormattedImportJobResults function.</Description>
+    <Properties>
+      <Property Name="FormattedResults">The formatted results of the import job. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveInstalledLanguagePacksResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveInstalledLanguagePacks function.</Description>
+    <Properties>
+      <Property Name="RetrieveInstalledLanguagePacks">An array of locale ID values that represent the installed language packs. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveInstalledLanguagePackVersionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveInstalledLanguagePackVersion function. </Description>
+    <Properties>
+      <Property Name="Version">The version number of the installed language pack. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveLicenseInfoResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveLicenseInfo function. </Description>
+    <Properties>
+      <Property Name="AvailableCount">The number of unused licenses. </Property>
+      <Property Name="GrantedLicenseCount">The number of licenses that have been granted to users.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveLocLabelsResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveLocLabels action.</Description>
+    <Properties>
+      <Property Name="Label">The label for the requested entity attribute. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveMailboxTrackingFoldersResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveMailboxTrackingFolders function.</Description>
+    <Properties>
+      <Property Name="MailboxTrackingFolderMappings">Collection of folder-level tracking rules for a mailbox containing Exchange folder and entity record mapping. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveMissingComponentsResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveMissingComponents function. </Description>
+    <Properties>
+      <Property Name="MissingComponents">An array of MissingComponent records. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveOrganizationResourcesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveOrganizationResources function.</Description>
+    <Properties>
+      <Property Name="OrganizationResources">The data that describes the resources used by an organization.  </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveParsedDataImportFileResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveParsedDataImportFile function. </Description>
+    <Properties>
+      <Property Name="Values">The parsed data. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrievePrincipalAccessResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrievePrincipalAccess action.</Description>
+    <Properties>
+      <Property Name="AccessRights">The access rights that the security principal (team or user) has to the specified record. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrievePrincipalAttributePrivilegesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrievePrincipalAttributePrivileges function.</Description>
+    <Properties>
+      <Property Name="AttributePrivileges">The collection of attribute privileges for the security principal (user or team). </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrievePrincipalSyncAttributeMappingsResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrievePrincipalSyncAttributeMappings function.</Description>
+    <Properties>
+      <Property Name="AttributeMappings">The principle sync attribute mappings. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveProvisionedLanguagePackVersionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveProvisionedLanguagePackVersion function.</Description>
+    <Properties>
+      <Property Name="Version">The version number of the installed language pack.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveProvisionedLanguagesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveProvisionedLanguages function.</Description>
+    <Properties>
+      <Property Name="RetrieveProvisionedLanguages">An array of locale ID values that represent the provisioned languages.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveRolePrivilegesRoleResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveRolePrivilegesRole function.</Description>
+    <Properties>
+      <Property Name="RolePrivileges">An array of the IDs and depths of the privileges that are held by the specified role.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveTeamPrivilegesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveTeamPrivileges function. </Description>
+    <Properties>
+      <Property Name="RolePrivileges">The list of privileges that the team holds for a record.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveTimestampResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveTimestamp function.</Description>
+    <Properties>
+      <Property Name="Timestamp">The time stamp of the metadata. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveUserPrivilegesResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveUserPrivileges function. </Description>
+    <Properties>
+      <Property Name="RolePrivileges">An array of privileges that the user holds. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RetrieveVersionResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the RetrieveVersion function. </Description>
+    <Properties>
+      <Property Name="Version">The version number of the Microsoft Dynamics CRM Server.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="RolePrivilege"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains information about a privilege.</Description>
+    <Properties>
+      <Property Name="BusinessUnitId"> The ID of the business unit.</Property>
+      <Property Name="Depth">The depth of the privilege. </Property>
+      <Property Name="PrivilegeId">The ID of the privilege. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="SearchResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the Search function. </Description>
+    <Properties>
+      <Property Name="SearchResults">The results of the search. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="SearchResults"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the results from the Search action. </Description>
+    <Properties>
+      <Property Name="Proposals"> The set of proposed appointments that meet the appointment request criteria. </Property>
+      <Property Name="TraceInfo"> Information regarding the results of the search. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="SecurityPrivilegeMetadata"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>The metadata that describes a security privilege for access to an entity. </Description>
+    <Properties>
+      <Property Name="CanBeBasic">Whether the privilege can be basic access level.</Property>
+      <Property Name="CanBeDeep">Whether the privilege can be deep access level.</Property>
+      <Property Name="CanBeEntityReference">Whether the privilege for an external party can be basic access level.</Property>
+      <Property Name="CanBeGlobal">Whether the privilege can be global access level.</Property>
+      <Property Name="CanBeLocal">Whether the privilege can be local access level.</Property>
+      <Property Name="CanBeParentEntityReference">Whether the privilege for an external party can be parent access level.</Property>
+      <Property Name="Name">The name of the privilege.</Property>
+      <Property Name="PrivilegeId">The ID of the privilege.</Property>
+      <Property Name="PrivilegeType">The type of the privilege.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="SendEmailResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the BackgroundSendEmail action. </Description>
+    <Properties>
+      <Property Name="Subject">Subject of the email. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="StateOptionMetadata"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains data to define an option for the options in a State attribute. </Description>
+    <Properties>
+      <Property Name="Color">TODO: StateOptionMetadata ComplexType Color Property Description </Property>
+      <Property Name="DefaultStatus"> The default status value associated with this state. </Property>
+      <Property Name="Description">The label containing the description for the option. </Property>
+      <Property Name="HasChanged">Whether the item of metadata has changed.  </Property>
+      <Property Name="InvariantName">The name of the state that does not change. </Property>
+      <Property Name="IsManaged">Whether the option is part of a managed solution. </Property>
+      <Property Name="Label"> The label containing the text for the option </Property>
+      <Property Name="MetadataId">A unique identifier for the metadata item.  </Property>
+      <Property Name="Value">The value of the option </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="StatusOptionMetadata"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains one of the possible values for an attribute of type status.</Description>
+    <Properties>
+      <Property Name="Color">The Hex color value assigned for the option. </Property>
+      <Property Name="Description">The label containing the description for the option. </Property>
+      <Property Name="HasChanged">Whether the item of metadata has changed </Property>
+      <Property Name="IsManaged">Whether the option is part of a managed solution.</Property>
+      <Property Name="Label">The label containing the text for the option.  </Property>
+      <Property Name="MetadataId"> A unique identifier for the metadata item.</Property>
+      <Property Name="State"> The state that the status is associated with. </Property>
+      <Property Name="TransitionData">The status transitions allowed for this status </Property>
+      <Property Name="Value">The value of the option </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="StringCollection"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Collection of strings.</Description>
+    <Properties>
+      <Property Name="Items">Items in the collection. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="StringFormatName"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies the format of a StringAttributeMetadata attribute using the FormatName property. </Description>
+    <Properties>
+      <Property Name="Value">The value of the string.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="TimeInfo"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Specifies a set of time blocks with appointment information. </Description>
+    <Properties>
+      <Property Name="ActivityStatusCode">The status of the activity. </Property>
+      <Property Name="CalendarId">The ID of the calendar for this block of time.</Property>
+      <Property Name="DisplayText">The display text shown in the calendar for the time block. </Property>
+      <Property Name="Effort">The amount of effort required for this block of time.</Property>
+      <Property Name="End">The end time for the block.</Property>
+      <Property Name="IsActivity">Indicates whether the block of time refers to an activity.</Property>
+      <Property Name="SourceId">The ID of the record referred to in the time block. </Property>
+      <Property Name="SourceTypeCode">The type of entity referred to in the time block. </Property>
+      <Property Name="Start">The start time for the block.</Property>
+      <Property Name="SubCode">Information about the time block such as whether it is an appointment, break, or holiday. </Property>
+      <Property Name="TimeCode">Indicates whether the time block is available, busy, filtered or unavailable.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="TimeInfoCollection"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>The results of a search using the QueryMultipleSchedules function.</Description>
+    <Properties>
+      <Property Name="Items">A collection of TimeInfo complex types </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="TraceInfo"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the results of a scheduling operation using the ValidateRequest, BookRequest, RescheduleRequest, or Search actions. </Description>
+    <Properties>
+      <Property Name="ErrorInfoList">The list of error information for the scheduling operation.</Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ValidateRecurrenceRuleResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the ValidateRecurrenceRule action. </Description>
+    <Properties>
+      <Property Name="Description">The description. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ValidateResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from the Validate action. </Description>
+    <Properties>
+      <Property Name="Result">the results of the validate operation. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="ValidationResult"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the result from the ValidateRequest, BookRequest, or Reschedule actions. </Description>
+    <Properties>
+      <Property Name="ActivityId">ID of the validated activity. </Property>
+      <Property Name="TraceInfo">The reasons for any scheduling failures.</Property>
+      <Property Name="ValidationSuccess">Indicates whether the appointment or service appointment was validated successfully. </Property>
+    </Properties>
+  </ComplexType>
+  <ComplexType Name="WhoAmIResponse"
+               Status="Written"
+               Writer="crmSDK">
+    <Description>Contains the response from WhoAmI function.</Description>
+    <Properties>
+      <Property Name="BusinessUnitId">ID of the business to which the logged on user belongs. </Property>
+      <Property Name="OrganizationId">ID of the organization that the user belongs to. </Property>
+      <Property Name="UserId">ID of the user who is logged on.</Property>
+    </Properties>
+  </ComplexType>
+</ComplexTypes>

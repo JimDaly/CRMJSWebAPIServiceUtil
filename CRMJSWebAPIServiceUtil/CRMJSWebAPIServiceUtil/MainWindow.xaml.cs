@@ -85,12 +85,13 @@ namespace CRMJSWebAPIServiceUtil
         //string OAuthAccessToken;
         string selectedSolutionUniqueName;
 
-        //TODO: If you need to connect to a CRM Online instance
-        string redirectUri = "https://yourDomain/yourApp";
-        string clientId = "########-####-####-####-############";
+  //TODO: If you need to connect to a CRM Online instance
+  string redirectUri = "https://yourDomain/yourApp";
+  string clientId = "########-####-####-####-############";
 
-        //string webApplicationUrl;
-        string builtLibrary;
+
+  //string webApplicationUrl;
+  string builtLibrary;
         private XNamespace edmx = "http://docs.oasis-open.org/odata/ns/edmx";
         private XNamespace mscrm = "http://docs.oasis-open.org/odata/ns/edm";
         public MainWindow()
@@ -101,25 +102,25 @@ namespace CRMJSWebAPIServiceUtil
             config.ClientId = clientId;
             config.RedirectUrl = redirectUri;
 
-            //You can hard-code config values here to pre-populate the dialog during testing.
+   //You can hard-code config values here to pre-populate the dialog during testing.
 
-            //For testing on-premises
+   //For testing on-premises
 
-            //config.OServiceUrl = "http://yourCRMServer/yourOrg/";
-            //config.OUsername = "administrator";
-            //SecureString ss = new SecureString();
-            //"yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
-            //config.ODomain = "~";
+   //config.OServiceUrl = "http://yourserver/yourorg/";
+   //config.OUsername = "yourUserName";
+   //SecureString ss = new SecureString();
+   //"yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
+   //config.ODomain = "~";
 
-            //For testing online
+   //For testing online
 
-            config.OServiceUrl = "https://yourOrg.crm.dynamics.com/";
-            config.OUsername = "you@yourOrg.onmicrosoft.com";
-            SecureString ss = new SecureString();
-            "yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
+   config.OServiceUrl = "https://yourOrg.crm.dynamics.com/";
+   config.OUsername = "you@yourOrg.onmicrosoft.com";
+   SecureString ss = new SecureString();
+   "yourPassword".ToCharArray().ToList().ForEach(p => ss.AppendChar(p));
 
 
-            config.Password = ss;
+   config.Password = ss;
 
         }
 
@@ -194,6 +195,9 @@ namespace CRMJSWebAPIServiceUtil
 
                     await downloadCSDL();
 
+
+ 
+
                     await retrieveSolutions();
 
                     Dispatcher.Invoke(DispatcherPriority.Normal,
@@ -241,50 +245,74 @@ namespace CRMJSWebAPIServiceUtil
 
         }
 
-        private async Task retrieveSolutions()
-        {
-            try
-            {
-                using (HttpClient client = getHttpClient())
-                {
-                    string select = "solutions?$select=uniquename,friendlyname&";
-                    string filter = "$filter=ismanaged eq false and isvisible eq true&";
-                    string expand = "$expand=publisherid($select=customizationprefix)&";
-                    string order = "$orderby=friendlyname";
-                    HttpResponseMessage resp = await client.GetAsync(string.Format("v{0}/{1}{2}{3}{4}",
-                         version, select, filter, expand, order));
-                    if (resp.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new Exception(String.Format("Error retrieving solutions: {0}", resp.StatusCode));
-                    }
+  private async Task retrieveSolutions()
+  {
+   try
+   {
+    using (HttpClient client = getHttpClient())
+    {
+     string select = "solutions?$select=uniquename,friendlyname,_publisherid_value&";
+     string filter = "$filter=ismanaged eq false and isvisible eq true&";
+     string order = "$orderby=friendlyname";
+     HttpResponseMessage resp = await client.GetAsync(string.Format("v{0}/{1}{2}{3}",
+          version, select, filter, order));
+     if (resp.StatusCode != HttpStatusCode.OK)
+     {
+      throw new Exception(String.Format("Error retrieving solutions: {0}", resp.StatusCode));
+     }
 
-                    JObject response = JObject.Parse(await resp.Content.ReadAsStringAsync());
+     JObject response = JObject.Parse(await resp.Content.ReadAsStringAsync());
 
-                    JArray solutions = (JArray)response["value"];
+     JArray solutions = (JArray)response["value"];
 
-                    foreach (JObject solution in solutions)
-                    {
-                        SolutionData sd = new SolutionData();
-                        sd.customizationprefix = (string)solution["publisherid"]["customizationprefix"];
-                        sd.friendlyname = (string)solution["friendlyname"];
-                        sd.solutionid = (string)solution["solutionid"];
-                        sd.uniquename = (string)solution["uniquename"];
+     foreach (JObject solution in solutions)
+     {
+      SolutionData sd = new SolutionData();
+      sd.customizationprefix = await getPublisherCustomizationPrefixValue((string)solution["_publisherid_value"]);
+      sd.friendlyname = (string)solution["friendlyname"];
+      sd.solutionid = (string)solution["solutionid"];
+      sd.uniquename = (string)solution["uniquename"];
 
-                        retrievedSolutions.Add(sd);
-                    }
-                    solutionsCmbx.ItemsSource = retrievedSolutions;
-                    solutionsCmbx.SelectedIndex = 0; //Default solution should always be there
-                }
-            }
-            catch (Exception)
-            {
+      retrievedSolutions.Add(sd);
+     }
+     solutionsCmbx.ItemsSource = retrievedSolutions;
+     solutionsCmbx.SelectedIndex = 0; //Default solution should always be there
+    }
+   }
+   catch (Exception)
+   {
 
-                throw;
-            }
-        }
+    throw;
+   }
+  }
 
+  private async Task<string> getPublisherCustomizationPrefixValue(string publisherid)
+  {
 
-        private async Task downloadCSDL()
+   try
+   {
+    using (HttpClient client = getHttpClient())
+    {
+     string query = string.Format("v{0}/publishers({1})?$select=customizationprefix", version, publisherid);
+     HttpResponseMessage resp = await client.GetAsync(query);
+     if (resp.StatusCode != HttpStatusCode.OK)
+     {
+      throw new Exception(String.Format("Error retrieving publisher customization prefix: {0}", resp.StatusCode));
+     }
+
+     JObject response = JObject.Parse(await resp.Content.ReadAsStringAsync());
+
+     return (string)response["customizationprefix"];
+
+    }
+   }
+   catch (Exception)
+   {
+    throw;
+   }
+  }
+
+  private async Task downloadCSDL()
         {
             //Get version
             try

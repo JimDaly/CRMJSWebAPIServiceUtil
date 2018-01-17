@@ -165,7 +165,7 @@ and add your own **clientid** and **redirecturi** values to replace what you fin
 
 4. Enter your credentials for CRM. Only enter domain for on-premises.
 
-  ![Enter credentials](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/enterCredentials.PNG)
+  ![Enter credentials](images/enterCredentials.PNG)
 
 5. When you connect, wait a moment while metadata is downloaded. After you are connected, the **Open** button is enabled to open any pre-existing library definitions
 you have saved from a previous session. Saving a library definition is described in step 9.
@@ -174,7 +174,7 @@ you have saved from a previous session. Saving a library definition is described
 
 6. In the **Select Entities** tab, select any entities you plan to use in your library by double clicking them.
 
-  ![Choose Entities](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/ChooseEntities.PNG)
+  ![Choose Entities](images/ChooseEntities.PNG)
 
   > **Tip**: If you choose any activity entities (task, email, letter, etc) the **activitypointer** base class will
   be included but you won't have the option to choose properties for the **activitypointer** entity in the next step.
@@ -189,23 +189,23 @@ project by double clicking them.
   will be included anyway. You will have a class for the entity that you can instantiate, but you will need to use the entity
   **get** and **set** methods to work with properties.
 
-  ![Select Properties](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/SelectProperties.PNG)
+  ![Select Properties](images/SelectProperties.PNG)
 
   The **Add Used Properties** button will evaluate the FormXML of all the forms for the entity and add all the properties
   which are displayed as fields in the form. These are more likely to be properties you would use. Some entities do not have forms, so this button will do nothing for those entities.
 
-  ![Property descriptions](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/PropertyDescriptions.PNG)
+  ![Property descriptions](images/PropertyDescriptions.PNG)
 
   >**Tip**: Hover over the property to see the description from the metadata.
 
 8. On the **Select Functions** and **Select Actions** tabs, simply select the Web API Functions and Actions you want to
 use in the generated library. Custom actions are available on the **Actions** tab.
 
-  ![Select Functions and Actions](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/SelectFunctionsAndActions.PNG)
+  ![Select Functions and Actions](images/SelectFunctionsAndActions.PNG)
 
 9. On the **Build** tab you have a number of choices to make:
 
-  ![Set Build options](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/Build.PNG)
+  ![Set Build options](images/Build.PNG)
 
   Field        | Description    |
   ------------- |-------------|
@@ -223,7 +223,7 @@ use in the generated library. Custom actions are available on the **Actions** ta
 
   If you did not choose the  **Enable OAuth for Cross-Origin Resource Sharing (CORS)** option on the build tab, you will see this:
 
-  ![Ordinary Web Resource option](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/SaveOption1.PNG)
+  ![Ordinary Web Resource option](images/SaveOption1.PNG)
 
   You have the following options:
 
@@ -238,7 +238,7 @@ use in the generated library. Custom actions are available on the **Actions** ta
 
   Whether you chose to enable OAuth or not, you will always see the option to **Save a definition of this library**.
 
-  ![Ordinary Web Resource option](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/SaveOption2.PNG)
+  ![Ordinary Web Resource option](images/SaveOption2.PNG)
 
   Choose where you want the definition to be saved. The default is the same location as the output folder for
   the JavaScript and TypeScript files and click **Save definition**.

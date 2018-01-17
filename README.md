@@ -159,7 +159,7 @@ and add your own **clientid** and **redirecturi** values to replace what you fin
   
   You will see this:
 
-  ![Opening screen](../../images/open.PNG)
+  ![Opening screen](images/open.PNG)
 
   Press **Login to CRM** to continue.
 
@@ -170,7 +170,7 @@ and add your own **clientid** and **redirecturi** values to replace what you fin
 5. When you connect, wait a moment while metadata is downloaded. After you are connected, the **Open** button is enabled to open any pre-existing library definitions
 you have saved from a previous session. Saving a library definition is described in step 9.
 
-  ![After you are connected](https://raw.githubusercontent.com/JimDaly/CRMJSWebAPIServiceUtil/master/images/Connected.PNG)
+  ![After you are connected](images/Connected.PNG)
 
 6. In the **Select Entities** tab, select any entities you plan to use in your library by double clicking them.
 

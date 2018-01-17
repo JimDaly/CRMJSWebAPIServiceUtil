@@ -159,7 +159,7 @@ and add your own **clientid** and **redirecturi** values to replace what you fin
   
   You will see this:
 
-  ![Opening screen](../images/open.PNG)
+  ![Opening screen](../../images/open.PNG)
 
   Press **Login to CRM** to continue.
 

@@ -85,9 +85,8 @@ namespace CRMJSWebAPIServiceUtil
         //string OAuthAccessToken;
         string selectedSolutionUniqueName;
 
-  //TODO: If you need to connect to a CRM Online instance
-  string redirectUri = "https://yourDomain/yourApp";
-  string clientId = "########-####-####-####-############";
+  string redirectUri = "app://58145B91-0C36-4500-8554-080854F2AC97";
+  string clientId = "51f81489-12ee-4a9e-aaae-a2591f45987d";
 
 
   //string webApplicationUrl;
